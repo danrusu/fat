@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="ConsignorImageCompare" 
+	user="tester" 
+	project="Consignor">
+
+
+	<test name="Login" browser="chrome">
+
+	
+		<testcase name="projects.common.testCases.OpenPage" 
+		
+			url="https://www.consignorportal.com/ticket/Outbox" />
+	
+	
+		<testcase name="projects.consignor.testCases.PortalLogin" 
+		
+			username="*****" 
+			
+			password="*****" />
+
+		
+	</test>
+		
+
+</suite> 
