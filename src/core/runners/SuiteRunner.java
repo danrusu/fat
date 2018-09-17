@@ -221,7 +221,7 @@ public interface SuiteRunner {
                 WinUtils.getHostName(),
                 resultFilePath);
 
-        MainServer.sendFileToWattServer(
+        MainServer.sendFileToServer(
                 resultFilePath.toString(),
                 "/var/www/html/logs/", 
                 uniqResultFileName);

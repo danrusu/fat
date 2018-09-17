@@ -54,7 +54,7 @@ public class MainServer {
 
 
 
-    public static void sendFileToWattServer(
+    public static void sendFileToServer(
             String sourceFilePath,
             String destinationPath, 
             String uniqResultFileName){
@@ -69,7 +69,7 @@ public class MainServer {
 
 
 
-    public static FileNamesAndUrls sendFilesToWattServer(List<String> sourceFilePathsArray){ 
+    public static FileNamesAndUrls sendFilesToServer(List<String> sourceFilePathsArray){ 
 
         log("Documents to upload: " + sourceFilePathsArray);
 
@@ -80,7 +80,7 @@ public class MainServer {
 
             String sourceFileName = Paths.get(sourceFilePath).getFileName().toString();           
 
-            sendFileToWattServer(
+            sendFileToServer(
                     sourceFilePath,
                     tempFolderFullPath, 
                     sourceFileName);

@@ -17,7 +17,7 @@ public class TestCaseDocs {
 
     public static void run(List<String> suitePackages) {
 
-        String jarPath = Paths.get(System.getProperty("user.dir"), "watt.jar").toString();
+        String jarPath = Paths.get(System.getProperty("user.dir"), "fat.jar").toString();
 
         ClassUtils.getClassesNamesInPackages(jarPath, suitePackages).forEach(
                 c -> {
@@ -26,7 +26,7 @@ public class TestCaseDocs {
                         System.out.println(items[items.length-1]);
                     }
                 }
-                );
+        );
     }
 
 

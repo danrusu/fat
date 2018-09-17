@@ -10,7 +10,7 @@ import utils.ThreadUtils;
 
 /**
  * 
- * Main entry of application (watt.jar).
+ * Main entry of tool (fat.jar).
  * 
  * @author dan.rusu
  *
@@ -62,7 +62,7 @@ public class Main {
 
 
     /**
-     * Display watt.jar usage information.
+     * Display fat.jar usage information.
      */
     private static boolean usage(String ...args){
         
@@ -71,11 +71,11 @@ public class Main {
                     "\nWrong arguments.\n"
                             + "\nUsage:"
                             + "\n\nRun test:"
-                            + "\njava [-Duser] [-Dbrowser] [-DjenkinsJobName] [-DjenkinsBuildNr] [-DsendResultsToServer] [-Ddebug] -jar watt.jar config.xml "
+                            + "\njava [-Duser] [-Dbrowser] [-DjenkinsJobName] [-DjenkinsBuildNr] [-DsendResultsToServer] [-Ddebug] -jar fat.jar config.xml "
                             + "\n\nList available test cases modules:"
-                            + "\njava -jar watt.jar docs"
+                            + "\njava -jar fat.jar docs"
                             + "\n\nList test case's documentation:"
-                            + "\njava -jar watt.jar docs testCaseName");
+                            + "\njava -jar fat.jar docs testCaseName");
 
             return false;
         }
