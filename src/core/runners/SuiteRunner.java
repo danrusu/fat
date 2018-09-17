@@ -71,8 +71,8 @@ public interface SuiteRunner {
         String project = XmlTestConfig.getProject();
 
         // JVM arg -DsendResultsToServer
-        // defaults to true for the WATT framework; set it to false only from JVM arg -DsendResultsToServer=false
-        boolean sendResultsToServer = getBooleanPropertyOrDefault(JvmArgs.sendResultsToServer, true);
+        // defaults to false; can be set only from JVM arg -DsendResultsToServer=true
+        boolean sendResultsToServer = getBooleanPropertyOrDefault(JvmArgs.sendResultsToServer, false);
 
         if (sendResultsToServer) {
             Results.insertResultsIntoDatabase(

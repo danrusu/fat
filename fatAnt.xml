@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project fat with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/fat.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="core.Main"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ selenium-server-standalone-3.11.0.jar jsch-0.1.53.jar mssql-jdbc-6.4.0.jre8.jar mysql-connector-java-5.1.39-bin.jar javax.mail.jar json-path-3.1.0.jar json-schema-validator-3.1.0.jar rest-assured-3.0.7.jar xml-path-3.1.0.jar pdfbox-app-2.0.5.jar org.junit.jupiter.api_5.0.0.v20170910-2246.jar org.junit.jupiter.engine_5.0.0.v20170910-2246.jar org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar org.junit.jupiter.params_5.0.0.v20170910-2246.jar org.junit.platform.commons_1.0.0.v20170910-2246.jar org.junit.platform.engine_1.0.0.v20170910-2246.jar org.junit.platform.launcher_1.0.0.v20170910-2246.jar org.junit.platform.runner_1.0.0.v20170910-2246.jar org.junit.platform.suite.api_1.0.0.v20170910-2246.jar org.junit.vintage.engine_4.12.0.v20170910-2246.jar org.opentest4j_1.0.0.v20170910-2246.jar org.apiguardian_1.0.0.v20170910-2246.jar junit.jar org.hamcrest.core_1.3.0.v201303031735.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="${dir.jarfile}/bin"/>
+            <zipfileset dir="${dir.jarfile}/ext" includes="selenium-server-standalone-3.11.0.jar"/>
+            <zipfileset dir="${dir.jarfile}/ext" includes="jsch-0.1.53.jar"/>
+            <zipfileset dir="${dir.jarfile}/ext" includes="mssql-jdbc-6.4.0.jre8.jar"/>
+            <zipfileset dir="${dir.jarfile}/ext" includes="mysql-connector-java-5.1.39-bin.jar"/>
+            <zipfileset dir="${dir.jarfile}/ext" includes="javax.mail.jar"/>
+            <zipfileset dir="${dir.jarfile}/ext/rest-assured" includes="json-path-3.1.0.jar"/>
+            <zipfileset dir="${dir.jarfile}/ext/rest-assured" includes="json-schema-validator-3.1.0.jar"/>
+            <zipfileset dir="${dir.jarfile}/ext/rest-assured" includes="rest-assured-3.0.7.jar"/>
+            <zipfileset dir="${dir.jarfile}/ext/rest-assured" includes="xml-path-3.1.0.jar"/>
+            <zipfileset dir="${dir.jarfile}/ext" includes="pdfbox-app-2.0.5.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.jupiter.api_5.0.0.v20170910-2246.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.jupiter.engine_5.0.0.v20170910-2246.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.jupiter.params_5.0.0.v20170910-2246.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.platform.commons_1.0.0.v20170910-2246.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.platform.engine_1.0.0.v20170910-2246.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.platform.launcher_1.0.0.v20170910-2246.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.platform.runner_1.0.0.v20170910-2246.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.platform.suite.api_1.0.0.v20170910-2246.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.vintage.engine_4.12.0.v20170910-2246.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.opentest4j_1.0.0.v20170910-2246.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.apiguardian_1.0.0.v20170910-2246.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins/org.junit_4.12.0.v201504281640" includes="junit.jar"/>
+            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.hamcrest.core_1.3.0.v201303031735.jar"/>
+        </jar>
+    </target>
+</project>

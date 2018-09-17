@@ -1,53 +1,59 @@
 package core.failures;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Callable;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class ThrowablesWrapper {
 
+    
+    public static Function<Runnable, Throwable> runnableToThrowableOrNull = runnable -> {
+        
+        try {
+            runnable.run();
+        }
+        catch(Throwable throwable) {
+            return throwable;
+        }
+        
+        return null;
+    };
+    
+    
 
     public static List<Throwable> wrapAll(Runnable ...runables){
 
-
-        List<Throwable> thrownList = new ArrayList<>();
-
-        Arrays.asList(runables).stream().parallel()
-        .unordered() // set the ORDERED bit to 0 to remove statefulness of the stream created from an ArrayList
-        .forEach( runnable -> {
-            try {
-                runnable.run();
-            }
-            catch(Throwable thrown) {
-                thrownList.add(thrown);
-            }
-        });
-
-        return thrownList;
+        return List.of(runables).stream()
+        
+            .map(runnableToThrowableOrNull)
+            
+            .filter(throwable -> throwable != null)
+            
+            .collect(Collectors.toList());            
     }
 
-    
-    
+
+
     public static <T> Optional<T> wrapAssignment(Callable<T> callable){
 
         T returnedValue = null;
-        
+
         try {
             returnedValue = callable.call();
         }
         catch(Throwable thrown) {
-            // Logger.getLogger().log("" + thrown);
+            System.out.println(thrown);
         }
 
         return Optional.ofNullable(returnedValue);
     }
-    
-    
+
+
 
     public static <T> T wrapAssignment(Callable<T> callable, T defaultValue){
-        
+
         return wrapAssignment(callable).orElse(defaultValue);
     }
 
@@ -56,7 +62,7 @@ public class ThrowablesWrapper {
     public static <T> T wrapThrowable(
             String testCaseFailureMessage, 
             Callable<T> callable){
-        
+
         try {
             return callable.call();
         }
@@ -68,7 +74,7 @@ public class ThrowablesWrapper {
 
 
     public static <T> T wrapThrowable(Callable<T> callable){
-        
+
         try {
             return callable.call();
         }
@@ -76,12 +82,12 @@ public class ThrowablesWrapper {
             throw new TestCaseFailure(e.toString(), e);
         }
     }
-    
-    
-    
-/* this is not useful
- * compiler force you to wrap the exception in a try catch 
- *    
+
+
+
+    /* this is not useful
+     * compiler will force you to wrap the exception in a try catch 
+     *    
      public static void wrapRunnable(
             String testCaseFailureMessage, 
             Runnable runnable){
@@ -93,8 +99,8 @@ public class ThrowablesWrapper {
         }
     }
 
-    
-    
+
+
     public static void wrapRunnable(Runnable runnable) {
         wrapRunnable("", runnable);
     }  */
