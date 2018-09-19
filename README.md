@@ -2,25 +2,25 @@
 Framework for Automation in Testing
 
 
-#### Build runnable jar
+### Build runnable jar
 ```
 ant -f fatAnt.xml
 ```
 
 
-#### Run test scenarios with the JAR tool
+### Run test scenarios with the JAR tool
 ```
 cd fat
 java -jar fat.jar XML\Demo\browsers.xml
 ```
 
 
-#### Framework functionalities demos (XML\Demo\)
+### Framework functionalities demos (XML\Demo\)
  - browsers.xml
  - exceptions.xml
  - XmlDynamicData.xml
 
 
-#### Logs (logs\log__timeStamp\)
+### Logs (logs\log__timeStamp\)
  - Detailed Java log: log.txt
  - Test scenario execution report: result.html
