@@ -1,5 +1,7 @@
 package utils.database;
+
 import static core.Logger.log;
+import static core.failures.ThrowablesWrapper.wrapThrowable;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,8 +11,6 @@ import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import core.failures.ThrowablesWrapper;
 
 public interface Sql {
 
@@ -37,33 +37,36 @@ public interface Sql {
 
 
 
-    private static String getColumnName(ResultSetMetaData resultSetMetaData, int columnIndex) {
-        return ThrowablesWrapper.wrapThrowable(
-                () -> resultSetMetaData.getColumnName(columnIndex));
+    private static String getColumnName(
+            ResultSetMetaData resultSetMetaData, 
+            int columnIndex) {
+        
+        return wrapThrowable(() -> resultSetMetaData.getColumnName(columnIndex));
     }
 
 
 
     private static String getColumnValue(ResultSet resultSet, int columnIndex) {
-        return ThrowablesWrapper.wrapThrowable(
-                () -> resultSet.getString(columnIndex));
+        
+        return wrapThrowable(() -> resultSet.getString(columnIndex));
     }
 
 
 
     // INSERT, UPDATE, DELETE statement or an SQL statement that returns nothing
     public static int executeUpdate(Connection connection, String sqlQuery){
-        return ThrowablesWrapper.wrapThrowable(
-                () -> connection.createStatement().executeUpdate(sqlQuery));
+        
+        return wrapThrowable(() -> connection.createStatement().executeUpdate(sqlQuery));
     }
 
 
 
     //  SELECT
-    public static Map<Integer, Map<String, String >> executeQuery(Connection connection, String sqlQuery){
+    public static Map<Integer, Map<String, String >> executeQuery(
+            Connection connection, 
+            String sqlQuery){
 
-
-        return ThrowablesWrapper.wrapThrowable(() ->{
+        return wrapThrowable(() ->{
 
             Map<Integer, Map<String, String >> rowsMap = new TreeMap<>();
 
@@ -89,17 +92,13 @@ public interface Sql {
                     .collect(Collectors.toMap(
                             Function.identity(), // key
                             i -> getColumnName(resultSetMetaData, i)) // value
-                            );
+                    );
 
-
-           
-            
             int rowIndex = 0;
             while(resultSet.next()){
 
                 Map<String, String> columnsMap = IntStream
                         .rangeClosed(1, columnsCount)
-                        //.parallel() // does not work - find why???
                         .boxed()
                         .collect(Collectors.toMap(
                                 i -> columnNames.get(i),
@@ -109,17 +108,18 @@ public interface Sql {
             }
 
             return  rowsMap;
-        } );
+        });
 
     }
 
 
 
     public static void disconnect(Connection connection){
-        ThrowablesWrapper.wrapThrowable(() -> {
+        wrapThrowable(() -> {
             connection.close(); 
             return null;
         });
     }
     
 }
+

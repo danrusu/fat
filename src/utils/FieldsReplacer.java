@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import com.google.common.base.Function;
 
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 
 
 /**
@@ -79,7 +79,7 @@ public interface FieldsReplacer{
         }
 
         if (!initSucceeded){
-            throw new TestCaseFailure("Init failed for " + instance.getClass().getName());
+            throw new Failure("Init failed for " + instance.getClass().getName());
         }
     }
 
@@ -160,7 +160,7 @@ public interface FieldsReplacer{
 
         } catch (IllegalArgumentException | IllegalAccessException e) {
             e.printStackTrace();
-            throw new TestCaseFailure(instance.getClass().getName() + "error. ", e);
+            throw new Failure(instance.getClass().getName() + "error. ", e);
         }
     }
 

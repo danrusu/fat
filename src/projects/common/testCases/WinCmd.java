@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 import core.Logger;
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 import core.testCase.TestCase;
 import utils.Exec;
 
@@ -39,7 +39,7 @@ public class WinCmd extends TestCase{
 			executor.join( 5 );
 		}
 		catch(Exception e){
-			throw new TestCaseFailure("Error for running command: " + command, e);
+			throw new Failure("Error for running command: " + command, e);
 		}
 		
 		finally{

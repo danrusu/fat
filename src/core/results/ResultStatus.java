@@ -1,12 +1,15 @@
 package core.results;
 
 public enum ResultStatus {
+        
+          Started,
     
+          Skipped,
+          
 	      Passed, 
 	      
-	      Failed,
+	      Failed;
 	      
-	      Skipped;	  
     
     
     

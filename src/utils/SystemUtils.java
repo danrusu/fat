@@ -1,23 +1,20 @@
 package utils;
 
+import static core.failures.ThrowablesWrapper.wrapAssignment;
+
 import java.util.Optional;
 
 import core.JvmArgs;
-import core.failures.ThrowablesWrapper;
 
 
 
-public final class SystemUtils {
+public interface SystemUtils {
 
     
-    
-    private SystemUtils(){
-        throw new AssertionError("This helper class must not be istantiated!");
-    }
-
     
     // String JVM args
     public static String getPropertyOrDefaultIfNull(JvmArgs arg, String defaultValue) {
+        
         return Optional.ofNullable(System.getProperty(arg.name()))
                 .orElse(defaultValue);
     }
@@ -56,11 +53,13 @@ public final class SystemUtils {
     // Integer JVM args
     public static int getIntPropertyOrDefault(JvmArgs arg, int defaultValue) {
         
-        return ThrowablesWrapper.wrapAssignment(
+        return wrapAssignment(
                 
                 () -> Optional.ofNullable(Integer.parseInt(System.getProperty(arg.name())))
                     .orElse(defaultValue),
                  
-                defaultValue);
+                defaultValue,
+                
+                false);
     }
 }

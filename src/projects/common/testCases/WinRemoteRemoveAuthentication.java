@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 import core.Logger;
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 import core.testCase.TestCase;
 import utils.Exec;
 import utils.ThreadUtils;
@@ -47,7 +47,7 @@ public class WinRemoteRemoveAuthentication extends TestCase{
 			executor.join( 5 );
 		}
 		catch(Exception e){
-			throw new TestCaseFailure("WinRemoteRemoveAuthentication error:", e);
+			throw new Failure("WinRemoteRemoveAuthentication error:", e);
 		}
 
 		finally{
@@ -67,7 +67,7 @@ public class WinRemoteRemoveAuthentication extends TestCase{
 		if (!(output.contains(remotePath + " " + NET_USE_REMOVE_SUCCESS_MESSAGE)
 				// do not fail if there is nothing to be removed
 				|| output.contains(NETWORK_CONNECTION_NOT_FOUND))){
-			throw new TestCaseFailure("WinRemoteRemoveAuthentication error: " + output);
+			throw new Failure("WinRemoteRemoveAuthentication error: " + output);
 		}
 		
 		ThreadUtils.sleepQuiet(2000);

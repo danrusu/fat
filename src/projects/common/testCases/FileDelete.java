@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 import core.testCase.TestCase;
 
 /**
@@ -34,7 +34,7 @@ public class FileDelete extends TestCase{
 			log("Delete file - succeeded.");
 		}
 		catch(IOException e){
-			throw new TestCaseFailure("Could not delete file: " + source, e);
+			throw new Failure("Could not delete file: " + source, e);
 		}
 							
 			

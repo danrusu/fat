@@ -36,7 +36,7 @@ public class ThrowablesWrapper {
 
 
 
-    public static <T> Optional<T> wrapAssignment(Callable<T> callable){
+    public static <T> Optional<T> wrapAssignment(Callable<T> callable, boolean printError){
 
         T returnedValue = null;
 
@@ -44,17 +44,33 @@ public class ThrowablesWrapper {
             returnedValue = callable.call();
         }
         catch(Throwable thrown) {
-            System.out.println(thrown);
+            if (printError) { 
+                System.out.println(thrown); 
+            }
         }
 
         return Optional.ofNullable(returnedValue);
     }
 
+    
+    
+    public static <T> Optional<T> wrapAssignment(Callable<T> callable){
 
+        return wrapAssignment(callable, true);
+    }
+
+    
 
     public static <T> T wrapAssignment(Callable<T> callable, T defaultValue){
 
         return wrapAssignment(callable).orElse(defaultValue);
+    }
+    
+    
+    
+    public static <T> T wrapAssignment(Callable<T> callable, T defaultValue, boolean printError){
+
+        return wrapAssignment(callable, printError).orElse(defaultValue);
     }
 
 
@@ -67,7 +83,7 @@ public class ThrowablesWrapper {
             return callable.call();
         }
         catch (Throwable e) {
-            throw new TestCaseFailure(testCaseFailureMessage, e);
+            throw new Failure(testCaseFailureMessage, e);
         }
     }
 
@@ -79,7 +95,7 @@ public class ThrowablesWrapper {
             return callable.call();
         }
         catch (Throwable e) {
-            throw new TestCaseFailure(e.toString(), e);
+            throw new Failure(e.toString(), e);
         }
     }
 

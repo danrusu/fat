@@ -1,17 +1,15 @@
 package utils;
 
+import static core.failures.ThrowablesWrapper.wrapAssignment;
+import static core.failures.ThrowablesWrapper.wrapThrowable;
+
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
-import core.failures.ThrowablesWrapper;
 
-public final class StringUtils {
-	
-	private StringUtils(){
-		throw new AssertionError("This helper class must not be istantiated!");
-	}
-	
+
+public interface StringUtils {
 
 	
 	public static String quote(String s){
@@ -23,7 +21,7 @@ public final class StringUtils {
 	
 	public static String encodeBase64(String text, String charSet){
 	    
-	    return ThrowablesWrapper.wrapThrowable(
+	    return wrapThrowable(
                 "encodeBase64 error",
                 () -> new String(Base64.getEncoder().encodeToString(text.getBytes()).getBytes(), charSet));	   
 	}
@@ -32,7 +30,7 @@ public final class StringUtils {
 	
 	public static String decodeBase64(String encodedText, String charSet){
 	    
-	    return ThrowablesWrapper.wrapThrowable(
+	    return wrapThrowable(
 	            "decodeBase64 error",
 	            () -> new String(Base64.getDecoder().decode(encodedText), charSet));
 	}
@@ -84,9 +82,18 @@ public final class StringUtils {
 
     public static int toInt(String intString, int defaultValue) {
         
-        return ThrowablesWrapper.wrapAssignment(
+        return wrapAssignment(
                 () ->  Integer.parseInt(intString), 
                 defaultValue);
+    }
+    
+    
+    public static int toInt(String intString, int defaultValue, boolean printException) {
+        
+        return wrapAssignment(
+                () ->  Integer.parseInt(intString), 
+                defaultValue,
+                printException);
     }
  
     
@@ -99,8 +106,24 @@ public final class StringUtils {
     
     
     
-    public static List<String> splitByEquals(String string) {
-        return List.of(string.split("="));
+    public static List<String> splitBy(String text, String separator) {        
+        
+        return List.of(text.split(separator));
+    }
+    
+    
+    
+    public static List<String> splitByEquals(String text){
+        return splitBy(text, "=");
+    }
+
+
+
+    public static String extractTextBeforeRegex(String text, String regex) {
+        
+        return text.replaceAll(
+                "(?s)(?<textBeforePattern>.*)" + regex + ".*", 
+                "${textBeforePattern}");
     }
     
 }

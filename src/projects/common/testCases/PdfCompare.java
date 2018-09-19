@@ -1,7 +1,7 @@
 package projects.common.testCases;
 import static core.Logger.*;
 import core.Assert;
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 import core.failures.ThrowablesWrapper;
 import core.testCase.WebPageTestCase;
 import projects.common.StringComparison;
@@ -74,7 +74,7 @@ public class PdfCompare extends WebPageTestCase{
                 compareItReport = evalAttribute("report");
 
                 if( (expectedPdfFiles.length>1) || (actualPdfFiles.length>1) ){
-                    throw new TestCaseFailure("Cannot compare multiple files with 'compareit' method.");
+                    throw new Failure("Cannot compare multiple files with 'compareit' method.");
                 }
 
                 Assert.assertTrue(

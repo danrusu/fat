@@ -1,12 +1,12 @@
 package utils.database;
 import static core.Logger.debug;
 import static core.Logger.log;
+import static core.failures.ThrowablesWrapper.wrapThrowable;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import core.failures.TestCaseFailure;
-import core.failures.ThrowablesWrapper;
+import core.failures.Failure;
 
 public enum Driver{
     mysql, 
@@ -20,7 +20,7 @@ public enum Driver{
 
         log("Loading driver " + driver.getName());
 
-        ThrowablesWrapper.wrapThrowable(
+        wrapThrowable(
                 "Cannot find the driver in the classpath!",
                 () -> {
 
@@ -56,13 +56,13 @@ public enum Driver{
                 return "jdbc:" + this.name() + "://"  
                 + databaseIp + ":" + databasePort + "/" + databaseName;
 
-                //mssql
+            // mssql
             case sqlserver: 
                 return "jdbc:" + this.name() + "://"  
                 + databaseIp + ":" + databasePort + ";" + databaseName + ";";
 
             default:
-                throw new TestCaseFailure("Coud not handle this tipe of connection: " + this.name());
+                throw new Failure("Coud not handle this tipe of connection: " + this.name());
         }
     }
 
@@ -76,7 +76,7 @@ public enum Driver{
             String password) {
 
 
-        return ThrowablesWrapper.wrapThrowable(
+        return wrapThrowable(
                 
                 "Cannot connect the database!",
                 
@@ -87,7 +87,6 @@ public enum Driver{
 
                     switch (this){
 
-
                         case mysql:
                             
                             url = this.getDatabaseConnectionUrl(databaseIp, databasePort, databaseName);
@@ -97,7 +96,6 @@ public enum Driver{
                             log("Database connected!");
 
                             return connection;
-
 
                         case sqlserver: 
                             
@@ -110,10 +108,9 @@ public enum Driver{
                             log("Database connected!");
 
                             return connection;
-
                             
                         default:
-                            throw new TestCaseFailure("Coud not handle this type of connection: " + this.name());
+                            throw new Failure("Coud not handle this type of connection: " + this.name());
                     }
                 });
     }

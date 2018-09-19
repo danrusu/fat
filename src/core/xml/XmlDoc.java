@@ -15,7 +15,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 
 
 
@@ -57,7 +57,7 @@ public class XmlDoc {
 			
 		} catch (Exception e) {
 			log(""+e);
-			throw new TestCaseFailure(e.getMessage());
+			throw new Failure(e.getMessage());
 		}
 	}
 
@@ -80,7 +80,7 @@ public class XmlDoc {
 		catch ( ParserConfigurationException e )
 		{
 			log(""+e);
-			throw new TestCaseFailure(e.getMessage());
+			throw new Failure(e.getMessage());
 		}
 		
 		Doc = db.newDocument( );

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Demo_Exceptions" user="jenkins" project="Demo">
+
+
+ 	<test name="SuccessfullTest" 
+ 		note="Expected suite results: Tests(7/2/1) TestCases(12/2/6)\nTests: Failed - 4, 7; Skipped - 6\nTestcases: Failed - 4/1, 7/1; Skipped - 6/1, 6/2, 6/3, 7/2, 7/3">
+ 	
+		<testcase name="projects.mock.testCases.MockSuccess" />
+		
+	</test>
+
+
+ 	<test name="SeleniumExceptionTest" browser="chrome">
+ 	
+		<testcase name="projects.mock.testCases.MockException" 
+			expectedFailureRegExp="Test case exception!.*" />
+		
+	</test>
+	
+
+ 	<test name="ErrorTest">
+ 	
+		<testcase name="projects.mock.testCases.MockError" 
+			expectedFailureRegExp="Test case error!.*" />
+			
+	</test>
+ 
+
+	<test name="RuntimeExceptionTest">
+	
+		<testcase name="projects.mock.testCases.MockRuntimeException" 
+			expectedFailureRegExp="Test_case_runtime_exception!.*" 
+			stopOnFailure="false"/>
+			
+		<testcase name="projects.mock.testCases.MockRuntimeException" 
+			expectedFailureRegExp="Test case runtime exception!.*" />
+			
+	</test>
+	
+
+	
+	<test name="SkipedTestCase">
+	
+	    <!--  This fails if it is not skipped -->
+		<testcase name="projects.mock.testCases.MockRuntimeException" skip="true"/>
+		
+	</test>
+	
+	
+	<test name="SkipedTest" skip="true">
+	
+	    <testcase name="projects.mock.testCases.MockSuccess" 
+	    	attribute1="value1" 
+	    	attribute2="value2"
+	    	note="First skipped testcase" />
+	    
+	    <testcase name="projects.mock.testCases.MockRuntimeException" />
+	    
+	    <testcase name="projects.mock.testCases.MockError" 
+	    	note="Last skipped testcase" />
+	    
+	</test> 
+	
+	
+	<test name="SkipTestcasesAfterFailureTest">
+	
+	    <testcase name="projects.mock.testCases.MockError" />
+	    
+	    <testcase name="projects.mock.testCases.MockSuccess" 
+	    	note="Skipped because first test case failed."/>
+	    
+	    <testcase name="projects.mock.testCases.MockSuccess" 
+	    	note="Skipped because first test case failed." />
+	    
+	</test> 
+	 
+		
+</suite> 

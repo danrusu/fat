@@ -4,6 +4,7 @@ package core;
 import static core.Logger.getLogDirPath;
 import static core.Logger.log;
 import static core.Logger.logLines;
+import static utils.StringUtils.extractTextBeforeRegex;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -546,24 +547,6 @@ public class Driver {
 
 
 
-    /**
-     * Get only the first (relevant) info from a Selenium Exception.
-     * This is used to add only failure relevant info in the final report.
-     * 
-     * @param message full Selenium Exception message
-     * @return
-     */
-    public static String getSeleniumExceptionShortMessage(String message) {
-        String[] m = message.split("\\(Session info:");
-        if (m.length > 0) {
-            return m[0].trim();
-        }
-        
-        return "";
-    }
-
-
-
     public static File saveElementScreenshot(By locator, File outputFile) {
 
         return ThrowablesWrapper.wrapThrowable(
@@ -606,5 +589,29 @@ public class Driver {
                 });
     }
 
+    
+    /**
+     * Get only the first (relevant) info from a Selenium Exception.
+     * This is used to add only failure relevant info in the final report.
+     * 
+     * @param message full Selenium Exception message
+     * @return
+     */
+    public static String getSeleniumExceptionShortMessage(String message) {
+        
+        return extractTextBeforeRegex(
+                message.toString(), 
+                "Build info:");
+    }
+
+
+
+    public static String getSeleniumExceptionShortMessage(Throwable throwable) {
+
+        return extractTextBeforeRegex(
+                throwable.toString(), 
+                "Build info:");
+    }
+    
 }
 

@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import com.google.common.base.Functions;
 
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 
 /**
  * Static functionalities for dynamic initialization of fields with a specified type.
@@ -51,7 +51,7 @@ public final class FieldsReplacer_Default{
 			}
 
 			if (!initSucceeded){
-				throw new TestCaseFailure("Init failed for " + instance.getClass().getName());
+				throw new Failure("Init failed for " + instance.getClass().getName());
 			}
 		}
 	}
@@ -127,7 +127,7 @@ public final class FieldsReplacer_Default{
 			return field.get(instance);
 		} catch (IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
-			throw new TestCaseFailure(instance.getClass().getName() + "error. ", e);
+			throw new Failure(instance.getClass().getName() + "error. ", e);
 		}
 	}
 

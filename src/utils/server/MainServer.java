@@ -10,6 +10,29 @@ import utils.Ssh;
 public class MainServer {
 
 
+    public static final String ip = "";
+    public static final String localIpUrl = "";
+    public static final String url = "";
+    
+    public static final String sshAdminUser = "";
+    public static final String sshAdminPass = "";
+    public static final String sshPort = "22";
+    
+    public static final String databaseName = "";
+    public static final String databaseUser = "";
+    public static final String databasePass = "";
+    public static final String databasePort = "3306";
+    
+    public static final String htmlRoot = "/var/www/html/";
+    
+    public static final String logsFolder = "logs/";
+    public static final String logsFolderFullPath = htmlRoot + logsFolder;
+    
+    public static final String tempFolder = "temp/";
+    public static final String tempFolderFullPath = htmlRoot + tempFolder;
+
+    
+    
     public static class FileNamesAndUrls{
         
         private List<String> names;
@@ -31,29 +54,7 @@ public class MainServer {
     }
 
 
-    public static final String ip = "";
-    public static final String localIpUrl = "";
-    public static final String url = "";
-
-    public static final String sshAdminUser = "";
-    public static final String sshAdminPass = "";
-    public static final String sshPort = "22";
-
-    public static final String databaseName = "";
-    public static final String databaseUser = "";
-    public static final String databasePass = "";
-    public static final String databasePort = "3306";
-
-    public static final String htmlRoot = "/var/www/html/";
-
-    public static final String logsFolder = "logs/";
-    public static final String logsFolderFullPath = htmlRoot + logsFolder;
-
-    public static final String tempFolder = "temp/";
-    public static final String tempFolderFullPath = htmlRoot + tempFolder;
-
-
-
+    
     public static void sendFileToServer(
             String sourceFilePath,
             String destinationPath, 

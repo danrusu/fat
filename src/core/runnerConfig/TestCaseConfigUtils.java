@@ -15,7 +15,8 @@ public interface TestCaseConfigUtils {
         
         return StringUtils.toInt(
                 testCases.get(testCaseId).get(TestConfigAttributes.retries.name()), 
-                1);
+                1, 
+                false);
     }
 
     

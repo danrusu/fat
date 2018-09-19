@@ -11,7 +11,7 @@ import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 
 public final class Assert{
 
@@ -65,9 +65,9 @@ public final class Assert{
 
         if (condition.test(
                 Optional.ofNullable(expected)
-                .orElseThrow( () -> new TestCaseFailure("Expected value is null!") ),
+                .orElseThrow( () -> new Failure("Expected value is null!") ),
                 Optional.ofNullable(actual)
-                .orElseThrow( () -> new TestCaseFailure("Actual value is null!") ))
+                .orElseThrow( () -> new Failure("Actual value is null!") ))
                 ){
             passAssertion(assertionDescription, expected.toString());
         }
@@ -85,9 +85,9 @@ public final class Assert{
 
         if (! condition.test(
                 Optional.ofNullable(expected)
-                .orElseThrow( () -> new TestCaseFailure("Expected value is null!") ),
+                .orElseThrow( () -> new Failure("Expected value is null!") ),
                 Optional.ofNullable(actual)
-                .orElseThrow( () -> new TestCaseFailure("Actual value is null!") ))
+                .orElseThrow( () -> new Failure("Actual value is null!") ))
                 ){
             
             failAssertion(assertionDescription, expected.toString(), "" + actual);
@@ -127,7 +127,7 @@ public final class Assert{
     public static void assertExceptions(List<AssertionError> assertionErrors) {
         
         if (! assertionErrors.isEmpty()) {            
-            throw new TestCaseFailure(
+            throw new Failure(
                     assertionErrors.stream()
                     .map(assertionError -> assertionError.getMessage())
                     .collect(Collectors.joining("<br>"))

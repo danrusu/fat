@@ -21,9 +21,9 @@ public interface TestConfigUtils {
                 
                 tests.get(testId)
                     .getTestAttributes()
-                    .get("retries"), 
-                    
-                1);
+                    .get("retries"),                     
+                1,
+                false);
     }
     
     

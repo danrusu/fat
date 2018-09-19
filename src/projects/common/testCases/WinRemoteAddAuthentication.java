@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 import core.Logger;
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 import core.testCase.TestCase;
 import utils.Exec;
 import utils.ThreadUtils;
@@ -75,7 +75,7 @@ public class WinRemoteAddAuthentication extends TestCase{
 
 		// verify last command output
 		if (!(output.contains(NET_USE_ADD_SUCCESS_MESSAGE) )){
-			throw new TestCaseFailure("WinRemoteAddAuthentication error: " + output);
+			throw new Failure("WinRemoteAddAuthentication error: " + output);
 		}
 
 	}

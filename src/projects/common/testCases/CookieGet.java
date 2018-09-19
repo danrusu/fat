@@ -3,7 +3,7 @@ package projects.common.testCases;
 import org.openqa.selenium.Cookie;
 
 import core.Driver;
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 import core.pom.WebPage;
 import core.testCase.WebPageTestCase;
 
@@ -34,7 +34,7 @@ public class CookieGet extends WebPageTestCase{
 				.getCookie(configCookieName);
 		
 		if (cookie == null) {
-			throw new TestCaseFailure("Cookie named\"" + configCookieName + "\" does not exist!");
+			throw new Failure("Cookie named\"" + configCookieName + "\" does not exist!");
 		}
 		
 		cookieName = cookie.getName();

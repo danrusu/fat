@@ -19,7 +19,7 @@ import org.openqa.selenium.By;
 import core.Assert;
 import core.Driver;
 import core.JvmArgs;
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 import core.xml.XmlDynamicData;
 import utils.StringUtils;
 import utils.SystemUtils;
@@ -178,7 +178,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
                     XmlDynamicData.saveData(saveName, objectValue.toString());
                 }
                 else {
-                    throw new TestCaseFailure(String.join("",
+                    throw new Failure(String.join("",
                             "Saving results failed! Field ", 
                             this.getClass().getSimpleName(),
                             ".",
@@ -192,7 +192,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
                     |IllegalArgumentException
                     |IllegalAccessException e) {
 
-                throw new TestCaseFailure("Saving results failed!", e);
+                throw new Failure("Saving results failed!", e);
             }
         });
 
@@ -220,7 +220,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
         String[] selectorTokens = attribute.split(":");
         if (selectorTokens.length < 2) {
-            throw new TestCaseFailure("Wrong selector: " + attribute);
+            throw new Failure("Wrong selector: " + attribute);
         }
 
         String selectorType = selectorTokens[0];
@@ -238,7 +238,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
                 return By.xpath(selector);
 
             default:
-                throw new TestCaseFailure("Wrong selector: " + attribute);
+                throw new Failure("Wrong selector: " + attribute);
         } 
     }
 
@@ -292,10 +292,10 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
     public String addFailure(Throwable th) {
 
-        logLines( TestCaseFailure.stackToString(th) );
+        logLines( Failure.stackToString(th) );
         String failureMessage = th.toString();
 
-        if (th instanceof TestCaseFailure){
+        if (th instanceof Failure){
 
             if(th.getCause() != null){
                 failureMessage += " Cause: " + Driver.getSeleniumExceptionShortMessage(
@@ -322,12 +322,15 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
     }
 
 
+    
     public boolean hasExpectedFailure(String actualFailure) {
-        return actualFailure.matches(
-                // only accept expected failures wrapped as TestCaseFailure
-                "^base\\.failures\\.TestCaseFailure: " + getExpectedFailureRegExp());                
-    }
 
+        return actualFailure.matches(
+                // only accept expected failures wrapped as base.failures.Failure
+                "(?s)^core\\.failures\\.Failure: " + getExpectedFailureRegExp());                
+    }
+    
+    
 
     public String getJvmProperty(JvmArgs property) {
         return SystemUtils.getPropertyOrEmptyString(property);

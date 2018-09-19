@@ -8,7 +8,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.stream.Collectors;
 
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 import core.failures.ThrowablesWrapper;
 
 
@@ -108,7 +108,7 @@ public interface ClassUtils {
         }
         // if class not found
         if (testClass == null){
-            throw new TestCaseFailure("Class <" + testCaseName +"> was not found"
+            throw new Failure("Class <" + testCaseName +"> was not found"
                     + " in the suite packages: " + suitePackages);
         }
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Demo_browsers" user="jenkins" project="Demo">
+
+
+  	<test name="ChromeTest" browser="chrome">
+	
+		<testcase name="projects.common.testCases.OpenPage" url="https://www.consignorportal.com/ticket/Outbox" />
+	
+	</test>
+	
+	
+ 	<test name="FirefoxTest" browser="firefox">
+	
+		<testcase name="projects.common.testCases.OpenPage" url="https://www.consignorportal.com/ticket/Outbox" />
+	
+	</test>  
+
+
+ 	<test name="IETest" browser="ie">
+
+		<testcase name="projects.common.testCases.OpenPage" url="https://www.consignorportal.com/ticket/Outbox" />
+
+	</test> 
+	
+
+</suite> 

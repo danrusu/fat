@@ -29,7 +29,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import core.Assert;
 import core.Driver;
 import core.Driver.DriverType;
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 import utils.DynamicCheck;
 import utils.ThreadUtils;
 import utils.http.HttpVerb;
@@ -61,7 +61,7 @@ public class WebPage {
 
     public WebPage(WebDriver driver){
         if (driver==null){
-            throw new TestCaseFailure("No browser driver was created! Driver.driver=null");
+            throw new Failure("No browser driver was created! Driver.driver=null");
         }
         this.driver = driver;
         explicitWait = new WebDriverWait(driver, DEFAULT_EXPLICIT_WAIT);
@@ -323,7 +323,7 @@ public class WebPage {
 
         }catch(Exception e){
             logLines(e.toString());
-            throw new TestCaseFailure("Cannot click via js by selector: " + cssSelector);
+            throw new Failure("Cannot click via js by selector: " + cssSelector);
 
         }
 
@@ -899,7 +899,7 @@ public class WebPage {
 
 
             default:
-                throw new TestCaseFailure("Replace selector error: " + selector + " must be cByCssSelector, ByXPath, ById or ByClassName!");
+                throw new Failure("Replace selector error: " + selector + " must be cByCssSelector, ByXPath, ById or ByClassName!");
         }
     }
 

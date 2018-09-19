@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import org.apache.commons.io.FileUtils;
 
 import core.Assert;
-import core.failures.TestCaseFailure;
+import core.failures.Failure;
 import core.testCase.WebPageTestCase;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -83,7 +83,7 @@ public class Rest extends WebPageTestCase{
 				log("Destination file path for response: " + destination);
 			}
 			catch(IOException e){
-				throw new TestCaseFailure("Couldn't write to file " + destination, e);
+				throw new Failure("Couldn't write to file " + destination, e);
 			}
 			
 			Assert.assertTrue(
