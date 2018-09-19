@@ -58,8 +58,6 @@ public interface SystemUtils {
                 () -> Optional.ofNullable(Integer.parseInt(System.getProperty(arg.name())))
                     .orElse(defaultValue),
                  
-                defaultValue,
-                
-                false);
+                defaultValue);
     }
 }

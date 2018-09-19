@@ -92,8 +92,7 @@ public interface StringUtils {
         
         return wrapAssignment(
                 () ->  Integer.parseInt(intString), 
-                defaultValue,
-                printException);
+                defaultValue);
     }
  
     

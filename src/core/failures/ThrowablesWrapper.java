@@ -36,7 +36,7 @@ public class ThrowablesWrapper {
 
 
 
-    public static <T> Optional<T> wrapAssignment(Callable<T> callable, boolean printError){
+    public static <T> Optional<T> wrapAssignment(Callable<T> callable){
 
         T returnedValue = null;
 
@@ -44,20 +44,14 @@ public class ThrowablesWrapper {
             returnedValue = callable.call();
         }
         catch(Throwable thrown) {
-            if (printError) { 
-                System.out.println(thrown); 
-            }
+                //System.out.println(thrown); 
         }
 
         return Optional.ofNullable(returnedValue);
     }
 
     
-    
-    public static <T> Optional<T> wrapAssignment(Callable<T> callable){
 
-        return wrapAssignment(callable, true);
-    }
 
     
 
@@ -68,13 +62,6 @@ public class ThrowablesWrapper {
     
     
     
-    public static <T> T wrapAssignment(Callable<T> callable, T defaultValue, boolean printError){
-
-        return wrapAssignment(callable, printError).orElse(defaultValue);
-    }
-
-
-
     public static <T> T wrapThrowable(
             String testCaseFailureMessage, 
             Callable<T> callable){
