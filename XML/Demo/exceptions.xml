@@ -3,7 +3,7 @@
 
 
  	<test name="SuccessfullTest" 
- 		note="Expected suite results: Tests(7/2/1) TestCases(12/2/6)\nTests: Failed - 4, 7; Skipped - 6\nTestcases: Failed - 4/1, 7/1; Skipped - 6/1, 6/2, 6/3, 7/2, 7/3">
+ 		note="Expected suite results: Tests(8/2/1) TestCases(13/2/6)\nTests: Failed - 4, 8; Skipped - 7\nTestcases: Failed - 4/1, 8/1; Skipped - 7/1, 7/2, 7/3, 8/2, 8/3">
  	
 		<testcase name="projects.mock.testCases.MockSuccess" />
 		
@@ -37,6 +37,10 @@
 			
 	</test>
 	
+	
+	<test name="JavascriptErrorTest" browser="chrome">
+			<testcase name="projects.mock.testCases.MockJSError"/>
+	</test> 
 
 	
 	<test name="SkipedTestCase">

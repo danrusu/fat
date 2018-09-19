@@ -14,13 +14,13 @@ public class MockJSError extends WebPageTestCase{
 
 	@Override
 	public void run(){
-			Driver.driver.get("http://watt.visma.no/jsError.html");
+			Driver.driver.get("http://danrusu.ro/jsError.html");
 	}
 	
 	
 	@Override
 	public String getTestCaseScenario(){
 		return "\nTest for catching javascript errors"
-				+ "\nThis test opens http://watt.visma.no/jsError.html page.";
+				+ "\nThis test opens http://danrusu.ro/jsError.html page.";
 	}
 }
