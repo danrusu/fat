@@ -8,8 +8,16 @@ ant -f fatAnt.xml
 ```
 
 
-#### Run from JAR:
+#### Run test scenarios with the JAR tool:
 ```
 cd fat
-java -jar fat.jar XML\Consignor\images.xml
+java -jar fat.jar XML\Demo\browsers.xml
+```
+
+
+#### Framework functionalities demos:
+```
+XML\Demo\browsers.xml
+XML\Demo\exceptions.xml
+XML\Demo\XmlDynamicData.xml
 ```
