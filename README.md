@@ -1,5 +1,5 @@
 # fat
-Framework for Automation in Testing
+Framework for Automation in Testing (Java 10+)
 
 
 ### Build runnable jar
