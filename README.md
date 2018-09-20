@@ -1,6 +1,12 @@
 # fat
-Framework for Automation in Testing (Java 10+)
+Framework for Automation in Testing
 
+
+### Environment
+ - Java 10+
+ - Eclipse IDE
+ - Ant
+ 
 
 ### Build runnable jar
 ```
