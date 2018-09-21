@@ -1,7 +1,7 @@
 package projects.common.testCases;
 
-import core.Driver;
-import core.testCase.TestCase;
+import base.Driver;
+import base.testCase.TestCase;
 
 /**
  * @author Dan.Rusu 

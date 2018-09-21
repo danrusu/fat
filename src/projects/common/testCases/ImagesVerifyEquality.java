@@ -1,6 +1,6 @@
 package projects.common.testCases;
 
-import core.testCase.WebPageTestCase;
+import base.testCase.WebPageTestCase;
 import utils.FileUtils;
 
 

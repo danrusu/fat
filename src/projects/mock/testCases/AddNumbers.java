@@ -1,6 +1,6 @@
 package projects.mock.testCases;
 
-import core.testCase.WebPageTestCase;
+import base.testCase.WebPageTestCase;
 
 /**
  * Unit test for saving the result of adding two numbers.

@@ -1,14 +1,14 @@
 package projects.common.testCases;
 
-import static core.Logger.log;
+import static base.Logger.log;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import core.failures.Failure;
-import core.testCase.TestCase;
+import base.failures.Failure;
+import base.testCase.TestCase;
 
 /**
  * Delete File from disk.

@@ -1,6 +1,6 @@
 package utils;
-import static core.Logger.log;
-import static core.Logger.logLines;
+import static base.Logger.log;
+import static base.Logger.logLines;
 
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;

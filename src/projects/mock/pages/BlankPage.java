@@ -2,7 +2,7 @@ package projects.mock.pages;
 
 import org.openqa.selenium.WebDriver;
 
-import core.pom.WebPage;
+import base.pom.WebPage;
 
 public class BlankPage extends WebPage{
 

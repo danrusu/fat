@@ -1,6 +1,6 @@
 package utils.http;
-import static core.Logger.log;
-import static core.Logger.logLines;
+import static base.Logger.log;
+import static base.Logger.logLines;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;

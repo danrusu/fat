@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import core.failures.ThrowablesWrapper;
-import core.pom.WebPage;
+import base.failures.ThrowablesWrapper;
+import base.pom.WebPage;
 
 
 

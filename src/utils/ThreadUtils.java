@@ -1,5 +1,5 @@
 package utils;
-import static core.Logger.log;
+import static base.Logger.log;
 
 /**
  * Class for hard coded waits using Thread.sleep.

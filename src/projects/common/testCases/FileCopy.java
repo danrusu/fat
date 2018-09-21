@@ -1,13 +1,13 @@
 package projects.common.testCases;
-import static core.Logger.log;
+import static base.Logger.log;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-import core.failures.ThrowablesWrapper;
-import core.testCase.TestCase;
+import base.failures.ThrowablesWrapper;
+import base.testCase.TestCase;
 
 /**
  * Copy file via Java.

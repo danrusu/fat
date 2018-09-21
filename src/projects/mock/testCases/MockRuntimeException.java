@@ -1,10 +1,10 @@
 package projects.mock.testCases;
 
-import static core.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.wrapThrowable;
 
 import java.util.TreeMap;
 
-import core.testCase.WebPageTestCase;
+import base.testCase.WebPageTestCase;
 
 /**
  * Unit test for an RuntimeException test case failure.

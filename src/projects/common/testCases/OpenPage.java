@@ -1,8 +1,8 @@
 package projects.common.testCases;
 
-import core.Assert;
-import core.pom.WebPage;
-import core.testCase.WebPageTestCase;
+import base.Assert;
+import base.pom.WebPage;
+import base.testCase.WebPageTestCase;
 
 /**
  * Open Web page in browser by URL.

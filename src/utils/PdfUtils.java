@@ -1,8 +1,8 @@
 package utils;
-import static core.Logger.debug;
-import static core.Logger.log;
-import static core.Logger.logLines;
-import static core.Logger.writeTextToFileInLogDir;
+import static base.Logger.debug;
+import static base.Logger.log;
+import static base.Logger.logLines;
+import static base.Logger.writeTextToFileInLogDir;
 
 import java.awt.Rectangle;
 import java.awt.image.RenderedImage;
@@ -30,7 +30,7 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 
-import core.failures.ThrowablesWrapper;
+import base.failures.ThrowablesWrapper;
 import projects.common.StringComparison;
 //PDF basic functionalities
 public final class PdfUtils {

@@ -1,11 +1,12 @@
 package projects.common.testCases;
-import static core.Logger.*;
+import static base.Logger.*;
+
 import java.io.IOException;
 import java.util.Vector;
 
-import core.Logger;
-import core.failures.Failure;
-import core.testCase.TestCase;
+import base.Logger;
+import base.failures.Failure;
+import base.testCase.TestCase;
 import utils.Exec;
 
 /**

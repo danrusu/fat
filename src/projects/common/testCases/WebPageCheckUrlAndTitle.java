@@ -1,8 +1,8 @@
 package projects.common.testCases;
 
-import core.Driver;
-import core.pom.WebPage;
-import core.testCase.TestCase;
+import base.Driver;
+import base.pom.WebPage;
+import base.testCase.TestCase;
 
 /**
  * Test case for verifying web page URL and title

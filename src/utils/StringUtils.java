@@ -1,7 +1,7 @@
 package utils;
 
-import static core.failures.ThrowablesWrapper.wrapAssignment;
-import static core.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.wrapAssignment;
+import static base.failures.ThrowablesWrapper.wrapThrowable;
 
 import java.util.Base64;
 import java.util.List;

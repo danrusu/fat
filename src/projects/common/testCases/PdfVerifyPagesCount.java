@@ -1,7 +1,7 @@
 package projects.common.testCases;
 
-import core.Assert;
-import core.testCase.WebPageTestCase;
+import base.Assert;
+import base.testCase.WebPageTestCase;
 import utils.PdfUtils;
 
 

@@ -1,6 +1,6 @@
 package utils.http;
-import static core.Logger.log;
-import static core.Logger.logLines;
+import static base.Logger.log;
+import static base.Logger.logLines;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Method;

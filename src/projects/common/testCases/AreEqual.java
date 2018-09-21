@@ -1,7 +1,7 @@
 package projects.common.testCases;
 
-import core.Assert;
-import core.testCase.TestCase;
+import base.Assert;
+import base.testCase.TestCase;
 
 /**
  * Asserts that two strings are equal.

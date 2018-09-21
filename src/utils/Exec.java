@@ -1,7 +1,7 @@
 package utils;
-import static core.Logger.getLogDirPath;
-import static core.Logger.log;
-import static core.Logger.logLines;
+import static base.Logger.getLogDirPath;
+import static base.Logger.log;
+import static base.Logger.logLines;
 
 import java.io.BufferedReader;
 //import java.io.BufferedWriter;

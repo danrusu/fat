@@ -1,9 +1,9 @@
 package projects.common.testCases;
 
-import static core.Logger.log;
+import static base.Logger.log;
 
-import core.Driver;
-import core.testCase.TestCase;
+import base.Driver;
+import base.testCase.TestCase;
 
 /**
  * ???

@@ -1,5 +1,5 @@
 package utils.server;
-import static core.Logger.log;
+import static base.Logger.log;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;

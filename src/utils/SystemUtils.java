@@ -1,10 +1,10 @@
 package utils;
 
-import static core.failures.ThrowablesWrapper.wrapAssignment;
+import static base.failures.ThrowablesWrapper.wrapAssignment;
 
 import java.util.Optional;
 
-import core.JvmArgs;
+import base.JvmArgs;
 
 
 

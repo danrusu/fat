@@ -1,13 +1,14 @@
 package projects.common.testCases;
-import static core.Logger.*;
+import static base.Logger.*;
+
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import core.failures.ThrowablesWrapper;
-import core.testCase.TestCase;
+import base.failures.ThrowablesWrapper;
+import base.testCase.TestCase;
 import projects.common.TextReplacementMode;
 
 /**

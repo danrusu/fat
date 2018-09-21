@@ -1,6 +1,6 @@
 package projects.common.testCases;
 
-import core.testCase.TestCase;
+import base.testCase.TestCase;
 import utils.ThreadUtils;
 
 /**

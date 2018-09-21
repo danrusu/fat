@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import com.google.common.base.Functions;
 
-import core.failures.Failure;
+import base.failures.Failure;
 
 /**
  * Static functionalities for dynamic initialization of fields with a specified type.

@@ -1,9 +1,10 @@
 package projects.common.testCases;
-import static core.Logger.*;
-import core.Assert;
-import core.failures.Failure;
-import core.failures.ThrowablesWrapper;
-import core.testCase.WebPageTestCase;
+import static base.Logger.*;
+
+import base.Assert;
+import base.failures.Failure;
+import base.failures.ThrowablesWrapper;
+import base.testCase.WebPageTestCase;
 import projects.common.StringComparison;
 import utils.PdfUtils;
 import utils.PdfUtils.PdfCompareMethods;

@@ -1,5 +1,5 @@
 package utils;
-import static core.Logger.logLines;
+import static base.Logger.logLines;
 
 import java.awt.AWTException;
 import java.awt.Robot;

@@ -1,11 +1,11 @@
 package utils;
 
-import static core.Logger.log;
+import static base.Logger.log;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import core.pom.WebPage;
+import base.pom.WebPage;
 
 
 

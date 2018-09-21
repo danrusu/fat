@@ -2,7 +2,7 @@ package projects.mock.pages;
 
 import org.openqa.selenium.By;
 
-import utils.ByFieldsReplacer;
+import base.pom.ByFieldsReplacer;
 
 /**
  * Input data for testing StringFieldsReplacerInterface. 

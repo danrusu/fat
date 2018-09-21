@@ -5,9 +5,9 @@ import java.util.Set;
 
 import org.openqa.selenium.Cookie;
 
-import core.Driver;
-import core.pom.WebPage;
-import core.testCase.WebPageTestCase;
+import base.Driver;
+import base.pom.WebPage;
+import base.testCase.WebPageTestCase;
 
 /**
  * Add cookie to the current web page.

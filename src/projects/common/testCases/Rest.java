@@ -1,6 +1,6 @@
 package projects.common.testCases;
-import static core.Logger.log;
-import static core.Logger.logLines;
+import static base.Logger.log;
+import static base.Logger.logLines;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,9 +9,9 @@ import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
 
-import core.Assert;
-import core.failures.Failure;
-import core.testCase.WebPageTestCase;
+import base.Assert;
+import base.failures.Failure;
+import base.testCase.WebPageTestCase;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import utils.http.HttpRest;

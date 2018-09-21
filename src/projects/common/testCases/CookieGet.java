@@ -2,10 +2,10 @@ package projects.common.testCases;
 
 import org.openqa.selenium.Cookie;
 
-import core.Driver;
-import core.failures.Failure;
-import core.pom.WebPage;
-import core.testCase.WebPageTestCase;
+import base.Driver;
+import base.failures.Failure;
+import base.pom.WebPage;
+import base.testCase.WebPageTestCase;
 
 /**
  * Get cookie by name from the current web page.

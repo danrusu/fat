@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import com.google.common.base.Function;
 
-import core.failures.Failure;
+import base.failures.Failure;
 
 
 /**

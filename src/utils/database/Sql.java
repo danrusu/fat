@@ -1,7 +1,7 @@
 package utils.database;
 
-import static core.Logger.log;
-import static core.failures.ThrowablesWrapper.wrapThrowable;
+import static base.Logger.log;
+import static base.failures.ThrowablesWrapper.wrapThrowable;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

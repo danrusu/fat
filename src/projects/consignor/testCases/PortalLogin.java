@@ -1,8 +1,8 @@
 package projects.consignor.testCases;
 
-import core.Assert;
-import core.Driver;
-import core.testCase.TestCase;
+import base.Assert;
+import base.Driver;
+import base.testCase.TestCase;
 import projects.consignor.pages.PortalPage;
 
 /**

@@ -2,7 +2,7 @@
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
     <stringAttribute key="bad_container_name" value="\fa\launchConfigs"/>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/fat/src/core/Main.java"/>
+        <listEntry value="/fat/src/base/Main.java"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="1"/>
@@ -12,7 +12,7 @@
         <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
     </listAttribute>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
-    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="core.Main"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="base.Main"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="XML/Demo/browsers.xml"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="fat"/>
 </launchConfiguration>

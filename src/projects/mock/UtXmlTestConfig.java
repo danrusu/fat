@@ -1,7 +1,7 @@
 package projects.mock;
 
 
-import static core.Logger.logHeader;
+import static base.Logger.logHeader;
 
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -10,10 +10,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import core.Assert;
-import core.runnerConfig.TestConfig;
-import core.runners.SuiteRunner;
-import core.xml.XmlTestConfig;
+import base.Assert;
+import base.runnerConfig.TestConfig;
+import base.runners.SuiteRunner;
+import base.xml.XmlTestConfig;
 
 public class UtXmlTestConfig {
 

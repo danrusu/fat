@@ -8,8 +8,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.stream.Collectors;
 
-import core.failures.Failure;
-import core.failures.ThrowablesWrapper;
+import base.failures.Failure;
+import base.failures.ThrowablesWrapper;
 
 
 /**

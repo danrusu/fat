@@ -1,13 +1,13 @@
 package projects.mock.testCases;
 
-import static core.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.wrapThrowable;
 
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 
-import core.Driver;
-import core.testCase.WebPageTestCase;
+import base.Driver;
+import base.testCase.WebPageTestCase;
 
 /**
  * Unit test for an Exception test case failure.

@@ -1,7 +1,7 @@
 package projects.mock.testCases;
 
-import core.Driver;
-import core.testCase.WebPageTestCase;
+import base.Driver;
+import base.testCase.WebPageTestCase;
 
 /**
  * Test case that generates a javascript error.

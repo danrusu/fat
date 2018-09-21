@@ -1,9 +1,9 @@
 package projects.mock.testCases;
 
 
-import static core.Logger.log;
+import static base.Logger.log;
 
-import core.testCase.WebPageTestCase;
+import base.testCase.WebPageTestCase;
 
 /**
  * Unit test for a successful test case run.

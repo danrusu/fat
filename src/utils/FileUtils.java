@@ -1,5 +1,5 @@
 package utils;
-import static core.Logger.log;
+import static base.Logger.log;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
@@ -16,8 +16,8 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import core.Assert;
-import core.failures.ThrowablesWrapper;
+import base.Assert;
+import base.failures.ThrowablesWrapper;
 
 
 /**

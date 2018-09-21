@@ -1,9 +1,9 @@
 package projects.mock.testCases;
 
-import static core.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.wrapThrowable;
 
-import core.Assert;
-import core.testCase.WebPageTestCase;
+import base.Assert;
+import base.testCase.WebPageTestCase;
 
 /**
  * Unit test for an Error test case failure.
