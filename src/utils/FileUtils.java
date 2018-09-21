@@ -21,16 +21,12 @@ import base.failures.ThrowablesWrapper;
 
 
 /**
- * File IO helper class.
+ * File IO helper.
  * 
  * @author Dan Rusu
  *
  */
-public final class FileUtils {
-
-    private FileUtils(){
-        throw new AssertionError("This helper class must not be istantiated!");
-    }
+public interface FileUtils {
 
 
     /**

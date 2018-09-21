@@ -1,5 +1,6 @@
 package utils;
 import static base.Logger.debug;
+
 import static base.Logger.log;
 import static base.Logger.logLines;
 import static base.Logger.writeTextToFileInLogDir;
@@ -32,8 +33,11 @@ import org.apache.pdfbox.text.PDFTextStripperByArea;
 
 import base.failures.ThrowablesWrapper;
 import projects.common.StringComparison;
+
+
+
 //PDF basic functionalities
-public final class PdfUtils {
+public interface PdfUtils {
 
 
     public static enum PdfCompareMethods{
@@ -41,11 +45,6 @@ public final class PdfUtils {
         compareit; // using /user.dir/pdf/CompareIt/wincmp3.exe
     };
 
-
-
-    private PdfUtils(){
-        throw new AssertionError("This helper class must not be istantiated!");
-    }
 
 
 

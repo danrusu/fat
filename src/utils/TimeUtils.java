@@ -7,11 +7,8 @@ import java.util.Calendar;
 import java.util.Map;
 import java.util.TreeMap;
 
-public abstract class TimeUtils {
+public interface TimeUtils {
 	
-	private TimeUtils(){
-		throw new AssertionError("This helper class must not be istantiated!");
-	}
 	
 	
 	public static long getElapsedTimeInMillis(Instant startTime){

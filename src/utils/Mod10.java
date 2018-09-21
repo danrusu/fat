@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 
 
 
-public class Mod10 {
+public interface Mod10 {
 
 
 
@@ -46,7 +46,7 @@ public class Mod10 {
 
 
 
-	public static void main(String[] args) {
+	public static void test() {
 		// System.out.println(getMod10CheckDigit("")); // this does not work
 		System.out.println(getMod10CheckDigit("000000000150010000050155"));
 		System.out.println(getMod10CheckDigit("1111"));

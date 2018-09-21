@@ -120,9 +120,15 @@ public interface StringUtils {
 
     public static String extractTextBeforeRegex(String text, String regex) {
         
-        return text.replaceAll(
-                "(?s)(?<textBeforePattern>.*)" + regex + ".*", 
-                "${textBeforePattern}");
+        return new StringBuffer(
+                
+                new StringBuffer(text)
+                    .reverse()
+                    .toString()
+                    .replaceAll("(?s).*" + regex + "(.*)", "$1"))
+                
+                .reverse().toString();               
     }
     
 }
+

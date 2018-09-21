@@ -10,19 +10,12 @@ import base.pom.WebPage;
 
 
 /**
- * Class that implements dynamic timeouts for custom conditions.
- * 
- * Methods are generic and require lambdas as parameters.
- * 
+ * Dynamic timeouts for custom conditions via high order functions.
  * 
  * @author dan.rusu
  *
  */
-public final class DynamicCheck {
-
-	private DynamicCheck(){
-		throw new AssertionError("This helper class must not be istantiated!");
-	}
+public interface DynamicCheck {
 
 
 

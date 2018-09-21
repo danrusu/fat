@@ -5,12 +5,8 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-public final class RuntimeLoader {
-	
-	
-	private RuntimeLoader(){
-		throw new AssertionError("This helper class must not be istantiated!");
-	}
+public interface RuntimeLoader {
+
 	
 
 	public static void load(File jarFile){
@@ -31,3 +27,4 @@ public final class RuntimeLoader {
 		}
 	}
 }
+

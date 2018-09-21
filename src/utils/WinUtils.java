@@ -15,15 +15,11 @@ import org.openqa.selenium.os.WindowsUtils;
 //import org.sikuli.script.Screen;
 
 /**
- * Class for simulating different windows action: clipboard, keyboard ...
+ * Simulating different windows action: clipboard, keyboard ...
  * @author Dan.Rusu
  *
  */
-public final class WinUtils {
-	
-	private WinUtils(){
-		throw new AssertionError("This helper class must not be istantiated!");
-	}
+public interface WinUtils {
 	
 
 	public static void toClipboard(String s){

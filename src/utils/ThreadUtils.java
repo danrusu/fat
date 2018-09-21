@@ -2,17 +2,12 @@ package utils;
 import static base.Logger.log;
 
 /**
- * Class for hard coded waits using Thread.sleep.
+ * Hard coded waits using Thread.sleep.
  * 
  * @author dan.rusu
  *
  */
-public final class ThreadUtils {
-	
-	
-	private ThreadUtils(){
-		throw new AssertionError("This helper class must not be istantiated!");
-	}
+public interface ThreadUtils {
 	
 	
 	

@@ -15,12 +15,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 
-public final class Email {
+public interface Email {
 	
-	private Email(){
-		throw new AssertionError("This helper class must not be istantiated!");
-	}
-
 	
 
 	public static void sendMail(String to, 
