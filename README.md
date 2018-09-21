@@ -2,6 +2,12 @@
 Framework for Automation in Testing
 
 
+### Environment
+ - Java 10+
+ - Eclipse IDE
+ - Ant
+ 
+
 ### Build runnable jar
 ```
 ant -f fatAnt.xml
