@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import base.Driver;
 import base.failures.Failure;
+import base.pom.WebPage;
 import base.results.ResultStatus;
 import base.results.TestCaseResult;
 import base.results.TestResult;
@@ -76,7 +77,7 @@ public interface TestRunner {
                 
                 testAttributes.put(
                         "failure", 
-                        driverFailure + " Cause: "+ Driver.getSeleniumExceptionShortMessage(
+                        driverFailure + " Cause: "+ WebPage.getSeleniumExceptionShortMessage(
                                     driverFailure.getCause()));
                
                 testCasesResults = TestCaseRunner.skipAll(testId, testCases);

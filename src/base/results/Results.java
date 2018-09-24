@@ -40,6 +40,7 @@ public abstract class Results {
     }
 
 
+    
     /**
      * Set a TestCaseInfo endDate and result and add it to testInfo. 
      * 
@@ -59,13 +60,14 @@ public abstract class Results {
                 + ": " + result.toString());
 
         // set testCase results info
-        //testCaseResult.setElapsedTestTime( startTestCaseTime );
-        //testCaseResult.setResult( result );
+        // testCaseResult.setElapsedTestTime( startTestCaseTime );
+        // testCaseResult.setResult( result );
 
         // add test case result to current test result
-        //testResult.addTestCaseInfo(testCaseResult.getId(), testCaseResult);
+        // testResult.addTestCaseInfo(testCaseResult.getId(), testCaseResult);
     }
 
+    
 
     /**
      * @param suiteName - suite name from XMl
@@ -204,7 +206,7 @@ public abstract class Results {
             List<TestResult> testResultInfo,
             SuiteResult suiteResult
             ){
-        @SuppressWarnings("static-access")
+        
         String suiteResultStatus = (suiteResult.isSucceeded()) ? 
                 "<font color=\"green\">Succeeded</font>" : 
                     "<font color=\"red\">Failed</font>";
@@ -249,8 +251,7 @@ public abstract class Results {
                         " / ",
                         Integer.toString(suiteResult.getTotalTestCasesCount()),
                         Integer.toString(suiteResult.getFailedTestCasesCount()),
-                        Integer.toString(suiteResult.getSkippedTestCasesCount())
-                        )));
+                        Integer.toString(suiteResult.getSkippedTestCasesCount()))));
 
 
 
@@ -382,7 +383,8 @@ public abstract class Results {
 
 
 
-    private static String testCaseAttrToHtml(String testcaseName, Map<String, String> attr) {		
+    private static String testCaseAttrToHtml(String testcaseName, Map<String, String> attr) {
+        
         String failure = attr.remove("failure");
         String js_errors = attr.remove("js_errors");
         String save = attr.remove("save");
@@ -447,7 +449,7 @@ public abstract class Results {
             if(!scenario.isEmpty()){
                 htmlAttr += "<div class=\"testCaseDocs\" title=\"Test case info\">"
                         + 
-                        scenario.substring(1).replace("\n","<br>")
+                        scenario.replace("\n","<br>")
                         + "</div>";
             }
         }
@@ -508,7 +510,7 @@ public abstract class Results {
         return new StringBuilder()
                 .append(getSeparator() + "\n")
                 // header
-                .append( String.format(format, "Total" ) + " | ")
+                .append(String.format(format, "Total" ) + " | ")
                 .append(String.format(format.replace(colWidth, "20"), "Elapsed" ) + " | ")
                 .append(String.format(format.replace(colWidth, "30"), "Succeeded" ) + " | ")
                 .append(String.format(format.replace(colWidth, "15"), "Failed" ) + " | ")
@@ -520,4 +522,6 @@ public abstract class Results {
                 .append( String.format(format.replace(colWidth, "15"), suiteResult.getFailedTestsCount()) + " | " )
                 .toString();
     }
+    
 }
+

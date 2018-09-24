@@ -4,7 +4,6 @@ package base;
 import static base.Logger.getLogDirPath;
 import static base.Logger.log;
 import static base.Logger.logLines;
-import static utils.StringUtils.extractTextBeforeRegex;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -587,30 +586,6 @@ public class Driver {
 
                     return elementScreenshotFile;
                 });
-    }
-
-    
-    /**
-     * Get only the first (relevant) info from a Selenium Exception.
-     * This is used to add only failure relevant info in the final report.
-     * 
-     * @param message full Selenium Exception message
-     * @return
-     */
-    public static String getSeleniumExceptionShortMessage(String message) {
-        
-        return extractTextBeforeRegex(
-                message.toString(), 
-                "Build info:");
-    }
-
-
-
-    public static String getSeleniumExceptionShortMessage(Throwable throwable) {
-
-        return extractTextBeforeRegex(
-                throwable.toString(), 
-                "Build info:");
     }
     
 }

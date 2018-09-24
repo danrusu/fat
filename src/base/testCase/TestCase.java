@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 
 import base.Assert;
-import base.Driver;
 import base.JvmArgs;
 import base.failures.Failure;
+import base.pom.WebPage;
 import base.xml.XmlDynamicData;
 import utils.StringUtils;
 import utils.SystemUtils;
@@ -298,7 +298,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
         if (th instanceof Failure){
 
             if(th.getCause() != null){
-                failureMessage += " Cause: " + Driver.getSeleniumExceptionShortMessage(
+                failureMessage += " Cause: " + WebPage.getSeleniumExceptionShortMessage(
                         th.getCause().toString());
             }
 

@@ -1280,4 +1280,38 @@ public class WebPage {
     public void addCookie(Cookie cookie) {
         driver.manage().addCookie(cookie);
     }
+
+
+
+    /**
+     * Get only the first (relevant) info from a Selenium Exception.
+     * This is used to add only failure relevant info in the final report.
+     * 
+     * @param message full Selenium Exception message
+     * @return
+     */
+    public static String getSeleniumExceptionShortMessage(String message) {
+        
+        return getFirstFromArrayOrDefault(message.split("\n"), "");              
+    }
+    
+    
+    
+    public static String getSeleniumExceptionShortMessage(Throwable throwable) {
+        
+        return getFirstFromArrayOrDefault(
+                throwable.toString().split("\n"),
+                "");
+    }
+    
+    
+    
+    public static <T> T getFirstFromArrayOrDefault(T[] array, T defaultValue) {
+        
+        return List.of(array).stream()
+                .findFirst()
+                .orElse(defaultValue);
+    }
+    
 }
+

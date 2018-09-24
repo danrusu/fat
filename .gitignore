@@ -6,3 +6,7 @@ logs
 
 # Local drivers
 webdrivers
+
+# Credentials
+XML/Consignor/*Credentials*.xml
+launchConfigs/*Credentials*.launch

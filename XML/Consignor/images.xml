@@ -5,12 +5,12 @@
 	project="Consignor">
 
 
-	<test name="Login" browser="chrome">
+	<test name="TicketSubMenusText" browser="chrome">
 
 	
 		<testcase name="projects.common.testCases.OpenPage" 
 		
-			url="https://www.consignorportal.com/ticket/Outbox" />
+			url="https://www.consignorportal.com/ticket" />
 	
 	
 		<testcase name="projects.consignor.testCases.PortalLogin" 
@@ -18,7 +18,59 @@
 			username="*****" 
 			
 			password="*****" />
+		
 
+			
+		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		
+			subMenu="New" />	
+	
+			
+		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		
+			subMenu="Inbox" />	
+	
+			
+		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		
+			subMenu="Draft" />	
+	
+			
+		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		
+			subMenu="Autoprint" />	
+	
+			
+		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		
+			subMenu="Outbox" />	
+	
+			
+		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		
+			subMenu="Batches" />	
+	
+			
+		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		
+			subMenu="Print boxes" />	
+	
+			
+		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		
+			subMenu="Batches" />	
+	
+			
+		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		
+			subMenu="Contacts" />	
+	
+			
+		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		
+			subMenu="Settings" />	
+			
+			
 		
 	</test>
 		

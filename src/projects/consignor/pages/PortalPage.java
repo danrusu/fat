@@ -15,7 +15,7 @@ import base.pom.WebPage;
  */
 public class PortalPage extends WebPage{
 
-    public static String url = "https://www.consignorportal.com/idsrv/Account/login";
+    //public static String url = "https://www.consignorportal.com/idsrv/Account/login";
     
 
 	By username = By.id("username");
