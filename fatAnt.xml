@@ -10,7 +10,7 @@
         <jar destfile="${dir.jarfile}/fat.jar">
             <manifest>
                 <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
-                <attribute name="Rsrc-Main-Class" value="core.Main"/>
+                <attribute name="Rsrc-Main-Class" value="base.Main"/>
                 <attribute name="Class-Path" value="."/>
                 <attribute name="Rsrc-Class-Path" value="./ selenium-server-standalone-3.11.0.jar jsch-0.1.53.jar mssql-jdbc-6.4.0.jre8.jar mysql-connector-java-5.1.39-bin.jar javax.mail.jar json-path-3.1.0.jar json-schema-validator-3.1.0.jar rest-assured-3.0.7.jar xml-path-3.1.0.jar pdfbox-app-2.0.5.jar org.junit.jupiter.api_5.0.0.v20170910-2246.jar org.junit.jupiter.engine_5.0.0.v20170910-2246.jar org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar org.junit.jupiter.params_5.0.0.v20170910-2246.jar org.junit.platform.commons_1.0.0.v20170910-2246.jar org.junit.platform.engine_1.0.0.v20170910-2246.jar org.junit.platform.launcher_1.0.0.v20170910-2246.jar org.junit.platform.runner_1.0.0.v20170910-2246.jar org.junit.platform.suite.api_1.0.0.v20170910-2246.jar org.junit.vintage.engine_4.12.0.v20170910-2246.jar org.opentest4j_1.0.0.v20170910-2246.jar org.apiguardian_1.0.0.v20170910-2246.jar junit.jar org.hamcrest.core_1.3.0.v201303031735.jar"/>
             </manifest>
