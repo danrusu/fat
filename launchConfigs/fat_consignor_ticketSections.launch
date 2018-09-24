@@ -13,7 +13,7 @@
     </listAttribute>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="base.Main"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="XML/Consignor/images.xml"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="XML/Consignor/ticketSections.xml"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="fat"/>
     <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-DDEBUG=true"/>
 </launchConfiguration>

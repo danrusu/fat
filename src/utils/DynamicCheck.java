@@ -1,6 +1,7 @@
 package utils;
 
 import static base.Logger.log;
+import static base.Logger.logLines;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -34,7 +35,7 @@ public interface DynamicCheck {
 		U returnedObject1;
 		Y returnedObject2;
 
-		for(int i=0; i<totalMilisTimeout/stepTimeout; i++){
+		for(int i=0; i <= totalMilisTimeout/stepTimeout; i++){
 			
 			returnedObject1 = function1.apply(funtion1Argument);
 			
@@ -95,30 +96,26 @@ public interface DynamicCheck {
 			long stepTimeout,
 			Function< T, U> function,
 			T funtionArgument,
-			Predicate<U> expectedCondition
-			){
+			Predicate<U> expectedCondition){
 
 
-		for(int i=0; i<totalMilisTimeout/stepTimeout; i++){
+		for(int i=0; i <= totalMilisTimeout/stepTimeout; i++){
 			
 			U resultObject = function.apply(funtionArgument);
 			
 			if ( expectedCondition.test(resultObject) ){
-				log(
-						"Dynamic wait - funtion result: " + resultObject.toString());
-				log(
-						"condition reached after " + i*stepTimeout + "ms");
+			    
+				logLines("Dynamic wait - funtion result: " + resultObject.toString(),
+				        "condition reached after " + i*stepTimeout + "ms");
 				return true;
 			}
 			
 			ThreadUtils.sleepQuiet(stepTimeout);
 		}
 
-		log(
-				"Dynamic wait - funtion result: " + 
-						function.apply(funtionArgument).toString());
-		log(
-				"condition not reached after " + totalMilisTimeout + "ms");
+		logLines("Dynamic wait - funtion result: " + function.apply(funtionArgument).toString(),
+		        "condition not reached after " + totalMilisTimeout + "ms");
+		
 		return false;
 	}
 
@@ -135,10 +132,11 @@ public interface DynamicCheck {
 		page.resetImplicitWait();
 		boolean success=false;
 
-		for(int i=0; i<totalMilisTimeout/stepTimeout; i++){
+		for(int i=0; i <= totalMilisTimeout/stepTimeout; i++){
+		    
 			if ( expectedCondition.test(function1.apply(page)) ){
+			    
 				log("condition reached after " + i*stepTimeout + "ms");
-
 				success = true;
 				break;
 			}
@@ -150,6 +148,7 @@ public interface DynamicCheck {
 		if (! success){
 			log("condition not reached after " + totalMilisTimeout + "ms");
 		}
+		
 		return success;
 	}
 

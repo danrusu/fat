@@ -1189,27 +1189,36 @@ public class WebPage {
 
     public void checkUrlAndTitle(String url, String title, long timeoutInMiliSeconds) {
         
-        if (url != null){
+        if (url.isEmpty() == false){
+            
             Assert.assertTrue(
+                    
                     "Check URL: "
                             + "expected: \"" + url 
-                            + "\"; found: \"" + getCurrentUrl() + "\"",
-                            DynamicCheck.waitUntilFunctionReturnsExpectedValue(timeoutInMiliSeconds,
-                                    500, 
-                                    (WebPage x) -> x.getCurrentUrl(), 
-                                    this, 
-                                    url));
+                            + "\"; actual: \"" + getCurrentUrl() + "\"",
+                            
+                     DynamicCheck.waitUntilFunctionReturnsExpectedValue(
+                             timeoutInMiliSeconds,
+                             500, 
+                             (WebPage x) -> x.getCurrentUrl(), 
+                             this, 
+                             url));
         }
-        if (title != null){
+        
+        if (title.isEmpty() == false){
+            
             Assert.assertTrue(
+                    
                     "Check title: "
                             + "expected: \"" + title
-                            + "\"; found: \"" + getCurrentTitle() + "\"",
-                            DynamicCheck.waitUntilFunctionReturnsExpectedValue(timeoutInMiliSeconds,
-                                    500, 
-                                    (WebPage x) -> x.getCurrentTitle(), 
-                                    this, 
-                                    title) );
+                            + "\"; actual: \"" + getCurrentTitle() + "\"",
+                            
+                     DynamicCheck.waitUntilFunctionReturnsExpectedValue(
+                             timeoutInMiliSeconds,
+                             500, 
+                             (WebPage x) -> x.getCurrentTitle(), 
+                             this, 
+                             title));
         }
     }
 

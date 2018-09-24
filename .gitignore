@@ -1,11 +1,15 @@
 # Compiled class file
 bin
 
+
 # Log file
-logs
+logs/log__*
+logs/*/log.txt
+
 
 # Local drivers
 webdrivers
+
 
 # Credentials
 XML/Consignor/*Credentials*.xml
