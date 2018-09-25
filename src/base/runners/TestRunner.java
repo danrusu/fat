@@ -4,6 +4,7 @@ import static base.Logger.log;
 import static base.Logger.logHeader;
 import static base.Logger.logLines;
 import static base.failures.ThrowablesWrapper.wrapThrowable;
+import static base.runnerConfig.TestUtils.needToCloseBrowserAtEnd;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ import base.results.ResultStatus;
 import base.results.TestCaseResult;
 import base.results.TestResult;
 import base.runnerConfig.TestConfig;
-import base.runnerConfig.TestUtils;
 import base.xml.XmlTestConfig;
 import utils.StringUtils;
 
@@ -100,7 +100,7 @@ public interface TestRunner {
 
 
         // by default, close driver windows after each test
-        quitDriver(TestUtils.needToCloseBrowserAtEnd(testConfig));
+        quitDriver(needToCloseBrowserAtEnd(testConfig));
 
 
         return new TestResult(
