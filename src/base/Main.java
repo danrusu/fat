@@ -1,11 +1,12 @@
 package base;
 
 
+import static utils.SystemUtils.getIntPropertyOrDefault;
+import static utils.ThreadUtils.setMaxThreads;
+
 import base.runners.SuiteRunner;
 import base.testCase.TestCaseDocs;
 import base.testCase.TestCasesPackages;
-import utils.SystemUtils;
-import utils.ThreadUtils;
 
 
 /**
@@ -21,13 +22,13 @@ public class Main {
     public static void main(String[] args) {
 
         // setup parallelism; by default use only the main thread + 2 extra threads
-        ThreadUtils.setMaxThreads(SystemUtils.getIntPropertyOrDefault(JvmArgs.threads, 2));
+        setMaxThreads(getIntPropertyOrDefault(JvmArgs.threads, 2));
 
 
         if (usage(args)) {
 
-            if (! args[0].equals("docs")){
-                // args[0] = suiteConfigXml
+            if (haveSuiteConfigXml(args)){
+                
                 runSuite(args[0]);
             }
 
@@ -39,7 +40,15 @@ public class Main {
 
 
 
+    private static boolean haveSuiteConfigXml(String[] args) {
+
+        return args[0].equals("docs") == false;
+    }
+
+
+
     private static void runSuite(String suiteConfigXml) {
+        
         SuiteRunner.run(suiteConfigXml);
     }
 
@@ -59,23 +68,29 @@ public class Main {
         }
     }
 
+    
 
-
-    /**
-     * Display fat.jar usage information.
-     */
-    private static boolean usage(String ...args){
+    private static boolean usage(String[] args){
         
         if ( args.length == 0 ){
-            System.out.println(
-                    "\nWrong arguments.\n"
-                            + "\nUsage:"
-                            + "\n\nRun test:"
-                            + "\njava [-Duser] [-Dbrowser] [-DjenkinsJobName] [-DjenkinsBuildNr] [-DsendResultsToServer] [-Ddebug] -jar fat.jar config.xml "
-                            + "\n\nList available test cases modules:"
-                            + "\njava -jar fat.jar docs"
-                            + "\n\nList test case's documentation:"
-                            + "\njava -jar fat.jar docs testCaseName");
+            
+            System.out.println(String.join(
+                    
+                    "\n",
+                    
+                    "Wrong arguments.",
+                    
+                    "\nUsage:",
+                    
+                    "\nRun test:",                    
+                    "java [-Duser] [-Dbrowser] [-DjenkinsJobName] [-DjenkinsBuildNr] "
+                            + "[-DsendResultsToServer] [-Ddebug] -jar fat.jar config.xml ",
+                    
+                    "\nList available test cases modules:",
+                    "java -jar watt.jar docs",
+                    
+                    "\nList test case's documentation:",
+                    "java -jar watt.jar docs testCaseName"));
 
             return false;
         }
