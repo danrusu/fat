@@ -1,6 +1,11 @@
 package base.testCase;
+
 import static base.Logger.log;
 import static base.Logger.logLines;
+import static base.runnerConfig.TestCaseAttribute.expectedFailureRegExp;
+import static base.runnerConfig.TestCaseAttribute.failure;
+import static base.runnerConfig.TestCaseAttribute.skip;
+import static utils.StringUtils.nullToEmptyString;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -20,8 +25,8 @@ import base.Assert;
 import base.JvmArgs;
 import base.failures.Failure;
 import base.pom.WebPage;
+import base.runnerConfig.TestCaseAttribute;
 import base.xml.XmlDynamicData;
-import utils.StringUtils;
 import utils.SystemUtils;
 
 /**
@@ -45,22 +50,41 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
     }
 
 
+    
     /**
      * Get the test attributes.
      * 
      * @return - a map of test's attributes
      */
     public Map<String, String> getTestCaseAttributes() {
+        
         return Optional.ofNullable(testCaseAttributes).orElse(new TreeMap<>());
+    }
+    
+    
+    
+    public String getTestCaseAttribute(String attributeName) {
+        
+        return nullToEmptyString(getTestCaseAttributes().get(attributeName));
+    }
+    
+    
+    
+    public String getTestCaseAttribute(TestCaseAttribute testCaseAttribute) {
+        
+        return nullToEmptyString(getTestCaseAttributes().get(testCaseAttribute.name()));
     }
 
 
+    
+    
     /**
      * Set the test's attributes.
      * 
      * @param testAttributes - test's attributes map 
      */
     public void setTestCaseAttributes(Map<String, String> testAttributes) {
+        
         this.testCaseAttributes = testAttributes;
         dynamicEval(testAttributes);
     }
@@ -81,13 +105,8 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
 
 
-    public String nullToEmptyString(String s) {
-        return StringUtils.nullToEmptyString(s);
-    }
-
-
-
     public void dynamicEval(Map<String, String> testCaseAttributes) {
+        
         //Map<String, String> attributes = testCaseAttributes;
 
         // eval "save" first
@@ -97,6 +116,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
         testCaseAttributes.keySet().forEach(
 
                 key -> {
+                    
                     if (! key.equals("save")){
 
                         String value = nullToEmptyString(testCaseAttributes.get(key));
@@ -108,9 +128,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
                             log("Attribute replaced: " + key + "=" + newValue);
                         }
                     }
-                }
-                );
-
+                });
     }
 
 
@@ -200,16 +218,17 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
         testCaseAttributes.put("save", saved);
         log("Saved data: save=" + saved);
-
     }
 
 
 
     public String evalAttribute(String attribute){
+        
         return nullToEmptyString(getTestCaseAttributes().get(attribute));
     }
 
 
+    
     /* by attributes 
      * 
      * selector="id:idSelector"
@@ -249,7 +268,10 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
         return Paths.get(evalAttribute(attribute)).toFile();
     }
 
+    
+    
     public String evalAttributeNullable(String attribute){
+        
         return getTestCaseAttributes() == null ? 
                 null : getTestCaseAttributes().get(attribute);
     }
@@ -257,13 +279,16 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
 
     public boolean attributeExists(String attribute){
+        
         return getTestCaseAttributes().get(attribute) != null;
     }
 
 
 
     public Boolean evalBooleanAttribute(String attribute){
-        return nullToEmptyString(getTestCaseAttributes().get(attribute)).equalsIgnoreCase("true");
+        
+        return nullToEmptyString(getTestCaseAttributes().get(attribute))
+                .equalsIgnoreCase("true");
     }
 
 
@@ -279,6 +304,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
     }
 
 
+    
     public List<String> evalListAttribute(String attribute, String separator){
 
         return List.of(evalAttribute(attribute).split(separator)).stream()
@@ -304,7 +330,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
         }
 
-        addAttribute("failure", failureMessage);
+        addAttribute(failure.name(), failureMessage);
 
         return failureMessage; 
     }
@@ -312,13 +338,15 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
 
     public String getFailure() {
-        return nullToEmptyString(getTestCaseAttributes().get("failure"));
+        
+        return getTestCaseAttribute(failure);
     }
 
 
 
     public String getExpectedFailureRegExp() {
-        return nullToEmptyString(getTestCaseAttributes().get("expectedFailureRegExp"));
+        
+        return getTestCaseAttribute(expectedFailureRegExp);
     }
 
 
@@ -327,7 +355,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
         return actualFailure.matches(
                 // only accept expected failures wrapped as base.failures.Failure
-                "(?s)^core\\.failures\\.Failure: " + getExpectedFailureRegExp());                
+                "(?s)^base\\.failures\\.Failure: " + getExpectedFailureRegExp());                
     }
     
     
@@ -345,15 +373,14 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
 
     public void removeFailure() {
-        removeAttr("failure");
+        removeAttr(failure.name());
     }
 
 
 
-    public boolean isSkipped() {        
-        return Optional.ofNullable(getTestCaseAttributes().get("skip"))
-                .orElse("")
-                .equalsIgnoreCase("true");
+    public boolean isSkipped() {    
+        
+        return getTestCaseAttribute(skip.name()).equalsIgnoreCase("true");
     }
 
 

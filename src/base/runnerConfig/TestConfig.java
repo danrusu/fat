@@ -1,24 +1,25 @@
 package base.runnerConfig;
 
+import static utils.StringUtils.*;
+import static base.runnerConfig.TestAttribute.*;
+
 import java.util.Map;
 import java.util.Optional;
 
-import utils.StringUtils;
+
 
 public class TestConfig {
 
-    
-    
+        
     private Map<String, String> testAttributes;
-
+    
     private Map<Integer, Map<String, String>> testCases;
 
 
 
     public TestConfig(
             Map<String, String> testAttributes,
-            Map<Integer, Map<String, String>> testCases
-            ) {
+            Map<Integer, Map<String, String>> testCases) {
         
         this.testAttributes = testAttributes;
         this.testCases = testCases;
@@ -26,12 +27,19 @@ public class TestConfig {
 
 
 
-    // TESTS
+    //*** TESTS ***
     public Map<String, String> getTestAttributes() {
 
         return testAttributes;
     }
+    
 
+    
+    public String getTestAttribute(String attributeName) {
+
+        return getTestAttributes().get(attributeName);
+    }
+    
 
 
     public void setTestAtributes(Map<String, String> testAttributes) {
@@ -43,15 +51,14 @@ public class TestConfig {
     
     public String getName(){
         
-        return testAttributes.get("name");
+        return testAttributes.get(name.name());
     }
 
 
 
     public String getBrowser(){
         
-        return StringUtils.nullToEmptyString(
-                testAttributes.get("browser"));
+        return nullToEmptyString(testAttributes.get(browser.name()));
     }
 
     
@@ -65,14 +72,14 @@ public class TestConfig {
     
     public boolean isTestSkipped() {
         
-        return  Optional.ofNullable(getTestAttributes().get("skip"))
+        return  Optional.ofNullable(testAttributes.get(skip.name()))
                 .orElse("false")
                 .equalsIgnoreCase("true");
     }
     
     
-    // TESTCASES
     
+    //*** TESTCASES ***  
     public Map<Integer, Map<String, String>> getTestCases() {
         
         return testCases;

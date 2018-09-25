@@ -18,7 +18,7 @@ import base.results.ResultStatus;
 import base.results.TestCaseResult;
 import base.results.TestResult;
 import base.runnerConfig.TestConfig;
-import base.runnerConfig.TestConfigUtils;
+import base.runnerConfig.TestUtils;
 import base.xml.XmlTestConfig;
 import utils.StringUtils;
 
@@ -48,7 +48,7 @@ public interface TestRunner {
 
         var testCases = testConfig.getTestCases();
 
-      logHeader(String.format(
+        logHeader(String.format(
                 "Started test_%d - attributes: %s", 
                 testId, 
                 testAttributes.toString()));
@@ -100,7 +100,7 @@ public interface TestRunner {
 
 
         // by default, close driver windows after each test
-        quitDriver(TestConfigUtils.needToCloseBrowserAtTestEnd(testConfig));
+        quitDriver(TestUtils.needToCloseBrowserAtEnd(testConfig));
 
 
         return new TestResult(

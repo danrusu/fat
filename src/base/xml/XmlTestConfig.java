@@ -16,9 +16,9 @@ import org.w3c.dom.NamedNodeMap;
 
 import base.JvmArgs;
 import base.results.ResultFileType;
-import base.runnerConfig.SuiteConfigAttributes;
+import base.runnerConfig.SuiteAttribute;
 import base.runnerConfig.TestConfig;
-import base.runnerConfig.TestConfigAttributes;
+import base.runnerConfig.TestAttribute;
 import base.testCase.TestCasesPackages;
 import utils.StringUtils;
 import utils.SystemUtils;
@@ -98,8 +98,6 @@ public class XmlTestConfig {
         root = validateTestXml(configDoc);
         List<Element> testsList = XmlDoc.getChildren(root);
 
-        testCasesPackages = initTestCasesPackages();
-
         Iterator<Element> iter = testsList.iterator();
         while ( iter.hasNext() ) {
             
@@ -139,14 +137,14 @@ public class XmlTestConfig {
         }                
 
         // TODO - change this from static
-        setSuiteName(root.getAttribute(SuiteConfigAttributes.name.name()));
+        setSuiteName(root.getAttribute(SuiteAttribute.name.name()));
 
-        setUser(root.getAttribute(SuiteConfigAttributes.user.name()));
-        setProject(root.getAttribute(SuiteConfigAttributes.project.name()));
-        setSuiteResultFileType(root.getAttribute(SuiteConfigAttributes.resultType.name()));
+        setUser(root.getAttribute(SuiteAttribute.user.name()));
+        setProject(root.getAttribute(SuiteAttribute.project.name()));
+        setSuiteResultFileType(root.getAttribute(SuiteAttribute.resultType.name()));
         
-        setEmail(root.getAttribute(SuiteConfigAttributes.email.name()));
-        setGrid(root.getAttribute(SuiteConfigAttributes.grid.name()));
+        setEmail(root.getAttribute(SuiteAttribute.email.name()));
+        setGrid(root.getAttribute(SuiteAttribute.grid.name()));
 
 
         List<Element> testsList = XmlDoc.getChildren(root);
@@ -160,24 +158,6 @@ public class XmlTestConfig {
         }         
 
         return root;
-    }
-
-
-
-    private static List<String> initTestCasesPackages() {
-
-        String testCasesPackages = StringUtils.nullToEmptyString(
-                root.getAttribute(SuiteConfigAttributes.packages.name()));
-
-        if (! testCasesPackages.isEmpty()){
-            return Arrays.asList(testCasesPackages.split(";"))
-                    .stream()
-                    .unordered().parallel()
-                    .map(packageName -> packageName + ".testCases")
-                    .collect(Collectors.toList());
-        }
-
-        return new ArrayList<>();
     }
 
 
@@ -199,7 +179,7 @@ public class XmlTestConfig {
         attributes = e.getAttributes();
 
         String browserProperty = SystemUtils.getPropertyOrEmptyString(JvmArgs.browser); 
-        String browser = TestConfigAttributes.browser.name();
+        String browser = TestAttribute.browser.name();
 
 
         for (  int j=0; j<attributes.getLength(); j++ ){

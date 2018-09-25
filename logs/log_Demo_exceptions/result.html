@@ -1,0 +1,701 @@
+<html>
+
+<head>
+
+<title>
+Details
+</title>
+
+
+<link rel="stylesheet" type="text/css" href="../../reportsResources/reports.css"/>
+
+<script src="../../reportsResources/jQuery_v2.2.4.js"></script>
+<script src="../../reportsResources/reports.js"></script>
+</head>
+<body onload="resultsPageSetup();">
+<div id="suiteResultsContainer"><table class="suiteResults">
+
+<tr>
+
+<th>
+Suite
+</th>
+
+<th>
+Elapsed
+</th>
+
+<th>
+Result
+</th>
+
+<th>
+Tests total / failed / skipped
+</th>
+
+<th>
+TestCases total / failed / skipped
+</th>
+
+</tr>
+
+<tr>
+
+<td>
+Demo_Exceptions
+</td>
+
+<td>
+0h:0m:8s:458ms
+</td>
+
+<td>
+<font color="red">Failed</font>
+</td>
+
+<td>
+8 / 2 / 1
+</td>
+
+<td>
+13 / 2 / 6
+</td>
+
+</tr>
+</table>
+</div>
+<br/><br/>
+<table class="results">
+
+<tr>
+
+<th>
+<span title="Expand/collapse test cases"><svg class="svg24" id="expandTestcases" xmlns="http://www.w3.org/2000/svg" width="24" height="24" ><path fill="#00FF00" fill-rule="evenodd" d="M16 11h-3V8c0-.6-.4-1-1-1s-1 .4-1 1v3H8c-.6 0-1 .4-1 1s.4 1 1 1h3v3c0 .6.4 1 1 1s1-.4 1-1v-3h3c.6 0 1-.4 1-1s-.4-1-1-1zM12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z" clip-rule="evenodd"/></svg></span>&nbsp;Test/Testcase
+</th>
+
+<th>
+Name
+</th>
+
+<th>
+Elapsed
+</th>
+
+<th>
+Result
+</th>
+
+<th>
+<span title="Show test cases info"><svg class="svg24" id="showDetails" xmlns="http://www.w3.org/2000/svg" width="115" height="24"><path fill="#00FF00" fill-rule="evenodd" d="M99 0c-6.6 0-12 5.4-12 12s5.4 12 12 12 12-5.4 12-12-5.4-12-12-12zm.4 6c.8 0 1.5.7 1.5 1.5S100.2 9 99.4 9s-1.5-.7-1.5-1.5.6-1.5 1.5-1.5zm1.6 10.3c-.7 1.1-1.5 1.6-2.7 1.6-1 0-1.9-1-1.7-1.6L98 12c0-.1 0-.3-.1-.3-.9.1-1.8.6-1.8.6 0-.2 0-.1 0-.3.7-1.1 2.2-2.1 3.4-2 .7.1.8.9.7 1.6L99 16c0 .3.2.5.5.5.5 0 1.5-1.1 1.5-1.1 0 .3 0 .8 0 .9z" clip-rule="evenodd"/></svg></span>Details
+</th>
+
+</tr>
+
+<tr>
+
+<td>
+1
+</td>
+
+<td>
+SuccessfullTest
+</td>
+
+<td>
+0h:0m:0s:50ms
+</td>
+
+<td>
+
+<font color="green">
+Passed
+</font>
+
+</td>
+
+<td>
+
+<div class="note">
+Note:<br/> Expected suite results: Tests(8/2/1) TestCases(13/2/6)<br/>Tests: Failed - 4, 8; Skipped - 7<br/>Testcases: Failed - 4/1, 8/1; Skipped - 7/1, 7/2, 7/3, 8/2, 8/3
+</div>
+
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+1/1
+</td>
+
+<td>
+projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:31ms
+</td>
+
+<td>
+
+<font color="green">
+Passed
+</font>
+
+</td>
+
+<td>
+<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing!</div>
+</td>
+</tr>
+
+<tr>
+
+<td>
+2
+</td>
+
+<td>
+SeleniumExceptionTest
+</td>
+
+<td>
+0h:0m:4s:160ms
+</td>
+
+<td>
+
+<font color="green">
+Passed
+</font>
+
+</td>
+
+<td>
+browser="chrome"<br/>
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+2/1
+</td>
+
+<td>
+projects.mock.testCases.MockException
+</td>
+
+<td>
+0h:0m:0s:367ms
+</td>
+
+<td>
+
+<font color="green">
+Passed
+</font>
+
+</td>
+
+<td>
+expectedFailureRegExp="Test case exception!.*"<br/>
+<div class="failure">
+failure: base.failures.Failure: Test case exception! <br>Cause: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"unknown"}
+</div>
+<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an exception test failure!</div>
+</td>
+</tr>
+
+<tr>
+
+<td>
+3
+</td>
+
+<td>
+ErrorTest
+</td>
+
+<td>
+0h:0m:0s:193ms
+</td>
+
+<td>
+
+<font color="green">
+Passed
+</font>
+
+</td>
+
+<td>
+
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+3/1
+</td>
+
+<td>
+projects.mock.testCases.MockError
+</td>
+
+<td>
+0h:0m:0s:154ms
+</td>
+
+<td>
+
+<font color="green">
+Passed
+</font>
+
+</td>
+
+<td>
+expectedFailureRegExp="Test case error!.*"<br/>
+<div class="failure">
+failure: base.failures.Failure: Test case error! <br>Cause: java.lang.AssertionError: customError
+</div>
+<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an Exception test case failure!</div>
+</td>
+</tr>
+
+<tr>
+
+<td>
+4
+</td>
+
+<td>
+RuntimeExceptionTest
+</td>
+
+<td>
+0h:0m:0s:287ms
+</td>
+
+<td>
+
+<font color="red">
+Failed
+</font>
+
+</td>
+
+<td>
+
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+4/1
+</td>
+
+<td>
+projects.mock.testCases.MockRuntimeException
+</td>
+
+<td>
+0h:0m:0s:129ms
+</td>
+
+<td>
+
+<font color="red">
+Failed
+</font>
+
+</td>
+
+<td>
+expectedFailureRegExp="Test_case_runtime_exception!.*"<br/>stopOnFailure="false"<br/>
+<div class="failure">
+failure: base.failures.Failure: Test case runtime exception! <br>Cause: java.lang.NullPointerException
+</div>
+<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an RuntimeException test case failure!</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+4/2
+</td>
+
+<td>
+projects.mock.testCases.MockRuntimeException
+</td>
+
+<td>
+0h:0m:0s:142ms
+</td>
+
+<td>
+
+<font color="green">
+Passed
+</font>
+
+</td>
+
+<td>
+expectedFailureRegExp="Test case runtime exception!.*"<br/>
+<div class="failure">
+failure: base.failures.Failure: Test case runtime exception! <br>Cause: java.lang.NullPointerException
+</div>
+<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an RuntimeException test case failure!</div>
+</td>
+</tr>
+
+<tr>
+
+<td>
+5
+</td>
+
+<td>
+JavascriptErrorTest
+</td>
+
+<td>
+0h:0m:3s:506ms
+</td>
+
+<td>
+
+<font color="green">
+Passed
+</font>
+
+</td>
+
+<td>
+browser="chrome"<br/>
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+5/1
+</td>
+
+<td>
+projects.mock.testCases.MockJSError
+</td>
+
+<td>
+0h:0m:0s:624ms
+</td>
+
+<td>
+
+<font color="green">
+Passed
+</font>
+
+</td>
+
+<td>
+
+<div class="js_errors">
+JS_ERRORS: <br/> http://danrusu.ro/jsError.html 26:10 Uncaught ReferenceError: Unknown is not defined | SEVERE<br/>
+</div>
+<div class="testCaseDocs" title="Test case info"><br>Test for catching javascript errors<br>This test opens http://danrusu.ro/jsError.html page.</div>
+</td>
+</tr>
+
+<tr>
+
+<td>
+6
+</td>
+
+<td>
+SkipedTestCase
+</td>
+
+<td>
+0h:0m:0s:48ms
+</td>
+
+<td>
+
+<font color="green">
+Passed
+</font>
+
+</td>
+
+<td>
+
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+6/1
+</td>
+
+<td>
+projects.mock.testCases.MockRuntimeException
+</td>
+
+<td>
+0h:0m:0s:14ms
+</td>
+
+<td>
+
+<font color="blue">
+Skipped
+</font>
+
+</td>
+
+<td>
+skip="true"<br/><div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an RuntimeException test case failure!</div>
+</td>
+</tr>
+
+<tr>
+
+<td>
+7
+</td>
+
+<td>
+SkipedTest
+</td>
+
+<td>
+0h:0m:0s:21ms
+</td>
+
+<td>
+
+<font color="blue">
+Skipped
+</font>
+
+</td>
+
+<td>
+skip="true"<br/>
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+7/1
+</td>
+
+<td>
+projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:0ms
+</td>
+
+<td>
+
+<font color="blue">
+Skipped
+</font>
+
+</td>
+
+<td>
+attribute1="value1"<br/>attribute2="value2"<br/>
+<div class="note">
+Note:<br/> First skipped testcase
+</div>
+<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing!</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+7/2
+</td>
+
+<td>
+projects.mock.testCases.MockRuntimeException
+</td>
+
+<td>
+0h:0m:0s:0ms
+</td>
+
+<td>
+
+<font color="blue">
+Skipped
+</font>
+
+</td>
+
+<td>
+<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an RuntimeException test case failure!</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+7/3
+</td>
+
+<td>
+projects.mock.testCases.MockError
+</td>
+
+<td>
+0h:0m:0s:0ms
+</td>
+
+<td>
+
+<font color="blue">
+Skipped
+</font>
+
+</td>
+
+<td>
+
+<div class="note">
+Note:<br/> Last skipped testcase
+</div>
+<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an Exception test case failure!</div>
+</td>
+</tr>
+
+<tr>
+
+<td>
+8
+</td>
+
+<td>
+SkipTestcasesAfterFailureTest
+</td>
+
+<td>
+0h:0m:0s:171ms
+</td>
+
+<td>
+
+<font color="red">
+Failed
+</font>
+
+</td>
+
+<td>
+
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+8/1
+</td>
+
+<td>
+projects.mock.testCases.MockError
+</td>
+
+<td>
+0h:0m:0s:150ms
+</td>
+
+<td>
+
+<font color="red">
+Failed
+</font>
+
+</td>
+
+<td>
+
+<div class="failure">
+failure: base.failures.Failure: Test case error! <br>Cause: java.lang.AssertionError: customError
+</div>
+<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an Exception test case failure!</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+8/2
+</td>
+
+<td>
+projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:0ms
+</td>
+
+<td>
+
+<font color="blue">
+Skipped
+</font>
+
+</td>
+
+<td>
+
+<div class="note">
+Note:<br/> Skipped because first test case failed.
+</div>
+<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing!</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+8/3
+</td>
+
+<td>
+projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:0ms
+</td>
+
+<td>
+
+<font color="blue">
+Skipped
+</font>
+
+</td>
+
+<td>
+
+<div class="note">
+Note:<br/> Skipped because first test case failed.
+</div>
+<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing!</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

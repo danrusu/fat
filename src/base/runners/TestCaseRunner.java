@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import base.Driver;
 import base.results.ResultStatus;
 import base.results.TestCaseResult;
-import base.runnerConfig.TestCaseConfigUtils;
+import base.runnerConfig.TestCaseAttribute;
 import base.testCase.TestCase;
 import base.testCase.WebPageTestCase;
 import utils.ClassUtils;
@@ -69,9 +69,9 @@ public interface TestCaseRunner {
 
         for(int testCaseId : testCases.keySet()){
 
-            // get current test case retries
-            int retriesCount = TestCaseConfigUtils.getTestCaseRetries(testCases, testCaseId);
-            boolean stopOnFailure = TestCaseConfigUtils.getTestCasestopOnFailure(testCases, testCaseId);
+         // get current test case retries
+            int retriesCount = TestCaseAttribute.getTestCaseRetries(testCases, testCaseId);
+            boolean stopOnFailure = TestCaseAttribute.getTestCasestopOnFailure(testCases, testCaseId);
 
 
             Map<String, String> testCaseAttributes = testCases.get(testCaseId);
