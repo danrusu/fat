@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
-    <stringAttribute key="bad_container_name" value="\at\launchConfigs"/>
+    <stringAttribute key="bad_container_name" value="\fatt\launchConfigs"/>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/watt/src/base/Main.java"/>
+        <listEntry value="/fat/src/base/Main.java"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="1"/>
@@ -14,5 +14,5 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="base.Main"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="docs projects.common.testCases.WebPageCheckUrlAndTitle"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="watt"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="fat"/>
 </launchConfiguration>
