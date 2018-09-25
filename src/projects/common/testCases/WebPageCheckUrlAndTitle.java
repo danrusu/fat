@@ -6,6 +6,7 @@ import base.testCase.TestCase;
 
 /**
  * Test case for verifying web page URL and title.
+ * 
  * @author Dan.Rusu
  *
  */
@@ -24,8 +25,6 @@ public class WebPageCheckUrlAndTitle extends TestCase{
                 url, 
                 title, 
                 Long.parseLong(timeout + ""));
-  
-        		
 	}
 	
 	
@@ -38,5 +37,5 @@ public class WebPageCheckUrlAndTitle extends TestCase{
 				"Test data: url, title, [timeout(ms)=0]");
 	}
 
-
 }
+

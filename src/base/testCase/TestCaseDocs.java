@@ -8,6 +8,7 @@ import utils.ClassUtils;
 
 /**
  * Class for generating Test Case documentation via TestScenario interface. 
+ * 
  * @author Dan.Rusu
  *
  */
@@ -17,16 +18,14 @@ public class TestCaseDocs {
 
     public static void run(List<String> suitePackages) {
 
-        String jarPath = Paths.get(System.getProperty("user.dir"), "fat.jar").toString();
 
-        ClassUtils.getClassesNamesInPackages(jarPath, suitePackages).forEach(
-                c -> {
-                    final String[] items = c.split("\\.");
-                    if (items.length>1){
-                        System.out.println(items[items.length-1]);
-                    }
-                }
-        );
+        ClassUtils.getClassesNamesInPackages(
+                
+                Paths.get(System.getProperty("user.dir"), "fat.jar"),
+                
+                suitePackages)
+        
+        .forEach(System.out::println);                     
     }
 
 
@@ -45,7 +44,7 @@ public class TestCaseDocs {
                 
                 () -> ((TestCase)ClassUtils.newInstance(testCaseName)).getTestCaseScenario())
                 
-                .orElse(" Not defined. Method implemented automaticaly.");
+                .orElse("Not defined. Method implemented automaticaly.");
     }
 
 }

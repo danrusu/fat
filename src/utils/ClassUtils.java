@@ -1,6 +1,7 @@
 package utils;
 
 import java.io.FileInputStream;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,16 +36,8 @@ public interface ClassUtils {
 
 
 
-    /**
-     * Get a list of classes within a jar package.
-     * This will be used for extracting test documentation from jars.
-     * 
-     * @param jarName - the jar for searching the package
-     * @param packageName - the package for searching the classes
-     * @return - a list of all classes names that are in the specified package
-     */
     public static List<String> getClassesNamesInPackages(
-            String jarName, 
+            Path jarPath, 
             List<String> suitePackages){
 
         List<String> classes = new ArrayList<> ();
@@ -53,8 +46,7 @@ public interface ClassUtils {
 
             packageName = packageName.replaceAll("\\." , "/");
 
-            try(JarInputStream jarFile = new JarInputStream
-                    (new FileInputStream (jarName));)
+            try(JarInputStream jarFile = new JarInputStream(new FileInputStream (jarPath.toString()));)
             {
 
                 JarEntry jarEntry;
