@@ -120,8 +120,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
                     if (! key.equals("save")){
 
                         String value = nullToEmptyString(testCaseAttributes.get(key));
-                        String newValue = XmlDynamicData.getDynamicValue(
-                                XmlDynamicData.getSavedData(), value);
+                        String newValue = XmlDynamicData.getDynamicValue(value);
 
                         if ( ! value.equals(newValue) ){
                             testCaseAttributes.replace(key, newValue);
@@ -151,9 +150,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
                         String savedValue =  savedNameAndValue.split("=")[1];
                         XmlDynamicData.saveData(
                                 savedName, 
-                                XmlDynamicData.getDynamicValue(
-                                        XmlDynamicData.getSavedData(),
-                                        savedValue));
+                                XmlDynamicData.getDynamicValue(savedValue));
 
                     });
 

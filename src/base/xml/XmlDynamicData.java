@@ -1,29 +1,126 @@
 package base.xml;
-import static base.Logger.debug;
-import static base.Logger.getLogDirPath;
-import static base.Logger.log;
+
+import static base.Logger.*;
 import static utils.StringUtils.removeZeroPrefixFromIntegers;
 import static utils.TimeUtils.formatCurrentDate;
 import static utils.TimeUtils.formatNextDate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import utils.StringUtils;
 
 public class XmlDynamicData {
     
+    
     private static Map<String, String> savedDataMap = new TreeMap<>();
 
 
+    
+    public static List<String> getDynamicTokens(String attributeValue) {
+        
+        int currentIndex = 0;
+        List<String> variables = new ArrayList<>();
+        
+        while(currentIndex < attributeValue.length()) {
+            
+            int varBeginIndex = attributeValue.indexOf("{", currentIndex); 
+            
+            if (varBeginIndex >= 0) {
+                
+                int varEndIndex = attributeValue.indexOf("}", currentIndex+1);
+                               
+                if (varEndIndex >= 0) {
+                    
+                    int nextVarBeginIndex = attributeValue.indexOf("{", varBeginIndex + 1);
+                    
+                    if (nextVarBeginIndex!=-1 && nextVarBeginIndex < varEndIndex) {
+                        
+                        currentIndex = nextVarBeginIndex;
+                        continue;
+                    }
+                    
+                    variables.add(attributeValue.substring(varBeginIndex, varEndIndex+1)); 
+                
+                    currentIndex = varEndIndex + 1;
+                }
+                
+                else {
+                    break;
+                }
+            }
+            
+            else {
+                currentIndex++;
+            }
+        }
+        
+        return variables;
+    }
+    
+    
+    public static Function<String, String> evaluateAttributeToken =  token -> {
+        
+        // XmlDynamicValue
+        if ( XmlDynamicValue.contains(token) ||
+                
+             XmlDynamicRegExp.matchesRegExp(token)){
+               
+               return dynamicEval(token);
+        }
+        else {
+            // token is a saved variable name
+            if (savedDataMap.get(token) != null){
+                   
+                return savedDataMap.get(token);
+            }
+            else {
+                   
+              return token;
+            }
+        }            
+    };
+    
+    
     public static String getDynamicValue(
+            String attributeValue){
+        
+        List<String> rawTokens = getDynamicTokens(attributeValue);
+        
+        List<String> evaluatedTokens = rawTokens.stream()
+                
+            .map(token -> token.replaceAll("[\\{\\}]", ""))
+            
+            .map(evaluateAttributeToken)
+            
+            .collect(Collectors.toList());
+           
+       String evaluatedAttributeValue = attributeValue;
+       for(int i=0; i < evaluatedTokens.size(); i++) {
+           
+           evaluatedAttributeValue = evaluatedAttributeValue.replace(
+                   rawTokens.get(i), 
+                   evaluatedTokens.get(i));
+           
+       }
+        
+        return evaluatedAttributeValue;
+    }
+    
+    
+        
+    // not used
+    public static String getDynamicValue_old(
             Map<String, String> savedDataMap, 
             String attributeValue){
         
         String value="";
         String key;
+        
         int start;
         int foundEnd, foundNextStart;
 
@@ -80,7 +177,7 @@ public class XmlDynamicData {
         }
 
         if ( ! attributeValue.equals(value)){
-            log("dynamycValue= " + value);
+            log("dynamicValue= " + value);
         }
         return value;
     }
@@ -216,6 +313,7 @@ public class XmlDynamicData {
 
 
     public static Map<String, String> getSavedData() {
+        
         debug("Get current saved data: " + savedDataMap);
         return savedDataMap;
     }
@@ -223,7 +321,7 @@ public class XmlDynamicData {
     
     
     public static void saveData(String key, String value) {
-        savedDataMap.put(key, value);
+        
         log("Saved data: " + key + "=" + savedDataMap.get(key));
     }
 
