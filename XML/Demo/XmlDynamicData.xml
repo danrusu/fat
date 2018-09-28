@@ -52,6 +52,35 @@
 	
 	
 	
+	<test name="Reset_test_data">
+	
+		<testcase name="projects.mock.testCases.MockSuccess"
+		
+			save="id=1111"
+
+        	id="{id}" />
+        	
+        	
+ 		<testcase name="projects.common.testCases.AreEqual"
+
+        	string1="{id}"
+
+        	string2="1111" /> 
+				
+				
+		<testcase name="projects.common.testCases.ResetSavedData" />
+	
+	
+        <testcase name="projects.common.testCases.AreEqual"
+
+        	string1="{id}"
+
+        	string2="id" /> 
+        	        	
+	</test>
+	
+	
+	
 	<test name="Dynamic_date_functions_example">		
         
         <testcase name="projects.mock.testCases.MockSuccess" 
@@ -69,6 +98,9 @@
         	after10days_MM="{$after10days_MM}"
         	
         	after300days_yyyy="{$after300days_yyyy}" />
+        
+        	
+		<testcase name="projects.common.testCases.ResetSavedData" />        	
 		
 	</test>
 	
@@ -127,12 +159,9 @@
 
         	string2="currentOrders[4]" 
         	
-        	expectedFailureRegExp=".*ArrayIndexOutOfBoundsException: 4.*"
-        	
-        	stopOnFailure="false" />
-        	
+        	expectedFailureRegExp=".*ArrayIndexOutOfBoundsException: 4.*" />
 
-	</test>
+	</test>	
 
 
 </suite> 

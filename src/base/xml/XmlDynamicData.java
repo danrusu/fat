@@ -105,7 +105,6 @@ public class XmlDynamicData {
 
 
 
-
     private static String evaluateArrayToken(
             String token, 
             String arrayVariablePattern) {
@@ -376,6 +375,13 @@ public class XmlDynamicData {
     }
 
 
+    
+    public static void resetSavedData() {
+        
+        savedDataMap = new TreeMap<>();
+        debug("Current saved data: " + savedDataMap);
+    }
+    
     
     // "name1=value1;name2=value2" -> Map { name1: value1, name2:value2 }
     public static Map<String, String> getMapFromSaveString(String saveString){
