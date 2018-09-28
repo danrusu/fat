@@ -5,6 +5,9 @@ import static base.Logger.logLines;
 import static base.runnerConfig.TestCaseAttribute.expectedFailureRegExp;
 import static base.runnerConfig.TestCaseAttribute.failure;
 import static base.runnerConfig.TestCaseAttribute.skip;
+import static base.xml.XmlDynamicData.evaluateAttributeValue;
+import static base.xml.XmlDynamicData.getSavedData;
+import static base.xml.XmlDynamicData.saveData;
 import static utils.StringUtils.nullToEmptyString;
 
 import java.io.File;
@@ -148,13 +151,14 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
                         String savedName =  savedNameAndValue.split("=")[0];
                         String savedValue =  savedNameAndValue.split("=")[1];
-                        XmlDynamicData.saveData(
+                        
+                        saveData(
                                 savedName, 
-                                XmlDynamicData.evaluateAttributeValue(savedValue));
+                                evaluateAttributeValue(savedValue));
 
                     });
 
-            String saved = XmlDynamicData.getSavedData().toString(); 
+            String saved = getSavedData().toString(); 
             testCaseAttributes.put("save", saved);
             log("Saved data: save=" + saved);
         }
@@ -177,7 +181,6 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
         List<String> saveList = evalListAttribute("saveResults", ";");
 
-
         saveList.forEach(saveNameAndFieldName -> {
 
             String saveName =  saveNameAndFieldName.split("=")[0];
@@ -185,13 +188,27 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
             try {
                 Field field = this.getClass().getDeclaredField(fieldName);
-                field.setAccessible(true);					
+                field.setAccessible(true);                  
 
                 Object objectValue = field.get(this);
-
-                if (objectValue!=null){
-                    XmlDynamicData.saveData(saveName, objectValue.toString());
+                
+                //TODO - check that field is String or String[]
+                if (objectValue != null){
+                    
+                    if (objectValue.getClass().isArray()) {
+                                                
+                        saveData(
+                                saveName,
+                                
+                                List.of((String[])objectValue).stream()                                    
+                                    .collect(Collectors.joining("||")));
+                    }
+                    else {
+                        saveData(saveName, objectValue.toString());
+                        
+                    }
                 }
+                
                 else {
                     throw new Failure(String.join("",
                             "Saving results failed! Field ", 
@@ -211,10 +228,9 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
             }
         });
 
-        String saved = XmlDynamicData.getSavedData().toString(); 
+        String saved = getSavedData().toString(); 
 
         testCaseAttributes.put("save", saved);
-        log("Saved data: save=" + saved);
     }
 
 

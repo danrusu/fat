@@ -98,7 +98,9 @@
 
         	string1="{currentOrders[0]}"
 
-        	string2="first" />
+        	string2="first" 
+        	
+        	stopOnFailure="false" />
         	
 	
 		<testcase name="projects.common.testCases.AreEqual"
