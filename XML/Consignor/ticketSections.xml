@@ -18,9 +18,9 @@
 			username="*****" 
 			
 			password="*****" />
-		
-		
+
 			
+					
 		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
 		
 			subMenu="Inbox" 
@@ -35,7 +35,7 @@
 			title="Consignor Portal - Shipments" 
 			
 			stopOnFailure="false" />
-		
+
 
 			
 		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
@@ -51,8 +51,8 @@
 	
 			title="Consignor Portal - Production" 
 			
-			stopOnFailure="false" />
-			
+			stopOnFailure="false" />			
+				
 				
 			
 		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
@@ -171,6 +171,15 @@
 			title="Consignor Portal - Settings" 
 			
 			stopOnFailure="false" />
+		
+			
+		<testcase name="projects.consignor.testCases.TicketOpenSubMenu"
+
+			note="Opening wrong Ticket sub menu showcase - this should fail with known failure"
+		
+			subMenu="WrongSubMenu"
+			
+			expectedFailureRegExp=".*Fail to open Ticket sub menu .WrongSubMenu.*" />
 			
 		
 	</test>

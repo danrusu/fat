@@ -2,6 +2,7 @@ package projects.consignor.testCases;
 
 import base.Assert;
 import base.Driver;
+import base.failures.ThrowablesWrapper;
 import base.testCase.TestCase;
 import projects.consignor.pages.TicketPage;
 
@@ -19,7 +20,16 @@ public class TicketOpenSubMenu extends TestCase{
 	    
 	    String subMenu = evalAttribute("subMenu");
 	    
-	    ticketPage.openSubMenu(subMenu);
+	    
+	    ThrowablesWrapper.wrapThrowable(
+	            
+	            "Fail to open Ticket sub menu \"" + subMenu + "\"", 
+	            
+	            () -> {
+	                ticketPage.openSubMenu(subMenu);
+	                return true;
+	            });
+	    
 	    	    
 	    Assert.equals(
 	            "Verify active sub menu.",
