@@ -51,7 +51,9 @@ public class PortalPage extends WebPage{
 	// empty string if cannot get the text 
 	public String getErrorMessage() {
 	    
-	    return ThrowablesWrapper.wrapAssignment(
+	    resetImplicitWait();
+	    
+	    String errorMessage = ThrowablesWrapper.wrapAssignment(
 	            
 	            () -> getExplicitWait(2)
 	                    .until(ExpectedConditions.visibilityOfElementLocated(loginErrorMessage))
@@ -59,6 +61,11 @@ public class PortalPage extends WebPage{
 	                    .trim(),
 	            
 	            new String());
+	    
+       setDefaultImplicitWait();
+       
+       return errorMessage;
 	}
 	
 }
+
