@@ -2,7 +2,8 @@
 
 <suite name="Demo_XmlDynamicData" user="jenkins" project="Demo">
 
-	<test name="Test1" browser="chrome">
+
+	<test name="Save_and_use_Variables">
 	
 		<!--  Just evaluate data at runtime and save tree variables: today, time and startDate -->
  		<testcase name="projects.mock.testCases.MockSuccess" 
@@ -50,7 +51,8 @@
 	</test>
 	
 	
-	<test name="Test2">		
+	
+	<test name="Dynamic_date_functions_example">		
         
         <testcase name="projects.mock.testCases.MockSuccess" 
         
@@ -69,6 +71,67 @@
         	after300days_yyyy="{$after300days_yyyy}" />
 		
 	</test>
+	
+	
+	
+	<test name="Save_results_and_use_them_as_variables">
+				
+		<testcase name="projects.mock.testCases.MockSaveResults" 
+		
+			note="This saves a String[] member of MockSaveResults in orders variable
+			
+			 \norders = [ &quot;first&quot;, &quot;second&quot;, &quot;third&quot; ] -> currentOrders = &quot;first||second||third&quot;"
+		
+			saveResults="currentOrders=orders"/>
+		
+		
+        <testcase name="projects.common.testCases.AreEqual"
+
+        	string1="{currentOrders}"
+
+        	string2="first||second||third" 
+        	
+        	stopOnFailure="false" />
+        	
+        	
+		<testcase name="projects.common.testCases.AreEqual"
+
+        	string1="{currentOrders[0]}"
+
+        	string2="first" />
+        	
+	
+		<testcase name="projects.common.testCases.AreEqual"
+
+        	string1="{currentOrders[1]}"
+
+        	string2="second" 
+        	
+        	stopOnFailure="false" />
+        
+        
+        <testcase name="projects.common.testCases.AreEqual"
+
+        	string1="{currentOrders[2]}"
+
+        	string2="third" 
+        	
+        	stopOnFailure="false" />
+        
+        	
+        <testcase name="projects.common.testCases.AreEqual"
+
+        	string1="{currentOrders[4]}"
+
+        	string2="currentOrders[4]" 
+        	
+        	expectedFailureRegExp=".*ArrayIndexOutOfBoundsException: 4.*"
+        	
+        	stopOnFailure="false" />
+        	
+
+	</test>
 
 
 </suite> 
+

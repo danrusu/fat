@@ -13,7 +13,7 @@
  	<test name="SeleniumExceptionTest" browser="chrome">
  	
 		<testcase name="projects.mock.testCases.MockException" 
-			expectedFailureRegExp="Test case exception!.*" />
+			expectedFailureRegExp=".*Test case exception!.*" />
 		
 	</test>
 	
@@ -21,7 +21,7 @@
  	<test name="ErrorTest">
  	
 		<testcase name="projects.mock.testCases.MockError" 
-			expectedFailureRegExp="Test case error!.*" />
+			expectedFailureRegExp=".*Test case error!.*" />
 			
 	</test>
  
@@ -29,11 +29,11 @@
 	<test name="RuntimeExceptionTest">
 	
 		<testcase name="projects.mock.testCases.MockRuntimeException" 
-			expectedFailureRegExp="Test_case_runtime_exception!.*" 
+			expectedFailureRegExp=".*Test_case_runtime_exception!.*" 
 			stopOnFailure="false"/>
 			
 		<testcase name="projects.mock.testCases.MockRuntimeException" 
-			expectedFailureRegExp="Test case runtime exception!.*" />
+			expectedFailureRegExp=".*Test case runtime exception!.*" />
 			
 	</test>
 	

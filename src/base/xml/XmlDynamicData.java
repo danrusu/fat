@@ -1,6 +1,8 @@
 package base.xml;
 
-import static base.Logger.*;
+import static base.Logger.debug;
+import static base.Logger.getLogDirPath;
+import static base.Logger.log;
 import static utils.StringUtils.removeZeroPrefixFromIntegers;
 import static utils.TimeUtils.formatCurrentDate;
 import static utils.TimeUtils.formatNextDate;
@@ -12,6 +14,7 @@ import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import base.failures.ThrowablesWrapper;
 import utils.StringUtils;
 
 public class XmlDynamicData {
@@ -19,9 +22,8 @@ public class XmlDynamicData {
     
     private static Map<String, String> savedDataMap = new TreeMap<>();
 
-
     
-    public static List<String> getDynamicTokens(String attributeValue) {
+    public static List<String> getRawTokens(String attributeValue) {
         
         int currentIndex = 0;
         List<String> variables = new ArrayList<>();
@@ -63,6 +65,7 @@ public class XmlDynamicData {
     }
     
     
+    
     public static Function<String, String> evaluateAttributeToken =  token -> {
         
         // XmlDynamicValue
@@ -72,24 +75,69 @@ public class XmlDynamicData {
                
                return dynamicEval(token);
         }
+        
+        // token is a saved variable name
         else {
-            // token is a saved variable name
+                        
+            // XML:  requiredOrderNumber="{orderNumbers[1]}" 
+            String arrayVariablePattern = "^(\\w+)\\[(\\d+)\\]$";
+            if (token.matches(arrayVariablePattern)) {
+                
+                return evaluateArrayToken(token, arrayVariablePattern);
+            }
+            
+            
+            // XML:  requiredOrderNumber="{orderNumbers[1]}" 
+            // String variable like "orderNumber"
             if (savedDataMap.get(token) != null){
                    
                 return savedDataMap.get(token);
             }
+            
+            // return unmodified token
             else {
                    
               return token;
             }
-        }            
-    };
-    
-    
-    public static String getDynamicValue(
-            String attributeValue){
+        }         
         
-        List<String> rawTokens = getDynamicTokens(attributeValue);
+    };
+
+
+
+
+    private static String evaluateArrayToken(
+            String token, 
+            String arrayVariablePattern) {
+        
+        String arrayVariableName = token.replaceAll(arrayVariablePattern, "$1");
+        int index = Integer.parseInt(token.replaceAll(arrayVariablePattern, "$2"));
+        
+        String savedData = savedDataMap.get(arrayVariableName);
+        
+        String evaluatedToken = ThrowablesWrapper.wrapThrowable(
+                
+                () -> {
+                    
+                    if ( savedData != null){
+                        
+                        return savedData.split("\\|\\|")[index]; 
+                    }
+                    else {
+                        
+                        return token;
+                    }
+                }
+        );
+        
+        return evaluatedToken;
+    }
+    
+    
+    
+    public static String evaluateAttributeValue(String attributeValue) {
+        
+        List<String> rawTokens = getRawTokens(attributeValue);
         
         List<String> evaluatedTokens = rawTokens.stream()
                 
@@ -99,6 +147,7 @@ public class XmlDynamicData {
             
             .collect(Collectors.toList());
            
+       // replace all raw tokens in the attribute value with evaluated values 
        String evaluatedAttributeValue = attributeValue;
        for(int i=0; i < evaluatedTokens.size(); i++) {
            
@@ -322,6 +371,7 @@ public class XmlDynamicData {
     
     public static void saveData(String key, String value) {
         
+        savedDataMap.put(key, value);
         log("Saved data: " + key + "=" + savedDataMap.get(key));
     }
 
@@ -338,8 +388,7 @@ public class XmlDynamicData {
                     
                     nameAndValueList-> nameAndValueList.get(0),
                     
-                    nameAndValueList -> nameAndValueList.get(1)
-            ));
+                    nameAndValueList -> nameAndValueList.get(1)));
      }
 
 }

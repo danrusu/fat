@@ -21,13 +21,13 @@ class XmlDynamicDataSpec {
         List<String> expectedTokens = List.of("{This}", "{test}", "{dynamic}", "{$tokens}", "{!}");
         
         
-        System.out.println(XmlDynamicData.getDynamicTokens(attributeValue));
+        System.out.println(XmlDynamicData.getRawTokens(attributeValue));
         
         Assert.assertList(
                 
                 expectedTokens, 
                 
-                XmlDynamicData.getDynamicTokens(attributeValue));
+                XmlDynamicData.getRawTokens(attributeValue));
         
     }
     
@@ -41,13 +41,13 @@ class XmlDynamicDataSpec {
         List<String> expectedTokens = List.of("{This}", "{test}", "{dynamic}", "{$tokens}");
         
         
-        System.out.println(XmlDynamicData.getDynamicTokens(attributeValue));
+        System.out.println(XmlDynamicData.getRawTokens(attributeValue));
         
         Assert.assertList(
                 
                 expectedTokens, 
                 
-                XmlDynamicData.getDynamicTokens(attributeValue));
+                XmlDynamicData.getRawTokens(attributeValue));
     }
 
     
@@ -59,13 +59,13 @@ class XmlDynamicDataSpec {
         List<String> expectedTokens = List.of("{dynamic}", "{$tokens}");
         
         
-        System.out.println(XmlDynamicData.getDynamicTokens(attributeValue));
+        System.out.println(XmlDynamicData.getRawTokens(attributeValue));
         
         Assert.assertList(
                 
                 expectedTokens, 
                 
-                XmlDynamicData.getDynamicTokens(attributeValue));
+                XmlDynamicData.getRawTokens(attributeValue));
     }
     
 }

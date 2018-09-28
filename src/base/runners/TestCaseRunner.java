@@ -182,9 +182,7 @@ public interface TestCaseRunner {
                 testCaseResultStatus = run(testCase);
                 
                 // take screenshot if (failure and browser opened)             
-                if (! testCaseResultStatus.isPassed() 
-                        && 
-                        Driver.driver != null) {
+                if (! testCaseResultStatus.isPassed() && Driver.driver != null) {
                     
                     Driver.saveScreenShot(String.join("_",
                             "" + testId,
@@ -203,9 +201,14 @@ public interface TestCaseRunner {
             // handle all problems: Exception, Error, RuntimeException
             catch(Throwable failure){
 
-                testCaseAttributes.put("failure", failure.toString());
+                    testCaseAttributes.put("failure", failure.toString());
 
-                 testCaseResultStatus = ResultStatus.Failed;
+                    testCaseResultStatus = failure.toString()
+                            
+                            .matches("(?s)" + testCaseAttributes.get(TestCaseAttribute.expectedFailureRegExp.name())) ?
+
+                            ResultStatus.Passed : ResultStatus.Failed;
+                    
             }
 
         }
