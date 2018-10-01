@@ -1,8 +1,12 @@
 package projects.consignor.pages;
 
+import java.io.File;
+import java.nio.file.Path;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import base.Driver;
 import base.pom.ByUtils;
 import base.pom.WebPage;
 
@@ -16,10 +20,43 @@ public class TicketPage extends WebPage{
 
     public static String url = "https://www.consignorportal.com/ticket";
     
-
-	// main menu: Home, History, New (Ticket)
+    // primary menu: Home, History, New (Ticket)
     // ...not needed yet
     // TODO
+    
+    private By userDropdown = By.id("user-dropdown");
+    private By userDropdownMenu = By.cssSelector("#user-dropdown + [class*=\"dropdown-menu\"]");
+    
+    
+    
+    // Page Sections Containers - user for element screenshots
+    private By primaryNavigator = By.cssSelector("nav[class*=\"primary\"]");
+    private By secondaryNavigator = By.cssSelector("nav[class*=\"secondary\"]");
+    
+    
+    
+    public File getPrimaryNavivatorScreenshot(Path outputFile) {
+        
+        return Driver.saveElementScreenshot(primaryNavigator, outputFile);
+    }
+
+    
+    
+    public File getSecondaryNavivatorScreenshot(Path outputFile) {
+            
+        return Driver.saveElementScreenshot(secondaryNavigator, outputFile);
+    }
+
+
+    public File getUserDropdownScreenshot(Path outputFile) {
+        
+        click(userDropdown);
+        File screenshotFile =  Driver.saveElementScreenshot(userDropdownMenu, outputFile);
+        click(userDropdown);
+        
+        return screenshotFile;         
+    }
+
 
     
     // sub menu: New, Inbox, Draft, Autoprint, Outbox, Batches, Print boxes, Contacts, Settings 

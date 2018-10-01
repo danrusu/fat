@@ -17,6 +17,7 @@
 	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7.jar"/>
 	<classpathentry kind="lib" path="ext/rest-assured/xml-path-3.1.0.jar"/>
 	<classpathentry kind="lib" path="ext/pdfbox-app-2.0.5.jar"/>
+	<classpathentry kind="lib" path="ext/ashot-1.5.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

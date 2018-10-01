@@ -1,24 +1,27 @@
 package projects.common.testCases;
 
 import base.Driver;
-import base.testCase.TestCase;
+import base.Logger;
+import base.testCase.WebPageTestCase;
 
 /**
  * @author Dan.Rusu 
  *
  */
-public class WebElementScreenShot extends TestCase{
+public class WebElementScreenShot extends WebPageTestCase{
 
     
 
 	@Override
 	public void run(){
 	    
-		Driver.saveElementScreenshot(
+		Driver.saveElementScreenshotAshot(
+		        
+		        evalFloatAttribute("scaling", 1),     
 		        
 		        evalByAttribute("selector"),
 		        
-		        evalFileAttribute("file"));		
+		        Logger.getLogDirPath().resolve(evalAttribute("file")));
 	}
 	
 	
@@ -27,7 +30,7 @@ public class WebElementScreenShot extends TestCase{
 	public String getTestCaseScenario(){
 	    
 		return newScenario(
-				"Save local screenshot of a web element.",				
+				"Save local screenshot of a web element (via Ashot).",				
 				"Test data: selector, file.");
 	}
 

@@ -7,6 +7,7 @@ import static base.Logger.logLines;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -50,6 +51,10 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import base.driverResources.DriverResource;
 import base.failures.ThrowablesWrapper;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 public class Driver {
 
@@ -545,14 +550,45 @@ public class Driver {
     }
 
 
+    public static Screenshot saveElementScreenshotAshot(Float scaling, By locator, Path outputFile) {
 
-    public static File saveElementScreenshot(By locator, File outputFile) {
+        Screenshot screenshot = new AShot()
+
+                .coordsProvider(new WebDriverCoordsProvider())
+
+                .shootingStrategy(ShootingStrategies.scaling(scaling))
+
+                .takeScreenshot(
+
+                        Driver.driver, 
+
+                        Driver.driver.findElement(locator));
+
+        // getImage() will give buffered image which can be used to write to file
+        BufferedImage screenshotImage = screenshot.getImage();
+
+        File outputfile = outputFile.toFile();
+        try {
+            ImageIO.write(screenshotImage, "png", outputfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Print the absolute path to see where the file is created
+        log(outputfile.getAbsolutePath());
+
+        return screenshot;
+    }
+
+
+    public static File saveElementScreenshot(By locator, Path outputFile) {
 
         return ThrowablesWrapper.wrapThrowable(
 
                 "Failed to save elements screenshot!",
 
                 () -> {
+
 
                     WebElement element = driver.findElement(locator);
 
@@ -567,6 +603,12 @@ public class Driver {
                     int elementWidth = element.getSize().getWidth();
                     int elementHeight = element.getSize().getHeight();
 
+                    log("Element image: Origin( X=" + point.getX()
+                    + ", Y=" + point.getY() + " ) "
+                    + "--- width=" + elementWidth
+                    + ", height=" + elementHeight);
+
+
                     // Crop the entire page screenshot to get only element screenshot
                     BufferedImage elementScreenshot = fullPageImage.getSubimage(
                             point.getX(), 
@@ -575,6 +617,7 @@ public class Driver {
                             elementHeight);
 
                     File elementScreenshotFile = fullPageScreenshotFile;
+
                     ImageIO.write(
                             elementScreenshot, 
                             "png", 
@@ -582,11 +625,12 @@ public class Driver {
 
 
                     // Save the element screenshot to disk
-                    FileUtils.copyFile(elementScreenshotFile, outputFile);
+                    FileUtils.copyFile(elementScreenshotFile, outputFile.toFile());
 
                     return elementScreenshotFile;
                 });
     }
-    
+
 }
+
 

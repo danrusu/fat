@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="test"
+ 
+	user="danrusu"
+	 
+	project="test">
+
+
+	<test name="test" browser="chrome">
+
+	
+		<testcase name="projects.common.testCases.OpenPage" 
+		
+			url="http://danrusu.ro/test.html" />
+
+
+		<testcase name="projects.common.testCases.WebElementScreenShot"
+		
+			scaling="1.25" 
+		
+		 	selector="cssselector:body"
+		 	
+		 	file="body.png" />	
+			
+
+		<testcase name="projects.common.testCases.WebElementScreenShot" 
+		
+			scaling="1.25"
+		
+		 	selector="cssselector:.flexbox-header"
+		 	
+		 	file="flexboxHeader.png" />	
+
+
+		<testcase name="projects.common.testCases.WebElementScreenShot"
+		
+			scaling="1.25" 
+		
+		 	selector="cssselector:.grid-page"
+		 	
+		 	file="gridPage.png" />	
+
+	</test>
+	
+	
+</suite>

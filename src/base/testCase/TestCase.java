@@ -250,13 +250,15 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
      */
     public By evalByAttribute(String attribute) {
 
-        String[] selectorTokens = attribute.split(":");
+        String attributeValue = evalAttribute(attribute);
+        
+        String[] selectorTokens = attributeValue.split(":");
         if (selectorTokens.length < 2) {
             throw new Failure("Wrong selector: " + attribute);
         }
 
         String selectorType = selectorTokens[0];
-        String selector = attribute.replaceFirst("^" + selectorType, "");
+        String selector = attributeValue.replaceFirst("^" + selectorType + ":", "");
 
         switch(selectorType.toLowerCase()) {
 
@@ -314,6 +316,20 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
             log(" " + e);
             return 0;
         }		
+    }
+    
+    
+    
+    public float evalFloatAttribute(String attribute, float defaultValue){
+
+        try {
+            return Float.parseFloat(
+                    nullToEmptyString(getTestCaseAttributes().get(attribute)));
+            
+        } catch (NumberFormatException e) {
+            log(" " + e);
+            return defaultValue;
+        }       
     }
 
 
