@@ -46,7 +46,7 @@ test
 </td>
 
 <td>
-0h:0m:6s:255ms
+0h:0m:8s:958ms
 </td>
 
 <td>
@@ -58,7 +58,7 @@ test
 </td>
 
 <td>
-4 / 0 / 0
+6 / 0 / 0
 </td>
 
 </tr>
@@ -102,7 +102,7 @@ test
 </td>
 
 <td>
-0h:0m:6s:241ms
+0h:0m:8s:944ms
 </td>
 
 <td>
@@ -129,7 +129,7 @@ projects.common.testCases.OpenPage
 </td>
 
 <td>
-0h:0m:0s:863ms
+0h:0m:1s:112ms
 </td>
 
 <td>
@@ -155,7 +155,7 @@ projects.common.testCases.WebElementScreenShot
 </td>
 
 <td>
-0h:0m:0s:823ms
+0h:0m:0s:851ms
 </td>
 
 <td>
@@ -171,7 +171,7 @@ file="body.png"<br/>scaling="1.25"<br/>selector="cssselector:body"<br/>
 <div class="js_errors">
 JS_ERRORS: <br/> http://danrusu.ro/favicon.ico - Failed to load resource: the server responded with a status of 404 (Not Found) | SEVERE<br/>
 </div>
-<div class="testCaseDocs" title="Test case info">Save local screenshot of a web element (via Ashot).<br>Test data: selector, file.</div>
+<div class="testCaseDocs" title="Test case info">Save local screenshot of a web element (via Ashot).<br>Test data: [scaling=1] selector, file.</div>
 </td>
 </tr>
 
@@ -185,7 +185,7 @@ projects.common.testCases.WebElementScreenShot
 </td>
 
 <td>
-0h:0m:0s:551ms
+0h:0m:0s:542ms
 </td>
 
 <td>
@@ -197,7 +197,7 @@ Passed
 </td>
 
 <td>
-file="flexboxHeader.png"<br/>scaling="1.25"<br/>selector="cssselector:.flexbox-header"<br/><div class="testCaseDocs" title="Test case info">Save local screenshot of a web element (via Ashot).<br>Test data: selector, file.</div>
+file="flexboxHeader.png"<br/>scaling="1.25"<br/>selector="cssselector:.flexbox-header"<br/><div class="testCaseDocs" title="Test case info">Save local screenshot of a web element (via Ashot).<br>Test data: [scaling=1] selector, file.</div>
 </td>
 </tr>
 
@@ -211,7 +211,7 @@ projects.common.testCases.WebElementScreenShot
 </td>
 
 <td>
-0h:0m:0s:559ms
+0h:0m:0s:577ms
 </td>
 
 <td>
@@ -223,7 +223,67 @@ Passed
 </td>
 
 <td>
-file="gridPage.png"<br/>scaling="1.25"<br/>selector="cssselector:.grid-page"<br/><div class="testCaseDocs" title="Test case info">Save local screenshot of a web element (via Ashot).<br>Test data: selector, file.</div>
+file="gridPage.png"<br/>scaling="1.25"<br/>selector="cssselector:.grid-page"<br/><div class="testCaseDocs" title="Test case info">Save local screenshot of a web element (via Ashot).<br>Test data: [scaling=1] selector, file.</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+1/5
+</td>
+
+<td>
+projects.common.testCases.WebElementScreenShotCompare
+</td>
+
+<td>
+0h:0m:1s:294ms
+</td>
+
+<td>
+
+<font color="green">
+Passed
+</font>
+
+</td>
+
+<td>
+diffFile="diff.png"<br/>expectedFailureRegExp=".*Screenshots are different.*"<br/>file1="slot_machine_master.png"<br/>file2="slot_machine.png"<br/>scaling="1.25"<br/>selector1="id:slot_machine_master"<br/>selector2="id:slot_machine"<br/>stopOnFailure="false"<br/>
+<div class="failure">
+failure: java.lang.AssertionError: Screenshots are different | file1=C:\automationWorkspace\fat\logs\log__2018_10_02_14_09_05\slot_machine_master.png | file2=C:\automationWorkspace\fat\logs\log__2018_10_02_14_09_05\slot_machine.png | diffFile=C:\automationWorkspace\fat\logs\log__2018_10_02_14_09_05\diff.png
+</div>
+<div class="testCaseDocs" title="Test case info">Save local screenshot of a web element (via Ashot).<br>Test data: [scaling=1] selector1, selector2, file1, file2, diffFile.</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+1/6
+</td>
+
+<td>
+projects.common.testCases.WebElementScreenShotCompare
+</td>
+
+<td>
+0h:0m:1s:52ms
+</td>
+
+<td>
+
+<font color="green">
+Passed
+</font>
+
+</td>
+
+<td>
+diffFile="noDiff.png"<br/>file1="slot_machine_master2.png"<br/>file2="slot_machine_master3.png"<br/>scaling="1.25"<br/>selector1="id:slot_machine_master"<br/>selector2="id:slot_machine_master"<br/>
+<div class="note">
+Note:<br/> slot_machine_master2.png == slot_machine_master3.png == noDiff.png
+</div>
+<div class="testCaseDocs" title="Test case info">Save local screenshot of a web element (via Ashot).<br>Test data: [scaling=1] selector1, selector2, file1, file2, diffFile.</div>
 </td>
 </tr>
 </table>

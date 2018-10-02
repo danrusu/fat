@@ -53,6 +53,8 @@ import base.driverResources.DriverResource;
 import base.failures.ThrowablesWrapper;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.comparison.ImageDiff;
+import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
@@ -550,9 +552,77 @@ public class Driver {
     }
 
 
+    public static boolean areScreenshotsDifferent(
+            Float scaling, 
+            By locator1, 
+            By locator2,   
+
+            Path outputFile1,
+            Path outputFile2,
+            Path outputFileDiff) {
+
+        return ThrowablesWrapper.wrapThrowable(
+
+                "Failed to compare element screenshot",
+
+                () -> { 
+                    Screenshot masterScreenshot = saveScreenshot( 
+
+                            getElementAshotScreenshot(scaling, locator1),
+
+                            outputFile1);
+
+
+                    Screenshot currentScreenshot = saveScreenshot( 
+
+                            getElementAshotScreenshot(scaling, locator2),
+
+                            outputFile2);
+
+
+                    ImageDiff diff = new ImageDiffer().makeDiff(masterScreenshot, currentScreenshot);
+                    BufferedImage diffImage = diff.getMarkedImage(); // comparison result with marked differences
+
+                    ImageIO.write(diffImage, "png", outputFileDiff.toFile());
+
+                    return diff.hasDiff() == false;
+                });
+    }
+
+
+
     public static Screenshot saveElementScreenshotAshot(Float scaling, By locator, Path outputFile) {
 
-        Screenshot screenshot = new AShot()
+        return ThrowablesWrapper.wrapThrowable(
+
+                "Failed to save element screenshot for " + locator,
+
+                () -> saveScreenshot( 
+
+                        getElementAshotScreenshot(scaling, locator),
+
+                        outputFile));                            
+    }
+
+
+
+    private static Screenshot saveScreenshot(Screenshot screenshot,  Path outputFile) throws IOException{
+
+        // getImage() will give buffered image which can be used to write to file
+        BufferedImage screenshotImage = screenshot.getImage();
+
+        ImageIO.write(screenshotImage, "png", outputFile.toFile());
+
+        log("Screenshot saved to: " + outputFile.toString());
+
+        return screenshot;
+    }
+
+
+
+    private static Screenshot getElementAshotScreenshot(Float scaling, By locator) {
+
+        return new AShot()
 
                 .coordsProvider(new WebDriverCoordsProvider())
 
@@ -563,24 +633,11 @@ public class Driver {
                         Driver.driver, 
 
                         Driver.driver.findElement(locator));
-
-        // getImage() will give buffered image which can be used to write to file
-        BufferedImage screenshotImage = screenshot.getImage();
-
-        File outputfile = outputFile.toFile();
-        try {
-            ImageIO.write(screenshotImage, "png", outputfile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Print the absolute path to see where the file is created
-        log(outputfile.getAbsolutePath());
-
-        return screenshot;
     }
 
 
+
+    // this does not work with scaling other than 100%
     public static File saveElementScreenshot(By locator, Path outputFile) {
 
         return ThrowablesWrapper.wrapThrowable(
@@ -632,5 +689,4 @@ public class Driver {
     }
 
 }
-
 

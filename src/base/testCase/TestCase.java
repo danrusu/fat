@@ -384,7 +384,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
         return actualFailure.matches(
                 // only accept expected failures wrapped as base.failures.Failure
-                "(?s)^base\\.failures\\.Failure: " + getExpectedFailureRegExp());                
+                "(?s)" + getExpectedFailureRegExp());                
     }
     
     

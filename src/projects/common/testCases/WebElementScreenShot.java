@@ -31,7 +31,7 @@ public class WebElementScreenShot extends WebPageTestCase{
 	    
 		return newScenario(
 				"Save local screenshot of a web element (via Ashot).",				
-				"Test data: selector, file.");
+				"Test data: [scaling=1] selector, file.");
 	}
 
 }
