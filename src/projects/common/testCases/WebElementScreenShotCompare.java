@@ -2,11 +2,13 @@ package projects.common.testCases;
 
 import static base.Assert.assertTrue;
 import static base.Driver.areScreenshotsDifferent;
-import static base.Logger.getLogDirPath;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import base.testCase.WebPageTestCase;
+
+
 
 /**
  * @author Dan.Rusu 
@@ -19,11 +21,9 @@ public class WebElementScreenShotCompare extends WebPageTestCase{
     @Override
     public void run(){
 
-        Path logDirPath = getLogDirPath();
-
-        Path diffFile = logDirPath.resolve(evalAttribute("diffFile"));
-        Path file1 = logDirPath.resolve(evalAttribute("file1"));
-        Path file2 = logDirPath.resolve(evalAttribute("file2"));
+        Path diffFile = Paths.get(evalAttribute("diffFile"));
+        Path file1 = Paths.get(evalAttribute("file1"));
+        Path file2 = Paths.get(evalAttribute("file2"));
 
 
         assertTrue(

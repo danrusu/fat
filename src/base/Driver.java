@@ -588,6 +588,36 @@ public class Driver {
                     return diff.hasDiff() == false;
                 });
     }
+    
+    
+    
+    public static boolean areScreenshotsDifferent(
+            Path screenshotFile1,
+            Path screenshotFile2,
+            Path diffFile) {
+
+        return ThrowablesWrapper.wrapThrowable(
+
+                "Failed to compare element screenshot",
+
+                () -> { 
+                    
+                    
+                    BufferedImage image1 = ImageIO.read(screenshotFile1.toFile());
+                    BufferedImage image2 = ImageIO.read(screenshotFile2.toFile());
+                    
+
+                    ImageDiff diff = new ImageDiffer().makeDiff(
+                            new Screenshot(image1),
+                            new Screenshot(image2));
+                    
+                    BufferedImage diffImage = diff.getMarkedImage();
+                    ImageIO.write(diffImage, "png", diffFile.toFile());
+
+
+                    return diff.hasDiff() == false;
+                });
+    }
 
 
 

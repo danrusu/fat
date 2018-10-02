@@ -27,6 +27,7 @@ public class ResetSavedData extends TestCase{
 	
 	@Override
 	public String getTestCaseScenario(){
+	    
 		return newScenario("Reset saved data.");
 	}
 
