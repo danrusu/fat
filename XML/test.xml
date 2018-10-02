@@ -7,7 +7,7 @@
 	project="test">
 
 
-	<test name="test" browser="chrome">
+	<test name="save_and_compare_elements_screenshots" browser="chrome">
 
 
 		<testcase name="projects.common.testCases.OpenPage" 
@@ -84,51 +84,14 @@
 	</test>
 	
 	
-	<test name="compare_screenshots_from_different_testcases" browser="chrome">
+	<test name="compare_screenshots_from_disk">
 	
 		
-		<testcase name="projects.common.testCases.ResetSavedData" />
-	
-	
-		<testcase name="projects.common.testCases.OpenPage" 
-		
-		    save="scaling=1.25;screenshotsFolder={$logFolder}"
-		
-			url="http://danrusu.ro/test.html" />
-			
-	
-		<testcase name="projects.common.testCases.WebElementScreenShot"
-		
-			scaling="{scaling}" 
-		
-		 	selector="id:slot_machine_master"
-		 	
-		 	file="{screenshotsFolder}/screenshot1.png" />
-		 	
-		 	
-		 <testcase name="projects.common.testCases.WebElementScreenShot"
-		
-			scaling="{scaling}" 
-		
-		 	selector="id:slot_machine_master"
-		 	
-		 	file="{screenshotsFolder}/screenshot1_copy.png" />		
-		 	
-		 	
-		<testcase name="projects.common.testCases.WebElementScreenShot"
-		
-			scaling="{scaling}" 
-		
-		 	selector="id:slot_machine"
-		 	
-		 	file="{screenshotsFolder}/screenshot2.png" />	
-		 	
-		 	
 		 <testcase name="projects.common.testCases.ScreenShotCompare"
 		
-		 	file1="{screenshotsFolder}/screenshot1.png"
+		 	file1="{screenshotsFolder}/slot_machine_master.png"
 		 	 
-		 	file2="{screenshotsFolder}/screenshot2.png"
+		 	file2="{screenshotsFolder}/slot_machine.png"
 		 	 
 		 	diffFile="{screenshotsFolder}/screenshotDiff.png" 
 		 	
@@ -137,9 +100,9 @@
 		 	
 		<testcase name="projects.common.testCases.ScreenShotCompare"
 		
-		 	file1="{screenshotsFolder}/screenshot1.png"
+		 	file1="{screenshotsFolder}/slot_machine_master2.png"
 		 	 
-		 	file2="{screenshotsFolder}/screenshot1_copy.png"
+		 	file2="{screenshotsFolder}/slot_machine_master3.png"
 		 	 
 		 	diffFile="{screenshotsFolder}/screenshotNoDiff.png" />	
 			
