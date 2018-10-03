@@ -9,16 +9,19 @@ import java.util.stream.Collectors;
 public interface ThrowablesWrapper {
 
     
-    public static Function<Runnable, Throwable> runnableToThrowableOrNull = runnable -> {
+    public static Function<Runnable, Optional<Throwable>> runnableToThrowable = runnable -> {
         
         try {
+            
             runnable.run();
         }
+        
         catch(Throwable throwable) {
-            return throwable;
+            
+            return Optional.of(throwable);
         }
         
-        return null;
+        return Optional.empty();
     };
     
     
@@ -27,9 +30,11 @@ public interface ThrowablesWrapper {
 
         return List.of(runables).stream()
         
-            .map(runnableToThrowableOrNull)
+            .map(runnableToThrowable)
             
-            .filter(throwable -> throwable != null)
+            .filter(Optional::isPresent)
+            
+            .map(Optional::get)
             
             .collect(Collectors.toList());            
     }
@@ -49,9 +54,6 @@ public interface ThrowablesWrapper {
 
         return Optional.ofNullable(returnedValue);
     }
-
-    
-
 
     
 

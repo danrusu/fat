@@ -8,8 +8,6 @@ import static base.Logger.logLines;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -32,7 +30,6 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -46,7 +43,6 @@ import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import base.driverResources.DriverResource;
@@ -86,93 +82,57 @@ public class Driver {
      * 
      * @param implicitWaitSeconds - set implicit diver wait
      */
-    public static void driverStart( long implicitWaitSeconds, String browser, boolean grid ){
+    public static void driverStart( long implicitWaitSeconds, String browser){
 
-        //logs = new LoggingPreferences();
         for (int i=0; i<3; i++){
+
             log("Instantiate WebDriver (attemnpt " + i + ")");	
 
 
-            if (grid){
-                DesiredCapabilities capability;
-                log("Grid !!!");
 
+            try{
                 switch (browser.toLowerCase()){
                     case "firefox":
-                        capability = DesiredCapabilities.firefox();
-                        //capability.setCapability("browser.shell.skipDefaultBrowserCheck", true);
+                        driver = setFirefoxDriver();
+
+                        // *** Workaround for: https://github.com/mozilla/geckodriver/issues/820
+                        // Win 10 , geckodriver 0.18.0, Firefox 54.0
+                        // waiting for  FireFox 55.0
+
+                        //driver.manage().window().maximize();
+                        driver.manage().window().setSize(new Dimension(1920, 1080));
+                        // *** 
+
+                        driverType = DriverType.firefox;
                         break;
                     case "chrome":
-                        capability = DesiredCapabilities.chrome();
+                        driver = setChromeDriver();
+                        driverType = DriverType.chrome;
                         break;
                     case "ie":
-                        capability = DesiredCapabilities.internetExplorer();
+                        driverType = DriverType.ie;
+                        driver = setIeDriver();
+                        driver.manage().window().maximize();
                         break;
                     case "safari":
-                        capability = DesiredCapabilities.safari();
+                        driverType = DriverType.safari;
+                        driver = setSafariDriver();
                         break;
                     case "edge":
-                        capability = DesiredCapabilities.edge();
-                        break;	
+                        driverType = DriverType.edge;
+                        driver = setEdgeDriver();
+                        driver.manage().window().maximize();
+                        break;
                     default:
-                        capability = null;
+                        driverType = DriverType.unknown;
+                        driver = null;
                         break;
                 }
-                try {
-                    //TODO - this hangs if no node in hub - must be time outed on separate thread
-                    driver = new RemoteWebDriver(new URL("http://10.56.1.57:4444/wd/hub"), capability);
-                } catch (MalformedURLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                log("grid driver instanciated: " + driver);
-
             }
-            else {
-                try{
-                    switch (browser.toLowerCase()){
-                        case "firefox":
-                            driver = setFirefoxDriver();
-
-                            // *** Workaround for: https://github.com/mozilla/geckodriver/issues/820
-                            // Win 10 , geckodriver 0.18.0, Firefox 54.0
-                            // waiting for  FireFox 55.0
-
-                            //driver.manage().window().maximize();
-                            driver.manage().window().setSize(new Dimension(1920, 1080));
-                            // *** 
-
-                            driverType = DriverType.firefox;
-                            break;
-                        case "chrome":
-                            driver = setChromeDriver();
-                            driverType = DriverType.chrome;
-                            break;
-                        case "ie":
-                            driverType = DriverType.ie;
-                            driver = setIeDriver();
-                            driver.manage().window().maximize();
-                            break;
-                        case "safari":
-                            driverType = DriverType.safari;
-                            driver = setSafariDriver();
-                            break;
-                        case "edge":
-                            driverType = DriverType.edge;
-                            driver = setEdgeDriver();
-                            driver.manage().window().maximize();
-                            break;
-                        default:
-                            driverType = DriverType.unknown;
-                            driver = null;
-                            break;
-                    }
-                }
-                catch(Exception e){
-                    logLines(""+e);
-                }
-
+            catch(Exception e){
+                logLines(""+e);
             }
+
 
             if (driver != null){
                 break;
@@ -180,17 +140,15 @@ public class Driver {
 
         }// finish the attempts to start the web driver
 
-        /*		if (driver == null){
-			AssertCustom.assertTrue(false, "Failed to start driver!!! Test will stop.");
-		}*/
+        if (driver == null){
+			Assert.fail("Failed to start driver!!! Test will stop.");
+		}
 
-        //else{
         log("WebDriver: " + driver.getClass().getCanonicalName());
 
         // set driver's implicit wait 
         driver.manage().timeouts().implicitlyWait(implicitWaitSeconds, TimeUnit.SECONDS);
         log("implicit wait: " + implicitWaitSeconds + "s");
-        //}
     }
 
 
@@ -400,50 +358,21 @@ public class Driver {
     }
 
 
-    public void injectjQueryIfNeeded(){
-        if (!jQueryLoaded()){
-            injectjQuery();
-        }
-    }
-
-
-
-    public Boolean jQueryLoaded(){
-        Boolean loaded;
-        try {
-            loaded = (Boolean) (getJsExecutor().executeScript("return jQuery()!=null"));
-        }
-        catch(WebDriverException e){
-            loaded = false;
-        }
-        return loaded;
-    }
-
-
-
-    public void injectjQuery(){
-
-
-        getJsExecutor().executeScript(
-                "var head = document.getElementsByTagName(\"head\")[0];"
-                        + "var newScript = document.createElement('script');"
-                        + "newScript.type = 'text/javascript';"
-                        + "newScript.src = 'http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js';"
-                        + "head.appendChild(newScript);");
-    }
-
-
 
     public static JavascriptExecutor getJsExecutor() {
+        
         if (driver instanceof JavascriptExecutor) {
+            
             return (JavascriptExecutor)driver;
         } else {
+            
             throw new IllegalStateException("This driver cannot run JavaScript.");
         }
     }
 
 
     public static Object executeScript(String script, Object... arguments){
+        
         return getJsExecutor().executeScript(script, arguments);
     }
 
@@ -588,9 +517,9 @@ public class Driver {
                     return diff.hasDiff() == false;
                 });
     }
-    
-    
-    
+
+
+
     public static boolean areScreenshotsDifferent(
             Path screenshotFile1,
             Path screenshotFile2,
@@ -601,16 +530,16 @@ public class Driver {
                 "Failed to compare element screenshot",
 
                 () -> { 
-                    
-                    
+
+
                     BufferedImage image1 = ImageIO.read(screenshotFile1.toFile());
                     BufferedImage image2 = ImageIO.read(screenshotFile2.toFile());
-                    
+
 
                     ImageDiff diff = new ImageDiffer().makeDiff(
                             new Screenshot(image1),
                             new Screenshot(image2));
-                    
+
                     BufferedImage diffImage = diff.getMarkedImage();
                     ImageIO.write(diffImage, "png", diffFile.toFile());
 

@@ -2,6 +2,8 @@ package base.driverResources;
 
 
 import static base.Logger.log;
+import static base.Logger.logLines;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +11,6 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 
 /**
@@ -27,54 +28,64 @@ public class DriverResource {
 	 * @param driverDestinationName - driver name form user.dir; this will be used by application
 	 * @return true if driver resource was copied or false otherwise.
 	 */
-	public static boolean exportDriverFromJar(String driverSourceName,
+	public static boolean exportDriverFromJar(
+	        String driverSourceName,
 			String driverDestinationName){
-		boolean rc = true;
-		
+	    
+		boolean isDriverExported = true;
+
 		// create webDrivers folder if it does not exist
 		try {
-			Files.createDirectory(Paths.get(
-					System.getProperty("user.dir") 
-					+ "/webDrivers"));
+		    
+			Files.createDirectory(
+			        Paths.get(System.getProperty("user.dir"), "webDrivers"));
+			        
 		} catch (FileAlreadyExistsException e){
-			// webDrivers folder already exists 
+		    
+			// webDrivers folder already exists
+		    
 		}catch(Exception e){
+		    
 			log("Error: Coud not create webDrivers folder !\n" + e);
 			return false;
 		}
 		
-		// driver destination path: user.dir/webDrivers/driverName.exe
-		Path resourcePathDest = Paths.get(System.getProperty("user.dir") 
-				+ "/webDrivers/" + driverDestinationName);
+		// user.dir/webDrivers/driverName.exe
+		Path driverDestinationPath = Paths.get(
+		        System.getProperty("user.dir"),
+		        "webDrivers", 
+		        driverDestinationName);
 
 		// get resource to stream
 		InputStream resource = DriverResource.class.getResourceAsStream(driverSourceName);			
 
-		if ( false == Files.exists( resourcePathDest ) ){
+		if (false == Files.exists(driverDestinationPath)){
+		    
 			try {
-				Files.copy(resource,
-						resourcePathDest, 					
-						StandardCopyOption.REPLACE_EXISTING);
+			    
+				Files.copy(resource, driverDestinationPath, REPLACE_EXISTING);
 
 			} catch (IOException e) {
-				log("" + e);
-				log("Could not copy driver resource from jar!");
-				rc = false;
+			    
+				logLines("Could not copy driver resource from jar! \n" + e);
+				isDriverExported = false;
 
 			} finally {
+			    
 				// close resource 
 				if (resource!=null){
+				    
 					try {
 						resource.close();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}			
 					resource = null;
 				}
 			}
 		}
-		return rc;		
+		return isDriverExported;		
 	}
 
 }
+

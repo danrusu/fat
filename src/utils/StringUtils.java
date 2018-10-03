@@ -54,7 +54,7 @@ public interface StringUtils {
     public static String nullToEmptyString(String s){
         
         return Optional.ofNullable(s)
-                .orElse(new String());
+                .orElse("");
     }
 
 
@@ -117,17 +117,19 @@ public interface StringUtils {
     }
 
 
-
-    public static String extractTextBeforeRegex(String text, String regex) {
+    public static boolean equalsIgnoring(String text1, String text2, String ...ignoringRegexs) {
         
-        return new StringBuffer(
-                
-                new StringBuffer(text)
-                    .reverse()
-                    .toString()
-                    .replaceAll("(?s).*" + regex + "(.*)", "$1"))
-                
-                .reverse().toString();               
+        return removeAllRegex(text1, ignoringRegexs).equals(
+                removeAllRegex(text2, ignoringRegexs));        
+        
+    }
+    
+    
+    public static String removeAllRegex(String text, String ...regexs) {
+        
+       return List.of(regexs).stream().reduce(
+               text,
+               (acc,regex) -> acc.replaceAll(regex, ""));
     }
     
 }

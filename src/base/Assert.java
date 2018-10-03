@@ -259,7 +259,7 @@ public interface Assert{
             boolean isSuccessful){
 
         if( isSuccessful ){
-            logLines("Assertion: \" " + assertionDescription + "\" - SUCCEEDED!");
+            logLines("Assertion: \"" + assertionDescription + "\" - SUCCEEDED!");
         }
         else {
             logLines("Assertion: \"" + assertionDescription + "\" - FAILED!");

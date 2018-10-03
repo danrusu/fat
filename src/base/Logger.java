@@ -38,6 +38,7 @@ public class Logger {
 
     private static final String separatorChar = "#";
     private static final int separatorLength = 25;
+    
     private static final String separator = IntStream.range(0, separatorLength)
             .mapToObj(i -> separatorChar)
             .collect(Collectors.joining());	
@@ -48,9 +49,9 @@ public class Logger {
 
     private static void init(){
 
-        if (Logger.isInitialized == false) {
+        if (isInitialized == false) {
             
-            Logger.isInitialized = true;
+            isInitialized = true;
 
 
             // Create directories: logs, temp, log_unique_name 
@@ -87,13 +88,14 @@ public class Logger {
 
         wrapThrowable(
 
-                "Could not create file", 
+                "Could not create file " + fileName, 
 
                 () -> {
+                    
                     Path filePath= getLogDirPath().resolve(fileName);
-
                     Files.createFile(filePath);
                     Files.write(filePath, text.getBytes());
+                    
                     return true;
                 });
     }
@@ -111,7 +113,7 @@ public class Logger {
      */
     public static void log(String message){
 
-        Logger.init();
+        init();
 
         String formattedMessage = new StringBuilder()
                 .append(getTimeStamp(timeStampFormat))
@@ -134,7 +136,7 @@ public class Logger {
 
     public static void logAll(String ...strings) {  
 
-        Logger.log(List.of(strings)
+        log(List.of(strings)
                 .stream()
                 .collect(Collectors.joining())); 
     }
@@ -146,9 +148,10 @@ public class Logger {
      * 
      * Enabled by "-DDEBUG=true" JVM argument
      */
-    public static void debug(String message){		
+    public static void debug(String message){	
+        
         if(DEBUG){
-            Logger.log("DEBUG INFO: " +  message);
+            log("DEBUG INFO: " +  message);
         }
     }
 
@@ -160,6 +163,7 @@ public class Logger {
      * @return formatted current date
      */
     private static String getTimeStamp(String format){
+        
         return formatCurrentDate(format);	
     }
 
@@ -219,7 +223,8 @@ public class Logger {
      * @param message - message to be logged
      */
     public static void logHeader(String message){
-        Logger.logLines(separator, message, separator);
+        
+        logLines(separator, message, separator);
     }
 
 
@@ -230,7 +235,7 @@ public class Logger {
      * @return - the log.separator string
      */
     public static String getSeparator(){
-        return Logger.separator;
+        return separator;
     }
 
 
@@ -241,14 +246,16 @@ public class Logger {
      * @return - log directory path
      */
     public static Path getLogDirPath() {
-        Logger.init();
-        return Logger.logDirPath;
+        
+        init();
+        return logDirPath;
     }
 
 
     public static Path getPathInLogDir(String fileName) {
-        Logger.init();
-        return Logger.logDirPath.resolve(fileName);
+        
+        init();
+        return logDirPath.resolve(fileName);
     }
 
 
@@ -259,15 +266,17 @@ public class Logger {
      * @return - log file path (../log.txt)
      */
     public static Path getLogFilePath() {
-        Logger.init();
-        return Logger.logFilePath;
+        
+        init();
+        return logFilePath;
     }
 
 
 
     public static Path getTempDirPath(){
-        Logger.init();
-        return Logger.tempDirPath;
+        
+        init();
+        return tempDirPath;
     }
 
 }

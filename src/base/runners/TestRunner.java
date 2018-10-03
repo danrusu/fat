@@ -148,8 +148,7 @@ public interface TestRunner {
                     () -> {
                         Driver.driverStart(                    
                             Driver.getDefaultWait(), 
-                            browser,
-                            useGrid);
+                            browser);
                         
                         return null;
                     });
