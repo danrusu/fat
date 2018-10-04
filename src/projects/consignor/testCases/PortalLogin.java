@@ -12,6 +12,7 @@ import projects.consignor.pages.PortalPage;
 public class PortalLogin extends TestCase{
 
 
+    
 	@Override
 	public void run(){
 	    
@@ -21,18 +22,20 @@ public class PortalLogin extends TestCase{
 	    portalPage.setPassword(evalAttribute("password"));
 	    portalPage.login();
 	    
-	    Assert.assertTrue(
+	    Assert.equals(
 	            "Check that no error message is present.",
-	            portalPage.getErrorMessage().isEmpty());	    
+	            "",
+	            portalPage.getErrorMessage());	    
 	}
 	
 	
 
     @Override
     public String getTestCaseScenario() {
-        // TODO Auto-generated method stub
-        return null;
+
+        return newScenario("Login to Consignor portal.",
+                "Test data: username, password");
     }
 
-
 }
+

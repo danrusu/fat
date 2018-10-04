@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Ticket_Sections_SmokeTest"
+ 
+	user="tester"
+	 
+	project="Consignor">
+
+
+	<test name="TicketSections" browser="chrome" dataProvider="dataProviders\mockUsers.txt">
+
+	
+		<testcase name="projects.common.testCases.OpenPage" 
+		
+			url="https://www.consignorportal.com/ticket" />
+	
+	
+		<testcase name="projects.consignor.testCases.PortalLogin" 
+		
+			username="{$dataProvider(0)}" 
+			
+			password="{$dataProvider(1)}" />
+						
+
+	</test>
+	
+	
+</suite>

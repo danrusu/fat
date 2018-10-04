@@ -2,16 +2,18 @@ package base.xml;
 
 import java.util.List;
 
-public enum XmlDynamicRegExp{
+public enum DSLFunction{
     
-	$afterNumberOfDays ("\\$after(?<daysDelay>(\\d)+)days_(?<dateFormat>(d{1,2})|(M{1,2})|(y){4})$");
+	$afterNumberOfDays ("^\\$after(?<daysDelay>(\\d)+)days_(?<dateFormat>(d{1,2})|(M{1,2})|(y){4})$"),
+    
+    $dataProvider (".*\\$dataProvider.*");
 
     
     private String value; 
 
     
     
-    private XmlDynamicRegExp(String regExpValue) {
+    private DSLFunction(String regExpValue) {
         this.value = regExpValue;
     }
     

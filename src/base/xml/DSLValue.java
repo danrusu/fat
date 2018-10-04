@@ -1,7 +1,7 @@
 package base.xml;
 
 
-public enum XmlDynamicValue{
+public enum DSLValue{
 	$userDir,
 	$logFolder,
 	
@@ -26,7 +26,8 @@ public enum XmlDynamicValue{
     
     
 	public static boolean contains(String value){
-		for(XmlDynamicValue d : values()){
+	    
+		for(DSLValue d : values()){
 			if (d.name().equals(value)){ 
 				return true;
 			}

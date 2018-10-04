@@ -69,11 +69,11 @@ public class XmlDynamicData {
     public static Function<String, String> evaluateAttributeToken =  token -> {
         
         // XmlDynamicValue
-        if ( XmlDynamicValue.contains(token) ||
+        if ( DSLValue.contains(token) ||
                 
-             XmlDynamicRegExp.matchesRegExp(token)){
+             DSLFunction.matchesRegExp(token)){
                
-               return dynamicEval(token);
+               return evalDSL(token);
         }
         
         // token is a saved variable name
@@ -87,7 +87,7 @@ public class XmlDynamicData {
             }
             
             
-            // XML:  requiredOrderNumber="{orderNumbers[1]}" 
+            // XML:  requiredOrderNumber="{orderNumber}" 
             // String variable like "orderNumber"
             if (savedDataMap.get(token) != null){
                    
@@ -189,10 +189,10 @@ public class XmlDynamicData {
                 else if (foundEnd != -1){
                     
                     key = attributeValue.substring(start + 1, foundEnd );
-                    if ( XmlDynamicValue.contains(key) || 
-                         XmlDynamicRegExp.matchesRegExp(key)){
+                    if ( DSLValue.contains(key) || 
+                         DSLFunction.matchesRegExp(key)){
                         
-                        value += dynamicEval(key);
+                        value += evalDSL(key);
                     }
                     else {
                         // key found in map
@@ -232,12 +232,12 @@ public class XmlDynamicData {
 
 
 
-    private static String dynamicEval(String value) {
+    private static String evalDSL(String value) {
         
         // dynamic values
-        if (XmlDynamicValue.contains(value)){
+        if (DSLValue.contains(value)){
 
-            switch (XmlDynamicValue.valueOf(value)){
+            switch (DSLValue.valueOf(value)){
 
                 case $userDir:
 
@@ -322,9 +322,20 @@ public class XmlDynamicData {
         }
         
         
+        System.out.println(DSLFunction.getName(value));
         
-        // Dynamic functions       
-        return replaceDayAfter(value);
+        // DSL functions
+        if (DSLFunction.getName(value) == DSLFunction.$afterNumberOfDays.name()) {
+                
+              return replaceDayAfter(value);                    
+        }
+           
+        if (DSLFunction.getName(value) == DSLFunction.$dataProvider.name()) {
+                
+                return "dataProvider!!!";                    
+        }
+        
+        return value;
     }
 
 
@@ -338,7 +349,7 @@ public class XmlDynamicData {
     */
     private static String  replaceDayAfter(String value) {
         
-        String dayAfterRegExp = XmlDynamicRegExp.$afterNumberOfDays.getValue();
+        String dayAfterRegExp = DSLFunction.$afterNumberOfDays.getValue();
         
         if(value.matches(dayAfterRegExp)) { 
             
@@ -381,6 +392,7 @@ public class XmlDynamicData {
         savedDataMap = new TreeMap<>();
         debug("Current saved data: " + savedDataMap);
     }
+    
     
     
     // "name1=value1;name2=value2" -> Map { name1: value1, name2:value2 }

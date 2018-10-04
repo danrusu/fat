@@ -6,6 +6,9 @@ import static base.failures.ThrowablesWrapper.wrapThrowable;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 
@@ -116,6 +119,34 @@ public interface StringUtils {
         return splitBy(text, "=");
     }
 
+    
+    
+    public static List<String> splitBy(
+            String text, 
+            String separatorRegexp, 
+            int listLength){
+        
+          var initialList = List.of(text.split(separatorRegexp));
+          
+          var listOfEmpyStingsToBeAddedAtTheEnd = IntStream.range(0, listLength - initialList.size())
+                  .mapToObj(i -> "")
+                  .collect(Collectors.toList());
+              
+          return listConcat(initialList, listOfEmpyStingsToBeAddedAtTheEnd);          
+    }
+    
+    
+    
+    @SafeVarargs
+    public static <T> List<T> listConcat(List<T> ...lists){
+        
+        return List.of(lists).stream()                
+                .map(List::stream)
+                .flatMap(Function.identity())
+                .collect(Collectors.toList());
+    }
+    
+    
 
     public static boolean equalsIgnoring(String text1, String text2, String ...ignoringRegexs) {
         
@@ -123,6 +154,7 @@ public interface StringUtils {
                 removeAllRegex(text2, ignoringRegexs));        
         
     }
+    
     
     
     public static String removeAllRegex(String text, String ...regexs) {

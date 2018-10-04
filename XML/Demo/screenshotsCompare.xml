@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<suite name="test"
+<suite name="demo_screenShotsCompare"
  
 	user="danrusu"
 	 
-	project="test">
+	project="demo">
 
 
 	<test name="save_and_compare_elements_screenshots" browser="chrome">

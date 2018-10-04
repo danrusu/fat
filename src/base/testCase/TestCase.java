@@ -48,7 +48,8 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
     /**
      * Constructor 
      */
-    public TestCase() {		
+    public TestCase() {	
+        
         this.internalTest = false;
     }
 
@@ -101,6 +102,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
 
     public void addAttributeIfValueNotEmpty(String name, String value){
+        
         if (!value.isEmpty()){ 
             addAttribute(name, value);
         }
