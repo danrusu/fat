@@ -37,7 +37,7 @@ public class UtXmlTestConfig {
 	@Test
 	public void test() {
 		logHeader("Read test XML");
-		tests = testXml.readTestConfig(xmlTestFile);
+		tests = testXml.getTestConfig(xmlTestFile);
 		
 		
 		logHeader("Verify the tests map");

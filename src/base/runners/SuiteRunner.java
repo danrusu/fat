@@ -43,7 +43,7 @@ public interface SuiteRunner {
     public static void run(String xmlTestFile) {
         
         // Test configuration from test XML file
-        Map<Integer, TestConfig> tests = new XmlTestConfig().readTestConfig(xmlTestFile);
+        Map<Integer, TestConfig> tests = new XmlTestConfig().getTestConfig(xmlTestFile);
         
 
         // use HTML result file type
