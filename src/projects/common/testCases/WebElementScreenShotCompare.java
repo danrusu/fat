@@ -1,7 +1,7 @@
 package projects.common.testCases;
 
 import static base.Assert.assertTrue;
-import static base.Driver.areScreenshotsDifferent;
+import static base.Driver.areScreenshotsDifferentWrapped;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -34,7 +34,7 @@ public class WebElementScreenShotCompare extends WebPageTestCase{
                         "file2=" + file2,
                         "diffFile="+ diffFile),        
 
-                areScreenshotsDifferent(
+                areScreenshotsDifferentWrapped(
 
                         evalFloatAttribute("scaling", 1),     
 

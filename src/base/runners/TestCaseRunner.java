@@ -184,7 +184,7 @@ public interface TestCaseRunner {
                 // take screenshot if (failure and browser opened)             
                 if (! testCaseResultStatus.isPassed() && Driver.driver != null) {
                     
-                    Driver.saveScreenShot(String.join("_",
+                    Driver.saveScreenShotWrapped(String.join("_",
                             "" + testId,
                             "" + testCaseId,
                             testCaseName,

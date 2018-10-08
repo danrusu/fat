@@ -6,7 +6,7 @@ public enum DSLFunction{
     
 	$afterNumberOfDays ("^\\$after(?<daysDelay>(\\d)+)days_(?<dateFormat>(d{1,2})|(M{1,2})|(y){4})$"),
     
-    $dataProvider (".*\\$dataProvider.*");
+    $dataProvider ("^\\$dataProvider\\((\\d+)\\)$");
 
     
     private String value; 

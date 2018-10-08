@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<suite name="Ticket_Sections_SmokeTest"
+<suite name="dataProvidersTest"
  
-	user="tester"
+	user="danrusu"
 	 
-	project="Consignor">
+	project="demo">
 
 
-	<test name="TicketSections" browser="chrome" dataProvider="dataProviders\mockUsers.txt">
-
-	
-		<testcase name="projects.common.testCases.OpenPage" 
-		
-			url="https://www.consignorportal.com/ticket" />
+	<test name="dataProviderTest" dataProvider="dataProviders\mockUsers.txt">
 	
 	
-		<testcase name="projects.consignor.testCases.PortalLogin" 
+		<testcase name="projects.mock.testCases.MockSuccess" />
+	
+	
+		<testcase name="projects.mock.testCases.MockSuccess" 
 		
 			username="{$dataProvider(0)}" 
 			
 			password="{$dataProvider(1)}" />
+			
+			
+		<testcase name="projects.mock.testCases.MockSuccess" />
+	
 						
-
 	</test>
 	
 	

@@ -17,9 +17,10 @@ import org.w3c.dom.NamedNodeMap;
 import base.JvmArgs;
 import base.results.ResultFileType;
 import base.runnerConfig.SuiteAttribute;
-import base.runnerConfig.TestConfig;
 import base.runnerConfig.TestAttribute;
+import base.runnerConfig.TestConfig;
 import base.testCase.TestCasesPackages;
+import utils.StringDataProvider;
 import utils.StringUtils;
 import utils.SystemUtils;
 
@@ -73,7 +74,7 @@ public class XmlTestConfig {
      * Constructor.
      */
     public XmlTestConfig(){
-        
+
         testsMap = new TreeMap<Integer, TestConfig>();
         testIndex = 1;
         // default result file type 
@@ -100,11 +101,11 @@ public class XmlTestConfig {
 
         Iterator<Element> iter = testsList.iterator();
         while ( iter.hasNext() ) {
-            
+
             Element e = iter.next();
-            
+
             switch ( ConfigTags.valueOf(e.getTagName()) ){
-                
+
                 case test:
                     addTest(e);
                     break;	
@@ -142,7 +143,7 @@ public class XmlTestConfig {
         setUser(root.getAttribute(SuiteAttribute.user.name()));
         setProject(root.getAttribute(SuiteAttribute.project.name()));
         setSuiteResultFileType(root.getAttribute(SuiteAttribute.resultType.name()));
-        
+
         setEmail(root.getAttribute(SuiteAttribute.email.name()));
         setGrid(root.getAttribute(SuiteAttribute.grid.name()));
 
@@ -174,6 +175,7 @@ public class XmlTestConfig {
      * @param e - XML element (tag with attributes)
      */
     private void addTest(Element e){
+
         NamedNodeMap attributes;
         Map <String, String> testAttributes = new TreeMap<>();	
         attributes = e.getAttributes();
@@ -182,7 +184,7 @@ public class XmlTestConfig {
         String browser = TestAttribute.browser.name();
 
 
-        for (  int j=0; j<attributes.getLength(); j++ ){
+        for ( int j=0; j < attributes.getLength(); j++){
 
             if ( ! browserProperty.isEmpty() ){
 
@@ -199,31 +201,46 @@ public class XmlTestConfig {
                     attributes.item(j).getNodeValue());			
         }
 
-        // get test cases info
-        List<Element> testCasesList = XmlDoc.getChildren(e);
-        Map<Integer, Map<String, String>> testCases = new TreeMap<>();
-        Map<String, String> testCaseAttributes = new TreeMap<>();
+        int dataProviderLength = StringDataProvider.getDataLength(
+                testAttributes.get("dataProvider"));
+                
+        
+        for (int dataProviderIndex=0;
+                
+                dataProviderIndex < dataProviderLength;
+                
+                dataProviderIndex++) {
 
 
-        int k=0;
-        for(Element tc : testCasesList){
-            testCaseAttributes = getAttributes(tc.getAttributes());
 
-            //dynamicEval(testCaseAttributes); - moved to WebPageTestCase
+            // get test cases info
+            List<Element> testCasesList = XmlDoc.getChildren(e);
+            Map<Integer, Map<String, String>> testCases = new TreeMap<>();
+            Map<String, String> testCaseAttributes = new TreeMap<>();
 
 
-            if (! StringUtils.nullToEmptyString(testAttributes.get(browser)).isEmpty()){						
-                testCaseAttributes.put(browser, testAttributes.get(browser));
+            int k=0;
+            for(Element tc : testCasesList){
+
+
+                testCaseAttributes = getAttributes(tc.getAttributes());
+
+                testCaseAttributes.put("dataProviderIndex", dataProviderIndex + "");
+
+
+                if (! StringUtils.nullToEmptyString(testAttributes.get(browser)).isEmpty()){						
+                    testCaseAttributes.put(browser, testAttributes.get(browser));
+                }
+
+                testCases.put(++k, testCaseAttributes);
             }
 
-            testCases.put(++k, testCaseAttributes);
+
+            TestConfig testConfig = new TestConfig(testAttributes, testCases);
+
+            // add test with attributes to tests' map
+            testsMap.put(testIndex++, testConfig);
         }
-
-
-        TestConfig testConfig = new TestConfig(testAttributes, testCases);
-        
-        // add test with attributes to tests' map
-        testsMap.put(testIndex++, testConfig);
 
     }
 

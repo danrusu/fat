@@ -16,7 +16,7 @@ public class WebPageScreenShot extends TestCase{
 	@Override
 	public void run(){
 	    
-		Driver.saveScreenShot(Paths.get(
+		Driver.saveScreenShotWrapped(Paths.get(
 		        evalAttribute("file")).toString());		
 	}
 	

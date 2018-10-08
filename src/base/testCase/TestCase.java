@@ -125,7 +125,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
                     if (! key.equals("save")){
 
                         String value = nullToEmptyString(testCaseAttributes.get(key));
-                        String newValue = XmlDynamicData.evaluateAttributeValue(value);
+                        String newValue = XmlDynamicData.evaluateAttributeValue(testCaseAttributes.get("dataProviderIndex"), value);
 
                         if ( ! value.equals(newValue) ){
                             testCaseAttributes.replace(key, newValue);
@@ -156,7 +156,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
                         
                         saveData(
                                 savedName, 
-                                evaluateAttributeValue(savedValue));
+                                evaluateAttributeValue("", savedValue));
 
                     });
 

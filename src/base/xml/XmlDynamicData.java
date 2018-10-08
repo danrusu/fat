@@ -7,233 +7,162 @@ import static utils.StringUtils.removeZeroPrefixFromIntegers;
 import static utils.TimeUtils.formatCurrentDate;
 import static utils.TimeUtils.formatNextDate;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import base.failures.ThrowablesWrapper;
+import utils.StringDataProvider;
 import utils.StringUtils;
 
 public class XmlDynamicData {
-    
-    
+
+
     private static Map<String, String> savedDataMap = new TreeMap<>();
 
-    
+
     public static List<String> getRawTokens(String attributeValue) {
-        
+
         int currentIndex = 0;
         List<String> variables = new ArrayList<>();
-        
+
         while(currentIndex < attributeValue.length()) {
-            
+
             int varBeginIndex = attributeValue.indexOf("{", currentIndex); 
-            
+
             if (varBeginIndex >= 0) {
-                
+
                 int varEndIndex = attributeValue.indexOf("}", currentIndex+1);
-                               
+
                 if (varEndIndex >= 0) {
-                    
+
                     int nextVarBeginIndex = attributeValue.indexOf("{", varBeginIndex + 1);
-                    
+
                     if (nextVarBeginIndex!=-1 && nextVarBeginIndex < varEndIndex) {
-                        
+
                         currentIndex = nextVarBeginIndex;
                         continue;
                     }
-                    
+
                     variables.add(attributeValue.substring(varBeginIndex, varEndIndex+1)); 
-                
+
                     currentIndex = varEndIndex + 1;
                 }
-                
+
                 else {
                     break;
                 }
             }
-            
+
             else {
                 currentIndex++;
             }
         }
-        
+
         return variables;
     }
-    
-    
-    
-    public static Function<String, String> evaluateAttributeToken =  token -> {
-        
+
+
+
+    public static String evaluateAttributeToken (String dataProvidedIndex, String token){
+
         // XmlDynamicValue
         if ( DSLValue.contains(token) ||
-                
-             DSLFunction.matchesRegExp(token)){
-               
-               return evalDSL(token);
+
+                DSLFunction.matchesRegExp(token)){
+
+            return evalDSL(dataProvidedIndex, token);
         }
-        
+
         // token is a saved variable name
         else {
-                        
+
             // XML:  requiredOrderNumber="{orderNumbers[1]}" 
             String arrayVariablePattern = "^(\\w+)\\[(\\d+)\\]$";
             if (token.matches(arrayVariablePattern)) {
-                
+
                 return evaluateArrayToken(token, arrayVariablePattern);
             }
-            
-            
+
+
             // XML:  requiredOrderNumber="{orderNumber}" 
             // String variable like "orderNumber"
             if (savedDataMap.get(token) != null){
-                   
+
                 return savedDataMap.get(token);
             }
-            
+
             // return unmodified token
             else {
-                   
-              return token;
+
+                return token;
             }
         }         
-        
-    };
+
+    }
 
 
 
     private static String evaluateArrayToken(
             String token, 
             String arrayVariablePattern) {
-        
+
         String arrayVariableName = token.replaceAll(arrayVariablePattern, "$1");
         int index = Integer.parseInt(token.replaceAll(arrayVariablePattern, "$2"));
-        
+
         String savedData = savedDataMap.get(arrayVariableName);
-        
+
         String evaluatedToken = ThrowablesWrapper.wrapThrowable(
-                
+
                 () -> {
-                    
+
                     if ( savedData != null){
-                        
+
                         return savedData.split("\\|\\|")[index]; 
                     }
                     else {
-                        
+
                         return token;
                     }
                 }
-        );
-        
+                );
+
         return evaluatedToken;
     }
-    
-    
-    
-    public static String evaluateAttributeValue(String attributeValue) {
-        
+
+
+
+    public static String evaluateAttributeValue(String dataProvidedIndex, String attributeValue) {
+
         List<String> rawTokens = getRawTokens(attributeValue);
-        
+
         List<String> evaluatedTokens = rawTokens.stream()
-                
-            .map(token -> token.replaceAll("[\\{\\}]", ""))
-            
-            .map(evaluateAttributeToken)
-            
-            .collect(Collectors.toList());
-           
-       // replace all raw tokens in the attribute value with evaluated values 
-       String evaluatedAttributeValue = attributeValue;
-       for(int i=0; i < evaluatedTokens.size(); i++) {
-           
-           evaluatedAttributeValue = evaluatedAttributeValue.replace(
-                   rawTokens.get(i), 
-                   evaluatedTokens.get(i));
-           
-       }
-        
+
+                .map(token -> token.replaceAll("[\\{\\}]", ""))
+
+                .map(token -> XmlDynamicData.evaluateAttributeToken(dataProvidedIndex, token))
+
+                .collect(Collectors.toList());
+
+        // replace all raw tokens in the attribute value with evaluated values 
+        String evaluatedAttributeValue = attributeValue;
+        for(int i=0; i < evaluatedTokens.size(); i++) {
+
+            evaluatedAttributeValue = evaluatedAttributeValue.replace(
+                    rawTokens.get(i), 
+                    evaluatedTokens.get(i));
+        }
+
         return evaluatedAttributeValue;
     }
-    
-    
-        
-    // not used
-    public static String getDynamicValue_old(
-            Map<String, String> savedDataMap, 
-            String attributeValue){
-        
-        String value="";
-        String key;
-        
-        int start;
-        int foundEnd, foundNextStart;
-
-        for (int i=0; i<attributeValue.length(); i++){
-            
-            char c = attributeValue.charAt(i);
-            
-            if ( c == '{' ){
-                start = i;
-                foundEnd = attributeValue.indexOf('}', start+1);
-                foundNextStart = attributeValue.indexOf('{', start+1);
-
-                // if '{' found before '}' do not evaluate value string
-                if (foundNextStart !=-1 && foundNextStart < foundEnd){
-                    value += attributeValue.substring(start, foundNextStart );
-                    i += foundNextStart - start - 1;
-                }
-                else if (foundEnd != -1){
-                    
-                    key = attributeValue.substring(start + 1, foundEnd );
-                    if ( DSLValue.contains(key) || 
-                         DSLFunction.matchesRegExp(key)){
-                        
-                        value += evalDSL(key);
-                    }
-                    else {
-                        // key found in map
-                        if (savedDataMap.get(key) != null){
-                            value += savedDataMap.get(key);
-                        }
-                        // key not found in map
-                        else {
-                            value +=  attributeValue.substring(start, foundEnd+1 );
-                        }
-                    }
-                    i += foundEnd - start;
-
-                }
-                // if no '{' or '}' found
-                else if (foundEnd == -1 && foundNextStart == -1){
-                    value += attributeValue.substring(start);
-                    i = attributeValue.length();
-                }
-                else{
-                    value += attributeValue.substring(start);
-                    i = attributeValue.length();
-                }
-            }
-
-
-            else {
-                value += c;
-            }
-        }
-
-        if ( ! attributeValue.equals(value)){
-            log("dynamicValue= " + value);
-        }
-        return value;
-    }
 
 
 
-    private static String evalDSL(String value) {
-        
+    private static String evalDSL(String dataProvidedIndex, String value) {
+
         // dynamic values
         if (DSLValue.contains(value)){
 
@@ -247,8 +176,8 @@ public class XmlDynamicData {
 
                     return getLogDirPath().toString();
 
-                    
-                // current time
+
+                    // current time
                 case $HHmmss:
 
                     return formatCurrentDate("HHmmss");
@@ -265,8 +194,8 @@ public class XmlDynamicData {
 
                     return formatCurrentDate("ss"); 
 
-                    
-                // current date
+
+                    // current date
                 case $ddMMyyyy:
 
                     return formatCurrentDate("ddMMyyyy"); 
@@ -294,7 +223,7 @@ public class XmlDynamicData {
                             formatCurrentDate("d")); 	
 
 
-                // tomorrow 
+                    // tomorrow 
                 case $tomorrow_dd:
 
                     return formatNextDate("dd", "1"); 
@@ -320,94 +249,117 @@ public class XmlDynamicData {
                     break;
             }	
         }
-        
-        
-        System.out.println(DSLFunction.getName(value));
-        
-        // DSL functions
-        if (DSLFunction.getName(value) == DSLFunction.$afterNumberOfDays.name()) {
-                
-              return replaceDayAfter(value);                    
+
+
+        if (DSLFunction.matchesRegExp(value)) {
+
+            String dslFunctionName = DSLFunction.getName(value);
+
+            log("DSL function: " + dslFunctionName);
+
+            // DSL functions
+            if (dslFunctionName == DSLFunction.$afterNumberOfDays.name()) {
+
+                return replaceDayAfter(value);                    
+            }
+
+            if ( dataProvidedIndex != null) {
+                if (dslFunctionName == DSLFunction.$dataProvider.name()) {
+
+                    return getProvidedData(
+                            dataProvidedIndex,
+                            value.replaceAll(DSLFunction.$dataProvider.getValue(), "$1"));                    
+                }
+            }
         }
-           
-        if (DSLFunction.getName(value) == DSLFunction.$dataProvider.name()) {
-                
-                return "dataProvider!!!";                    
-        }
-        
+
         return value;
     }
 
 
-    
+
+    private static String getProvidedData(String rowIndex, String columnIndex) {
+
+        return StringDataProvider.readDataProviderFile(                
+                Paths.get(System.getProperty("user.dir"), "dataProviders", "mockUsers.txt"), 
+                ", ",
+                2)
+
+                .get(StringUtils.toInt(rowIndex, 0))
+
+                .get(StringUtils.toInt(columnIndex, 0));
+    }
+
+
+
     /*i.e. - current date = 05.03.2018   
     after5days_dd -> 05
     after5days_MM -> 04
     after5days_yyyy -> 2018
     after5days_d -> 5
     after5days_M -> 4
-    */
+     */
     private static String  replaceDayAfter(String value) {
-        
+
         String dayAfterRegExp = DSLFunction.$afterNumberOfDays.getValue();
-        
+
         if(value.matches(dayAfterRegExp)) { 
-            
+
             String dateFormat = value.replaceAll(
                     dayAfterRegExp, 
                     "${dateFormat}");
-            
+
             String nextFormattedDate = formatNextDate(
                     dateFormat, 
                     value.replaceAll(dayAfterRegExp, "${daysDelay}"));
-            
+
             return dateFormat.length() == 1 ? 
                     removeZeroPrefixFromIntegers(nextFormattedDate) :                                        
-                    nextFormattedDate;
+                        nextFormattedDate;
         }
-        
+
         return value;
     }
 
 
 
     public static Map<String, String> getSavedData() {
-        
+
         debug("Get current saved data: " + savedDataMap);
         return savedDataMap;
     }
 
-    
-    
+
+
     public static void saveData(String key, String value) {
-        
+
         savedDataMap.put(key, value);
         log("Saved data: " + key + "=" + savedDataMap.get(key));
     }
 
 
-    
+
     public static void resetSavedData() {
-        
+
         savedDataMap = new TreeMap<>();
         debug("Current saved data: " + savedDataMap);
     }
-    
-    
-    
+
+
+
     // "name1=value1;name2=value2" -> Map { name1: value1, name2:value2 }
     public static Map<String, String> getMapFromSaveString(String saveString){
-                
+
         return List.of(saveString.split(";")).stream()
-        
-            .map(StringUtils::splitByEquals)
-            
-            .collect(Collectors.toMap(
-                    
-                    nameAndValueList-> nameAndValueList.get(0),
-                    
-                    nameAndValueList -> nameAndValueList.get(1)));
-     }
+
+                .map(StringUtils::splitByEquals)
+
+                .collect(Collectors.toMap(
+
+                        nameAndValueList-> nameAndValueList.get(0),
+
+                        nameAndValueList -> nameAndValueList.get(1)));
+    }
 
 }
 

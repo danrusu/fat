@@ -15,7 +15,7 @@ public class WebElementScreenShot extends WebPageTestCase{
 	@Override
 	public void run(){
 	    
-		Driver.saveElementScreenshotAshot(
+		Driver.saveElementScreenshotAshotWrapped(
 		        
 		        evalFloatAttribute("scaling", 1),     
 		        

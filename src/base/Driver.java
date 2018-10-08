@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
@@ -68,6 +69,7 @@ public class Driver {
 
     public static WebDriver driver;
     private static DriverType driverType;
+    
     private static final Long defaultWait = 15L;  //seconds
     private static String startWindowHandle;
 
@@ -82,7 +84,7 @@ public class Driver {
      * 
      * @param implicitWaitSeconds - set implicit diver wait
      */
-    public static void driverStart( long implicitWaitSeconds, String browser){
+    public static void driverStart(long implicitWaitSeconds, String browser){
 
         for (int i=0; i<3; i++){
 
@@ -103,23 +105,19 @@ public class Driver {
                         driver.manage().window().setSize(new Dimension(1920, 1080));
                         // *** 
 
-                        driverType = DriverType.firefox;
                         break;
                     case "chrome":
                         driver = setChromeDriver();
-                        driverType = DriverType.chrome;
                         break;
                     case "ie":
-                        driverType = DriverType.ie;
                         driver = setIeDriver();
                         driver.manage().window().maximize();
                         break;
                     case "safari":
-                        driverType = DriverType.safari;
+                        
                         driver = setSafariDriver();
                         break;
                     case "edge":
-                        driverType = DriverType.edge;
                         driver = setEdgeDriver();
                         driver.manage().window().maximize();
                         break;
@@ -155,6 +153,7 @@ public class Driver {
 
     private static WebDriver setFirefoxDriver(){	
         log("Start Firefox driver");
+        driverType = DriverType.firefox;
         //logsPref.enable(LogType.BROWSER, BROWSER_LOGGING_LEVEL);
         DriverResource.exportDriverFromJar("geckodriver.exe",
                 "geckodriver.exe");
@@ -194,6 +193,7 @@ public class Driver {
 
     private static WebDriver setChromeDriver(){	
         log("Start Chrome driver");
+        driverType = DriverType.chrome;
         //logsPref.enable(LogType.BROWSER, BROWSER_LOGGING_LEVEL);
         DriverResource.exportDriverFromJar("chromedriver.exe",
                 "chromedriver.exe");
@@ -232,6 +232,7 @@ public class Driver {
 
     private static WebDriver setIeDriver(){	
         log("Start Internet Explorer driver");
+        driverType = DriverType.ie;
         DriverResource.exportDriverFromJar("IEDriverServer.exe",
                 "IEDriverServer.exe");
 
@@ -268,17 +269,20 @@ public class Driver {
 
 
     @SuppressWarnings("deprecation")
-    private static WebDriver setEdgeDriver(){	
+    private static WebDriver setEdgeDriver(){
+        
         log("Start Edge driver");
+        driverType = DriverType.safari;
+        
         DriverResource.exportDriverFromJar("MicrosoftWebDriver.exe",
                 "MicrosoftWebDriver.exe");
 
-        // set driver's execution path
         Path driverPath = Paths.get(System.getProperty("user.dir") 
                 + "/webDrivers"
                 + "/MicrosoftWebDriver.exe");
-        log("webdriver.edge.driver  = "
-                + driverPath.toString());
+        
+        log("webdriver.edge.driver  = " + driverPath.toString());
+        
         System.setProperty("webdriver.edge.driver", 
                 driverPath.toString());
 
@@ -293,18 +297,20 @@ public class Driver {
         capabilities.setPlatform(Platform.WIN10);
         capabilities.setBrowserName(BrowserType.EDGE);
         capabilities.setVersion("");
+        
         return new EdgeDriver(capabilities);
     }
 
+    
 
     private static WebDriver setSafariDriver(){	
-
 
         return new SafariDriver();
     }
 
 
     public static void closeAllWindows(){
+        
         log("Closing all browser windows but main one");
         for (String handle : driver.getWindowHandles()){
             // close all windows but start window
@@ -316,37 +322,46 @@ public class Driver {
     }
 
 
+    
     // Returns default wait in seconds
     public static Long getDefaultWait() {
+        
         return defaultWait;
     }
 
 
-    public static File saveScreenShot(String fileName){
-
+    
+    public static File saveScreenShotWrapped(String fileName){
 
         return ThrowablesWrapper.wrapThrowable(
 
                 "Failed to save screenshot!",
 
-                () -> {
+                saveScreenShot(fileName));    
+    }
 
-                    File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
-                    Path destPath = getLogDirPath().resolve(fileName);
 
-                    FileUtils.copyFile(scrFile, destPath.toFile());
+    private static Callable<File> saveScreenShot(String fileName) {
+        
+        return () -> {
 
-                    log("Saved screenshot: " + destPath.toString());
+            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
-                    return scrFile;
+            Path destPath = getLogDirPath().resolve(fileName);
 
-                });    
+            FileUtils.copyFile(scrFile, destPath.toFile());
+
+            log("Saved screenshot: " + destPath.toString());
+
+            return scrFile;
+        };
     }
 
 
 
     public static void setStartWindowHandle(String startWindowHandle){
+        
         Driver.startWindowHandle = startWindowHandle;
         log("Set test start window handle: " + startWindowHandle);
     }
@@ -354,6 +369,7 @@ public class Driver {
 
 
     public static String getStartWindowHandle() {
+        
         return Driver.startWindowHandle;
     }
 
@@ -364,6 +380,7 @@ public class Driver {
         if (driver instanceof JavascriptExecutor) {
             
             return (JavascriptExecutor)driver;
+            
         } else {
             
             throw new IllegalStateException("This driver cannot run JavaScript.");
@@ -371,18 +388,22 @@ public class Driver {
     }
 
 
+    
     public static Object executeScript(String script, Object... arguments){
         
         return getJsExecutor().executeScript(script, arguments);
     }
 
 
+    
     public boolean switchToWindowByUrl(String windowUrl){
+        
         String currentHandle = driver.getWindowHandle();
         Set<String> handles = driver.getWindowHandles();
         boolean found = false;
 
         for (String handle : handles){
+            
             driver.switchTo().window(handle);
             if (driver.getTitle().contains(windowUrl)){
                 found = true;
@@ -398,12 +419,14 @@ public class Driver {
 
             return false;
         }
+        
         return true;
     }
 
 
 
     public static boolean switchToWindowByTitle(String windowTitle){
+        
         String currentHandle = driver.getWindowHandle();
         Set<String> handles = driver.getWindowHandles();
         boolean found = false;
@@ -430,6 +453,7 @@ public class Driver {
         return true;
     }
 
+    
 
     /**
      * Get Java script generated errors from Chrome log
@@ -438,6 +462,7 @@ public class Driver {
      * Limitation: it only works for Chrome
      */
     public static Map<String, String> getBrowserLogJsErrors(){
+        
         Map<String, String> jsErrors = new TreeMap<>();
         if (Driver.driver != null){
 
@@ -480,8 +505,9 @@ public class Driver {
         return driverType;
     }
 
+    
 
-    public static boolean areScreenshotsDifferent(
+    public static boolean areScreenshotsDifferentWrapped(
             Float scaling, 
             By locator1, 
             By locator2,   
@@ -494,33 +520,55 @@ public class Driver {
 
                 "Failed to compare element screenshot",
 
-                () -> { 
-                    Screenshot masterScreenshot = saveScreenshot( 
-
-                            getElementAshotScreenshot(scaling, locator1),
-
-                            outputFile1);
-
-
-                    Screenshot currentScreenshot = saveScreenshot( 
-
-                            getElementAshotScreenshot(scaling, locator2),
-
-                            outputFile2);
-
-
-                    ImageDiff diff = new ImageDiffer().makeDiff(masterScreenshot, currentScreenshot);
-                    BufferedImage diffImage = diff.getMarkedImage(); // comparison result with marked differences
-
-                    ImageIO.write(diffImage, "png", outputFileDiff.toFile());
-
-                    return diff.hasDiff() == false;
-                });
+                areScreenshotsDifferent(
+                        scaling, 
+                        locator1, 
+                        locator2, 
+                        outputFile1, 
+                        outputFile2, 
+                        outputFileDiff));
     }
 
 
 
-    public static boolean areScreenshotsDifferent(
+    private static Callable<Boolean> areScreenshotsDifferent(
+            Float scaling, 
+            By locator1, 
+            By locator2, 
+            Path outputFile1,
+            Path outputFile2, 
+            Path outputFileDiff) {
+        
+        return () -> { 
+            
+            var masterScreenshot = saveScreenshot( 
+
+                    getElementAshotScreenshot(scaling, locator1),
+
+                    outputFile1);
+
+
+            var currentScreenshot = saveScreenshot( 
+
+                    getElementAshotScreenshot(scaling, locator2),
+
+                    outputFile2);
+
+
+            ImageDiff diff = new ImageDiffer().makeDiff(masterScreenshot, currentScreenshot);
+            
+            BufferedImage diffImage = diff.getMarkedImage(); 
+
+            ImageIO.write(diffImage, "png", outputFileDiff.toFile());
+
+            return diff.hasDiff() == false;
+        };
+    }
+
+
+
+    public static boolean areScreenshotsDifferentWrapped(
+            
             Path screenshotFile1,
             Path screenshotFile2,
             Path diffFile) {
@@ -529,45 +577,67 @@ public class Driver {
 
                 "Failed to compare element screenshot",
 
-                () -> { 
-
-
-                    BufferedImage image1 = ImageIO.read(screenshotFile1.toFile());
-                    BufferedImage image2 = ImageIO.read(screenshotFile2.toFile());
-
-
-                    ImageDiff diff = new ImageDiffer().makeDiff(
-                            new Screenshot(image1),
-                            new Screenshot(image2));
-
-                    BufferedImage diffImage = diff.getMarkedImage();
-                    ImageIO.write(diffImage, "png", diffFile.toFile());
-
-
-                    return diff.hasDiff() == false;
-                });
+                areScreenshotsDifferent(screenshotFile1, screenshotFile2, diffFile));
     }
 
 
 
-    public static Screenshot saveElementScreenshotAshot(Float scaling, By locator, Path outputFile) {
+    private static Callable<Boolean> areScreenshotsDifferent(
+            Path screenshotFile1, 
+            Path screenshotFile2,
+            Path diffFile) {
+        
+        return () -> { 
+
+
+            BufferedImage image1 = ImageIO.read(screenshotFile1.toFile());
+            BufferedImage image2 = ImageIO.read(screenshotFile2.toFile());
+
+
+            ImageDiff diff = new ImageDiffer().makeDiff(
+                    new Screenshot(image1),
+                    new Screenshot(image2));
+
+            BufferedImage diffImage = diff.getMarkedImage();
+            ImageIO.write(diffImage, "png", diffFile.toFile());
+
+
+            return diff.hasDiff() == false;
+        };
+    }
+
+
+
+    public static Screenshot saveElementScreenshotAshotWrapped(
+            Float scaling, 
+            By locator, 
+            Path outputFile) {
 
         return ThrowablesWrapper.wrapThrowable(
 
                 "Failed to save element screenshot for " + locator,
 
-                () -> saveScreenshot( 
+                saveElementScreenshotAshot(scaling, locator, outputFile));                            
+    }
 
-                        getElementAshotScreenshot(scaling, locator),
 
-                        outputFile));                            
+
+    private static Callable<Screenshot> saveElementScreenshotAshot(
+            Float scaling, 
+            By locator, 
+            Path outputFile) {
+        
+        return () -> saveScreenshot( 
+
+                getElementAshotScreenshot(scaling, locator),
+
+                outputFile);
     }
 
 
 
     private static Screenshot saveScreenshot(Screenshot screenshot,  Path outputFile) throws IOException{
 
-        // getImage() will give buffered image which can be used to write to file
         BufferedImage screenshotImage = screenshot.getImage();
 
         ImageIO.write(screenshotImage, "png", outputFile.toFile());
@@ -597,6 +667,7 @@ public class Driver {
 
 
     // this does not work with scaling other than 100%
+    // TODO - rethink
     public static File saveElementScreenshot(By locator, Path outputFile) {
 
         return ThrowablesWrapper.wrapThrowable(
