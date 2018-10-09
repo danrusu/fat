@@ -8,6 +8,8 @@ public enum TestAttribute {
     
     skip,
     
+    dataProvider,
+    
     closeBrowserAtEnd,
     saveScreenShots,
     

@@ -14,6 +14,8 @@ public enum TestCaseAttribute {
     retries,
     skip,
     
+    dataProviderIndex,
+    
     failure,    
     stopOnFailure,
     expectedFailureRegExp,

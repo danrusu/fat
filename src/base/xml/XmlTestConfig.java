@@ -4,7 +4,6 @@ import static base.xml.XmlConfigTags.isXmlConfigTag;
 import static base.xml.XmlConfigTags.suite;
 import static base.xml.XmlConfigTags.test;
 import static base.xml.XmlConfigTags.valueOf;
-import static utils.StringUtils.nullToEmptyString;
 import static utils.StringUtils.toBoolean;
 import static utils.SystemUtils.getPropertyOrDefaultIfNull;
 import static utils.SystemUtils.getPropertyOrEmptyString;
@@ -13,6 +12,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -22,10 +22,12 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import base.JvmArgs;
+import base.failures.Failure;
 import base.failures.ThrowablesWrapper;
 import base.results.ResultFileType;
 import base.runnerConfig.SuiteAttribute;
 import base.runnerConfig.TestAttribute;
+import base.runnerConfig.TestCaseAttribute;
 import base.runnerConfig.TestConfig;
 import utils.StringDataProvider;
 import utils.StringUtils;
@@ -35,13 +37,12 @@ import utils.StringUtils;
  * Read test configuration from XML file.
  * 
  * @author Dan Rusu
- *
  */
 public class XmlTestConfig {
 
     private static Element root;
 
-    int testIndex;
+    private static int testIndex;
 
     private static boolean grid;
     private static String suiteName;
@@ -50,16 +51,16 @@ public class XmlTestConfig {
     private static String emails;
     private static ResultFileType resultFileType;
 
-    // Map of tests from XML - Map< testName, TestConfig> >
+    // Map of tests from XML - Map<testName, TestConfig>>
     private static Map<Integer, TestConfig> testMap;
 
 
 
-    
     public XmlTestConfig(){
 
         testMap = new TreeMap<Integer, TestConfig>();
         testIndex = 1;
+        
         // default result file type 
         resultFileType = ResultFileType.html;
     }
@@ -70,56 +71,51 @@ public class XmlTestConfig {
      * Initialize configuration from XML file.
      * 
      * @param xmlTestScenario - the test XML file (path relative to user.dir)
-     * @return - true if no Exception
+     * @return 
      * @throws Exception - invalid test XML exception
      */
-    public void init(String xmlTestScenario) throws Exception{
+    public Map<Integer, TestConfig> setTestMap(String xmlTestScenario){
 
-        XmlDoc configDoc = new XmlDoc(new File(xmlTestScenario));
+        XmlDoc configXml = new XmlDoc(new File(xmlTestScenario));
 
         // validate node tags and get root; this throws for invalid XML
-        root = validateTestXml(configDoc);
+        root = getXmlRoot(configXml);
 
-        List<Element> rootChildren = XmlDoc.getChildren(root);
-        
-        rootChildren.stream()
-            // ignore tags that are not in XmlConfigTags; needed for next filter
-            .filter(elementIsXmlConfigTag())
-            .filter(elementIsTest())
+        XmlDoc.getChildren(root).stream()
+            // ignore tags that are not in XmlConfigTags; needed for elementIsTest filter
+            .filter(elementIsXmlConfigTag)
+            .filter(elementIsTest)
             .forEach(this::addTest);
-    }
-
-
-
-    private Predicate<? super Element> elementIsTest() {
         
-        return testElement -> valueOf(testElement.getTagName()).equals(test);
+        return testMap;
     }
 
 
 
-    private Predicate<? super Element> elementIsXmlConfigTag() {
-        
-        return testElement -> isXmlConfigTag(testElement.getTagName());
-    }
+    private Predicate<Element> elementIsTest = testElement -> 
+
+        valueOf(testElement.getTagName()).equals(test); 
+
+
+
+
+    private Predicate<Element> elementIsXmlConfigTag = testElement -> 
+
+        isXmlConfigTag(testElement.getTagName());
+
 
 
 
     /**
      * Validate the test XML and get the root element.
-     * 
-     * @param configDoc 
-     * @return  - the root element of the XML
-     * @throws Exception - in case of an invalid tag name; 
-     *                     accepted tag names are enumerated in ConfigTags 
      */
-    private Element validateTestXml(XmlDoc configDoc) throws Exception{
+    private Element getXmlRoot(XmlDoc configDoc){
         // validate config.xml - only tags defined in ConfigTags are accepted 
         Element root = configDoc.getRoot();                                   
 
         // validate root                                                      
         if ( ! root.getTagName().equals(suite.name()) ){
-            throw new Exception("wrong xml root tag name; it should be 'suite' ");
+            throw new Failure("Wrong xml root tag name; it should be 'suite'");
         }                
 
         // TODO - change this from static
@@ -132,13 +128,8 @@ public class XmlTestConfig {
         setEmail(root.getAttribute(SuiteAttribute.email.name()));
         setGrid(root.getAttribute(SuiteAttribute.grid.name()));
 
+        // TODO - validate at least one test + one test case 
         return root;
-    }
-
-
-
-    private void setGrid(String attribute) {
-        XmlTestConfig.grid = toBoolean(attribute);
     }
 
 
@@ -146,79 +137,102 @@ public class XmlTestConfig {
     /**                                                       
      * Add tests and tests' attributes to tests' map.
      * 
-     * @param e - XML element (tag with attributes)
+     * @param testElement - XML element (tag with attributes)
      */
-    private void addTest(Element e){
+    private void addTest(Element testElement){
 
-        NamedNodeMap attributes;
-        Map <String, String> testAttributes = new TreeMap<>();	
-        attributes = e.getAttributes();
+        NamedNodeMap attributes = testElement.getAttributes();
 
         String browserProperty = getPropertyOrEmptyString(JvmArgs.browser); 
-        String browser = TestAttribute.browser.name();
+        String browserAttribute = TestAttribute.browser.name();
 
+        
+                
+        Function<Integer, String> getAttributeNameAtIndex = index -> attributes.item(index).getNodeName();        
+        Function<Integer, String> getAttributeValueAtIndex = index -> attributes.item(index).getNodeValue().toString();
+        
 
-        for ( int j=0; j < attributes.getLength(); j++){
-
-            if ( ! browserProperty.isEmpty() ){
-
-                if ((attributes.item(j).getNodeName().equals(browser)))
-                {
-                    testAttributes.put(
-                            attributes.item(j).getNodeName(), 
-                            browserProperty);	
-                    continue;
-                }
-            }  
-
-            testAttributes.put(attributes.item(j).getNodeName(), 
-                    attributes.item(j).getNodeValue());			
+        Map<String, String> testAttributesMap = IntStream.range(0, attributes.getLength())
+                
+                .mapToObj(i -> i)
+                
+                .collect(Collectors.toMap(        
+                        getAttributeNameAtIndex,
+                        getAttributeValueAtIndex));
+        
+        
+        //TODO - redesign this (no mutation)
+        if (! browserProperty.isEmpty() && 
+                testAttributesMap.containsKey(browserAttribute)){
+                
+            testAttributesMap.put(browserAttribute, browserProperty);                
         }
 
-        int dataProviderLength = StringDataProvider.getDataLength(
-                testAttributes.get("dataProvider"));
-                
+        int dataProviderLength = StringDataProvider.getDataProviderLength(
+                testAttributesMap.get(TestAttribute.dataProvider.name()));
+
+        dataProviderTestLoop(testElement, testAttributesMap, dataProviderLength);
+    }
+
+
+
+    private void dataProviderTestLoop(
+            Element testElement, 
+            Map<String, String> testAttributesMap,
+            int dataProviderLength) {
         
+        String browserAttribute = TestAttribute.browser.name();
+        
+
         for (int dataProviderIndex=0;
-                
-                dataProviderIndex < dataProviderLength;
-                
+
+                dataProviderIndex <= dataProviderLength;
+
                 dataProviderIndex++) {
 
 
 
             // get test cases info
-            List<Element> testCasesList = XmlDoc.getChildren(e);
-            Map<Integer, Map<String, String>> testCases = new TreeMap<>();
+            List<Element> testCasesList = XmlDoc.getChildren(testElement);
+            
+            Map<Integer, Map<String, String>> testCasesMap = new TreeMap<>();
             Map<String, String> testCaseAttributes = new TreeMap<>();
 
 
+            
             int k=0;
             for(Element tc : testCasesList){
 
 
                 testCaseAttributes = getAttributes(tc.getAttributes());
 
-                testCaseAttributes.put("dataProviderIndex", dataProviderIndex + "");
-
-
-                if (! nullToEmptyString(testAttributes.get(browser)).isEmpty()){						
-                    testCaseAttributes.put(browser, testAttributes.get(browser));
+                if(dataProviderLength > 0) {
+                        testCaseAttributes.put(
+                                TestCaseAttribute.dataProviderIndex.name(), 
+                                dataProviderIndex + "");
                 }
 
-                testCases.put(++k, testCaseAttributes);
+
+                if (! StringUtils.nullToEmptyString(testAttributesMap.get(browserAttribute)).isEmpty()){  
+                    
+                    testCaseAttributes.put(browserAttribute, testAttributesMap.get(browserAttribute));
+                }
+
+                testCasesMap.put(++k, testCaseAttributes);
             }
 
 
-            TestConfig testConfig = new TestConfig(testAttributes, testCases);
+            TestConfig testConfig = new TestConfig(testAttributesMap, testCasesMap);
 
             // add test with attributes to tests' map
             testMap.put(testIndex++, testConfig);
+            
+            // TODO - redesign this
+            if (dataProviderLength > 0 && (dataProviderIndex == (dataProviderLength-1))){
+                break;
+            }
         }
-
     }
-
-
 
 
 
@@ -234,14 +248,16 @@ public class XmlTestConfig {
         log("Read configuration: " 
                 + System.getProperty("user.dir")
                 + "/" +  testXml);		
-        
+
         try {
-            init(System.getProperty("user.dir") + "/" + testXml);
+            
+            setTestMap(System.getProperty("user.dir") + "/" + testXml);
 
         } catch (Exception e) {
+            
             log("Wrong configuration!!!");
             e.printStackTrace();
-            return new TreeMap<Integer, TestConfig>();
+            return new TreeMap<>();
         }
 
         logTestConfig(testMap);
@@ -251,107 +267,101 @@ public class XmlTestConfig {
 
 
 
-    public static Map<Integer, TestConfig> getTestsMap(){
-        return testMap;
-    }
-
-
-
     public Map<String, String> getAttributes(NamedNodeMap attributesMap){
-       
+
         return IntStream.range(0, attributesMap.getLength())
-                
+
                 .mapToObj(attributesMap::item)
-                
+
                 .collect(Collectors.toMap(
                         Node::getNodeName,
                         Node::getNodeValue));
-        }
-
-
-
-    public static String getSuiteName() {
-        
-        return suiteName;
-    }
-
-    
-    
-    public static ResultFileType getSuiteResultFileType() {
-        
-        return resultFileType;
     }
 
 
 
+    private void logTestConfig(Map<Integer, TestConfig> tests) {
+
+        tests.entrySet().forEach(testEntry -> {
+                    
+            log("Test_" + testEntry.getKey() + ": " + testEntry.getValue().getTestAttributes());
+
+            testEntry.getValue().getTestCases().entrySet().forEach(testCaseEntry -> 
+            
+                log("TestCase " + testEntry.getKey() 
+                    + "_" + testCaseEntry.getKey() 
+                    + ": " + testCaseEntry.getValue()));
+        });
+    }
+
+    
+    
+    // *** Setters
     public static void setSuiteName(String suiteName) {
-        
+
         XmlTestConfig.suiteName = getPropertyOrDefaultIfNull(
                 JvmArgs.suiteName, 
                 suiteName);
     }
-
-
     
-    public static void setSuiteResultFileType(String resultFileType) {
-    
-            XmlTestConfig.resultFileType = ThrowablesWrapper.wrapAssignment(
-                    
-                    () -> ResultFileType.valueOf(resultFileType),
-                    
-                    ResultFileType.html);
-    }
-
-    
-    
-    public static String getUser() {
-    
-        return XmlTestConfig.user;
-    }
-
-
     
     private static void setUser(String user) {
-        
+
         XmlTestConfig.user = user;
-    }
-
-    
-
-    public static String getProject() {
-        
-        return XmlTestConfig.project;
     }
 
 
 
     private static void setProject(String project) {
-        
+
         XmlTestConfig.project = project;
     }
-
-
-
+    
+  
+    
     private static void setEmail(String email) {
-        
+
         XmlTestConfig.emails = email;
     }
-
-
-    private void logTestConfig(Map<Integer, TestConfig> tests) {
-        
-        tests.keySet().forEach(
-        
-                k -> {
-                    log("Test_" + k + ": " + tests.get(k).getTestAttributes());
-                    
-                    tests.get(k).getTestCases().entrySet().forEach(
-                            
-                            e -> log("TestCase " + k + "_" + e.getKey() + ": " + e.getValue()));
-                });
+    
+    
+    
+    private void setGrid(String attribute) {
+        XmlTestConfig.grid = toBoolean(attribute);
     }
 
 
+    public static void setSuiteResultFileType(String resultFileType) {
+
+        XmlTestConfig.resultFileType = ThrowablesWrapper.wrapAssignment(
+
+                () -> ResultFileType.valueOf(resultFileType),
+
+                ResultFileType.html);
+    }
+    
+    
+    // *** Getters
+    public static String getSuiteName() {
+
+        return suiteName;
+    }
+    
+    
+    
+    public static String getUser() {
+
+        return XmlTestConfig.user;
+    }
+
+    
+    
+    public static String getProject() {
+        
+        return XmlTestConfig.project;
+    }
+
+    
 
     public static boolean getGrid() {
 
@@ -363,6 +373,13 @@ public class XmlTestConfig {
     public static List<String> getEmails() {
 
         return StringUtils.splitBy(emails, ";");
+    }
+    
+    
+    
+    public static ResultFileType getSuiteResultFileType() {
+
+        return resultFileType;
     }
 
 }

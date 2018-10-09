@@ -30,7 +30,6 @@ public class XmlDoc {
 	private Document Doc;
 
 
-
 	/**
 	 * Opens and parses XML input file. Sets up Doc.
 	 * Possible exception: ParserConfigurationException/SAXException/IOException/DOMException

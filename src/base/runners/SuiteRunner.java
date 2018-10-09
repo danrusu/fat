@@ -176,11 +176,8 @@ public interface SuiteRunner {
         return testsResultsList.stream()
                 
                 .map(TestResult::getTestCasesResults)
-                .map(Map::values)
-                
-                .map(Collection::stream)
-                .flatMap(x -> x)
-                
+                .map(Map::values)                
+                .flatMap(Collection::stream)                
                 .map(TestCaseResult::getResultStatus)
                 
                 .filter(status -> status.equals(testCaseResultStatus))

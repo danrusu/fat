@@ -15,50 +15,55 @@ import java.util.stream.Collectors;
 
 
 public class StringDataProvider {
-        
-    
+
+
     public static List<List<String>> readDataProviderFile(
             Path filePath, 
             String separatorRegex, 
             int dataLength){
-                
+
         return wrapAssignment(
-                
+
                 () -> Files.readAllLines(filePath).stream()
-                    .map(line -> StringUtils.splitBy(line, separatorRegex, dataLength))
-                    .collect(Collectors.toList()),
-                
+                .map(line -> StringUtils.splitBy(line, separatorRegex, dataLength))
+                .collect(Collectors.toList()),
+
                 emptyList());           
     }
 
-    
-    
-    public static int getDataLength(String localFilePath) {
-        
-        log("Data provider file: " + localFilePath);
-        
-        int dataLength = wrapAssignment(
-                
-                countFileLines(localFilePath),
-                    
-                1);
-        
-        log("Data provider length: " + dataLength);
-        
-        return dataLength;
+
+
+    public static int getDataProviderLength(String localFilePath) {
+
+        if(localFilePath != null) { 
+            
+            log("Data provider file: " + localFilePath);
+
+            int dataLength = wrapAssignment(
+
+                    countFileLines(localFilePath),
+
+                    0);
+
+            log("Data provider length: " + dataLength);
+
+            return dataLength;
+
+        }
+        return 0;
     }
 
 
 
     private static Callable<Integer> countFileLines(String localFilePath) {
-        
+
         return () -> Files.readAllLines(
                 Paths.get( System.getProperty("user.dir"), (localFilePath)))
-                
-        .stream()
-        
-        .collect(Collectors.counting())
-        .intValue();
+
+                .stream()
+
+                .collect(Collectors.counting())
+                .intValue();
     }
 
 }

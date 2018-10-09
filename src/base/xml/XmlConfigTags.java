@@ -3,17 +3,18 @@ package base.xml;
 import java.util.List;
 
 /**
- * Accepted tags within config.xml
+ * Accepted tags within testScenario.xml
  *
  */
 enum XmlConfigTags{
     
     suite,
-    test;
+    test,
+    testcase;
     
-    public static boolean isXmlConfigTag(String configTag){
+    public static boolean isXmlConfigTag(String tagName){
         
        return  List.of(values()).stream()
-               .anyMatch(tag -> tag.name().equals(configTag));
+               .anyMatch(configTag -> configTag.name().equals(tagName));
     }
 }
