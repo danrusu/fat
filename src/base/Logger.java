@@ -1,7 +1,7 @@
 package base;
 
 import static base.failures.ThrowablesWrapper.wrapThrowable;
-import static utils.FileUtils.createDirs;
+import static utils.FileUtils.createDirsWrapped;
 import static utils.TimeUtils.formatCurrentDate;
 
 import java.nio.file.Files;
@@ -11,6 +11,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import utils.SystemUtils;
 
 
 
@@ -63,11 +65,13 @@ public class Logger {
                     System.getProperty("user.dir"), 
                     "logs/log__" + getTimeStamp(fileTimeStampFormat));        
 
-            createDirs(logsDirPath, tempDirPath, logDirPath);
+            createDirsWrapped(logsDirPath, tempDirPath, logDirPath);
 
             // create log file 
             logFilePath = logDirPath.resolve(logFileName);
             createLogFile();
+            
+            DEBUG = SystemUtils.getBooleanPropertyOrDefault(JvmArgs.DEBUG, false);
         }
     }
 
@@ -188,9 +192,10 @@ public class Logger {
      * 
      * @param linesString
      */
-    public static void logLines(String linesString) {
+    public static void logSplitByLines(String linesString) {
 
-        List.of(linesString.split("\n")).forEach(Logger::log); 
+        List.of(linesString.split("\n"))    
+            .forEach(Logger::log); 
     }
 
 

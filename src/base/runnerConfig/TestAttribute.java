@@ -13,9 +13,10 @@ public enum TestAttribute {
     closeBrowserAtEnd,
     saveScreenShots,
     
+    failure,
     stopOnFailure,
     expectedFailure,
-    
-    
+        
     note    
 }
+

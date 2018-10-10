@@ -1,6 +1,7 @@
 package base;
 
 import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public interface Assert{
                 "actual: \"" + actual + "\"",
                 "FAILED").stream().collect(Collectors.joining(" | ")); 
   
-        logLines(failureMessage);
+        logSplitByLines(failureMessage);
 
         throw new AssertionError(failureMessage);
     }
@@ -259,10 +260,10 @@ public interface Assert{
             boolean isSuccessful){
 
         if( isSuccessful ){
-            logLines("Assertion: \"" + assertionDescription + "\" - SUCCEEDED!");
+            logSplitByLines("Assertion: \"" + assertionDescription + "\" - SUCCEEDED!");
         }
         else {
-            logLines("Assertion: \"" + assertionDescription + "\" - FAILED!");
+            logSplitByLines("Assertion: \"" + assertionDescription + "\" - FAILED!");
             throw new AssertionError(assertionDescription);
         }
     }
@@ -270,7 +271,7 @@ public interface Assert{
 
 
     public static void fail(String failureMessage){
-        logLines("Assertion failed!" + failureMessage);
+        logSplitByLines("Assertion failed!" + failureMessage);
         throw new AssertionError(failureMessage);
     }
 

@@ -44,7 +44,7 @@ public class PdfCompare extends WebPageTestCase{
         String actualPdfs = evalAttribute("actual");
 
 
-        logLines(
+        logSplitByLines(
                 "Compare PDF files by text | method: " + method.name()
                         + " | comparison: " + comparison.name()
                         + "\n Expected: " + expectedPdfs

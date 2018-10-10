@@ -1,7 +1,7 @@
 package base.testCase;
 
 import static base.Logger.log;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 import static base.runnerConfig.TestCaseAttribute.expectedFailureRegExp;
 import static base.runnerConfig.TestCaseAttribute.failure;
 import static base.runnerConfig.TestCaseAttribute.skip;
@@ -12,6 +12,7 @@ import static utils.StringUtils.nullToEmptyString;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
@@ -87,15 +88,18 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
      * 
      * @param testAttributes - test's attributes map 
      */
-    public void setTestCaseAttributes(Map<String, String> testAttributes) {
+    public void setTestCaseAttributes(Map<String, String> testCaseAttributes, Path dataProviderFile) {
         
-        this.testCaseAttributes = testAttributes;
-        dynamicEval(testAttributes);
+        this.testCaseAttributes = testCaseAttributes;
+        
+        dynamicEval(testCaseAttributes, dataProviderFile);
+                                
     }
 
 
 
     public void addAttribute(String name, String value){
+        
         this.testCaseAttributes.put(name, value);
     }
 
@@ -110,13 +114,12 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
 
 
-    public void dynamicEval(Map<String, String> testCaseAttributes) {
+    public void dynamicEval(Map<String, String> testCaseAttributes, Path dataProviderFile) {
         
         //Map<String, String> attributes = testCaseAttributes;
 
         // eval "save" first
-        saveAll(evalAttribute("save"));
-
+        saveAll(evalAttribute("save"), dataProviderFile);
 
         testCaseAttributes.keySet().forEach(
 
@@ -124,12 +127,15 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
                     
                     if (! key.equals("save")){
 
-                        String value = nullToEmptyString(testCaseAttributes.get(key));
-                        String newValue = XmlDynamicData.evaluateAttributeValue(testCaseAttributes.get("dataProviderIndex"), value);
+                        String rawValue = nullToEmptyString(testCaseAttributes.get(key));
+                        String evaluatedValue = XmlDynamicData.evaluateAttributeValue(
+                                dataProviderFile,
+                                testCaseAttributes.get("dataProviderIndex"), 
+                                rawValue);
 
-                        if ( ! value.equals(newValue) ){
-                            testCaseAttributes.replace(key, newValue);
-                            log("Attribute replaced: " + key + "=" + newValue);
+                        if ( ! rawValue.equals(evaluatedValue) ){
+                            testCaseAttributes.replace(key, evaluatedValue);
+                            log("Attribute replaced: " + key + "=" + evaluatedValue);
                         }
                     }
                 });
@@ -143,7 +149,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
      * 
      * @param saveString
      */
-    public void saveAll(String saveString) {
+    public void saveAll(String saveString, Path dataProviderFile) {
 
         if (! saveString.isEmpty()){
 
@@ -156,7 +162,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
                         
                         saveData(
                                 savedName, 
-                                evaluateAttributeValue("", savedValue));
+                                evaluateAttributeValue(dataProviderFile, "", savedValue));
 
                     });
 
@@ -349,7 +355,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
     public String addFailure(Throwable th) {
 
-        logLines( Failure.stackToString(th) );
+        logSplitByLines( Failure.stackToString(th) );
         String failureMessage = th.toString();
 
         if (th instanceof Failure){

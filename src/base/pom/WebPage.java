@@ -1,6 +1,6 @@
 package base.pom;
 import static base.Logger.log;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 import static base.pom.ByUtils.byToString;
 
 import java.util.ArrayList;
@@ -246,7 +246,7 @@ public class WebPage {
             }
             catch(Exception e){
                 failure = e.getMessage();
-                logLines(failure);
+                logSplitByLines(failure);
             }
             ThreadUtils.sleep(2000);
         }
@@ -277,7 +277,7 @@ public class WebPage {
             }
             catch(Exception e){
                 failure = e.getMessage();
-                logLines(failure);
+                logSplitByLines(failure);
             }
             ThreadUtils.sleep(2000);
         }
@@ -299,7 +299,7 @@ public class WebPage {
             executeScript(script);
 
         }catch(Exception e){
-            logLines(e.toString());
+            logSplitByLines(e.toString());
             throw new Failure("Cannot click via js by selector: " + cssSelector);
 
         }
@@ -322,7 +322,7 @@ public class WebPage {
                         "$(arguments[0]).click();", we);
 
             }catch(StaleElementReferenceException e){
-                logLines(e.toString());
+                logSplitByLines(e.toString());
                 executeScript(
                         "arguments[0].click();", driver.findElement(by));
             }
@@ -347,7 +347,7 @@ public class WebPage {
                         "$(arguments[0]).click();", element);
 
             }catch(StaleElementReferenceException e){
-                logLines(e.toString());
+                logSplitByLines(e.toString());
                 executeScript(
                         "arguments[0].click();", element);
             }
@@ -409,7 +409,7 @@ public class WebPage {
         }
         catch (Exception e)
         {
-            logLines("ClearInput " + element.toString() + "\n" + e);
+            logSplitByLines("ClearInput " + element.toString() + "\n" + e);
         }
 
 
@@ -438,7 +438,7 @@ public class WebPage {
         }
         catch (Exception e)
         {
-            logLines("ClearInput " + inputBy.toString() + "\n" + e);
+            logSplitByLines("ClearInput " + inputBy.toString() + "\n" + e);
         }
 
 

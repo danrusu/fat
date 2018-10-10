@@ -3,7 +3,7 @@ package base;
 
 import static base.Logger.getLogDirPath;
 import static base.Logger.log;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -128,7 +128,7 @@ public class Driver {
                 }
             }
             catch(Exception e){
-                logLines(""+e);
+                logSplitByLines(""+e);
             }
 
 

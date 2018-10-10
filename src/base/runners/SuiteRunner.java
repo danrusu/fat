@@ -256,7 +256,7 @@ public interface SuiteRunner {
                     StandardOpenOption.CREATE_NEW);
 
         } catch (Exception e) {
-            logLines("Could not write to result file " 
+            logSplitByLines("Could not write to result file " 
                     + resultFilePath.toString() + "\n" + e);
         }
     }

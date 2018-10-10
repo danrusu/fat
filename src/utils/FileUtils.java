@@ -1,8 +1,9 @@
 package utils;
-import static base.Logger.log;
 
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBuffer;
+import static base.Logger.log;
+import static base.Logger.logSplitByLines;
+import static base.failures.ThrowablesWrapper.wrapThrowable;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,11 +14,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
-import javax.imageio.ImageIO;
-
-import base.Assert;
-import base.failures.ThrowablesWrapper;
 
 
 /**
@@ -37,17 +33,17 @@ public interface FileUtils {
      * @return - true if success of false if failure
      */
     public static boolean write(Object object, File file){
-        try (
-                FileOutputStream fos = new FileOutputStream(file);
-                ObjectOutputStream oos = new ObjectOutputStream(fos)
-                )
-        {					
+        
+        try (FileOutputStream fos = new FileOutputStream(file);
+                ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            
             oos.writeObject(object);
             return true;
         }
 
         catch (Exception e){
-            log("Failed writing to file! \n" + e);
+            
+            logSplitByLines("Failed writing to file! \n" + e);
             return false;
         }
     }
@@ -76,6 +72,8 @@ public interface FileUtils {
         return object;
     }
 
+    
+    
     /*	
      *  Usage example:
 
@@ -98,90 +96,48 @@ Map<String, String> map = new HashMap<>();
 
 
 
-    public static String fileToString(String filePath, Charset charset){
+    public static String fileToStringWrapped(String filePath, Charset charset){
 
-        return ThrowablesWrapper.wrapThrowable(
+        return wrapThrowable(
 
                 () -> new String(Files.readAllBytes(Paths.get(filePath)), charset));
     }
 
 
 
-    public static String fileToString(String filePath){
+    public static String fileToStringWrapped(String filePath){
 
-        return ThrowablesWrapper.wrapThrowable(
+        return wrapThrowable(
 
                 () -> new String(Files.readAllBytes(Paths.get(filePath))));
     }
 
 
 
-    public static byte[] getBytes(String filePath){
+    public static byte[] getBytesWrapped(String filePath){
 
-        return ThrowablesWrapper.wrapThrowable(
-
-                () -> Files.readAllBytes(Paths.get(filePath)));
+        return wrapThrowable(() -> Files.readAllBytes(Paths.get(filePath)));
     }
 
 
 
-    public static void createDir(Path newFolderPath) {
+    public static void createDirWrapped(Path newFolderPath) {
 
         if (! Files.exists(newFolderPath)) {
 
-            ThrowablesWrapper.wrapThrowable(
-
-                    () -> Files.createDirectory(newFolderPath));          
+           wrapThrowable(() -> Files.createDirectory(newFolderPath));          
         }
 
     }
     
     
     
-    public static void createDirs(Path ...newFolderPath) {
+    public static void createDirsWrapped(Path ...newFolderPath) {
 
-        List.of(newFolderPath).forEach(FileUtils::createDir);
+        List.of(newFolderPath).forEach(FileUtils::createDirWrapped);
 
-    }
-
-
-    
-    public static void imagesVerifyEquality(String expectedImage, String actualImage) {      
-
-        ThrowablesWrapper.wrapThrowable(
-
-                () -> {
-
-                    // take buffer data from botm image files //
-                    BufferedImage expectedImageBuffer = ImageIO.read(Paths.get(expectedImage).toFile());
-                    DataBuffer expectedImageDataBuffer = expectedImageBuffer.getData().getDataBuffer();
-
-                    BufferedImage actualImageBuffer = ImageIO.read(Paths.get(actualImage).toFile());
-                    DataBuffer actualImageDataBuffer = actualImageBuffer.getData().getDataBuffer();
-
-
-                    // compare data-buffer objects //
-                    // 1. assert sizes           
-                    Assert.equals(
-                            "Images have the same size", 
-                            expectedImageDataBuffer.getSize(), 
-                            actualImageDataBuffer.getSize());
-
-
-                    // 2. assert content
-                    for(int i=0; i < expectedImageDataBuffer.getSize(); i++) { 
-                        
-                        Assert.equalsQuiet(
-                                "",
-                                expectedImageDataBuffer.getElem(i),
-                                actualImageDataBuffer.getElem(i));                    
-                    }
-                    
-                    return true;
-                });
     }
     
 }
-
 
   

@@ -51,7 +51,7 @@ public class WinCmd extends TestCase{
 						x -> output = output.concat(x+" "));
 				
 			} catch (IOException ioEx) {
-				logLines(""+ioEx);
+				logSplitByLines(""+ioEx);
 			}
 		}
 		

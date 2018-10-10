@@ -3,6 +3,7 @@ import static base.Logger.log;
 import static base.Logger.logAll;
 import static base.Logger.logHeader;
 
+import java.nio.file.Path;
 import java.time.Instant;
 import java.util.Map;
 import java.util.TreeMap;
@@ -61,6 +62,7 @@ public interface TestCaseRunner {
      */
     public static Map<Integer, TestCaseResult> runAll(
             int testId, 
+            Path dataProviderFile,
             Map<Integer, Map<String, String>> testCases){
 
 
@@ -79,6 +81,7 @@ public interface TestCaseRunner {
 
             TestCaseResult testCaseResult = retry(
                     testId, 
+                    dataProviderFile,
                     testCaseId, 
                     testCaseAttributes, 
                     retriesCount);
@@ -152,6 +155,7 @@ public interface TestCaseRunner {
 
     public static TestCaseResult retry(
             int testId,
+            Path dataProviderFile,
             int testCaseId, 
             Map<String, String>  testCaseAttributes, 
             int retriesCount) {
@@ -159,7 +163,7 @@ public interface TestCaseRunner {
 
         Instant testCaseStartTime = Instant.now();
         ResultStatus testCaseResultStatus = ResultStatus.Passed;
-
+        
         for (int i=1; i<=retriesCount; i++){
 
             boolean retry = (retriesCount - i) > 0;
@@ -177,7 +181,7 @@ public interface TestCaseRunner {
                 TestCase testCase = (TestCase)ClassUtils.newInstance(
                         testCaseName);
                 
-                testCase.setTestCaseAttributes(testCaseAttributes);
+                testCase.setTestCaseAttributes(testCaseAttributes, dataProviderFile);
                 
                 testCaseResultStatus = run(testCase);
                 

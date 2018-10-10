@@ -2,7 +2,7 @@ package base.driverResources;
 
 
 import static base.Logger.log;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 import java.io.IOException;
@@ -67,7 +67,7 @@ public class DriverResource {
 
 			} catch (IOException e) {
 			    
-				logLines("Could not copy driver resource from jar! \n" + e);
+				logSplitByLines("Could not copy driver resource from jar! \n" + e);
 				isDriverExported = false;
 
 			} finally {

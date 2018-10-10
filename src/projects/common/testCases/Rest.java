@@ -1,6 +1,6 @@
 package projects.common.testCases;
 import static base.Logger.log;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,7 +94,7 @@ public class Rest extends WebPageTestCase{
 					);
 
 		} catch (Exception e) {
-			logLines(e.toString());
+			logSplitByLines(e.toString());
 			Assert.assertTrue("Check for request's success." + e.getMessage(), false);
 		}
 	}

@@ -1,6 +1,6 @@
 package utils;
 import static base.Logger.log;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 
 import java.util.Properties;
 
@@ -35,7 +35,7 @@ public interface Email {
 		String mailPass = "a3nhnkXS!";*/
 
 
-		logLines("Send email:"
+		logSplitByLines("Send email:"
 				+ "\nMail server: " + mailServer
 				+ "\nTo: " + to
 				+ "\nFrom: " + from
@@ -90,7 +90,7 @@ public interface Email {
 			log("Sent message successfully to " + to);
 
 		}catch (MessagingException mex) {
-			logLines("" + mex);
+			logSplitByLines("" + mex);
 		}
 	}
 }

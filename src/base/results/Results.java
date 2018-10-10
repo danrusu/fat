@@ -1,7 +1,7 @@
 package base.results;
 import static base.Logger.getSeparator;
 import static base.Logger.log;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 
 import java.nio.file.Path;
 import java.sql.Connection;
@@ -378,7 +378,7 @@ public abstract class Results {
             List<TestResult> testResultInfo, 
             SuiteResult suiteResult){
         
-        logLines(getDetailedResults(testResultInfo, suiteResult));
+        logSplitByLines(getDetailedResults(testResultInfo, suiteResult));
     }
 
 

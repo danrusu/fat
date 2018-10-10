@@ -7,7 +7,7 @@
 	project="demo">
 
 
-	<test name="dataProviderTest" dataProvider="dataProviders\mockUsers.txt">
+	<test name="dataProviderTest1" dataProvider="dataProviders\mockUsers.txt">
 	
 	
 		<testcase name="projects.mock.testCases.MockSuccess" />
@@ -25,5 +25,19 @@
 						
 	</test>
 	
+	
+	<test name="dataProviderTest2" dataProvider="dataProviders\mockFamilyUsers.txt">
+	
+	
+		<testcase name="projects.mock.testCases.MockSuccess" 
+		
+			username="{$dataProvider(0)}" 
+			
+			password="{$dataProvider(1)}" 
+			
+			age="{$dataProvider(2)}"/>
+			
+			
+	</test>
 	
 </suite>

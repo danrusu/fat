@@ -20,6 +20,8 @@ public enum TestCaseAttribute {
     stopOnFailure,
     expectedFailureRegExp,
     
+    closeDriverAtFinish,
+    
     note;
 
     // stopOnFailure defaults to true

@@ -17,7 +17,7 @@ public class StringDataProviderTest {
     public void readDataProviderFileTest() throws IOException{
         
         
-        List<List<String>> data = StringDataProvider.readDataProviderFile(
+        List<List<String>> data = StringDataProvider.getDataWrapped(
                 Paths.get(System.getProperty("user.dir"), 
                         "dataProviders", 
                         "mockUsers.txt"),

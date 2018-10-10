@@ -1,6 +1,7 @@
 package utils;
 import static base.Logger.log;
 import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
@@ -51,7 +52,7 @@ public final class Ssh {
             
         } catch (Exception e) {
             log("Username:" + userName);
-            logLines(""+e);
+            logSplitByLines(""+e);
 
             
         } finally {

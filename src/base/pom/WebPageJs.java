@@ -2,7 +2,7 @@ package base.pom;
 
 import static base.Logger.debug;
 import static base.Logger.log;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 import static base.pom.WebPage.findUniqElement;
 
 import java.util.Optional;
@@ -66,7 +66,7 @@ public interface WebPageJs {
 
             }catch(StaleElementReferenceException e){
 
-                logLines(e.toString());
+                logSplitByLines(e.toString());
 
                 executeScript(driver, "arguments[0].click();", webElement);
             }

@@ -1,6 +1,6 @@
 package utils.http;
 import static base.Logger.log;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
@@ -53,7 +53,7 @@ public final class HttpRest {
 		
 		log("Response.statusCode: " + response.statusCode());
 		log("Response.status: " + response.statusLine());
-		logLines("Response.body: " + response.getBody().asString());
+		logSplitByLines("Response.body: " + response.getBody().asString());
 
 		return response;
 	}

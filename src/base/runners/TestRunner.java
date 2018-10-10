@@ -6,6 +6,8 @@ import static base.Logger.logLines;
 import static base.failures.ThrowablesWrapper.wrapThrowable;
 import static base.runnerConfig.TestUtils.needToCloseBrowserAtEnd;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +16,12 @@ import java.util.stream.Collectors;
 
 import base.Driver;
 import base.failures.Failure;
+import base.failures.ThrowablesWrapper;
 import base.pom.WebPage;
 import base.results.ResultStatus;
 import base.results.TestCaseResult;
 import base.results.TestResult;
+import base.runnerConfig.TestAttribute;
 import base.runnerConfig.TestConfig;
 import base.xml.XmlTestConfig;
 import utils.StringUtils;
@@ -45,6 +49,12 @@ public interface TestRunner {
         Instant testStartTime = Instant.now();
 
         var testAttributes = testConfig.getTestAttributes();
+        
+        Path dataProviderFile = ThrowablesWrapper.wrapAssignment(()->
+                Paths.get(
+                        System.getProperty("user.dir"), 
+                        testAttributes.get(TestAttribute.dataProvider.name())),                
+                null);
 
         var testCases = testConfig.getTestCases();
 
@@ -76,9 +86,8 @@ public interface TestRunner {
                 testResultStatus = ResultStatus.Failed;
                 
                 testAttributes.put(
-                        "failure", 
-                        driverFailure + " Cause: "+ WebPage.getSeleniumExceptionShortMessage(
-                                    driverFailure.getCause()));
+                        TestAttribute.failure.name(), 
+                        driverFailure + " Cause: "+ WebPage.getSeleniumExceptionShortMessage(driverFailure.getCause()));
                
                 testCasesResults = TestCaseRunner.skipAll(testId, testCases);
             }
@@ -87,7 +96,10 @@ public interface TestRunner {
             // run all test cases within the test
             if (testResultStatus == ResultStatus.Started) {
 
-                testCasesResults = TestCaseRunner.runAll(testId, testCases);
+                testCasesResults = TestCaseRunner.runAll(
+                        testId, 
+                        dataProviderFile, 
+                        testCases);
 
                 testResultStatus = getTestResultStatus(testCasesResults);
             }

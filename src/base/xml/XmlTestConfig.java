@@ -168,7 +168,7 @@ public class XmlTestConfig {
             testAttributesMap.put(browserAttribute, browserProperty);                
         }
 
-        int dataProviderLength = StringDataProvider.getDataProviderLength(
+        int dataProviderLength = StringDataProvider.getDataLengthWrapped(
                 testAttributesMap.get(TestAttribute.dataProvider.name()));
 
         dataProviderTestLoop(testElement, testAttributesMap, dataProviderLength);

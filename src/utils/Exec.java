@@ -1,7 +1,7 @@
 package utils;
 import static base.Logger.getLogDirPath;
 import static base.Logger.log;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 
 import java.io.BufferedReader;
 //import java.io.BufferedWriter;
@@ -387,7 +387,7 @@ public class Exec
 			   ProcOutput = null;
 		   }
 		   catch (Exception e){
-			   logLines("" + e);
+			   logSplitByLines("" + e);
 		   }
 	   }  
 

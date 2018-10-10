@@ -1,7 +1,7 @@
 package projects.common.testCases;
 
 import base.testCase.WebPageTestCase;
-import utils.FileUtils;
+import utils.ImageUtils;
 
 
 /**
@@ -17,7 +17,7 @@ public class ImagesVerifyEquality extends WebPageTestCase{
     @Override
     public void run(){
 
-        FileUtils.imagesVerifyEquality(
+        ImageUtils.imagesVerifyEqualityWrapped(
                 evalAttribute("expected"), 
                 evalAttribute("actual"));
 

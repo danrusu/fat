@@ -1,5 +1,5 @@
 package utils;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -77,7 +77,7 @@ public interface WinUtils {
 		try {
 			hostname = InetAddress.getLocalHost().getHostAddress();
 		} catch (UnknownHostException e) {
-			logLines("Could not get hostname: " + e);
+			logSplitByLines("Could not get hostname: " + e);
 		}
 		return hostname;
 	}

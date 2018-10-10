@@ -7,7 +7,7 @@ import static utils.StringUtils.removeZeroPrefixFromIntegers;
 import static utils.TimeUtils.formatCurrentDate;
 import static utils.TimeUtils.formatNextDate;
 
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -67,14 +67,17 @@ public class XmlDynamicData {
 
 
 
-    public static String evaluateAttributeToken (String dataProvidedIndex, String token){
+    public static String evaluateAttributeToken (
+            Path dataProviderFile,
+            String dataProvidedIndex, 
+            String token){
 
         // XmlDynamicValue
         if ( DSLValue.contains(token) ||
 
                 DSLFunction.matchesRegExp(token)){
 
-            return evalDSL(dataProvidedIndex, token);
+            return evalDSL(dataProviderFile, dataProvidedIndex, token);
         }
 
         // token is a saved variable name
@@ -135,7 +138,10 @@ public class XmlDynamicData {
 
 
 
-    public static String evaluateAttributeValue(String dataProvidedIndex, String attributeValue) {
+    public static String evaluateAttributeValue(
+            Path dataProviderFile,
+            String dataProvidedIndex, 
+            String attributeValue) {
 
         List<String> rawTokens = getRawTokens(attributeValue);
 
@@ -143,7 +149,7 @@ public class XmlDynamicData {
 
                 .map(token -> token.replaceAll("[\\{\\}]", ""))
 
-                .map(token -> XmlDynamicData.evaluateAttributeToken(dataProvidedIndex, token))
+                .map(token -> evaluateAttributeToken(dataProviderFile, dataProvidedIndex, token))
 
                 .collect(Collectors.toList());
 
@@ -161,12 +167,15 @@ public class XmlDynamicData {
 
 
 
-    private static String evalDSL(String dataProvidedIndex, String value) {
+    private static String evalDSL(
+            Path dataProviderFile,
+            String dataProvidedIndex, 
+            String rawValue) {
 
         // dynamic values
-        if (DSLValue.contains(value)){
+        if (DSLValue.contains(rawValue)){
 
-            switch (DSLValue.valueOf(value)){
+            switch (DSLValue.valueOf(rawValue)){
 
                 case $userDir:
 
@@ -251,39 +260,40 @@ public class XmlDynamicData {
         }
 
 
-        if (DSLFunction.matchesRegExp(value)) {
+        if (DSLFunction.matchesRegExp(rawValue)) {
 
-            String dslFunctionName = DSLFunction.getName(value);
+            String dslFunctionName = DSLFunction.getName(rawValue);
 
             log("DSL function: " + dslFunctionName);
 
             // DSL functions
             if (dslFunctionName == DSLFunction.$afterNumberOfDays.name()) {
 
-                return replaceDayAfter(value);                    
+                return replaceDayAfter(rawValue);                    
             }
 
             if ( dataProvidedIndex != null) {
                 if (dslFunctionName == DSLFunction.$dataProvider.name()) {
 
                     return getProvidedData(
+                            dataProviderFile,
                             dataProvidedIndex,
-                            value.replaceAll(DSLFunction.$dataProvider.getValue(), "$1"));                    
+                            rawValue.replaceAll(DSLFunction.$dataProvider.getValue(), "$1"));                    
                 }
             }
         }
 
-        return value;
+        return rawValue;
     }
 
 
 
-    private static String getProvidedData(String rowIndex, String columnIndex) {
+    private static String getProvidedData(
+            Path dataProviderFilePath, 
+            String rowIndex, 
+            String columnIndex) {
 
-        return StringDataProvider.readDataProviderFile(                
-                Paths.get(System.getProperty("user.dir"), "dataProviders", "mockUsers.txt"), 
-                ", ",
-                2)
+        return StringDataProvider.getDataWrapped(dataProviderFilePath, ",\\s*", 2)
 
                 .get(StringUtils.toInt(rowIndex, 0))
 

@@ -6,6 +6,8 @@ import java.util.concurrent.Callable;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import base.Logger;
+
 public interface ThrowablesWrapper {
 
     
@@ -49,7 +51,8 @@ public interface ThrowablesWrapper {
             returnedValue = callable.call();
         }
         catch(Throwable thrown) {
-            //System.out.println(thrown); 
+            Logger.log("Wrapped exception (handled): " + thrown);
+            Logger.debug(Failure.stackToString(thrown)); 
         }
 
         return Optional.ofNullable(returnedValue);
@@ -109,4 +112,6 @@ public interface ThrowablesWrapper {
     public static void wrapRunnable(Runnable runnable) {
         wrapRunnable("", runnable);
     }  */
+    
 }
+

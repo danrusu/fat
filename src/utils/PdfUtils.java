@@ -2,7 +2,7 @@ package utils;
 import static base.Logger.debug;
 
 import static base.Logger.log;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 import static base.Logger.writeTextToFileInLogDir;
 
 import java.awt.Rectangle;
@@ -143,7 +143,7 @@ public interface PdfUtils {
 
         for (int i=0; i < file1Lines.length; i++){
             if (! file1Lines[i].equals(file2Lines[i])){
-                logLines("Different text on line " + i + "\n"
+                logSplitByLines("Different text on line " + i + "\n"
                         + filename1 + "- " + file1Lines[i] + "\n"
                         + filename2 + "- " + file2Lines[i] + "\n");
                 filesAreIdentical = false;				
@@ -174,7 +174,7 @@ public interface PdfUtils {
 
         for (int i=0; i<expectedLines.length; i++){
             if (! expectedLines[i].equals(actualLines[i])){
-                logLines("Different text on line " + i + "\n"
+                logSplitByLines("Different text on line " + i + "\n"
                         + "str1- " + expectedLines[i] + "\n"
                         + "str2- " + actualLines[i] + "\n");
                 strAreIdentical = false;				
@@ -339,14 +339,14 @@ public interface PdfUtils {
         try {
             executor.run( "compareit.txt" );
         } catch (Exception e) {
-            logLines(""+e);
+            logSplitByLines(""+e);
             return false;
         }
 
         try {
             executor.join( 5 );
         } catch (Exception e) {
-            logLines(""+e);
+            logSplitByLines(""+e);
             return false;
         }
         finally {
@@ -354,7 +354,7 @@ public interface PdfUtils {
             try {
                 executor.getOutput(true);
             } catch (IOException e) {
-                logLines(""+e);
+                logSplitByLines(""+e);
             }
         }
 
@@ -429,7 +429,7 @@ public interface PdfUtils {
 
         final var imageList = getImagesFromPDF(filename);
         
-        FileUtils.createDir(Paths.get(destinationDir));
+        FileUtils.createDirWrapped(Paths.get(destinationDir));
 
         IntStream.range(0, imageList.size()).forEach( 
 

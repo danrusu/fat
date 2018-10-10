@@ -1,5 +1,5 @@
 package projects.common.testCases;
-import static base.Logger.logLines;
+import static base.Logger.logSplitByLines;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -62,7 +62,7 @@ public class WinRemoteAddAuthentication extends TestCase{
 							x -> output = output.concat(x+" "));
 
 				} catch (IOException ioEx) {
-					logLines(""+ioEx);
+					logSplitByLines(""+ioEx);
 				}
 				output = output.trim();			
 			}

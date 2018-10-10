@@ -1,12 +1,16 @@
 package base.testCase;
 
+import java.nio.file.Path;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import base.Driver;
+import base.runnerConfig.TestCaseAttribute;
 import utils.DynamicCheck;
 
 /**
@@ -118,11 +122,13 @@ abstract public class WebPageTestCase extends TestCase{
 
 
 
-	public void runInternalTestCase(WebPageTestCase test,
+	public void runInternalTestCase(
+	        Path dataProviderFile,
+	        WebPageTestCase testCase,
 			Map<String, String> testAttributes){
 
-		test.setTestCaseAttributes(testAttributes);
-		test.run();
+		testCase.setTestCaseAttributes(testAttributes, dataProviderFile);
+		testCase.run();
 	}
 
 	
@@ -133,8 +139,10 @@ abstract public class WebPageTestCase extends TestCase{
 				.orElse(false);
 		 */
 
-		if (testCaseAttributes.containsKey("closeDriverAtFinish")){
-			return testCaseAttributes.get("closeDriverAtFinish").equals("true");
+	    String closeDriverAtFinish = TestCaseAttribute.closeDriverAtFinish.name();
+	    
+		if (testCaseAttributes.containsKey(closeDriverAtFinish)){
+			return testCaseAttributes.get(closeDriverAtFinish).equals("true");
 		}
 		return false;	
 	}
@@ -153,17 +161,14 @@ abstract public class WebPageTestCase extends TestCase{
 	
 	
 	public void addJsErrors() {
-		Map<String, String> jsErrors = Driver.getBrowserLogJsErrors();
-		String values="";
-		
-		if (jsErrors.size()>0){			
-			for (Map.Entry<String, String> entry : jsErrors.entrySet())
-			{
-				 values+=entry.getValue()+"<br/>";
-			}
-			getTestCaseAttributes().put("js_errors", "" + values);
-		}
+	    
+	    String htmlJsErrors = Driver.getBrowserLogJsErrors().values().stream()
+	            .collect(Collectors.joining("<br/>"));
+	    
+	    if (htmlJsErrors.isEmpty() == false) {
+	        getTestCaseAttributes().put("js_errors", "" + htmlJsErrors);
+	    }
 	}
-
 	
 }
+

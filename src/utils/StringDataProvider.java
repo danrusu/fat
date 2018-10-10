@@ -3,6 +3,7 @@ package utils;
 import static base.failures.ThrowablesWrapper.*;
 import static base.Logger.*;
 import static java.util.Collections.emptyList;
+import static utils.StringUtils.*;
 
 
 import java.nio.file.Files;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 public class StringDataProvider {
 
 
-    public static List<List<String>> readDataProviderFile(
+    public static List<List<String>> getDataWrapped(
             Path filePath, 
             String separatorRegex, 
             int dataLength){
@@ -25,15 +26,15 @@ public class StringDataProvider {
         return wrapAssignment(
 
                 () -> Files.readAllLines(filePath).stream()
-                .map(line -> StringUtils.splitBy(line, separatorRegex, dataLength))
-                .collect(Collectors.toList()),
+                    .map(line -> splitBy(line, separatorRegex, dataLength))
+                    .collect(Collectors.toList()),
 
                 emptyList());           
     }
 
 
 
-    public static int getDataProviderLength(String localFilePath) {
+    public static int getDataLengthWrapped(String localFilePath) {
 
         if(localFilePath != null) { 
             
@@ -50,6 +51,7 @@ public class StringDataProvider {
             return dataLength;
 
         }
+        
         return 0;
     }
 
@@ -57,8 +59,9 @@ public class StringDataProvider {
 
     private static Callable<Integer> countFileLines(String localFilePath) {
 
-        return () -> Files.readAllLines(
-                Paths.get( System.getProperty("user.dir"), (localFilePath)))
+        return () -> Files.readAllLines(Paths.get( 
+                    System.getProperty("user.dir"), 
+                    (localFilePath)))
 
                 .stream()
 
