@@ -78,7 +78,7 @@ public interface TestRunner {
             try {
                 if (testConfig.isBrowserNeeded()){
                     
-                    startDriver(testConfig, XmlTestConfig.getGrid());
+                    startDriver(testConfig.getBrowser(), XmlTestConfig.getGrid());
                 }
             }
             catch(Failure driverFailure) {
@@ -142,12 +142,12 @@ public interface TestRunner {
 
 
     public static void startDriver(
-            TestConfig testConfig, 
+            String browserName, 
             boolean useGrid) {
 
         // Reuse previous driver
         // DO NOT USE closeBrowserAtEnd="false" if the next test is in another browser !!!
-        String browser = StringUtils.nullToEmptyString(testConfig.getBrowser());
+        String browser = StringUtils.nullToEmptyString(browserName);
 
 
 

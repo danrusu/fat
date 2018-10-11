@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import base.testCase.TestCaseDocs;
 import base.xml.XmlTestConfig;
@@ -186,7 +187,7 @@ public abstract class Results {
 
         StringBuilder resultsString = new StringBuilder();
 
-        resultsString.append(Results.getResults(suiteResult) + "\n")
+        resultsString.append(Results.getSuiteResultText(suiteResult) + "\n")
         .append(getSeparator()+"\n")
         .append(TestResult.getHeader(15)+"\n");
 
@@ -476,47 +477,55 @@ public abstract class Results {
      * @param succeeded - number of succeeded tests
      * @param failed - number of failed tests
      */
-    public static String getResults(SuiteResult suiteResult){
+    public static String getSuiteResultText(SuiteResult suiteResult){
 
-        String colWidth = "15";
+        String colWidth = "35";
         String format = "%-"+ colWidth + "s";
 
-        return new StringBuilder()
-                .append(getSeparator() + "\n")
+        
+       // .getSeparator() + "\n",
+        
+        String header = List.of(
+                "Result",
+                "Elapsed", 
+                "Test [passed/failed/skipped]", 
+                "Testcase [passed/failed/skipped]",
+                "")
                 
-                // header
-                .append(String.format(format, "Total" ) + " | ")
-                .append(String.format(
-                        format.replace(colWidth, "20"), 
-                        "Elapsed" ) + " | ")
+                .stream()
+                .map(text -> String.format(format, text))
+                .collect(Collectors.joining(" | "));
                 
-                .append(String.format(
-                        format.replace(colWidth, "30"), 
-                        "Succeeded" ) + " | ")
+        
+        String result = List.of(
                 
-                .append(String.format(
-                        format.replace(colWidth, "15"), 
-                        "Failed" ) + " | ")
+                suiteResult.getStatusText(),
                 
+                suiteResult.getElapsedTime(),
                 
-                // result 
-                .append(String.format(
-                        format, 
-                        suiteResult.getTotalTestsCount() ) + " | " )
+                String.join("/", 
+                        suiteResult.getPassedTestsCount() + "",
+                        suiteResult.getFailedTestsCount() + "",
+                        suiteResult.getSkippedTestsCount() + ""),
                 
-                .append(String.format(
-                        format.replace(colWidth, "20"), 
-                        suiteResult.getElapsedTime()) + " | ")
+                String.join("/", 
+                        suiteResult.getTotalTestCasesCount() + "",
+                        suiteResult.getFailedTestCasesCount() + "",
+                        suiteResult.getSkippedTestCasesCount() + ""),
                 
-                .append(String.format(
-                        format.replace(colWidth, "30"), 
-                        suiteResult.getPassedTestsCount()) + " | " )
+                "")                
                 
-                .append(String.format(
-                        format.replace(colWidth, "15"), 
-                        suiteResult.getFailedTestsCount()) + " | " )
+                .stream()
                 
-                .toString();
+                .map(text -> String.format(format, text))
+                .collect(Collectors.joining(" | "));;
+                
+
+       return String.join("\n", 
+               getSeparator() + " Suite status",
+               header,
+               result);
+                
     }
     
 }

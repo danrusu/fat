@@ -15,6 +15,7 @@ import base.results.TestCaseResult;
 import base.runnerConfig.TestCaseAttribute;
 import base.testCase.TestCase;
 import base.testCase.WebPageTestCase;
+import base.xml.XmlTestConfig;
 import utils.ClassUtils;
 
 public interface TestCaseRunner {
@@ -28,6 +29,9 @@ public interface TestCaseRunner {
         }
 
         ResultStatus testCaseResultStatus = ResultStatus.Passed;
+        
+        //startDriver(testConfig, XmlTestConfig.getGrid());
+        
 
         try {
             testCase.run();
