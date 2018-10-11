@@ -436,17 +436,20 @@ public abstract class Results {
         // add testCaseHtmlReport attribute
         htmlAttr += Html.divFromText(
                 testCaseHtmlReport, 
-                x -> "<a href=\"" + testCaseHtmlReport + "\">"
+                //x -> "<a href=\"" + testCaseHtmlReport + "\">"
+                x -> "<a href=\"" + x + "\">"
                         + "<img class=\"customIcon\" src=\"../images/icons/html.ico\"/>"
                         + "<br>Report"
                         + "</a>",
                 "");
 
 
-        // add hidden testCaseScenario information, available on click
-        if(!testcaseName.isEmpty()){
+        // add hidden testCaseScenario information, available on demand
+        if(testcaseName.isEmpty() == false){
+            
             String scenario = TestCaseDocs.getTestScenario(testcaseName);
-            if(!scenario.isEmpty()){
+            
+            if(scenario.isEmpty() == false){
                 htmlAttr += "<div class=\"testCaseDocs\" title=\"Test case info\">"
                         + 
                         scenario.replace("\n","<br>")
@@ -460,36 +463,8 @@ public abstract class Results {
 
 
     private static String testAttrToHtml(Map<String, String> attr) {
-        return testCaseAttrToHtml("", attr);
-        /*String htmlAttr = new String();
-		String failure = attr.remove("failure");
-		String js_errors = attr.remove("js_errors");
-
-
-		// add all attributes but failure and js_errors
-		for (String attribute : attr.keySet()){
-			htmlAttr += attribute + "=\"" + attr.get(attribute) + "\"<br/>";
-		}
-		htmlAttr.replace("save=", "saved:");
-
-
-		// add failure
-		htmlAttr += Html.textToHtmlTag(
-				failure, 
-				"span",
-				"failure",
-				x -> "failure: " + x);
-
-
-		// add js_errors
-		htmlAttr += Html.textToHtmlTag(
-				js_errors, 
-				"div",
-				"js_errors",
-				x -> "JS_ERRORS: <br/> " + x.replaceAll("\n", "<br/>"));
-
-
-		return htmlAttr;*/
+        
+        return testCaseAttrToHtml("", attr);        
     }
 
 
@@ -500,7 +475,6 @@ public abstract class Results {
      * @param total - total number of executed tests
      * @param succeeded - number of succeeded tests
      * @param failed - number of failed tests
-     * @param crashed - number of crashed tests
      */
     public static String getResults(SuiteResult suiteResult){
 
@@ -509,17 +483,39 @@ public abstract class Results {
 
         return new StringBuilder()
                 .append(getSeparator() + "\n")
+                
                 // header
                 .append(String.format(format, "Total" ) + " | ")
-                .append(String.format(format.replace(colWidth, "20"), "Elapsed" ) + " | ")
-                .append(String.format(format.replace(colWidth, "30"), "Succeeded" ) + " | ")
-                .append(String.format(format.replace(colWidth, "15"), "Failed" ) + " | ")
-                .append(String.format(format, "Crashed" ) + " | \n")
+                .append(String.format(
+                        format.replace(colWidth, "20"), 
+                        "Elapsed" ) + " | ")
+                
+                .append(String.format(
+                        format.replace(colWidth, "30"), 
+                        "Succeeded" ) + " | ")
+                
+                .append(String.format(
+                        format.replace(colWidth, "15"), 
+                        "Failed" ) + " | ")
+                
+                
                 // result 
-                .append( String.format(format, suiteResult.getTotalTestsCount() ) + " | " )
-                .append( String.format(format.replace(colWidth, "20"), suiteResult.getElapsedTime()) + " | ")
-                .append( String.format(format.replace(colWidth, "30"), suiteResult.getPassedTestsCount()) + " | " )
-                .append( String.format(format.replace(colWidth, "15"), suiteResult.getFailedTestsCount()) + " | " )
+                .append(String.format(
+                        format, 
+                        suiteResult.getTotalTestsCount() ) + " | " )
+                
+                .append(String.format(
+                        format.replace(colWidth, "20"), 
+                        suiteResult.getElapsedTime()) + " | ")
+                
+                .append(String.format(
+                        format.replace(colWidth, "30"), 
+                        suiteResult.getPassedTestsCount()) + " | " )
+                
+                .append(String.format(
+                        format.replace(colWidth, "15"), 
+                        suiteResult.getFailedTestsCount()) + " | " )
+                
                 .toString();
     }
     

@@ -5,6 +5,7 @@ import static base.Logger.logSplitByLines;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
@@ -279,15 +280,33 @@ public interface Assert{
     
     public static <T> void assertList(List<T> expectedList, List<T> actualList){
         
-        equals("Verify list size", expectedList.size(), actualList.size());
+        equals("Verify lists size", expectedList.size(), actualList.size());
         
-        List<Runnable> assertionsList = IntStream.range(0, expectedList.size()-1)
+        List<Runnable> assertionBlocks = IntStream.range(0, expectedList.size()-1)
             .mapToObj(i -> (Runnable)() -> assertEquals(expectedList.get(i), actualList.get(i)))
             .collect(Collectors.toList());
                 
-        verifyAll(getAssertionErrors(assertionsList));
+        verifyAll(getAssertionErrors(assertionBlocks));
      }
-
+    
+    
+    
+    public static <T, U> void assertMap(Map<T, U> expectedMap, Map<T, U> actualMap){
+        
+        equals("Verify maps size", expectedMap.size(), actualMap.size());
+        
+        List<Runnable> assertionBlocks = expectedMap.keySet().stream()
+                
+            .map(key ->
+            
+                (Runnable)() -> assertEquals(
+                    key + ":" + expectedMap.get(key), 
+                    key + ":" + actualMap.get(key)))
+            
+            .collect(Collectors.toList());
+                
+        verifyAll(getAssertionErrors(assertionBlocks));
+     }
 
 }
 
