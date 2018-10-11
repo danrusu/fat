@@ -34,7 +34,7 @@ abstract public class WebPageTestCase extends TestCase{
 	 */
 	public WebPageTestCase() {		
 		super();
-		this.driver = Driver.driver;
+		setDriver(Driver.driver);
 	}
 
 
@@ -43,12 +43,17 @@ abstract public class WebPageTestCase extends TestCase{
 	 */
 	public WebPageTestCase(WebDriver driver) {
 		super();
-		this.driver = driver;
+		setDriver(driver);
 	}
 
 	
 
-	/**
+	public void setDriver(WebDriver driver) {
+       this.driver = driver;        
+    }
+
+
+    /**
 	 * Open URL in browser.
 	 * 
 	 * @param url - web page URL

@@ -15,6 +15,7 @@ import base.results.TestCaseResult;
 import base.runnerConfig.TestCaseAttribute;
 import base.testCase.TestCase;
 import base.testCase.WebPageTestCase;
+import base.xml.XmlTestConfig;
 import utils.ClassUtils;
 
 public interface TestCaseRunner {
@@ -29,8 +30,11 @@ public interface TestCaseRunner {
 
         ResultStatus testCaseResultStatus = ResultStatus.Passed;
         
-        //startDriver(testConfig, XmlTestConfig.getGrid());
-        
+        // if there was no browser specified in the test tag, evaluate testcase browser attribute
+        if (testCase instanceof WebPageTestCase) {
+            TestRunner.startDriver(testCase.getBrowser(), XmlTestConfig.getGrid());
+            ((WebPageTestCase)testCase).setDriver(Driver.driver);
+        }
 
         try {
             testCase.run();

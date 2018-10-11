@@ -479,5 +479,12 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
         }
     }
 
+
+
+    public String getBrowser() {
+        
+        return getTestCaseAttributes().get(TestCaseAttribute.browser.name());
+    }
+
 }
 

@@ -326,7 +326,6 @@ public abstract class Results {
                         
                         // do not show passwords in report
                         attr.remove("password");
-                        attr.remove("browser");
 
                         resultsString.append("\n<tr style=\"display:none;\">");
 

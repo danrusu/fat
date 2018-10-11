@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Demo_browsers_data_driven" user="jenkins" project="Demo">
+
+
+  	<test name="BrowserTest" dataProvider="dataProviders\browsers.txt">
+	
+		<testcase name="projects.common.testCases.OpenPage" 
+		
+			url="https://www.consignorportal.com/ticket/Outbox" 
+		
+			browser="{$dataProvider(0)}" />
+	
+	</test>
+	
+
+</suite> 
