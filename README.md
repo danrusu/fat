@@ -1,5 +1,5 @@
 # fat
-## <b>F</b>ramework for <b>A</b>utomation in <b>T</b>esting
+### Framework for Automation in Testing
 
 
 ### Environment
