@@ -25,7 +25,7 @@ java -jar fat.jar XML\Demo\browsers.xml
  - browsers.xml, log_Demo_browsers
  - browsersDataDriven.xml, log_Demo_browsersDataDriven
  - exceptions.xml, log_Demo_exceptions
- - XmlDynamicData.xml, log_Demo_XmlDynamicData
+ - [XmlDynamicData.xml]https://github.com/danrusu/fat/blob/master/XML/Demo/XmlDynamicData.xml , log_Demo_XmlDynamicData
  - dataProviderUsers.xml, log_Demo_dataProviderUsers
  - screenshotsCompare.xml, log_Demo_screenshotsCompare
  
