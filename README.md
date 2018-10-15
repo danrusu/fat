@@ -32,6 +32,6 @@ java -jar fat.jar XML\Demo\browsers.xml
 
 
 ### 5. Logs (logs\log__timeStamp)
- - Detailed Java log: log.txt
- - Test scenario execution report: result.html
+ - detailed Java log: log.txt
+ - test scenario execution report: result.html
  - failure screenshots
