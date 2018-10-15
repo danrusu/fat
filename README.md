@@ -1,9 +1,9 @@
 # fat
-Framework for Automation in Testing
+## <b>F</b>ramework for <b>A</b>utomation in <b>T</b>esting
 
 
 ### Environment
- - Java 10+
+ - Java 10+ 
  - Eclipse IDE
  - Ant
  
