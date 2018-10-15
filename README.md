@@ -21,12 +21,17 @@ java -jar fat.jar XML\Demo\browsers.xml
 ```
 
 
-### Framework functionalities demos (XML\Demo)
- - browsers.xml
- - exceptions.xml
- - XmlDynamicData.xml
+### Framework functionalities demos (scenario in XML\Demo\, result in logs\)
+ - browsers.xml, log_Demo_browsers
+ - browsersDataDriven.xml, log_Demo_browsersDataDriven
+ - exceptions.xml, log_Demo_exceptions
+ - XmlDynamicData.xml, log_Demo_XmlDynamicData
+ - dataProviderUsers.xml, log_Demo_dataProviderUsers
+ - screenshotsCompare.xml, log_Demo_screenshotsCompare
+ 
 
 
 ### Logs (logs\log__timeStamp)
  - Detailed Java log: log.txt
  - Test scenario execution report: result.html
+ - failure screenshots
