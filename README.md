@@ -2,26 +2,26 @@
 ### Framework for Automation in Testing
 
 
-### 1. Environment
+#### 1. Environment
  - [JDK 10+](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
  - [Eclipse IDE](https://www.eclipse.org/downloads/)
  - [Apache Ant](https://ant.apache.org/bindownload.cgi)
  
 
-### 2. Build runnable jar
+#### 2. Build runnable jar
 ```
 ant -f fatAnt.xml
 ```
 
 
-### 3. Run test scenarios with the JAR tool
+#### 3. Run test scenarios with the JAR tool
 ```
 cd fat
 java -jar fat.jar XML\Demo\browsers.xml
 ```
 
 
-### 4. Framework functionalities demos ([scenarios](XML/Demo) and [reports](logs))
+#### 4. Framework functionalities demos ([scenarios](XML/Demo) and [reports](logs))
  - [browsers.xml](XML/Demo/browserss.xml), [log_Demo_browsers](logs/log_Demo_browsers)
  - [browsersDataDriven.xml](XML/Demo/browsersDataDriven.xml), [log_Demo_browsersDataDriven](logs/log_Demo_browsersDataDriven)
  - [exceptions.xml](XML/Demo/exceptions.xml), [log_Demo_exceptions](logs/log_Demo_exceptions)
@@ -31,7 +31,7 @@ java -jar fat.jar XML\Demo\browsers.xml
  
 
 
-### 5. Logs (logs\log__timeStamp)
+#### 5. Logs (logs\log__timeStamp)
  - detailed Java log: log.txt
  - test scenario execution report: result.html
  - failure screenshots
