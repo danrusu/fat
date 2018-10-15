@@ -21,7 +21,7 @@ java -jar fat.jar XML\Demo\browsers.xml
 ```
 
 
-### 4. Framework functionalities demos (scenarios and reports)
+### 4. Framework functionalities demos ([scenarios](XML/Demo) and [reports](logs))
  - [browsers.xml](XML/Demo/browserss.xml), [log_Demo_browsers](logs/log_Demo_browsers)
  - [browsersDataDriven.xml](XML/Demo/browsersDataDriven.xml), [log_Demo_browsersDataDriven](logs/log_Demo_browsersDataDriven)
  - [exceptions.xml](XML/Demo/exceptions.xml), [log_Demo_exceptions](logs/log_Demo_exceptions)
