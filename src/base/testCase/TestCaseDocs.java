@@ -40,7 +40,7 @@ public class TestCaseDocs {
     public static String getTestScenario(String testCaseName) {
 
 
-        return ThrowablesWrapper.wrapAssignment(
+        return ThrowablesWrapper.uncheckedAssignment(
                 
                 () -> ((TestCase)ClassUtils.newInstance(testCaseName)).getTestCaseScenario())
                 

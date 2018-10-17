@@ -21,7 +21,7 @@ public class TicketOpenSubMenu extends TestCase{
 	    String subMenu = evalAttribute("subMenu");
 	    
 	    
-	    ThrowablesWrapper.wrapThrowable(
+	    ThrowablesWrapper.unchecked(
 	            
 	            "Fail to open Ticket sub menu \"" + subMenu + "\"", 
 	            

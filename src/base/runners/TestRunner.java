@@ -3,7 +3,12 @@ package base.runners;
 import static base.Logger.log;
 import static base.Logger.logHeader;
 import static base.Logger.logLines;
-import static base.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.unchecked;
+import static base.failures.ThrowablesWrapper.unchekedAssignment;
+import static base.results.ResultStatus.Failed;
+import static base.results.ResultStatus.Passed;
+import static base.results.ResultStatus.Skipped;
+import static base.results.ResultStatus.Started;
 import static base.runnerConfig.TestUtils.needToCloseBrowserAtEnd;
 
 import java.nio.file.Path;
@@ -16,7 +21,6 @@ import java.util.stream.Collectors;
 
 import base.Driver;
 import base.failures.Failure;
-import base.failures.ThrowablesWrapper;
 import base.pom.WebPage;
 import base.results.ResultStatus;
 import base.results.TestCaseResult;
@@ -50,7 +54,7 @@ public interface TestRunner {
 
         var testAttributes = testConfig.getTestAttributes();
         
-        Path dataProviderFile = ThrowablesWrapper.wrapAssignment(()->
+        Path dataProviderFile = unchekedAssignment(()->
                 Paths.get(
                         System.getProperty("user.dir"), 
                         testAttributes.get(TestAttribute.dataProvider.name())),                
@@ -66,14 +70,14 @@ public interface TestRunner {
         
         var testResultStatus = testConfig.isTestSkipped() ?
 
-                ResultStatus.Skipped :
+                Skipped :
 
-                    ResultStatus.Started;
+                Started;
 
 
         Map<Integer, TestCaseResult> testCasesResults =  null;
         // if test started
-        if (testResultStatus == ResultStatus.Started) {
+        if (testResultStatus == Started) {
 
             try {
                 if (testConfig.isBrowserNeeded()){
@@ -83,7 +87,7 @@ public interface TestRunner {
             }
             catch(Failure driverFailure) {
                 
-                testResultStatus = ResultStatus.Failed;
+                testResultStatus = Failed;
                 
                 testAttributes.put(
                         TestAttribute.failure.name(), 
@@ -94,7 +98,7 @@ public interface TestRunner {
 
 
             // run all test cases within the test
-            if (testResultStatus == ResultStatus.Started) {
+            if (testResultStatus == Started) {
 
                 testCasesResults = TestCaseRunner.runAll(
                         testId, 
@@ -129,13 +133,13 @@ public interface TestRunner {
 
         boolean isAnyTestCaseFailed = testCasesResults.values().stream()
                 .map(TestCaseResult::getResultStatus)
-                .anyMatch(result -> result.equals(ResultStatus.Failed));
+                .anyMatch(result -> result.equals(Failed));
 
         return isAnyTestCaseFailed ? 
 
-                ResultStatus.Failed :
+                Failed :
 
-                ResultStatus.Passed;
+               Passed;
 
     }
 
@@ -151,9 +155,9 @@ public interface TestRunner {
 
 
 
-        if ( Driver.driver == null && (browser.isEmpty() == false) ){
+        if (Driver.driver == null && (browser.isEmpty() == false)){
 
-            wrapThrowable(
+            unchecked(
                     
                     "Failed to launch the browser! Test will stop.", 
                     
@@ -167,7 +171,7 @@ public interface TestRunner {
         }
         
         
-        else if ( ! browser.isEmpty() ){
+        else if (browser.isEmpty() == false){
           log("Reuse previous driver.");
         }
         
@@ -181,7 +185,7 @@ public interface TestRunner {
 
     public static void quitDriver(boolean isQuitNeeded) {
 
-        if ( isQuitNeeded && Driver.driver != null ) {
+        if (isQuitNeeded && Driver.driver != null) {
 
             try{
               log("Test finished; quit current driver."); 

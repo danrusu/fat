@@ -18,7 +18,7 @@ public class AreEqual extends TestCase{
 		String string1 = evalAttribute("string1");
 		String string2 = evalAttribute("string2");
 	
-		Assert.assertTrue("string1 is equal to string2", string1.equals(string2));
+		Assert.isTrue("string1 is equal to string2", string1.equals(string2));
 	}
 	
 	@Override

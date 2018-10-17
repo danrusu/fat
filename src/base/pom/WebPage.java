@@ -128,7 +128,7 @@ public class WebPage {
         List<WebElement> elements = driver.findElements(by);
 
         // assert that only one element was found
-        Assert.assertTrue("Element located by " + by +
+        Assert.isTrue("Element located by " + by +
                 " is unique (found " + elements.size() + ")", 
                 elements.size() == 1);
 
@@ -251,7 +251,7 @@ public class WebPage {
             ThreadUtils.sleep(2000);
         }
 
-        Assert.assertTrue(failure, failure.isEmpty());
+        Assert.isTrue(failure, failure.isEmpty());
     }
 
 
@@ -282,7 +282,7 @@ public class WebPage {
             ThreadUtils.sleep(2000);
         }
 
-        Assert.assertTrue(failure, failure.isEmpty());
+        Assert.isTrue(failure, failure.isEmpty());
     }
 
 
@@ -829,7 +829,7 @@ public class WebPage {
         }
         catch (TimeoutException te){
             // throw assertion error if failed to set the message from the report
-            Assert.assertTrue("AJAX requests were not finished after " + secondsWait + "s.",
+            Assert.isTrue("AJAX requests were not finished after " + secondsWait + "s.",
                     false);
         }
         // generic 1s wait for Elastic search to react on AJAX request
@@ -858,7 +858,7 @@ public class WebPage {
         }
         catch (TimeoutException te){
             // throw assertion error if failed to set the message from the report
-            Assert.assertTrue("AJAX requests were not finished after " + secondsWait + "s.",
+            Assert.isTrue("AJAX requests were not finished after " + secondsWait + "s.",
                     false);
         }
         // generic 1s wait for Elastic search to react on AJAX request
@@ -1191,7 +1191,7 @@ public class WebPage {
         
         if (url.isEmpty() == false){
             
-            Assert.assertTrue(
+            Assert.isTrue(
                     
                     "Check URL: "
                             + "expected: \"" + url 
@@ -1207,7 +1207,7 @@ public class WebPage {
         
         if (title.isEmpty() == false){
             
-            Assert.assertTrue(
+            Assert.isTrue(
                     
                     "Check title: "
                             + "expected: \"" + title

@@ -118,7 +118,7 @@ public class XmlDynamicData {
 
         String savedData = savedDataMap.get(arrayVariableName);
 
-        String evaluatedToken = ThrowablesWrapper.wrapThrowable(
+        String evaluatedToken = ThrowablesWrapper.unchecked(
 
                 () -> {
 

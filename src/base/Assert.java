@@ -158,7 +158,7 @@ public interface Assert{
     
     
     
-    public static void equals(
+    public static void isEqual(
             String assertionDescription,
             boolean expected,            
             boolean actual){
@@ -169,7 +169,7 @@ public interface Assert{
     
     
     
-    public static void equalsQuiet(
+    public static void isEqualQuiet(
             String assertionDescription,
             String expected,            
             String actual){
@@ -183,7 +183,7 @@ public interface Assert{
     
     
     
-    public static void equals(
+    public static void isEquals(
             String assertionDescription,
             int expected,            
             int actual){
@@ -194,18 +194,18 @@ public interface Assert{
     
     
     
-    public static void equalsQuiet(
+    public static void isEqualQuiet(
             String assertionDescription,
             int expected,            
             int actual){
 
 
-        equalsQuiet(assertionDescription, "" + expected, "" + actual);
+        isEqualQuiet(assertionDescription, "" + expected, "" + actual);
     }
 
 
 
-    public static void equalsIgnoreCase(
+    public static void isEqualIgnoreCase(
             String assertionDescription,
             String expected,
             String actual){
@@ -218,7 +218,7 @@ public interface Assert{
 
 
 
-    public static void equalsFloatStrings(
+    public static void isEqualAsFloat(
             String assertionDescription,
             String expected,
             String actual){
@@ -256,7 +256,7 @@ public interface Assert{
 
 
 
-    public static void assertTrue(
+    public static void isTrue(
             String assertionDescription, 
             boolean isSuccessful){
 
@@ -280,7 +280,7 @@ public interface Assert{
     
     public static <T> void assertList(List<T> expectedList, List<T> actualList){
         
-        equals("Verify lists size", expectedList.size(), actualList.size());
+        isEquals("Verify lists size", expectedList.size(), actualList.size());
         
         List<Runnable> assertionBlocks = IntStream.range(0, expectedList.size()-1)
             .mapToObj(i -> (Runnable)() -> assertEquals(expectedList.get(i), actualList.get(i)))
@@ -293,7 +293,7 @@ public interface Assert{
     
     public static <T, U> void assertMap(Map<T, U> expectedMap, Map<T, U> actualMap){
         
-        equals("Verify maps size", expectedMap.size(), actualMap.size());
+        isEquals("Verify maps size", expectedMap.size(), actualMap.size());
         
         List<Runnable> assertionBlocks = expectedMap.keySet().stream()
                 

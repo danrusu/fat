@@ -18,7 +18,7 @@ public class ResetSavedData extends TestCase{
 	    XmlDynamicData.resetSavedData();
 	    
 	    
-		Assert.assertTrue(
+		Assert.isTrue(
 		        "Saved data was not reset!",
 		        XmlDynamicData.getSavedData().isEmpty());
 	}

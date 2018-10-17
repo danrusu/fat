@@ -26,14 +26,14 @@ public class PdfCompare extends WebPageTestCase{
 
 
 
-        method = ThrowablesWrapper.wrapAssignment(
+        method = ThrowablesWrapper.unchekedAssignment(
 
                 () -> PdfCompareMethods.valueOf(evalAttribute("method")),
 
                 PdfCompareMethods.pdfbox);
 
 
-        comparison = ThrowablesWrapper.wrapAssignment(
+        comparison = ThrowablesWrapper.unchekedAssignment(
 
                 () -> StringComparison.valueOf(evalAttribute("comparison")),
 
@@ -61,7 +61,7 @@ public class PdfCompare extends WebPageTestCase{
             case pdfbox:
 
                 		
-                Assert.assertTrue(
+                Assert.isTrue(
                         
                         "Compare PDF by text contents - comparison: " + comparison,
                         
@@ -78,7 +78,7 @@ public class PdfCompare extends WebPageTestCase{
                     throw new Failure("Cannot compare multiple files with 'compareit' method.");
                 }
 
-                Assert.assertTrue(
+                Assert.isTrue(
                         "Check if PDF files' text contents are identical. (Report: " + compareItReport + ")",
                         PdfUtils.compareIt(expectedPdfFiles[0], actualPdfFiles[0], compareItReport));
                 

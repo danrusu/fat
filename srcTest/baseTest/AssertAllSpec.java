@@ -28,12 +28,12 @@ public class AssertAllSpec {
                                 "Expected"),
 
 
-                        () -> Assert.equalsIgnoreCase("Test two strings ignore case 2", 
+                        () -> Assert.isEqualIgnoreCase("Test two strings ignore case 2", 
                                 "expected", 
                                 "Expected"),
 
 
-                        () -> Assert.equalsFloatStrings("Test two float strings", 
+                        () -> Assert.isEqualAsFloat("Test two float strings", 
                                 "11.11", 
                                 "11.12")));
     }

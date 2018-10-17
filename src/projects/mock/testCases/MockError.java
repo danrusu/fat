@@ -1,6 +1,6 @@
 package projects.mock.testCases;
 
-import static base.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.unchecked;
 
 import base.Assert;
 import base.testCase.WebPageTestCase;
@@ -17,7 +17,7 @@ public class MockError extends WebPageTestCase{
     @Override
     public void run(){
 
-       wrapThrowable(
+       unchecked(
 
                 "Test case error!",
 

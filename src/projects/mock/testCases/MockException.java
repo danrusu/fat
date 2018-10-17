@@ -1,6 +1,6 @@
 package projects.mock.testCases;
 
-import static base.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.unchecked;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +22,7 @@ public class MockException extends WebPageTestCase{
 	public void run(){
 		
 	    
-       wrapThrowable(
+       unchecked(
 
                 "Test case exception!",
 

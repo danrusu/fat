@@ -79,7 +79,7 @@ class StringUtilsSpec {
     @Test
     void equalsIgnoringTest() {
         
-        Assert.assertTrue(
+        Assert.isTrue(
                 
                 "Validate StringUtils.equalsIgnoring", 
                 

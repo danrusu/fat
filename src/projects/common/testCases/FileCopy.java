@@ -30,7 +30,7 @@ public class FileCopy extends TestCase{
 		
 		log(message);
 		
-		ThrowablesWrapper.wrapThrowable(
+		ThrowablesWrapper.unchecked(
 		        
 		        "FAILED " + message,
 		        

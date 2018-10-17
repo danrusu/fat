@@ -53,7 +53,7 @@ public class Rest extends WebPageTestCase{
 			xmlHeadersValues=evalAttribute("xmlHeadersValues");
 			headersValues=xmlHeadersValues.split("\\|");
 
-			Assert.assertTrue(
+			Assert.isTrue(
 					"Check if the xmlHeadersKeys has the same length as xmlHeadersValues: "
 							+ " found xmlHeadersKeys=" +  headersKeys.length
 							+ " | found xmlHeadersValues=" + headersValues.length, 
@@ -86,7 +86,7 @@ public class Rest extends WebPageTestCase{
 				throw new Failure("Couldn't write to file " + destination, e);
 			}
 			
-			Assert.assertTrue(
+			Assert.isTrue(
 					"Check if the request was successful: "
 							+ "expected: statusCode=200; "
 							+ "found: statusCode=" + response.statusCode(), 
@@ -95,7 +95,7 @@ public class Rest extends WebPageTestCase{
 
 		} catch (Exception e) {
 			logSplitByLines(e.toString());
-			Assert.assertTrue("Check for request's success." + e.getMessage(), false);
+			Assert.isTrue("Check for request's success." + e.getMessage(), false);
 		}
 	}
 

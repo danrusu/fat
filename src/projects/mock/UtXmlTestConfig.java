@@ -41,24 +41,24 @@ public class UtXmlTestConfig {
 		
 		
 		logHeader("Verify the tests map");
-		Assert.assertTrue("Check number of tests = 10",
+		Assert.isTrue("Check number of tests = 10",
 				tests.size()==10);
 		
 		// check that all first nine tests have one test cases and correct name 
 		IntStream.range(1, tests.size()).forEach(
 				
 				i -> { 
-						Assert.assertTrue("Check number of test cases for test nr " + i + " = 1",
+						Assert.isTrue("Check number of test cases for test nr " + i + " = 1",
 						tests.get(i).getTestCases().size() == 1);
 
-				 		Assert.assertTrue("Check test name for test nr " + i + " = " + "Test" + i,
+				 		Assert.isTrue("Check test name for test nr " + i + " = " + "Test" + i,
 							tests.get(i).getName().equals("Test" + i));
 					}
 				);
 		
-		Assert.assertTrue("Check test name for test nr 10 = Test10",
+		Assert.isTrue("Check test name for test nr 10 = Test10",
 				tests.get(10).getName().equals("Test10"));
-		Assert.assertTrue("Check number of test cases for test nr 10 = 10",
+		Assert.isTrue("Check number of test cases for test nr 10 = 10",
 				tests.get(10).getTestCases().size() == 10);
 	
 

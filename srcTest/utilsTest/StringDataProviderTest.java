@@ -42,7 +42,7 @@ public class StringDataProviderTest {
                         data.get(2)),
         
                 
-                () -> Assert.equals(
+                () -> Assert.isEquals(
                         "Check data list size",
                         3, 
                         data.size()));

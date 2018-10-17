@@ -1,7 +1,8 @@
 package utils.database;
+
 import static base.Logger.debug;
 import static base.Logger.log;
-import static base.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.unchecked;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +21,7 @@ public enum Driver{
 
         log("Loading driver " + driver.getName());
 
-        wrapThrowable(
+        unchecked(
                 "Cannot find the driver in the classpath!",
                 () -> {
 
@@ -76,7 +77,7 @@ public enum Driver{
             String password) {
 
 
-        return wrapThrowable(
+        return unchecked(
                 
                 "Cannot connect the database!",
                 

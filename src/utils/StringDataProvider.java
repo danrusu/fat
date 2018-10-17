@@ -23,7 +23,7 @@ public class StringDataProvider {
             String separatorRegex, 
             int dataLength){
 
-        return wrapAssignment(
+        return unchekedAssignment(
 
                 () -> Files.readAllLines(filePath).stream()
                     .map(line -> splitBy(line, separatorRegex, dataLength))
@@ -40,7 +40,7 @@ public class StringDataProvider {
             
             log("Data provider file: " + localFilePath);
 
-            int dataLength = wrapAssignment(
+            int dataLength = unchekedAssignment(
 
                     countFileLines(localFilePath),
 

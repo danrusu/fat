@@ -2,7 +2,7 @@ package utils;
 
 import static base.Logger.log;
 import static base.Logger.logSplitByLines;
-import static base.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.unchecked;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -98,7 +98,7 @@ Map<String, String> map = new HashMap<>();
 
     public static String fileToStringWrapped(String filePath, Charset charset){
 
-        return wrapThrowable(
+        return unchecked(
 
                 () -> new String(Files.readAllBytes(Paths.get(filePath)), charset));
     }
@@ -107,7 +107,7 @@ Map<String, String> map = new HashMap<>();
 
     public static String fileToStringWrapped(String filePath){
 
-        return wrapThrowable(
+        return unchecked(
 
                 () -> new String(Files.readAllBytes(Paths.get(filePath))));
     }
@@ -116,7 +116,7 @@ Map<String, String> map = new HashMap<>();
 
     public static byte[] getBytesWrapped(String filePath){
 
-        return wrapThrowable(() -> Files.readAllBytes(Paths.get(filePath)));
+        return unchecked(() -> Files.readAllBytes(Paths.get(filePath)));
     }
 
 
@@ -125,7 +125,7 @@ Map<String, String> map = new HashMap<>();
 
         if (! Files.exists(newFolderPath)) {
 
-           wrapThrowable(() -> Files.createDirectory(newFolderPath));          
+           unchecked(() -> Files.createDirectory(newFolderPath));          
         }
 
     }

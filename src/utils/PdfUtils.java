@@ -50,7 +50,7 @@ public interface PdfUtils {
 
     public static String getText(String filename){
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
 
                 () -> {
                     //Loading an existing document
@@ -75,7 +75,7 @@ public interface PdfUtils {
 
     public static String[] getTextLines(String filename){
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
 
                 () -> getText(filename).split("\n"));
     }
@@ -84,7 +84,7 @@ public interface PdfUtils {
 
     public static String getText( String filename, int pageNr, Rectangle rect ){
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
 
                 () -> {
                     //Loading an existing document
@@ -124,10 +124,10 @@ public interface PdfUtils {
      */
     public static boolean comparePDFbyLineText(String filename1, String filename2){
 
-        String[] file1Lines = ThrowablesWrapper.wrapThrowable(
+        String[] file1Lines = ThrowablesWrapper.unchecked(
                 () -> getTextLines(filename1));
 
-        String[] file2Lines = ThrowablesWrapper.wrapThrowable(
+        String[] file2Lines = ThrowablesWrapper.unchecked(
                 () -> getTextLines(filename2));
 
 
@@ -188,7 +188,7 @@ public interface PdfUtils {
 
     public static boolean comparePDFbyText(String expected, String actual){
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
                 () -> getText(expected).equals(getText(actual)));
 
     }
@@ -197,7 +197,7 @@ public interface PdfUtils {
 
     public static void addText(String filename, int pageNr, String text){
 
-        ThrowablesWrapper.wrapThrowable(
+        ThrowablesWrapper.unchecked(
 
                 "Cound not add text at page" + pageNr + "for " + filename, 
 
@@ -248,7 +248,7 @@ public interface PdfUtils {
 
     public static int getPagesCount(String filename){
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
 
                 "Could not get the number of pages for " + filename, 
 
@@ -274,7 +274,7 @@ public interface PdfUtils {
         StringBuffer expectedTextBuffer = new StringBuffer();
         StringBuffer actualTextBuffer = new StringBuffer();
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
 
                 "Compare " + expectedPdfFiles + " with " + actualPdfFiles + " by text content",
 
@@ -374,7 +374,7 @@ public interface PdfUtils {
     public static List<RenderedImage> getImagesFromPDF(String filename)  {
 
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
 
                 () -> {
 
@@ -395,7 +395,7 @@ public interface PdfUtils {
 
     private static List<RenderedImage> getImagesFromResources(PDResources resources){
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
 
                 () -> {
 
@@ -433,7 +433,7 @@ public interface PdfUtils {
 
         IntStream.range(0, imageList.size()).forEach( 
 
-                index -> ThrowablesWrapper.wrapThrowable(
+                index -> ThrowablesWrapper.unchecked(
                         
                         () -> {
 

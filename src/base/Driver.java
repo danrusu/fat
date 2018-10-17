@@ -333,7 +333,7 @@ public class Driver {
     
     public static File saveScreenShotWrapped(String fileName){
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
 
                 "Failed to save screenshot!",
 
@@ -516,7 +516,7 @@ public class Driver {
             Path outputFile2,
             Path outputFileDiff) {
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
 
                 "Failed to compare element screenshot",
 
@@ -573,7 +573,7 @@ public class Driver {
             Path screenshotFile2,
             Path diffFile) {
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
 
                 "Failed to compare element screenshot",
 
@@ -613,7 +613,7 @@ public class Driver {
             By locator, 
             Path outputFile) {
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
 
                 "Failed to save element screenshot for " + locator,
 
@@ -670,7 +670,7 @@ public class Driver {
     // TODO - rethink
     public static File saveElementScreenshot(By locator, Path outputFile) {
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
 
                 "Failed to save elements screenshot!",
 

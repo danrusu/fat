@@ -1,6 +1,6 @@
 package projects.common.testCases;
 
-import static base.Assert.assertTrue;
+import static base.Assert.isTrue;
 import static base.Driver.areScreenshotsDifferentWrapped;
 
 import java.nio.file.Path;
@@ -26,7 +26,7 @@ public class WebElementScreenShotCompare extends WebPageTestCase{
         Path file2 = Paths.get(evalAttribute("file2"));
 
 
-        assertTrue(
+        isTrue(
 
                 String.join(" | ",                        
                         "Screenshots are different",

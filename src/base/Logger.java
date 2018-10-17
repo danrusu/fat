@@ -1,7 +1,8 @@
 package base;
 
-import static base.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.unchecked;
 import static utils.FileUtils.createDirsWrapped;
+import static utils.SystemUtils.getBooleanPropertyOrDefault;
 import static utils.TimeUtils.formatCurrentDate;
 
 import java.nio.file.Files;
@@ -11,8 +12,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import utils.SystemUtils;
 
 
 
@@ -71,7 +70,7 @@ public class Logger {
             logFilePath = logDirPath.resolve(logFileName);
             createLogFile();
             
-            DEBUG = SystemUtils.getBooleanPropertyOrDefault(JvmArgs.DEBUG, false);
+            DEBUG = getBooleanPropertyOrDefault(JvmArgs.DEBUG, false);
         }
     }
 
@@ -79,7 +78,7 @@ public class Logger {
 
     private static void createLogFile() {
 
-        wrapThrowable(
+        unchecked(
 
                 "Coud not create log !",
 
@@ -90,7 +89,7 @@ public class Logger {
 
     public static void writeTextToFileInLogDir(String text, String fileName){
 
-        wrapThrowable(
+        unchecked(
 
                 "Could not create file " + fileName, 
 
@@ -127,7 +126,7 @@ public class Logger {
 
         System.out.println(formattedMessage);
 
-        wrapThrowable(
+        unchecked(
 
                 "Could not write to log!",
 
@@ -215,8 +214,8 @@ public class Logger {
     public static void logFirstLine(String lines) {
 
         List.of(lines.split("\n")).stream()
-        .limit(1)
-        .forEach(Logger::log);
+            .limit(1)
+            .forEach(Logger::log);
     }
 
 
@@ -240,6 +239,7 @@ public class Logger {
      * @return - the log.separator string
      */
     public static String getSeparator(){
+        
         return separator;
     }
 

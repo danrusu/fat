@@ -22,7 +22,7 @@ public class ThrowablesWrapperSpec {
     public void WrapAllTest() {
 
 
-        List<Throwable> thrown = ThrowablesWrapper.wrapAll(
+        List<Throwable> thrown = ThrowablesWrapper.uncheckedAll(
                 
                 () -> { goodString.toUpperCase(); },
 
@@ -51,7 +51,7 @@ public class ThrowablesWrapperSpec {
     @Test
     public void WrapAssignmentTestNeg() {
 
-        String x = ThrowablesWrapper.wrapAssignment(
+        String x = ThrowablesWrapper.unchekedAssignment(
 
                 () -> nullString.toUpperCase(),
 
@@ -67,7 +67,7 @@ public class ThrowablesWrapperSpec {
     @Test
     public void WrapAssignmentTestPos() {
 
-        String x = ThrowablesWrapper.wrapAssignment(
+        String x = ThrowablesWrapper.unchekedAssignment(
 
                 () -> goodString.toUpperCase(),
 

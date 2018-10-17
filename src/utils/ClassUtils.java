@@ -111,7 +111,7 @@ public interface ClassUtils {
 
     public static Object newInstance(String className){
 
-        return ThrowablesWrapper.wrapThrowable(
+        return ThrowablesWrapper.unchecked(
                 () -> Class.forName(className).getConstructor().newInstance());          
     }
 

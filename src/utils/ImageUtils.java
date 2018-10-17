@@ -1,6 +1,6 @@
 package utils;
 
-import static base.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.unchecked;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
@@ -21,7 +21,7 @@ public class ImageUtils {
     
     public static void imagesVerifyEqualityWrapped(String expectedImage, String actualImage) {      
     
-        wrapThrowable(imagesVerifyEquality(expectedImage, actualImage));
+        unchecked(imagesVerifyEquality(expectedImage, actualImage));
     }
 
     
@@ -41,7 +41,7 @@ public class ImageUtils {
     
             // compare data-buffer objects //
             // 1. assert sizes           
-            Assert.equals(
+            Assert.isEquals(
                     "Images have the same size", 
                     expectedImageDataBuffer.getSize(), 
                     actualImageDataBuffer.getSize());
@@ -50,7 +50,7 @@ public class ImageUtils {
             // 2. assert content
             IntStream.range(0, expectedImageDataBuffer.getSize()).forEach(
                     
-                    i -> Assert.equalsQuiet(
+                    i -> Assert.isEqualQuiet(
                         "",
                         expectedImageDataBuffer.getElem(i),
                         actualImageDataBuffer.getElem(i)));                    

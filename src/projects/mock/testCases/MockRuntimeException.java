@@ -1,6 +1,6 @@
 package projects.mock.testCases;
 
-import static base.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.unchecked;
 
 import java.util.TreeMap;
 
@@ -19,7 +19,7 @@ public class MockRuntimeException extends WebPageTestCase{
     public void run(){
 
 
-        wrapThrowable(
+        unchecked(
 
                 "Test case runtime exception!",
 

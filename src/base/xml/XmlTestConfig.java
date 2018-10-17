@@ -333,7 +333,7 @@ public class XmlTestConfig {
 
     public static void setSuiteResultFileType(String resultFileType) {
 
-        XmlTestConfig.resultFileType = ThrowablesWrapper.wrapAssignment(
+        XmlTestConfig.resultFileType = ThrowablesWrapper.unchekedAssignment(
 
                 () -> ResultFileType.valueOf(resultFileType),
 

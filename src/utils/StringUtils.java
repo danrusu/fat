@@ -1,7 +1,7 @@
 package utils;
 
-import static base.failures.ThrowablesWrapper.wrapAssignment;
-import static base.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.unchecked;
+import static base.failures.ThrowablesWrapper.unchekedAssignment;
 
 import java.util.Base64;
 import java.util.List;
@@ -24,7 +24,7 @@ public interface StringUtils {
 	
 	public static String encodeBase64(String text, String charSet){
 	    
-	    return wrapThrowable(
+	    return unchecked(
                 "encodeBase64 error",
                 () -> new String(Base64.getEncoder().encodeToString(text.getBytes()).getBytes(), charSet));	   
 	}
@@ -33,7 +33,7 @@ public interface StringUtils {
 	
 	public static String decodeBase64(String encodedText, String charSet){
 	    
-	    return wrapThrowable(
+	    return unchecked(
 	            "decodeBase64 error",
 	            () -> new String(Base64.getDecoder().decode(encodedText), charSet));
 	}
@@ -85,7 +85,7 @@ public interface StringUtils {
 
     public static int toInt(String intString, int defaultValue) {
         
-        return wrapAssignment(
+        return unchekedAssignment(
                 () ->  Integer.parseInt(intString), 
                 defaultValue);
     }
@@ -93,7 +93,7 @@ public interface StringUtils {
     
     public static int toInt(String intString, int defaultValue, boolean printException) {
         
-        return wrapAssignment(
+        return unchekedAssignment(
                 () ->  Integer.parseInt(intString), 
                 defaultValue);
     }

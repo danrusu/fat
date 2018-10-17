@@ -1,7 +1,7 @@
 package utils.database;
 
 import static base.Logger.log;
-import static base.failures.ThrowablesWrapper.wrapThrowable;
+import static base.failures.ThrowablesWrapper.unchecked;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -41,14 +41,14 @@ public interface Sql {
             ResultSetMetaData resultSetMetaData, 
             int columnIndex) {
         
-        return wrapThrowable(() -> resultSetMetaData.getColumnName(columnIndex));
+        return unchecked(() -> resultSetMetaData.getColumnName(columnIndex));
     }
 
 
 
     private static String getColumnValue(ResultSet resultSet, int columnIndex) {
         
-        return wrapThrowable(() -> resultSet.getString(columnIndex));
+        return unchecked(() -> resultSet.getString(columnIndex));
     }
 
 
@@ -56,7 +56,7 @@ public interface Sql {
     // INSERT, UPDATE, DELETE statement or an SQL statement that returns nothing
     public static int executeUpdate(Connection connection, String sqlQuery){
         
-        return wrapThrowable(() -> connection.createStatement().executeUpdate(sqlQuery));
+        return unchecked(() -> connection.createStatement().executeUpdate(sqlQuery));
     }
 
 
@@ -66,7 +66,7 @@ public interface Sql {
             Connection connection, 
             String sqlQuery){
 
-        return wrapThrowable(() ->{
+        return unchecked(() ->{
 
             Map<Integer, Map<String, String >> rowsMap = new TreeMap<>();
 
@@ -115,7 +115,7 @@ public interface Sql {
 
 
     public static void disconnect(Connection connection){
-        wrapThrowable(() -> {
+        unchecked(() -> {
             connection.close(); 
             return null;
         });

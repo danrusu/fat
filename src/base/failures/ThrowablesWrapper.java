@@ -1,12 +1,14 @@
 package base.failures;
 
+import static base.Logger.debug;
+import static base.Logger.log;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import base.Logger;
 
 public interface ThrowablesWrapper {
 
@@ -28,7 +30,7 @@ public interface ThrowablesWrapper {
     
     
 
-    public static List<Throwable> wrapAll(Runnable ...runables){
+    public static List<Throwable> uncheckedAll(Runnable ...runables){
 
         return List.of(runables).stream()
         
@@ -43,16 +45,17 @@ public interface ThrowablesWrapper {
 
 
 
-    public static <T> Optional<T> wrapAssignment(Callable<T> callable){
+    public static <T> Optional<T> uncheckedAssignment(Callable<T> callable){
 
         T returnedValue = null;
 
         try {
             returnedValue = callable.call();
         }
+        
         catch(Throwable thrown) {
-            Logger.log("Wrapped exception (handled): " + thrown);
-            Logger.debug(Failure.stackToString(thrown)); 
+            log("Wrapped exception (handled): " + thrown);
+            debug(Failure.stackToString(thrown)); 
         }
 
         return Optional.ofNullable(returnedValue);
@@ -60,14 +63,14 @@ public interface ThrowablesWrapper {
 
     
 
-    public static <T> T wrapAssignment(Callable<T> callable, T defaultValue){
+    public static <T> T unchekedAssignment(Callable<T> callable, T defaultValue){
 
-        return wrapAssignment(callable).orElse(defaultValue);
+        return uncheckedAssignment(callable).orElse(defaultValue);
     }
     
     
     
-    public static <T> T wrapThrowable(
+    public static <T> T unchecked(
             String testCaseFailureMessage, 
             Callable<T> callable){
 
@@ -81,7 +84,7 @@ public interface ThrowablesWrapper {
 
 
 
-    public static <T> T wrapThrowable(Callable<T> callable){
+    public static <T> T unchecked(Callable<T> callable){
 
         try {
             return callable.call();

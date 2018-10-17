@@ -43,12 +43,12 @@ public class FileReplaceText extends TestCase{
         String content;
 
         // read file into string
-        content = ThrowablesWrapper.wrapThrowable(
+        content = ThrowablesWrapper.unchecked(
 
                 () -> new String(Files.readAllBytes(sourceFilePath), charset));
 
 
-        TextReplacementMode textReplacementMode = ThrowablesWrapper.wrapAssignment(
+        TextReplacementMode textReplacementMode = ThrowablesWrapper.unchekedAssignment(
 
                 () -> TextReplacementMode.valueOf(mode),
 
@@ -70,7 +70,7 @@ public class FileReplaceText extends TestCase{
 
 
         String newContent = content;
-        ThrowablesWrapper.wrapThrowable(
+        ThrowablesWrapper.unchecked(
 
                 () -> Files.write(sourceFilePath, newContent.getBytes(charset)));
 
