@@ -22,7 +22,7 @@ public class PortalLogin extends TestCase{
 	    portalPage.setPassword(evalAttribute("password"));
 	    portalPage.login();
 	    
-	    Assert.equals(
+	    Assert.isEqual(
 	            "Check that no error message is present.",
 	            "",
 	            portalPage.getErrorMessage());	    

@@ -436,7 +436,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
             setter.accept(attributeValue);
 
-            Assert.equals(
+            Assert.isEqual(
                     "Check " + attributeName,
                     attributeValue.toString(),
                     getter.get().toString());  
@@ -472,7 +472,7 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
             T attributeValue = attributeEvaluator.apply(attributeName);
 
-            Assert.equals(
+            Assert.isEqual(
                     "Check " + attributeName,
                     attributeValue.toString(),
                     getter.get().toString());  

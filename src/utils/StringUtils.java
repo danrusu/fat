@@ -1,7 +1,7 @@
 package utils;
 
 import static base.failures.ThrowablesWrapper.unchecked;
-import static base.failures.ThrowablesWrapper.unchekedAssignment;
+import static base.failures.ThrowablesWrapper.assignUnchecked;
 
 import java.util.Base64;
 import java.util.List;
@@ -85,7 +85,7 @@ public interface StringUtils {
 
     public static int toInt(String intString, int defaultValue) {
         
-        return unchekedAssignment(
+        return assignUnchecked(
                 () ->  Integer.parseInt(intString), 
                 defaultValue);
     }
@@ -93,7 +93,7 @@ public interface StringUtils {
     
     public static int toInt(String intString, int defaultValue, boolean printException) {
         
-        return unchekedAssignment(
+        return assignUnchecked(
                 () ->  Integer.parseInt(intString), 
                 defaultValue);
     }

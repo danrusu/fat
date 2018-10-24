@@ -20,7 +20,7 @@ public class PdfVerifyPagesCount extends WebPageTestCase{
 
         String pdf = evalAttribute("pdf");
 
-        Assert.isEquals(
+        Assert.isEqual(
 
                 "Verify pages count for " + pdf,
 

@@ -4,7 +4,7 @@ import static base.Logger.log;
 import static base.Logger.logHeader;
 import static base.Logger.logLines;
 import static base.failures.ThrowablesWrapper.unchecked;
-import static base.failures.ThrowablesWrapper.unchekedAssignment;
+import static base.failures.ThrowablesWrapper.assignUnchecked;
 import static base.results.ResultStatus.Failed;
 import static base.results.ResultStatus.Passed;
 import static base.results.ResultStatus.Skipped;
@@ -54,7 +54,7 @@ public interface TestRunner {
 
         var testAttributes = testConfig.getTestAttributes();
         
-        Path dataProviderFile = unchekedAssignment(()->
+        Path dataProviderFile = assignUnchecked(()->
                 Paths.get(
                         System.getProperty("user.dir"), 
                         testAttributes.get(TestAttribute.dataProvider.name())),                
@@ -102,8 +102,8 @@ public interface TestRunner {
 
                 testCasesResults = TestCaseRunner.runAll(
                         testId, 
-                        dataProviderFile, 
-                        testCases);
+                        testCases, 
+                        dataProviderFile);
 
                 testResultStatus = getTestResultStatus(testCasesResults);
             }

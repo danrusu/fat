@@ -41,7 +41,7 @@ public class ImageUtils {
     
             // compare data-buffer objects //
             // 1. assert sizes           
-            Assert.isEquals(
+            Assert.isEqual(
                     "Images have the same size", 
                     expectedImageDataBuffer.getSize(), 
                     actualImageDataBuffer.getSize());

@@ -136,7 +136,7 @@ public interface Assert{
 
 
 
-    public static void equals(
+    public static void isEqual(
             String assertionDescription,
             String expected,            
             String actual){
@@ -149,11 +149,11 @@ public interface Assert{
     
 
     
-    public static void equals(
+    public static void isEqual(
             String expected,            
             String actual){
 
-        equals("", expected + "", actual + "");
+        isEqual("", expected + "", actual + "");
     }
     
     
@@ -164,7 +164,7 @@ public interface Assert{
             boolean actual){
 
 
-        equals(assertionDescription, expected + "", actual + "");
+        isEqual(assertionDescription, expected + "", actual + "");
     }
     
     
@@ -183,13 +183,13 @@ public interface Assert{
     
     
     
-    public static void isEquals(
+    public static void isEqual(
             String assertionDescription,
             int expected,            
             int actual){
 
 
-        equals(assertionDescription, "" + expected, "" + actual);
+        isEqual(assertionDescription, "" + expected, "" + actual);
     }
     
     
@@ -280,7 +280,7 @@ public interface Assert{
     
     public static <T> void assertList(List<T> expectedList, List<T> actualList){
         
-        isEquals("Verify lists size", expectedList.size(), actualList.size());
+        isEqual("Verify lists size", expectedList.size(), actualList.size());
         
         List<Runnable> assertionBlocks = IntStream.range(0, expectedList.size()-1)
             .mapToObj(i -> (Runnable)() -> assertEquals(expectedList.get(i), actualList.get(i)))
@@ -293,7 +293,7 @@ public interface Assert{
     
     public static <T, U> void assertMap(Map<T, U> expectedMap, Map<T, U> actualMap){
         
-        isEquals("Verify maps size", expectedMap.size(), actualMap.size());
+        isEqual("Verify maps size", expectedMap.size(), actualMap.size());
         
         List<Runnable> assertionBlocks = expectedMap.keySet().stream()
                 

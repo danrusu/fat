@@ -104,7 +104,6 @@ public class XmlDynamicData {
                 return token;
             }
         }         
-
     }
 
 
@@ -222,17 +221,18 @@ public class XmlDynamicData {
 
                     return formatCurrentDate("dd"); 
 
-
                 case $M:
+                    
                     return removeZeroPrefixFromIntegers(
                             formatCurrentDate("M"));
 
                 case $d:
+                    
                     return removeZeroPrefixFromIntegers(
                             formatCurrentDate("d")); 	
 
 
-                    // tomorrow 
+                // tomorrow 
                 case $tomorrow_dd:
 
                     return formatNextDate("dd", "1"); 
@@ -246,10 +246,12 @@ public class XmlDynamicData {
                     return formatNextDate("yyyy", "1");
 
                 case $tomorrow_M:
+                    
                     return removeZeroPrefixFromIntegers(
                             formatNextDate("M", "1"));
 
                 case $tomorrow_d:
+                    
                     return removeZeroPrefixFromIntegers(
                             formatNextDate("d", "1"));
 

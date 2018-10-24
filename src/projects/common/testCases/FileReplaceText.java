@@ -48,7 +48,7 @@ public class FileReplaceText extends TestCase{
                 () -> new String(Files.readAllBytes(sourceFilePath), charset));
 
 
-        TextReplacementMode textReplacementMode = ThrowablesWrapper.unchekedAssignment(
+        TextReplacementMode textReplacementMode = ThrowablesWrapper.assignUnchecked(
 
                 () -> TextReplacementMode.valueOf(mode),
 

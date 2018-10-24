@@ -51,13 +51,13 @@ public class ThrowablesWrapperSpec {
     @Test
     public void WrapAssignmentTestNeg() {
 
-        String x = ThrowablesWrapper.unchekedAssignment(
+        String x = ThrowablesWrapper.assignUnchecked(
 
                 () -> nullString.toUpperCase(),
 
                 "assignment failed");
 
-        Assert.equals("x was correct assigned", 
+        Assert.isEqual("x was correct assigned", 
                 "assignment failed", 
                 x);
     }
@@ -67,13 +67,13 @@ public class ThrowablesWrapperSpec {
     @Test
     public void WrapAssignmentTestPos() {
 
-        String x = ThrowablesWrapper.unchekedAssignment(
+        String x = ThrowablesWrapper.assignUnchecked(
 
                 () -> goodString.toUpperCase(),
 
                 "assignment failed");
 
-        Assert.equals("x was correct assigned", 
+        Assert.isEqual("x was correct assigned", 
                 goodString.toUpperCase(), 
                 x);
     }

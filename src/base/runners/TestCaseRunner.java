@@ -62,15 +62,14 @@ public interface TestCaseRunner {
 
     /**
      * Run all test cases within a test.
-     * @param testCases - test cases map
      * @param testId - parent test id
-     * 
+     * @param testCases - test cases map
      * @return - true if all test cases passed or false otherwise
      */
     public static Map<Integer, TestCaseResult> runAll(
             int testId, 
-            Path dataProviderFile,
-            Map<Integer, Map<String, String>> testCases){
+            Map<Integer, Map<String, String>> testCases,
+            Path dataProviderFile){
 
 
         Map<Integer, TestCaseResult> testCasesResults = new TreeMap<>();
@@ -88,9 +87,9 @@ public interface TestCaseRunner {
 
             TestCaseResult testCaseResult = retry(
                     testId, 
-                    dataProviderFile,
-                    testCaseId, 
+                    testCaseId,
                     testCaseAttributes, 
+                    dataProviderFile, 
                     retriesCount);
 
             testCasesResults.put(testCaseId, testCaseResult);
@@ -162,9 +161,9 @@ public interface TestCaseRunner {
 
     public static TestCaseResult retry(
             int testId,
-            Path dataProviderFile,
-            int testCaseId, 
+            int testCaseId,
             Map<String, String>  testCaseAttributes, 
+            Path dataProviderFile, 
             int retriesCount) {
 
 
@@ -183,7 +182,7 @@ public interface TestCaseRunner {
             String testCaseName = testCaseAttributes.get("name");
 
 
-            try {
+            try {                
                 // get a TestCase instance, set attributes and run it 
                 TestCase testCase = (TestCase)ClassUtils.newInstance(
                         testCaseName);

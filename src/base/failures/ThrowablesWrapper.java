@@ -63,7 +63,7 @@ public interface ThrowablesWrapper {
 
     
 
-    public static <T> T unchekedAssignment(Callable<T> callable, T defaultValue){
+    public static <T> T assignUnchecked(Callable<T> callable, T defaultValue){
 
         return uncheckedAssignment(callable).orElse(defaultValue);
     }

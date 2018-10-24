@@ -23,7 +23,7 @@ public class StringDataProvider {
             String separatorRegex, 
             int dataLength){
 
-        return unchekedAssignment(
+        return assignUnchecked(
 
                 () -> Files.readAllLines(filePath).stream()
                     .map(line -> splitBy(line, separatorRegex, dataLength))
@@ -40,7 +40,7 @@ public class StringDataProvider {
             
             log("Data provider file: " + localFilePath);
 
-            int dataLength = unchekedAssignment(
+            int dataLength = assignUnchecked(
 
                     countFileLines(localFilePath),
 

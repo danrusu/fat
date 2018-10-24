@@ -18,12 +18,12 @@ public class AssertAllSpec {
 
                 () -> Assert.verifyAll(
 
-                        () -> Assert.equals("Test two strings 1", 
+                        () -> Assert.isEqual("Test two strings 1", 
                                 "expected", 
                                 "actual"),
 
 
-                        () -> Assert.equals("Test two strings match case 3", 
+                        () -> Assert.isEqual("Test two strings match case 3", 
                                 "expected", 
                                 "Expected"),
 

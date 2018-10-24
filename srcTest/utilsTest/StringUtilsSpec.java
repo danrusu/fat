@@ -67,7 +67,7 @@ class StringUtilsSpec {
     @Test
     void removeAllRegexTest() {
         
-        Assert.equals(                                
+        Assert.isEqual(                                
                 
                 textAfterRemovingAllRegex,
                 

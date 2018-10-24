@@ -1,6 +1,6 @@
 package utils;
 
-import static base.failures.ThrowablesWrapper.unchekedAssignment;
+import static base.failures.ThrowablesWrapper.assignUnchecked;
 
 import java.util.Optional;
 
@@ -53,7 +53,7 @@ public interface SystemUtils {
     // Integer JVM args
     public static int getIntPropertyOrDefault(JvmArgs arg, int defaultValue) {
         
-        return unchekedAssignment(
+        return assignUnchecked(
                 
                 () -> Optional.ofNullable(Integer.parseInt(System.getProperty(arg.name())))
                     .orElse(defaultValue),

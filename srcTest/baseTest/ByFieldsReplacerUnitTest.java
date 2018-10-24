@@ -21,7 +21,7 @@ public class ByFieldsReplacerUnitTest{
     @Test
     public void testPublicMemberCssSelector() {	   	
 
-        Assert.equals(
+        Assert.isEqual(
 
                 "#id_section",
 
@@ -32,7 +32,7 @@ public class ByFieldsReplacerUnitTest{
     @Test
     public void testPrivaeMemberXpathSelector() {     
 
-        Assert.equals(
+        Assert.isEqual(
 
                 "//*[@id=id_section]", 
 
@@ -43,7 +43,7 @@ public class ByFieldsReplacerUnitTest{
 
     @Test
     public void testPublicMemberIdSelector() {     
-        Assert.equals(
+        Assert.isEqual(
 
                 "id_section", 
 
@@ -54,7 +54,7 @@ public class ByFieldsReplacerUnitTest{
 
     @Test
     public void testPublicMemberClassNameSelector() {     
-        Assert.equals(
+        Assert.isEqual(
 
                 "class_section", 
 
@@ -65,7 +65,7 @@ public class ByFieldsReplacerUnitTest{
 
     @Test
     public void testFieldWithNoReplacement_cssSelector() {     
-        Assert.equals(
+        Assert.isEqual(
 
                 "#counter@tex", 
 

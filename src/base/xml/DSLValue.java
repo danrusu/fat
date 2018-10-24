@@ -1,7 +1,11 @@
 package base.xml;
 
+import java.util.List;
+
+
 
 public enum DSLValue{
+    
 	$userDir,
 	$logFolder,
 	
@@ -27,11 +31,9 @@ public enum DSLValue{
     
 	public static boolean contains(String value){
 	    
-		for(DSLValue d : values()){
-			if (d.name().equals(value)){ 
-				return true;
-			}
-		}
-		return false;
+	    return List.of(values()).stream()
+	            .anyMatch(dslValue -> dslValue.name().equals(value));
+	    
 	} 
 }
+

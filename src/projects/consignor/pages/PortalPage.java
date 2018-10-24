@@ -53,7 +53,7 @@ public class PortalPage extends WebPage{
 	    
 	    resetImplicitWait();
 	    
-	    String errorMessage = ThrowablesWrapper.unchekedAssignment(
+	    String errorMessage = ThrowablesWrapper.assignUnchecked(
 	            
 	            () -> getExplicitWait(2)
 	                    .until(ExpectedConditions.visibilityOfElementLocated(loginErrorMessage))

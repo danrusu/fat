@@ -26,14 +26,14 @@ public class PdfCompare extends WebPageTestCase{
 
 
 
-        method = ThrowablesWrapper.unchekedAssignment(
+        method = ThrowablesWrapper.assignUnchecked(
 
                 () -> PdfCompareMethods.valueOf(evalAttribute("method")),
 
                 PdfCompareMethods.pdfbox);
 
 
-        comparison = ThrowablesWrapper.unchekedAssignment(
+        comparison = ThrowablesWrapper.assignUnchecked(
 
                 () -> StringComparison.valueOf(evalAttribute("comparison")),
 
