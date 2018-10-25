@@ -27,7 +27,7 @@ class StringUtilsSpec {
                 
                 List.of("users", "password", "age"),
                 
-                StringUtils.splitBy(
+                StringUtils.splitByAndTrim(
                         "users, password, age",
                         ", ",
                         3));
@@ -41,7 +41,7 @@ class StringUtilsSpec {
                 
                 List.of("users", "password", "age", "", ""),
                 
-                StringUtils.splitBy(
+                StringUtils.splitByAndTrim(
                         "users, password, age",
                         ", ",
                         5));
@@ -56,7 +56,7 @@ class StringUtilsSpec {
                 
                 List.of("users", "password", "age"),
                 
-                StringUtils.splitBy(
+                StringUtils.splitByAndTrim(
                         "users, password, age",
                         ", ",
                         1));

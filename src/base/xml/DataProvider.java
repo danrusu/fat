@@ -1,4 +1,4 @@
-package utils;
+package base.xml;
 
 import static base.failures.ThrowablesWrapper.*;
 import static base.Logger.*;
@@ -11,14 +11,24 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
 
-public class StringDataProvider {
+public class DataProvider {
+    
+    
+    
+    public static Predicate<String> lineIsNotEmpty = line -> line.isEmpty() == false;
+    
+    
+    
+    public static Predicate<String> lineIsNotCommented = line -> line.startsWith("//") == false; 
+    
 
 
-    public static List<List<String>> getDataWrapped(
+    public static List<List<String>> getData(
             Path filePath, 
             String separatorRegex, 
             int dataLength){
@@ -26,15 +36,21 @@ public class StringDataProvider {
         return assignUnchecked(
 
                 () -> Files.readAllLines(filePath).stream()
-                    .map(line -> splitBy(line, separatorRegex, dataLength))
-                    .collect(Collectors.toList()),
+                
+                    .filter(lineIsNotEmpty)
+                
+                    .filter(lineIsNotCommented)
+                    
+                    .map(line -> splitByAndTrim(line, separatorRegex, dataLength))
+                    
+                    .collect(Collectors.toList()),                    
 
                 emptyList());           
     }
 
 
 
-    public static int getDataLengthWrapped(String localFilePath) {
+    public static int getDataLength(String localFilePath) {
 
         if(localFilePath != null) { 
             
@@ -65,7 +81,12 @@ public class StringDataProvider {
 
                 .stream()
 
+                .filter(lineIsNotEmpty)
+                
+                .filter(lineIsNotCommented)
+
                 .collect(Collectors.counting())
+                
                 .intValue();
     }
 

@@ -29,7 +29,6 @@ import base.runnerConfig.SuiteAttribute;
 import base.runnerConfig.TestAttribute;
 import base.runnerConfig.TestCaseAttribute;
 import base.runnerConfig.TestConfig;
-import utils.StringDataProvider;
 import utils.StringUtils;
 
 
@@ -168,7 +167,7 @@ public class XmlTestConfig {
             testAttributesMap.put(browserAttribute, browserProperty);                
         }
 
-        int dataProviderLength = StringDataProvider.getDataLengthWrapped(
+        int dataProviderLength = DataProvider.getDataLength(
                 testAttributesMap.get(TestAttribute.dataProvider.name()));
 
         dataProviderTestLoop(testElement, testAttributesMap, dataProviderLength);

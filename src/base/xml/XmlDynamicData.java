@@ -15,7 +15,6 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import base.failures.ThrowablesWrapper;
-import utils.StringDataProvider;
 import utils.StringUtils;
 
 public class XmlDynamicData {
@@ -295,7 +294,7 @@ public class XmlDynamicData {
             String rowIndex, 
             String columnIndex) {
 
-        return StringDataProvider.getDataWrapped(dataProviderFilePath, ",\\s*", 2)
+        return DataProvider.getData(dataProviderFilePath, ",\\s*", 2)
 
                 .get(StringUtils.toInt(rowIndex, 0))
 

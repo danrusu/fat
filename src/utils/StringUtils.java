@@ -116,17 +116,20 @@ public interface StringUtils {
     
     
     public static List<String> splitByEquals(String text){
+        
         return splitBy(text, "=");
     }
 
     
     
-    public static List<String> splitBy(
+    public static List<String> splitByAndTrim(
             String text, 
             String separatorRegexp, 
             int listLength){
         
-          var initialList = List.of(text.split(separatorRegexp));
+          var initialList = List.of(text.split(separatorRegexp)).stream()
+                  .map(String::trim)
+                  .collect(Collectors.toList());
           
           var listOfEmpyStingsToBeAddedAtTheEnd = IntStream.range(0, listLength - initialList.size())
                   .mapToObj(i -> "")

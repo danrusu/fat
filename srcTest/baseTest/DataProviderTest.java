@@ -1,4 +1,4 @@
-package utilsTest;
+package baseTest;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -7,9 +7,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import base.Assert;
-import utils.StringDataProvider;
+import base.xml.DataProvider;
 
-public class StringDataProviderTest {
+public class DataProviderTest {
 
  
     
@@ -17,7 +17,7 @@ public class StringDataProviderTest {
     public void readDataProviderFileTest() throws IOException{
         
         
-        List<List<String>> data = StringDataProvider.getDataWrapped(
+        List<List<String>> data = DataProvider.getData(
                 Paths.get(System.getProperty("user.dir"), 
                         "dataProviders", 
                         "mockUsers.txt"),
