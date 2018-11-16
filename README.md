@@ -35,3 +35,6 @@ java -jar fat.jar XML\Demo\browsers.xml
  - detailed Java log: log.txt
  - test scenario execution report: result.html
  - failure screenshots
+
+
+#### 6. [Selenium drivers](http://www.webdriverjs.com/webdriverjs/)
