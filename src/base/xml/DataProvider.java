@@ -1,10 +1,9 @@
 package base.xml;
 
-import static base.failures.ThrowablesWrapper.*;
-import static base.Logger.*;
+import static base.Logger.log;
+import static base.failures.ThrowablesWrapper.assignUnchecked;
 import static java.util.Collections.emptyList;
-import static utils.StringUtils.*;
-
+import static utils.StringUtils.splitByAndTrim;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -56,11 +55,7 @@ public class DataProvider {
             
             log("Data provider file: " + localFilePath);
 
-            int dataLength = assignUnchecked(
-
-                    countFileLines(localFilePath),
-
-                    0);
+            int dataLength = assignUnchecked(countFileLines(localFilePath), 0);
 
             log("Data provider length: " + dataLength);
 
@@ -75,9 +70,7 @@ public class DataProvider {
 
     private static Callable<Integer> countFileLines(String localFilePath) {
 
-        return () -> Files.readAllLines(Paths.get( 
-                    System.getProperty("user.dir"), 
-                    (localFilePath)))
+        return () -> Files.readAllLines(Paths.get(System.getProperty("user.dir"), (localFilePath)))
 
                 .stream()
 

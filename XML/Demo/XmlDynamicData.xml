@@ -159,7 +159,7 @@
 
         	string2="currentOrders[4]" 
         	
-        	expectedFailureRegExp=".*ArrayIndexOutOfBoundsException: 4.*" />
+        	expectedFailureRegExp=".*ArrayIndexOutOfBoundsException: Index 4 out of bounds.*" />
 
 	</test>	
 
