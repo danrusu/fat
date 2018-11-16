@@ -1,7 +1,6 @@
 package base.failures;
 
 import static base.Logger.debug;
-import static base.Logger.log;
 
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +53,7 @@ public interface ThrowablesWrapper {
         }
         
         catch(Throwable thrown) {
-            log("Wrapped exception (handled): " + thrown);
+            debug("Wrapped exception (handled): " + thrown);
             debug(Failure.stackToString(thrown)); 
         }
 

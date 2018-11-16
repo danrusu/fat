@@ -5,21 +5,21 @@
 
   	<test name="ChromeTest" browser="chrome">
 	
-		<testcase name="projects.common.testCases.OpenPage" url="https://www.google.com" />
+		<testcase name="projects.common.testCases.OpenPage" url="https://app.pluralsight.com" />
 	
 	</test>
 	
 	
  	<test name="FirefoxTest" browser="firefox">
 	
-		<testcase name="projects.common.testCases.OpenPage" url="https://www.google.com" />
+		<testcase name="projects.common.testCases.OpenPage" url="https://app.pluralsight.com" />
 	
 	</test>  
 
 
  	<test name="IETest" browser="ie">
 
-		<testcase name="projects.common.testCases.OpenPage" url="https://www.google.com" />
+		<testcase name="projects.common.testCases.OpenPage" url="https://app.pluralsight.com" />
 
 	</test> 
 	
