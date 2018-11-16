@@ -7,7 +7,7 @@
 	
 		<testcase name="projects.common.testCases.OpenPage" 
 		
-			url="https://www.consignorportal.com/ticket/Outbox" 
+			url="https://www.yahoo.com" 
 		
 			browser="{$dataProvider(0)}" />
 	
