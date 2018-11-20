@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<suite name="danrusu_apiTest" user="aitTester" project="danrusu.ro">
-
-  
-   	<test name="Validate_Lotto_Api">
-  	
-		<testcase name="projects.danrusu.testCases.LottoApi"/>
-			
-	</test> 
+<suite name="danrusu_apiTest_Calculate" user="aitTester" project="danrusu.ro">
 
 
    	<test name="Validate_CalculateApi_SUM">
@@ -24,7 +17,7 @@
 			
 			expectedResult="15" />
 			
-		#empty sum
+		#empty inputs sum
 		<testcase name="projects.danrusu.testCases.CalculateApi"
 		
 			firstNumber=""
@@ -34,14 +27,32 @@
 			operation="sum"
 			
 			expectedResult="0" />
+		
+			
+		<testcase name="projects.danrusu.testCases.CalculateApi"
+		
+			firstNumber="10"			
+			
+			operation="sum"
+			
+			expectedResult="10" />
+			
+			
+		<testcase name="projects.danrusu.testCases.CalculateApi"
+		
+			secondNumber="5"
+			
+			operation="sum"
+			
+			expectedResult="5" />
 			
 	</test>	
 		
 		
-	<test name="Validate_CalculateApi_Multiplication">			
+	<test name="Validate_CalculateApi_MULTIPLICATION">			
 			
 			
-		#multiplication positives
+		#multiplication 
 		<testcase name="projects.danrusu.testCases.CalculateApi"
 		
 			firstNumber="10"
@@ -53,9 +64,27 @@
 			expectedResult="50" />
 						
 			
-		#empty multiplication
+		#empty inputs multiplication					
 		<testcase name="projects.danrusu.testCases.CalculateApi"
 		
+			firstNumber="10"
+			
+			operation="multiplication"
+			
+			expectedResult="0" />
+		
+			
+		<testcase name="projects.danrusu.testCases.CalculateApi"
+		
+			secondNumber="5"
+			
+			operation="multiplication"
+			
+			expectedResult="0" />
+			
+			
+		<testcase name="projects.danrusu.testCases.CalculateApi"
+				
 			firstNumber=""
 			
 			secondNumber=""
@@ -94,7 +123,25 @@
 			expectedResult="Division by 0 is not allowed!" />
 			
 			
-		#empty division 
+		#empty inputs division
+		<testcase name="projects.danrusu.testCases.CalculateApi"				
+			
+			secondNumber="21"
+			
+			operation="division"
+			
+			expectedResult="0" />
+			
+		
+		<testcase name="projects.danrusu.testCases.CalculateApi"				
+			
+			firstNumber="10"
+			
+			operation="division"
+			
+			expectedResult="Division by 0 is not allowed!" />
+		
+		 
 		<testcase name="projects.danrusu.testCases.CalculateApi"				
 			
 			operation="division"
