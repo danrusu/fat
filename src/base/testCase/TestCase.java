@@ -314,15 +314,39 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
                 .equalsIgnoreCase("true");
     }
 
+    
+    public int evalIntAttribute(String attribute, int defaultValue){
+
+        try {
+        	
+            return Integer.parseInt(nullToEmptyString(
+            		getTestCaseAttributes().get(attribute)));
+            
+        } catch (NumberFormatException e) {
+            log(" " + e);
+            
+            return defaultValue;
+        }		
+    }
 
 
     public int evalIntAttribute(String attribute){
 
+        return evalIntAttribute(attribute, 0);		
+    }
+    
+    
+    public long evalLongAttribute(String attribute, long defaultValue){
+
         try {
-            return Integer.parseInt(nullToEmptyString(getTestCaseAttributes().get(attribute)));
+            
+        	return Long.parseLong(nullToEmptyString(
+        			getTestCaseAttributes().get(attribute)));
+            
         } catch (NumberFormatException e) {
             log(" " + e);
-            return 0;
+            
+            return defaultValue;
         }		
     }
     
@@ -389,10 +413,10 @@ abstract public class TestCase implements Runnable, TestCaseScenario{
 
     
     public boolean hasExpectedFailure(String actualFailure) {
+    	
+    	String matcher = "(?s)" + getExpectedFailureRegExp();
 
-        return actualFailure.matches(
-                // only accept expected failures wrapped as base.failures.Failure
-                "(?s)" + getExpectedFailureRegExp());                
+        return actualFailure.matches(matcher);                
     }
     
     

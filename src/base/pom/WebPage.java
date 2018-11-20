@@ -755,10 +755,13 @@ public class WebPage {
      * 
      * @return true when page is loaded in less then secondsWait; false otherwise.
      */
-    public boolean isPageLoaded(long secondsWait) {
-        WebDriverWait wait = new WebDriverWait(this.driver, secondsWait);
+    public void waitForPageLoaded(long seconds) {
+    	        
+    	WebDriverWait wait = new WebDriverWait(this.driver, seconds);
+    	
         Function<WebDriver, Boolean> isDocumentReady = new Function<WebDriver, Boolean>() {
-            @Override
+        
+        	@Override
             public Boolean apply(WebDriver d) {
                 return ((JavascriptExecutor)d)
                         .executeScript("return document.readyState")
@@ -766,13 +769,7 @@ public class WebPage {
             } 
         };		
 
-        try {
-            wait.until(isDocumentReady);
-        }
-        catch(TimeoutException e) {
-            return false;
-        }
-        return true;
+        wait.until(isDocumentReady);
     }
 
 
@@ -1231,13 +1228,13 @@ public class WebPage {
     
     
     public void checkUrl(String url, long timeoutInMiliSeconds) {
-        checkUrlAndTitle(url, null, timeoutInMiliSeconds);
+        checkUrlAndTitle(url, "", timeoutInMiliSeconds);
     }
 
     
     
     public void checkTitle(String title, long timeoutInMiliSeconds) {
-        checkUrlAndTitle(null, title, timeoutInMiliSeconds);
+        checkUrlAndTitle("", title, timeoutInMiliSeconds);
     }
 
 

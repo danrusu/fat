@@ -15,21 +15,22 @@ public class OpenPage extends WebPageTestCase{
 	
 	@Override
 	public void run(){
+		
 		String url = evalAttribute("url");
 		
 		String expectedUrl = evalAttribute("expectedUrl");
 		String expectedTitle = evalAttribute("expectedTitle");
 		
-		Assert.isTrue("Check that url is not empty.", !url.isEmpty());
+		Assert.isTrue("Check that url is not empty.", false == url.isEmpty());
 		
 		openUrl(url);
 		
 		if(!expectedUrl.isEmpty()) {
-			new WebPage(driver).checkUrl(expectedUrl, 500);		
+			new WebPage(driver).checkUrl(expectedUrl, 1000);		
 		}
 				
 		if(!expectedTitle.isEmpty()) {
-			new WebPage(driver).checkTitle(expectedTitle, 500);		
+			new WebPage(driver).checkTitle(expectedTitle, 1000);		
 		}
 		
 	}
@@ -38,9 +39,8 @@ public class OpenPage extends WebPageTestCase{
 	
 	@Override
 	public String getTestCaseScenario(){
-		return new StringBuilder()
-				.append("\n Open Web page in browser by URL.")
-				.append("\nData: url [expectedUrl] [expectedTitle]")
-				.toString();
+		
+		return newScenario("Open Web page in browser by URL.",
+				"Data: url [expectedUrl] [expectedTitle]");
 	}
 }

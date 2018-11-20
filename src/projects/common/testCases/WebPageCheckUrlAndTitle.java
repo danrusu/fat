@@ -14,17 +14,16 @@ public class WebPageCheckUrlAndTitle extends TestCase{
 
 
 	@Override
-	public void run(){
-	    
-		String url = evalAttributeNullable("url");
-		String title = evalAttributeNullable("title");
-        int timeout = evalIntAttribute("timeout");
+	public void run(){	    
 		
        
         new WebPage(Driver.driver).checkUrlAndTitle(
-                url, 
-                title, 
-                Long.parseLong(timeout + ""));
+        		
+        		evalAttribute("url"), 
+        		
+        		evalAttribute("title"), 
+        		
+        		evalLongAttribute("timeout", 0));
 	}
 	
 	
