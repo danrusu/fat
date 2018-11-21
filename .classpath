@@ -18,6 +18,19 @@
 	<classpathentry kind="lib" path="ext/rest-assured/xml-path-3.1.0.jar"/>
 	<classpathentry kind="lib" path="ext/pdfbox-app-2.0.5.jar"/>
 	<classpathentry kind="lib" path="ext/ashot-1.5.4.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/commons-lang3-3.4.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/groovy-2.4.12.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/groovy-json-2.4.12.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/groovy-xml-2.4.12.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/hamcrest-library-1.3.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/httpcore-4.4.6.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/httpmime-4.5.1.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/jaxb-api-2.2.12.jar"/>
+	<classpathentry kind="lib" path="ext/rest-assured/rest-assured-3.0.7-deps/tagsoup-1.2.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="danrusu_apiTest_Lotto" user="aitTester" project="danrusu.ro">
+
+
+   	<test name="Validate_Lotto_Api">
+  	
+		<testcase name="projects.danrusu.testCases.LottoApi"/>
+			
+	</test> 
+	
+	
+</suite> 
