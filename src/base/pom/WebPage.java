@@ -634,8 +634,11 @@ public class WebPage {
 
         log("Set value (javascript):  value=" + value
                 + ", locator=" + by);
+        
         WebElement e = driver.findElement(by);
+        
         String scriptSetAttr = "arguments[0].value=arguments[1];";
+        
         executeScript(scriptSetAttr, e, value);
 
     }
