@@ -15,7 +15,6 @@ import java.util.stream.IntStream;
 public interface Assert{
 
 
-
     private static void passAssertion(
             String assertionDescription,
             String expected) {

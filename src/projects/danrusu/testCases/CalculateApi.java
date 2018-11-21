@@ -15,24 +15,6 @@ public class CalculateApi extends TestCase {
 
 	private final String API_CALCULATE = "http://danrusu.ro/api/calculate.php";
 
-	private enum Operations {
-
-		SUM(1),
-
-		MULTIPLICATION(2),
-
-		DIVISION(3);
-
-		Operations(int value) {
-			this.value = value;
-		}
-
-		private int value;
-
-		public int getValue() {
-			return value;
-		}
-	}
 
 	@Override
 	public void run() {
@@ -41,7 +23,7 @@ public class CalculateApi extends TestCase {
 
 		String secondNumber = evalAttribute("secondNumber");
 
-		String operation = "" + Operations.valueOf(evalAttribute("operation").toUpperCase()).getValue();
+		String operation = "" + Operation.valueOf(evalAttribute("operation").toUpperCase()).getValue();
 
 		String expectedResult = evalAttribute("expectedResult");
 
@@ -80,11 +62,13 @@ public class CalculateApi extends TestCase {
 //		});
 	}
 
+	
 	private String addToUrl(String url, String... more) {
 
 		return url + "?" + String.join("&", more);
 	}
 
+	
 	@Override
 	public String getTestCaseScenario() {
 
