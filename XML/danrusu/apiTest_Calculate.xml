@@ -7,7 +7,7 @@
   	
   	
   		#sum
-		<testcase name="projects.danrusu.testCases.CalculateApi"
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"
 		
 			firstNumber="10"
 			
@@ -18,7 +18,7 @@
 			expectedResult="15" />
 			
 		#empty inputs sum
-		<testcase name="projects.danrusu.testCases.CalculateApi"
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"
 		
 			firstNumber=""
 			
@@ -29,7 +29,7 @@
 			expectedResult="0" />
 		
 			
-		<testcase name="projects.danrusu.testCases.CalculateApi"
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"
 		
 			firstNumber="10"			
 			
@@ -38,7 +38,7 @@
 			expectedResult="10" />
 			
 			
-		<testcase name="projects.danrusu.testCases.CalculateApi"
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"
 		
 			secondNumber="5"
 			
@@ -53,7 +53,7 @@
 			
 			
 		#multiplication 
-		<testcase name="projects.danrusu.testCases.CalculateApi"
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"
 		
 			firstNumber="10"
 			
@@ -65,7 +65,7 @@
 						
 			
 		#empty inputs multiplication					
-		<testcase name="projects.danrusu.testCases.CalculateApi"
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"
 		
 			firstNumber="10"
 			
@@ -74,7 +74,7 @@
 			expectedResult="0" />
 		
 			
-		<testcase name="projects.danrusu.testCases.CalculateApi"
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"
 		
 			secondNumber="5"
 			
@@ -83,7 +83,7 @@
 			expectedResult="0" />
 			
 			
-		<testcase name="projects.danrusu.testCases.CalculateApi"
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"
 				
 			firstNumber=""
 			
@@ -100,7 +100,7 @@
 	
 			
 		#division
-		<testcase name="projects.danrusu.testCases.CalculateApi"
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"
 		
 			firstNumber="10"
 			
@@ -112,7 +112,7 @@
 			
 			
 		#division by 0
-		<testcase name="projects.danrusu.testCases.CalculateApi"
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"
 		
 			firstNumber="10"
 			
@@ -124,7 +124,7 @@
 			
 			
 		#empty inputs division
-		<testcase name="projects.danrusu.testCases.CalculateApi"				
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"				
 			
 			secondNumber="21"
 			
@@ -133,7 +133,7 @@
 			expectedResult="0" />
 			
 		
-		<testcase name="projects.danrusu.testCases.CalculateApi"				
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"				
 			
 			firstNumber="10"
 			
@@ -142,7 +142,7 @@
 			expectedResult="Division by 0 is not allowed!" />
 		
 		 
-		<testcase name="projects.danrusu.testCases.CalculateApi"				
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"				
 			
 			operation="division"
 			

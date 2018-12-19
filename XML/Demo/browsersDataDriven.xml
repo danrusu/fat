@@ -5,7 +5,7 @@
 
   	<test name="BrowserTest" dataProvider="dataProviders\browsers.txt">
 	
-		<testcase name="projects.common.testCases.OpenPage" 
+		<testcase name="main.projects.common.testCases.OpenPage" 
 		
 			url="https://docs.oracle.com/en/java/" 
 		

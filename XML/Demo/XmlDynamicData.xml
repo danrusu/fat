@@ -6,10 +6,10 @@
 	<test name="Save_and_use_Variables">
 	
 		<!--  Just evaluate data at runtime and save tree variables: today, time and startDate -->
- 		<testcase name="projects.mock.testCases.MockSuccess" 
+ 		<testcase name="main.projects.mock.testCases.MockSuccess" 
  			save="today={$dd}/{$MM}/{$yyyy};time={$HH}:{$mm}:{$ss};startDate={today}_{time}"/>
 		
-		<testcase name="projects.mock.testCases.MockSuccess" 
+		<testcase name="main.projects.mock.testCases.MockSuccess" 
 			date1="{today}_{time}" 
 			date2="{startDate}" 
 			
@@ -19,31 +19,31 @@
 		
 		
 		<!--  Set time and start_date to new values -->
-		<testcase name="projects.common.testCases.Wait" millisec="2000"/>
+		<testcase name="main.projects.common.testCases.Wait" millisec="2000"/>
 		
-		<testcase name="projects.mock.testCases.MockSuccess" 
+		<testcase name="main.projects.mock.testCases.MockSuccess" 
 			save="time={$HH}:{$mm}:{$ss};startDate={today}_{time}"
 			note="Set time and start_date to current values."/>
 		
-		<testcase name="projects.mock.testCases.MockSuccess" 
+		<testcase name="main.projects.mock.testCases.MockSuccess" 
 			date1="{today}_{time}" 
 			date2="{startDate}"/>
 		
 		 
 		
 		<!--  Save result from a test case and use it in following test cases -->
-        <testcase name="projects.mock.testCases.AddNumbers" 
+        <testcase name="main.projects.mock.testCases.AddNumbers" 
         	number1="100" 
         	number2="400" 
         	
         	saveResults="sum=result"/>
         
-        <testcase name="projects.mock.testCases.MockSuccess" 
+        <testcase name="main.projects.mock.testCases.MockSuccess" 
         	startNumberingFrom="{sum}" 
         	note="The result of the previous testcase is {sum}.\ndate1={date1}\ndate2={startDate}" />
         	
     
-         <testcase name="projects.common.testCases.AreEqual" 
+         <testcase name="main.projects.common.testCases.AreEqual" 
         	string1="{sum}"
         	string2="500" />
     
@@ -54,24 +54,24 @@
 	
 	<test name="Reset_test_data">
 	
-		<testcase name="projects.mock.testCases.MockSuccess"
+		<testcase name="main.projects.mock.testCases.MockSuccess"
 		
 			save="id=1111"
 
         	id="{id}" />
         	
         	
- 		<testcase name="projects.common.testCases.AreEqual"
+ 		<testcase name="main.projects.common.testCases.AreEqual"
 
         	string1="{id}"
 
         	string2="1111" /> 
 				
 				
-		<testcase name="projects.common.testCases.ResetSavedData" />
+		<testcase name="main.projects.common.testCases.ResetSavedData" />
 	
 	
-        <testcase name="projects.common.testCases.AreEqual"
+        <testcase name="main.projects.common.testCases.AreEqual"
 
         	string1="{id}"
 
@@ -83,7 +83,7 @@
 	
 	<test name="Dynamic_date_functions_example">		
         
-        <testcase name="projects.mock.testCases.MockSuccess" 
+        <testcase name="main.projects.mock.testCases.MockSuccess" 
         
         	note="The result of the Test1/AddNumbers is {sum}." 
         	
@@ -100,7 +100,7 @@
         	after300days_yyyy="{$after300days_yyyy}" />
         
         	
-		<testcase name="projects.common.testCases.ResetSavedData" />        	
+		<testcase name="main.projects.common.testCases.ResetSavedData" />        	
 		
 	</test>
 	
@@ -108,7 +108,7 @@
 	
 	<test name="Save_results_and_use_them_as_variables">
 				
-		<testcase name="projects.mock.testCases.MockSaveResults" 
+		<testcase name="main.projects.mock.testCases.MockSaveResults" 
 		
 			note="This saves a String[] member of MockSaveResults in orders variable
 			
@@ -117,7 +117,7 @@
 			saveResults="currentOrders=orders"/>
 		
 		
-        <testcase name="projects.common.testCases.AreEqual"
+        <testcase name="main.projects.common.testCases.AreEqual"
 
         	string1="{currentOrders}"
 
@@ -126,7 +126,7 @@
         	stopOnFailure="false" />
         	
         	
-		<testcase name="projects.common.testCases.AreEqual"
+		<testcase name="main.projects.common.testCases.AreEqual"
 
         	string1="{currentOrders[0]}"
 
@@ -135,7 +135,7 @@
         	stopOnFailure="false" />
         	
 	
-		<testcase name="projects.common.testCases.AreEqual"
+		<testcase name="main.projects.common.testCases.AreEqual"
 
         	string1="{currentOrders[1]}"
 
@@ -144,7 +144,7 @@
         	stopOnFailure="false" />
         
         
-        <testcase name="projects.common.testCases.AreEqual"
+        <testcase name="main.projects.common.testCases.AreEqual"
 
         	string1="{currentOrders[2]}"
 
@@ -153,7 +153,7 @@
         	stopOnFailure="false" />
         
         	
-        <testcase name="projects.common.testCases.AreEqual"
+        <testcase name="main.projects.common.testCases.AreEqual"
 
         	string1="{currentOrders[4]}"
 

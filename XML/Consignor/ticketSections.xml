@@ -8,12 +8,12 @@
 	<test name="TicketSections" browser="chrome">
 
 	
-		<testcase name="projects.common.testCases.OpenPage" 
+		<testcase name="main.projects.common.testCases.OpenPage" 
 		
 			url="https://www.consignorportal.com/ticket" />
 	
 	
-		<testcase name="projects.consignor.testCases.PortalLogin" 
+		<testcase name="main.projects.consignor.testCases.PortalLogin" 
 		
 			username="*****" 
 			
@@ -21,14 +21,14 @@
 
 			
 					
-		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		<testcase name="main.projects.consignor.testCases.TicketOpenSubMenu" 
 		
 			subMenu="Inbox" 
 			
 			stopOnFailure="false" />
 			
 				
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle" 
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle" 
 			
 			url="https://www.consignorportal.com/ticket/Inbox"
 	
@@ -38,14 +38,14 @@
 
 
 			
-		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		<testcase name="main.projects.consignor.testCases.TicketOpenSubMenu" 
 		
 			subMenu="New" 
 			
 			stopOnFailure="false" />	
 			
 			
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle" 
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle" 
 			
 			url="https://www.consignorportal.com/ticket/Production"
 	
@@ -55,14 +55,14 @@
 				
 				
 			
-		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		<testcase name="main.projects.consignor.testCases.TicketOpenSubMenu" 
 		
 			subMenu="Draft" 
 			
 			stopOnFailure="false" />	
 	
 	
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle" 
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle" 
 			
 			url="https://www.consignorportal.com/ticket/Draft"
 	
@@ -72,14 +72,14 @@
 			
 			
 			
-		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		<testcase name="main.projects.consignor.testCases.TicketOpenSubMenu" 
 		
 			subMenu="Autoprint" 
 			
 			stopOnFailure="false" />	
 	
 	
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle" 
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle" 
 			
 			url="https://www.consignorportal.com/ticket/AutoPrint"
 	
@@ -89,14 +89,14 @@
 			
 		
 						
-		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		<testcase name="main.projects.consignor.testCases.TicketOpenSubMenu" 
 		
 			subMenu="Outbox" 
 			
 			stopOnFailure="false" />	
 	
 		
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle" 
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle" 
 			
 			url="https://www.consignorportal.com/ticket/Outbox"
 	
@@ -106,14 +106,14 @@
 			
 	
 			
-		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		<testcase name="main.projects.consignor.testCases.TicketOpenSubMenu" 
 		
 			subMenu="Batches" 
 			
 			stopOnFailure="false" />	
 	
 		
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle" 
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle" 
 			
 			url="https://www.consignorportal.com/ticket/Batches"
 	
@@ -123,14 +123,14 @@
 			
 					
 					
-		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		<testcase name="main.projects.consignor.testCases.TicketOpenSubMenu" 
 		
 			subMenu="Print boxes" 
 			
 			stopOnFailure="false" />	
 	
 				
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle" 
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle" 
 			
 			url="https://www.consignorportal.com/ticket/PrintBoxes"
 	
@@ -140,14 +140,14 @@
 			
 							
 							
-		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		<testcase name="main.projects.consignor.testCases.TicketOpenSubMenu" 
 		
 			subMenu="Contacts" 
 			
 			stopOnFailure="false" />	
 	
 	
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle" 
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle" 
 			
 			url="https://www.consignorportal.com/ticket/Contacts"
 	
@@ -157,14 +157,14 @@
 			
 			
 					
-		<testcase name="projects.consignor.testCases.TicketOpenSubMenu" 
+		<testcase name="main.projects.consignor.testCases.TicketOpenSubMenu" 
 		
 			subMenu="Settings" 
 			
 			stopOnFailure="false" />	
 			
 			
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle" 
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle" 
 			
 			url="https://www.consignorportal.com/ticket/Settings"
 	
@@ -173,7 +173,7 @@
 			stopOnFailure="false" />
 		
 			
-		<testcase name="projects.consignor.testCases.TicketOpenSubMenu"
+		<testcase name="main.projects.consignor.testCases.TicketOpenSubMenu"
 
 			note="Opening wrong Ticket sub menu showcase - this should fail with known failure"
 		

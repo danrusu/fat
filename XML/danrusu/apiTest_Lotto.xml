@@ -5,7 +5,7 @@
 
    	<test name="Validate_Lotto_Api">
   	
-		<testcase name="projects.danrusu.testCases.LottoApi"/>
+		<testcase name="main.projects.danrusu.testCases.LottoApi"/>
 			
 	</test> 
 	

@@ -1,46 +1,109 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="create_run_jar" name="Create Runnable Jar for Project fat with Jar-in-Jar Loader">
-    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
-    <!--ANT 1.7 is required-->
-    <!--define folder properties-->
-    <property name="dir.buildfile" value="."/>
-    <property name="dir.workspace" value="${dir.buildfile}/.."/>
-    <property name="dir.jarfile" value="${dir.buildfile}"/>
-    <target name="create_run_jar">
-        <jar destfile="${dir.jarfile}/fat.jar">
-            <manifest>
-                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
-                <attribute name="Rsrc-Main-Class" value="base.Main"/>
-                <attribute name="Class-Path" value="."/>
-                <attribute name="Rsrc-Class-Path" value="./ selenium-server-standalone-3.11.0.jar jsch-0.1.53.jar mssql-jdbc-6.4.0.jre8.jar mysql-connector-java-5.1.39-bin.jar javax.mail.jar json-path-3.1.0.jar json-schema-validator-3.1.0.jar rest-assured-3.0.7.jar xml-path-3.1.0.jar pdfbox-app-2.0.5.jar ashot-1.5.4.jar org.junit.jupiter.api_5.0.0.v20170910-2246.jar org.junit.jupiter.engine_5.0.0.v20170910-2246.jar org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar org.junit.jupiter.params_5.0.0.v20170910-2246.jar org.junit.platform.commons_1.0.0.v20170910-2246.jar org.junit.platform.engine_1.0.0.v20170910-2246.jar org.junit.platform.launcher_1.0.0.v20170910-2246.jar org.junit.platform.runner_1.0.0.v20170910-2246.jar org.junit.platform.suite.api_1.0.0.v20170910-2246.jar org.junit.vintage.engine_4.12.0.v20170910-2246.jar org.opentest4j_1.0.0.v20170910-2246.jar org.apiguardian_1.0.0.v20170910-2246.jar junit.jar org.hamcrest.core_1.3.0.v201303031735.jar"/>
-            </manifest>
-            <zipfileset src="jar-in-jar-loader.zip"/>
-            <fileset dir="${dir.jarfile}/bin"/>
-            <zipfileset dir="${dir.jarfile}/ext" includes="selenium-server-standalone-3.11.0.jar"/>
-            <zipfileset dir="${dir.jarfile}/ext" includes="jsch-0.1.53.jar"/>
-            <zipfileset dir="${dir.jarfile}/ext" includes="mssql-jdbc-6.4.0.jre8.jar"/>
-            <zipfileset dir="${dir.jarfile}/ext" includes="mysql-connector-java-5.1.39-bin.jar"/>
-            <zipfileset dir="${dir.jarfile}/ext" includes="javax.mail.jar"/>
-            <zipfileset dir="${dir.jarfile}/ext/rest-assured" includes="json-path-3.1.0.jar"/>
-            <zipfileset dir="${dir.jarfile}/ext/rest-assured" includes="json-schema-validator-3.1.0.jar"/>
-            <zipfileset dir="${dir.jarfile}/ext/rest-assured" includes="rest-assured-3.0.7.jar"/>
-            <zipfileset dir="${dir.jarfile}/ext/rest-assured" includes="xml-path-3.1.0.jar"/>
-            <zipfileset dir="${dir.jarfile}/ext" includes="pdfbox-app-2.0.5.jar"/>
-            <zipfileset dir="${dir.jarfile}/ext" includes="ashot-1.5.4.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.jupiter.api_5.0.0.v20170910-2246.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.jupiter.engine_5.0.0.v20170910-2246.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.jupiter.params_5.0.0.v20170910-2246.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.platform.commons_1.0.0.v20170910-2246.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.platform.engine_1.0.0.v20170910-2246.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.platform.launcher_1.0.0.v20170910-2246.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.platform.runner_1.0.0.v20170910-2246.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.platform.suite.api_1.0.0.v20170910-2246.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.junit.vintage.engine_4.12.0.v20170910-2246.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.opentest4j_1.0.0.v20170910-2246.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.apiguardian_1.0.0.v20170910-2246.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins/org.junit_4.12.0.v201504281640" includes="junit.jar"/>
-            <zipfileset dir="C:/Users/dan.rusu.IN/.p2/pool/plugins" includes="org.hamcrest.core_1.3.0.v201303031735.jar"/>
-        </jar>
+<project default="jar" name="fat" basedir=".">
+
+	<description>
+		Framework for Automation in Testing 
+	</description>
+	
+	
+    <property name="dir.src" value="src/main"/>
+	<property name="dir.bin" value="bin" />
+	<property name="dir.bin.driverResources" value="${dir.bin}/main/base/driverResources" />
+	
+	<property name="dir.lib" value="ext"/>
+	
+	<property name="dir.driverResources" value="${dir.src}/base/driverResources"/>
+	<property name="dir.webDrivers" value="webDrivers"/>
+	
+	
+    <property name="dir.jar" value="${basedir}"/>
+	
+   	
+	<path id="classpath">
+	        <fileset dir="${dir.lib}" includes="**/*.jar"/>	
+	</path>
+	
+	
+	<!-- MACRO -->
+	<macrodef name="git">
+		
+		<attribute name="command" />
+		<attribute name="dir" default="." />
+		<element name="args" optional="true" />
+		
+		<sequential>
+			
+			<echo message="git @{command}" />
+			
+		    <exec executable="git" dir="@{dir}">
+		    	
+		    	<arg value="@{command}" />
+		    	<args />
+		    	
+		  	</exec>
+			
+		</sequential>
+		
+	</macrodef>
+	
+	
+	<!-- TARGETS -->
+    <target name="clean">
+    	
+		<delete dir="${dir.bin}" />
+    	
+    	<delete dir="${dir.webDrivers}" />
+    	
+        <delete file="${dir.jar}/fat.jar" />
+    	
     </target>
+	
+	
+	<target name="init">			 
+	        
+		<mkdir dir="${dir.bin}" />
+		
+	</target>
+	
+	
+	<target name="compile" depends="init">
+		
+		<git command="pull" />
+	        
+		<javac srcdir="${dir.src}" destdir="${dir.bin}" classpathref="classpath" includeantruntime="false" />		
+		
+		
+		<!-- Include any resource file that doesn't end with .java -->
+		<copy todir="${dir.bin.driverResources}">
+		     
+			<fileset dir="${dir.driverResources}" includes="**/*.exe" />
+			
+		</copy>
+		
+	</target>
+	
+	
+    <target name="jar" depends="compile">
+    	
+        <jar destfile="${dir.jar}/fat.jar">
+        	
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" />
+                <attribute name="Rsrc-Main-Class" value="main.base.Main" />
+                <attribute name="Class-Path" value="." />
+            	<attribute name="Rsrc-Class-Path" value="./ selenium-server-standalone-3.11.0.jar jsch-0.1.53.jar mssql-jdbc-6.4.0.jre8.jar mysql-connector-java-5.1.39-bin.jar javax.mail.jar json-path-3.1.0.jar json-schema-validator-3.1.0.jar rest-assured-3.0.7.jar xml-path-3.1.0.jar pdfbox-app-2.0.5.jar ashot-1.5.4.jar commons-codec-1.9.jar commons-lang3-3.4.jar commons-logging-1.2.jar groovy-2.4.12.jar groovy-json-2.4.12.jar groovy-xml-2.4.12.jar hamcrest-core-1.3.jar hamcrest-library-1.3.jar httpclient-4.5.3.jar httpcore-4.4.6.jar httpmime-4.5.1.jar jaxb-api-2.2.12.jar tagsoup-1.2.1.jar"/>
+            </manifest>
+        	
+            <zipfileset src="jar-in-jar-loader.zip" />
+        	
+            <fileset dir="${dir.jar}/bin" />
+        	
+            <zipfileset dir="${dir.jar}/ext" includes="*.jar" />
+            <zipfileset dir="${dir.jar}/ext/rest-assured" includes="*.jar" />
+            <zipfileset dir="${dir.jar}/ext/rest-assured/rest-assured-3.0.7-deps" includes="*.jar" />   
+        	
+        </jar>
+        	
+    </target>
+	
 </project>

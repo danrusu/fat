@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="unitTestXmlConfig" user="unitTest">
+
+	<!-- Unit test XML for XmlTestConfig.java -->
+	<!-- Unit test runner: UtXmlTestConfig.java -->
+	
+	<test name="Test1">
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+	</test>
+	
+	
+	<test name="Test2">
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+	</test>
+	
+	
+	<test name="Test3">
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+	</test>
+	
+	
+	<test name="Test4">
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+	</test>
+	
+	
+	<test name="Test5">
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+	</test>
+	
+	
+	<test name="Test6">
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+	</test>
+	
+	
+	<test name="Test7">
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+	</test>
+	
+	
+	<test name="Test8">
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+	</test>
+	
+	
+	<test name="Test9">
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+	</test>
+
+	<test name="Test10">
+	
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+		
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+		
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+		
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+		
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+		
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+		
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+		
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+		
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+		
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
+	</test>
+
+
+</suite> 

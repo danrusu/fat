@@ -3,16 +3,16 @@
 <suite name="danrusu_uiTest_homePage" user="aitTester" project="danrusu.ro">
 
   
-   	<test name="ait_homePage1" browser="chrome">
+<!--    	<test name="ait_homePage1" browser="chrome">
   	
-		<testcase name="projects.danrusu.testCases.OpenHomePage"/>
+		<testcase name="main.projects.danrusu.testCases.OpenHomePage"/>
 			
 	</test> 
-	
+	 -->
 		
-  	<test name="ait_homePage2" browser="chrome">
+<!--   	<test name="ait_homePage2" browser="chrome">
   	
-		<testcase name="projects.common.testCases.OpenPage" 
+		<testcase name="main.projects.common.testCases.OpenPage" 
 		
 			url="http://danrusu.ro" 
 			
@@ -26,31 +26,31 @@
 	
 	<test name="ait_homePage3" browser="chrome">
   	
-		<testcase name="projects.common.testCases.OpenPage" 
+		<testcase name="main.projects.common.testCases.OpenPage" 
 		
 			url="http://danrusu.ro" />
 			
 			
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle"
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle"
 		
 			url="http://danrusu.ro/" />
 			
 			
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle"
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle"
 		
 			title="Automation" />								
 	
-	</test>	
+	</test>	 -->
 	
 	
 	<test name="ait_wrong_url_and_title" browser="chrome">
   	
-		<testcase name="projects.common.testCases.OpenPage" 
+		<testcase name="main.projects.common.testCases.OpenPage" 
 		
 			url="http://danrusu.ro" />
 			
 			
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle"
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle"
 		
 			url="http://danrusu.com" 
 			
@@ -58,7 +58,7 @@
 			
 			<!--  stopOnFailure="false" -->
 			
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle"
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle"
 		
 			title="Automation in testing" 
 			

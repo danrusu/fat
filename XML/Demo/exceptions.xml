@@ -5,14 +5,14 @@
  	<test name="SuccessfullTest" 
  		note="Expected suite results: Tests(8/2/1) TestCases(13/2/6)\nTests: Failed - 4, 8; Skipped - 7\nTestcases: Failed - 4/1, 8/1; Skipped - 7/1, 7/2, 7/3, 8/2, 8/3">
  	
-		<testcase name="projects.mock.testCases.MockSuccess" />
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
 		
 	</test>
 
 
  	<test name="SeleniumExceptionTest" browser="chrome">
  	
-		<testcase name="projects.mock.testCases.MockException" 
+		<testcase name="main.projects.mock.testCases.MockException" 
 			expectedFailureRegExp=".*Test case exception!.*" />
 		
 	</test>
@@ -20,7 +20,7 @@
 
  	<test name="ErrorTest">
  	
-		<testcase name="projects.mock.testCases.MockError" 
+		<testcase name="main.projects.mock.testCases.MockError" 
 			expectedFailureRegExp=".*Test case error!.*" />
 			
 	</test>
@@ -28,39 +28,39 @@
 
 	<test name="RuntimeExceptionTest">
 	
-		<testcase name="projects.mock.testCases.MockRuntimeException" 
+		<testcase name="main.projects.mock.testCases.MockRuntimeException" 
 			expectedFailureRegExp=".*Test_case_runtime_exception!.*" 
 			stopOnFailure="false"/>
 			
-		<testcase name="projects.mock.testCases.MockRuntimeException" 
+		<testcase name="main.projects.mock.testCases.MockRuntimeException" 
 			expectedFailureRegExp=".*Test case runtime exception!.*" />
 			
 	</test>
 	
 	
 	<test name="JavascriptErrorTest" browser="chrome">
-			<testcase name="projects.mock.testCases.MockJSError"/>
+			<testcase name="main.projects.mock.testCases.MockJSError"/>
 	</test> 
 
 	
 	<test name="SkipedTestCase">
 	
 	    <!--  This fails if it is not skipped -->
-		<testcase name="projects.mock.testCases.MockRuntimeException" skip="true"/>
+		<testcase name="main.projects.mock.testCases.MockRuntimeException" skip="true"/>
 		
 	</test>
 	
 	
 	<test name="SkipedTest" skip="true">
 	
-	    <testcase name="projects.mock.testCases.MockSuccess" 
+	    <testcase name="main.projects.mock.testCases.MockSuccess" 
 	    	attribute1="value1" 
 	    	attribute2="value2"
 	    	note="First skipped testcase" />
 	    
-	    <testcase name="projects.mock.testCases.MockRuntimeException" />
+	    <testcase name="main.projects.mock.testCases.MockRuntimeException" />
 	    
-	    <testcase name="projects.mock.testCases.MockError" 
+	    <testcase name="main.projects.mock.testCases.MockError" 
 	    	note="Last skipped testcase" />
 	    
 	</test> 
@@ -68,12 +68,12 @@
 	
 	<test name="SkipTestcasesAfterFailureTest">
 	
-	    <testcase name="projects.mock.testCases.MockError" />
+	    <testcase name="main.projects.mock.testCases.MockError" />
 	    
-	    <testcase name="projects.mock.testCases.MockSuccess" 
+	    <testcase name="main.projects.mock.testCases.MockSuccess" 
 	    	note="Skipped because first test case failed."/>
 	    
-	    <testcase name="projects.mock.testCases.MockSuccess" 
+	    <testcase name="main.projects.mock.testCases.MockSuccess" 
 	    	note="Skipped because first test case failed." />
 	    
 	</test> 

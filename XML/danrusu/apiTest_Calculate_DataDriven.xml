@@ -6,7 +6,7 @@
    	<test name="Validate_CalculateApi" dataProvider="dataProviders\danrusu\calculate.txt">
   	  	
 
-		<testcase name="projects.danrusu.testCases.CalculateApi"
+		<testcase name="main.projects.danrusu.testCases.CalculateApi"
 		
 			firstNumber="{$dataProvider(0)}"
 			

@@ -10,14 +10,14 @@
 	<test name="save_and_compare_elements_screenshots" browser="chrome">
 
 
-		<testcase name="projects.common.testCases.OpenPage" 
+		<testcase name="main.projects.common.testCases.OpenPage" 
 		
 		    save="scaling=1.25;screenshotsFolder={$logFolder}"
 		    		
 			url="http://danrusu.ro/test.html" />
 
 
- 		<testcase name="projects.common.testCases.WebElementScreenShot"
+ 		<testcase name="main.projects.common.testCases.WebElementScreenShot"
 		
 			scaling="{scaling}" 
 		
@@ -26,7 +26,7 @@
 		 	file="{screenshotsFolder}/body.png" />	
 			
 
-		<testcase name="projects.common.testCases.WebElementScreenShot" 
+		<testcase name="main.projects.common.testCases.WebElementScreenShot" 
 		
 			scaling="{scaling}"
 		
@@ -35,7 +35,7 @@
 		 	file="{screenshotsFolder}/flexboxHeader.png" />	
 
 
-		<testcase name="projects.common.testCases.WebElementScreenShot"
+		<testcase name="main.projects.common.testCases.WebElementScreenShot"
 		
 			scaling="{scaling}" 
 		
@@ -45,7 +45,7 @@
 		 		 
 		 	
 		 	
-		<testcase name="projects.common.testCases.WebElementScreenShotCompare"
+		<testcase name="main.projects.common.testCases.WebElementScreenShotCompare"
 		
 			scaling="{scaling}" 
 		 	
@@ -63,7 +63,7 @@
 			expectedFailureRegExp=".*Screenshots are different.*" />
 		 	
 		 
-		<testcase name="projects.common.testCases.WebElementScreenShotCompare"
+		<testcase name="main.projects.common.testCases.WebElementScreenShotCompare"
 		
 		    note="slot_machine_master2.png == slot_machine_master3.png == noDiff.png"
 		
@@ -87,7 +87,7 @@
 	<test name="compare_screenshots_from_disk">
 	
 		
-		 <testcase name="projects.common.testCases.ScreenShotCompare"
+		 <testcase name="main.projects.common.testCases.ScreenShotCompare"
 		
 		 	file1="{screenshotsFolder}/slot_machine_master.png"
 		 	 
@@ -98,7 +98,7 @@
 		 	expectedFailureRegExp=".*Screenshots are different.*"/>	
 		 	
 		 	
-		<testcase name="projects.common.testCases.ScreenShotCompare"
+		<testcase name="main.projects.common.testCases.ScreenShotCompare"
 		
 		 	file1="{screenshotsFolder}/slot_machine_master2.png"
 		 	 

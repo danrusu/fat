@@ -5,21 +5,21 @@
   
    	<test name="ait_homePage1" browser="chrome">
   	
-		<testcase name="projects.danrusu.testCases.OpenHomePage"/>
+		<testcase name="main.projects.danrusu.testCases.OpenHomePage"/>
 		
-		<testcase name="projects.danrusu.testCases.OpenMenu"
+		<testcase name="main.projects.danrusu.testCases.OpenMenu"
 		
 			menu="UI test"/>
 			
 			
-		<testcase name="projects.common.testCases.WebPageCheckUrlAndTitle"
+		<testcase name="main.projects.common.testCases.WebPageCheckUrlAndTitle"
 		
 			url="http://danrusu.ro/uiTest/uiTest.html" 
 			
 			title="UI tests"/>
 						
 			
-		<testcase name="projects.danrusu.testCases.Calculate"
+		<testcase name="main.projects.danrusu.testCases.Calculate"
 		
 			firstNumber="10"
 			

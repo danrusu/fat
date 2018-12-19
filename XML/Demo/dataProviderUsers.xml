@@ -10,17 +10,17 @@
 	<test name="dataProviderTest1" dataProvider="dataProviders\mockUsers.txt">
 	
 	
-		<testcase name="projects.mock.testCases.MockSuccess" />
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
 	
 	
-		<testcase name="projects.mock.testCases.MockSuccess" 
+		<testcase name="main.projects.mock.testCases.MockSuccess" 
 		
 			username="{$dataProvider(0)}" 
 			
 			password="{$dataProvider(1)}" />
 			
 			
-		<testcase name="projects.mock.testCases.MockSuccess" />
+		<testcase name="main.projects.mock.testCases.MockSuccess" />
 	
 						
 	</test>
@@ -29,7 +29,7 @@
 	<test name="dataProviderTest2" dataProvider="dataProviders\mockFamilyUsers.txt">
 	
 	
-		<testcase name="projects.mock.testCases.MockSuccess" 
+		<testcase name="main.projects.mock.testCases.MockSuccess" 
 		
 			username="{$dataProvider(0)}" 
 			
