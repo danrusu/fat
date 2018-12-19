@@ -3,12 +3,12 @@
 
 
 #### 1. Environment
- - [JDK 10+](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+ - [JDK 11](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
  - [Eclipse IDE](https://www.eclipse.org/downloads/)
  - [Apache Ant](https://ant.apache.org/bindownload.cgi)
  
 
-#### 2. Build runnable jar
+#### 2. Build runnable fat.jar
 ```
 ant -f fatAnt.xml
 ```
