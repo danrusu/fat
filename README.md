@@ -1,14 +1,19 @@
 # fat
 ### Framework for Automation in Testing
 
+#### 0. Clone 'fat'
+```
+git clone https://github.com/danrusu/fat.git
+```
 
 #### 1. Environment
+ - [Git](https://git-scm.com/downloads)
  - [JDK 11](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
  - [Eclipse IDE](https://www.eclipse.org/downloads/)
  - [Apache Ant](https://ant.apache.org/bindownload.cgi)
  
 
-#### 2. Build runnable fat.jar
+#### 2. Pull updates and build runnable fat.jar
 ```
 ant -f fatAnt.xml
 ```
