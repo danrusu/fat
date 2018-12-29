@@ -15,7 +15,7 @@ git clone https://github.com/danrusu/fat.git
 
 #### 2. Pull updates and build runnable fat.jar
 ```
-ant -f fatAnt.xml
+ant
 ```
 
 
