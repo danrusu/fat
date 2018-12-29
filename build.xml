@@ -65,11 +65,15 @@
 		
 	</target>
 	
+	<target name="git-pull">			 
+		        
+		<git command="pull" />
+			
+	</target>
+	
 	
 	<target name="compile" depends="init">
-		
-		<git command="pull" />
-	        
+		    
 		<javac srcdir="${dir.src}" destdir="${dir.bin}" classpathref="classpath" includeantruntime="false" />		
 		
 		
@@ -83,7 +87,7 @@
 	</target>
 	
 	
-    <target name="jar" depends="compile">
+    <target name="jar" depends="git-pull, compile">
     	
         <jar destfile="${dir.jar}/fat.jar">
         	
