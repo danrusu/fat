@@ -1,13 +1,15 @@
 package test.base.xml;
 
+import static main.base.Assert.assertList;
+import static main.base.Assert.isEqual;
+import static main.base.Assert.verifyAllAsserts;
+import static main.base.xml.DataProvider.getDataFromProvider;
+import static main.base.xml.DataProvider.getDataProviderPath;
+
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import main.base.Assert;
-import main.base.xml.DataProvider;
 
 public class DataProviderTest {
 
@@ -16,37 +18,36 @@ public class DataProviderTest {
     @Test
     public void readDataProviderFileTest() throws IOException{
         
+    	String dataSeparator = "\\s*,\\s*"; 
+    	int dataColumnsCount = 2;
         
-        List<List<String>> data = DataProvider.getData(
-                Paths.get(System.getProperty("user.dir"), 
-                        "resources",
-                        "dataProviders", 
-                        "mockUsers.txt"),
-                ", ",
-                2);
+        List<List<String>> dataFromProvider = getDataFromProvider( 
+                getDataProviderPath("mockUsers.txt"),
+                dataSeparator,
+                dataColumnsCount);
         
         
-        Assert.verifyAll(
+        verifyAllAsserts(
                 
-                () -> Assert.assertList(
+                () -> assertList(
                         List.of("user1", "password1"), 
-                        data.get(0)),                
+                        dataFromProvider.get(0)),                
                 
         
-                () -> Assert.assertList(
+                () -> assertList(
                         List.of("user2", "password2"), 
-                        data.get(1)),
+                        dataFromProvider.get(1)),
 
                 
-                () -> Assert.assertList(
+                () -> assertList(
                         List.of("user3", "password3"), 
-                        data.get(2)),
+                        dataFromProvider.get(2)),
         
                 
-                () -> Assert.isEqual(
+                () -> isEqual(
                         "Check data list size",
                         3, 
-                        data.size()));
+                        dataFromProvider.size()));
     }
     
 }

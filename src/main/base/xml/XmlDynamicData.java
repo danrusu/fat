@@ -293,7 +293,7 @@ public class XmlDynamicData {
             String rowIndex, 
             String columnIndex) {
 
-        return DataProvider.getData(dataProviderFilePath, ",\\s*", 10)
+        return DataProvider.getDataFromProvider(dataProviderFilePath, ",\\s*", 10)
 
                 .get(StringUtils.toInt(rowIndex, 0))
 

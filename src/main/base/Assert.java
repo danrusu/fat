@@ -147,7 +147,7 @@ public interface Assert{
     
     
     
-    public static void verifyAll(Runnable ...assertions) {
+    public static void verifyAllAsserts(Runnable ...assertions) {
         
         verifyAll(getAssertionErrors(assertions));
     }
