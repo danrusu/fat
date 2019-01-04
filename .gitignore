@@ -9,7 +9,7 @@ logs/*/log.txt
 
 
 # Local drivers
-webdrivers
+webDrivers
 
 
 # Credentials

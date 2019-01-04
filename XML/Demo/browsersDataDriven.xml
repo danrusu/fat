@@ -3,7 +3,7 @@
 <suite name="Demo_browsers_data_driven" user="jenkins" project="Demo">
 
 
-  	<test name="BrowserTest" dataProvider="dataProviders\browsers.txt">
+  	<test name="BrowserTest" dataProvider="resources/dataProviders/demo/browsers.txt">
 	
 		<testcase name="main.projects.common.testCases.OpenPage" 
 		
