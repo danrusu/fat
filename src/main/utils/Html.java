@@ -13,9 +13,12 @@ import java.util.function.Function;
  * @author dan.rusu
  *
  */
-public interface Html {
+public class Html {
 
-
+	private static final String REPORTS_CSS = "../../reportsResources/reports.css";
+    private static final String REPORTS_RESPONSIVE = "../../reportsResources/responsive.css";        
+	private static final String REPORTS_JQUERY = "../../reportsResources/jQuery_v2.2.4.js";
+	private static final String REPORTS_JS = "../../reportsResources/reports.js";
 
     // e.g. attributes = [ "width=\"100\"", "title=\"age\"" ]
     public static String startTag(
@@ -99,13 +102,13 @@ public interface Html {
                 
                 // TODO create custom responsive css for reports
                 new String[]{
-                    "../css/reports.css", 
-                    "../css/responsive.css"
+                    REPORTS_CSS, 
+                    REPORTS_RESPONSIVE
                 },
 
                 new String[]{
-                    "../js/jQuery_v2.2.4.js", 
-                    "../js/reports.js"
+                    REPORTS_JQUERY, 
+                    REPORTS_JS
                 });
     }
 
