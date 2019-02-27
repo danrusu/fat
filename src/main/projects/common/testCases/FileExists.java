@@ -19,8 +19,9 @@ public class FileExists extends TestCase{
 	@Override
 	public void run(){
 
-		Assert.isTrue(    
+		Assert.isEqual(    
 		        "File does not exist!",
+		        true,
 		        Files.exists(Paths.get(evalAttribute("source"))));
 	}
 
@@ -28,7 +29,7 @@ public class FileExists extends TestCase{
 	
 	@Override
 	public String getTestCaseScenario(){
-	    
+		
 		return newScenario("Fails if file does not exist.",
 			"Test data: file");
 	}

@@ -1,6 +1,6 @@
 package main.projects.common.testCases;
 
-import static main.base.Assert.isTrue;
+import static main.base.Assert.isEqual;
 
 import main.base.testCase.TestCase;
 
@@ -15,11 +15,13 @@ public class RegexMatcher extends TestCase{
 
     public void run(String text, String regex){
 
-        isTrue(
+        isEqual(
                 String.format(
                         "Regex match: (\"%s\").matches(\"%s\")", 
                         text,
-                        regex),		
+                        regex),
+                
+                true,
                 
                 text.matches(regex));
     }

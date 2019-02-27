@@ -182,7 +182,7 @@ public interface FileUtils {
                     // 2. assert content
                     for(int i=0; i < expectedImageDataBuffer.getSize(); i++) { 
                         
-                        Assert.isEqualsQuiet(
+                        Assert.isEqualQuiet(
                                 "",
                                 expectedImageDataBuffer.getElem(i),
                                 actualImageDataBuffer.getElem(i));                    
@@ -218,6 +218,16 @@ public interface FileUtils {
                 "resources",
                 "rest", 
                 bodyFile).toString();
+    }
+
+
+    static void write(Path destinationPath, byte[] bytes) {
+        supplyAndMapThrowableToFailure(
+            () -> {
+                Files.write(destinationPath, bytes);
+                return true;
+            });       
+        
     }
 
 

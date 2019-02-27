@@ -107,7 +107,7 @@ public class Rest extends WebPageTestCase{
 
 		} catch (Exception e) {
 			logSplitByLines(e.toString());
-			Assert.isTrue("Check for request's success." + e.getMessage(), false);
+			Assert.fail("Check for request's success." + e.getMessage());
 		}
 	}
 

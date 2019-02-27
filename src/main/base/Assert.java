@@ -154,19 +154,18 @@ public interface Assert{
 
 
     
-    public static void isEqual(
-            String expected,            
-            String actual){
+    public static <T> void isEqual(
+            T expected,            
+            T actual){
 
         isEqual("", expected, actual);
     }
     
-
     
-    public static void isEqual(
+    public static <T> void isEqual(
             String assertionDescription,
-            String expected,            
-            String actual){
+            T expected,            
+            T actual){
 
         isCondition(assertionDescription, 
                 expected, 
@@ -175,33 +174,10 @@ public interface Assert{
     }
     
     
-    
-    public static void isEqual(
+    public static <T> void isEqualQuiet(
             String assertionDescription,
-            boolean expected,            
-            boolean actual){
-
-
-        isEqual(assertionDescription, 
-                expected + "", 
-                actual + "");
-    }
-    
-    
-    public static void isEqual(           
-            boolean expected,            
-            boolean actual){
-
-        isEqual(expected + "", 
-                actual + "");
-    }
-    
-    
-    public static void isEqalQuiet(
-            String assertionDescription,
-            String expected,            
-            String actual){
-
+            T expected,            
+            T actual){
 
         isConditionQuiet(assertionDescription, 
                 expected, 
@@ -210,28 +186,6 @@ public interface Assert{
     }
     
     
-    
-    public static void isEqual(
-            String assertionDescription,
-            int expected,            
-            int actual){
-
-
-        isEqual(assertionDescription, "" + expected, "" + actual);
-    }
-    
-    
-    
-    public static void isEqualsQuiet(
-            String assertionDescription,
-            int expected,            
-            int actual){
-
-
-        isEqalQuiet(assertionDescription, "" + expected, "" + actual);
-    }
-
-
 
     public static void isEqualIgnoreCase(
             String assertionDescription,
@@ -304,21 +258,6 @@ public interface Assert{
                 assertionDescription, 
                 actual, 
                 expected);
-    }
-
-
-
-    public static void isTrue(
-            String assertionDescription, 
-            boolean isSuccessful){
-
-        if( isSuccessful ){
-            logSplitByLines("Assertion: \" " + assertionDescription + "\" - SUCCEEDED!");
-        }
-        else {
-            logSplitByLines("Assertion: \"" + assertionDescription + "\" - FAILED!");
-            throw new AssertionError(assertionDescription);
-        }
     }
 
 

@@ -18,16 +18,31 @@ public class ByFieldsReplacerUnitTest extends TestCase{
 		ByFieldsReplacerTestData o1 = new ByFieldsReplacerTestData("@text","section");
 		
 		
-		Assert.isTrue("test public member (css selector)", byToString(o1.cssSelector).equals("#id_section"));
+		Assert.isEqual(
+				"test public member (css selector)", 
+				true, 
+				byToString(o1.cssSelector).equals("#id_section"));
 		
-		Assert.isTrue("test private member (xpath selector)", byToString(o1.getXpathSelector()).equals("//*[@id=id_section]"));
+		Assert.isEqual(
+				"test private member (xpath selector)",
+				true,
+				byToString(o1.getXpathSelector()).equals("//*[@id=id_section]"));
 		
-		Assert.isTrue("test public member (id selector)", byToString(o1.idSelector).equals("id_section"));
+		Assert.isEqual(
+				"test public member (id selector)",
+				true,
+				byToString(o1.idSelector).equals("id_section"));
 		
-		Assert.isTrue("test public member (className selector)", byToString(o1.classNameSelector).equals("class_section"));
+		Assert.isEqual(
+				"test public member (className selector)",
+				true,
+				byToString(o1.classNameSelector).equals("class_section"));
 		
 		
-		Assert.isTrue("test field with no replacement (css selector)", byToString(o1.field).equals("#counter@tex"));
+		Assert.isEqual(
+				"test field with no replacement (css selector)",
+				true,
+				byToString(o1.field).equals("#counter@tex"));
 		
 	}
 

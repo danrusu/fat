@@ -1,6 +1,6 @@
 package main.projects.common.testCases;
 
-import static main.base.Assert.isTrue;
+import static main.base.Assert.isEqual;
 import static main.base.selenium.Driver.areScreenshotsDifferentWrapped;
 
 import java.nio.file.Path;
@@ -26,14 +26,15 @@ public class WebElementScreenShotCompare extends WebPageTestCase{
         Path file2 = Paths.get(evalAttribute("file2"));
 
 
-        isTrue(
-
+        isEqual(
                 String.join(" | ",                        
                         "Screenshots are different",
                         "file1=" + file1,
                         "file2=" + file2,
                         "diffFile="+ diffFile),        
 
+                true,
+                
                 areScreenshotsDifferentWrapped(
 
                         evalFloatAttribute("scaling", 1),     

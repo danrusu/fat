@@ -62,10 +62,9 @@ public class PdfCompare extends WebPageTestCase{
             case pdfbox:
 
                 		
-                Assert.isTrue(
-                        
+                Assert.isEqual(
                         "Compare PDF by text contents - comparison: " + comparison,
-                        
+                        true,
                         PdfUtils.comparePDFbyText(expectedPdfFiles, actualPdfFiles, comparison));
               
                 break;
@@ -79,8 +78,9 @@ public class PdfCompare extends WebPageTestCase{
                     throw new Failure("Cannot compare multiple files with 'compareit' method.");
                 }
 
-                Assert.isTrue(
+                Assert.isEqual(
                         "Check if PDF files' text contents are identical. (Report: " + compareItReport + ")",
+                        true,
                         PdfUtils.compareIt(expectedPdfFiles[0], actualPdfFiles[0], compareItReport));
                 
                 break;

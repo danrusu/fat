@@ -21,7 +21,10 @@ public class OpenPage extends WebPageTestCase{
 		String expectedUrl = evalAttribute("expectedUrl");
 		String expectedTitle = evalAttribute("expectedTitle");
 		
-		Assert.isTrue("Check that url is not empty.", !url.isEmpty());
+		Assert.isEqual(
+				"Check that url is not empty.",
+				true,
+				! url.isEmpty());
 		
 		openUrl(url);
 		
