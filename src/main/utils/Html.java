@@ -100,17 +100,7 @@ public class Html {
 
         return head("Details",
                 
-                // TODO create custom responsive css for reports
                 new String[]{
-<<<<<<< HEAD
-                    "../../reportsResources/reports.css" 
-                    //"../css/responsive.css"
-                },
-
-                new String[]{
-                    "../../reportsResources/jQuery_v2.2.4.js", 
-                    "../../reportsResources/reports.js"
-=======
                     REPORTS_CSS, 
                     REPORTS_RESPONSIVE
                 },
@@ -118,7 +108,6 @@ public class Html {
                 new String[]{
                     REPORTS_JQUERY, 
                     REPORTS_JS
->>>>>>> f1c703b277c6009bdb663df65e2f5786b10842b1
                 });
     }
 
