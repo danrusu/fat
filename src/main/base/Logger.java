@@ -25,16 +25,14 @@ import java.util.stream.IntStream;
 public class Logger {   
     
 
-    private static boolean isInitialized = false;
+    public static Logger LOGGER = new Logger();
 
-    private static final String logFileName = "log.txt";
+    private static final String LOG_FILE_NAME = "log.txt";
 
     private static Path logsRootPath;
-
     private static Path logDirPath;
     private static Path logFilePath;
     private static Path tempDirPath;
-
 
     private static final String TIMESTAMP_FORMAT = "yyyy/MM/dd HH:mm:ss";
     private static final String FILE_NAME_TIMESTAMP_FORMAT = "yyyy_MM_dd_HH_mm_ss";
@@ -43,17 +41,11 @@ public class Logger {
             .range(0, 50)
             .mapToObj(i -> "*")
             .collect(joining()); 
-
    
     private static boolean isDebuggingMode;
 
 
-    private static void init(){
-
-        if (isInitialized == false) {
-
-            isInitialized = true;
-
+    private Logger(){
 
             // Create directories: logs, temp, log_unique_name 
             logsRootPath = getRelativePath("logs");
@@ -65,11 +57,11 @@ public class Logger {
             createDirs(logsRootPath, tempDirPath, logDirPath);
 
             // create log file 
-            logFilePath = logDirPath.resolve(logFileName);
+            logFilePath = logDirPath.resolve(LOG_FILE_NAME);
             createLogFile();
 
             isDebuggingMode = getBooleanPropertyOrDefault(JvmArgs.DEBUG, false);
-        }
+        
     }
 
 
@@ -100,19 +92,7 @@ public class Logger {
     }
 
 
-    /**
-     * Method to write formatted log messages to the log file.
-     *  
-     * Log format:
-     * 
-     * timeStamp              | thread id | message
-     * 2016/07/18 09:03:02    |    1      | Instantiate driver 
-     * 
-     * @param message - String to be logged 
-     */
     public static void log(String message){
-
-        init();
 
         String formattedMessage = String.join(" | ",
                 
@@ -204,16 +184,12 @@ public class Logger {
 
 
     public static Path getLogDirPath() {
-
-        init();
-        
+       
         return logDirPath;
     }
 
 
     public static Path getPathInLogDir(String fileName) {
-
-        init();
         
         return logDirPath.resolve(fileName);
     }
@@ -221,14 +197,11 @@ public class Logger {
 
     public static Path getLogFilePath() {
 
-        init();
         return logFilePath;
     }
 
 
     public static Path getTempDirPath(){
-
-        init();
         
         return tempDirPath;
     }
