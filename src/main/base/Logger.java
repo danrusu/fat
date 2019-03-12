@@ -15,12 +15,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
-
 /**
- * Logger class (static usage; intialized once).
- * 
  * @author Dan Rusu
- *
  */
 public class Logger {   
     

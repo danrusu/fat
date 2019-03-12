@@ -22,11 +22,11 @@ public class PdfVerifyPagesCount extends WebPageTestCase{
 
         Assert.isEqual(
 
-                "Verify pages count for " + pdf,
-
                 evalIntAttribute("expectedPageCount"),
 
-                PdfUtils.getPagesCount(pdf));
+                PdfUtils.getPagesCount(pdf),
+
+                "Verify pages count for " + pdf);
 
     }
 

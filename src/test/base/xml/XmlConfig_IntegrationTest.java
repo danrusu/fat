@@ -35,33 +35,33 @@ public class XmlConfig_IntegrationTest {
         testMap = testConfig.getTestConfig(xmlTestFile);     
         
         Assert.isEqual(
-                "Check number of tests",
                 10,
-                testMap.size());
+                testMap.size(),
+                "Check number of tests");
 
         // check that all first nine tests have one test cases and correct name 
         IntStream.range(1, testMap.size()).forEach(testIndex -> {
             
             Assert.isEqual(
-                    "Check number of test cases for test " + testIndex,
                     1,
-                    testMap.get(testIndex).getTestCases().size());
+                    testMap.get(testIndex).getTestCases().size(),
+                    "Check number of test cases for test " + testIndex);
 
             Assert.isEqual(
-                    "Check test name for test " + testIndex,
                     "Test" + testIndex,
-                    testMap.get(testIndex).getName());
+                    testMap.get(testIndex).getName(),
+                    "Check test name for test " + testIndex);
         });
 
         Assert.isEqual(
-                "Check test name for the 10th test.",
                 "Test10",
-                testMap.get(10).getName());
+                testMap.get(10).getName(),
+                "Check test name for the 10th test.");
         
         Assert.isEqual(
-                "Check number of test cases for the 10th test.",
                 10,
-                testMap.get(10).getTestCases().size());
+                testMap.get(10).getTestCases().size(),
+                "Check number of test cases for the 10th test.");
     }
 
 }

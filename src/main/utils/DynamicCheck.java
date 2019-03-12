@@ -125,21 +125,18 @@ public interface DynamicCheck {
 
             if ( expectedCondition.test(resultObject) ){
                 
-                log(
-                        "Dynamic wait - funtion result: " + resultObject.toString());
-                log(
-                        "condition reached after " + i*stepTimeout + "ms");
+                log("Dynamic wait - funtion result: " + resultObject.toString());
+                log("condition reached after " + i*stepTimeout + "ms");
                 return true;
             }
 
             ThreadUtils.sleepQuiet(stepTimeout);
         }
 
-        log(
-                "Dynamic wait - funtion result: " + 
-                        function.apply(funtionArgument).toString());
-        log(
-                "condition not reached after " + totalMilisTimeout + "ms");
+        log("Dynamic wait - funtion result: " + 
+        		function.apply(funtionArgument).toString());
+        log("condition not reached after " + totalMilisTimeout + "ms");
+        
         return false;
     }
 

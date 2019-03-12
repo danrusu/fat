@@ -23,9 +23,9 @@ public class PortalLogin extends TestCase{
 	    portalPage.login();
 	    
 	    isEqual(
-	    		"Check that no error message is present.",
-	            "",
-	            portalPage.getErrorMessage());
+	    		"",
+	            portalPage.getErrorMessage(),
+	            "Check that no error message is present.");
 	}
 		
 

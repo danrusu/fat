@@ -19,9 +19,9 @@ public class ResetSavedData extends TestCase{
 	    
 	    
 		Assert.isEqual(
-		        "Saved data was not reset!",
 		        true,
-		        XmlDynamicData.getSavedData().isEmpty());
+		        XmlDynamicData.getSavedData().isEmpty(),
+		        "Saved data was not reset!");
 	}
 
 	

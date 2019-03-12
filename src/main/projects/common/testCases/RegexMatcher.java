@@ -16,14 +16,14 @@ public class RegexMatcher extends TestCase{
     public void run(String text, String regex){
 
         isEqual(
+                true,
+                
+                text.matches(regex),
+                
                 String.format(
                         "Regex match: (\"%s\").matches(\"%s\")", 
                         text,
-                        regex),
-                
-                true,
-                
-                text.matches(regex));
+                        regex));
     }
 
 

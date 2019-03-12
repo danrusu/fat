@@ -158,14 +158,14 @@ public interface Assert{
             T expected,            
             T actual){
 
-        isEqual("", expected, actual);
+        isEqual(expected, actual, "");
     }
     
     
     public static <T> void isEqual(
-            String assertionDescription,
-            T expected,            
-            T actual){
+            T expected,
+            T actual,            
+            String assertionDescription){
 
         isCondition(assertionDescription, 
                 expected, 
@@ -272,7 +272,7 @@ public interface Assert{
     
     public static <T> void assertList(List<T> expectedList, List<T> actualList){
         
-        isEqual("Verify list size", expectedList.size(), actualList.size());
+        isEqual(expectedList.size(), actualList.size(), "Verify list size");
         
         List<Runnable> assertionsList = IntStream.range(0, expectedList.size()-1)
                 
@@ -291,7 +291,7 @@ public interface Assert{
     
     public static <T, U> void assertMap(Map<T, U> expectedMap, Map<T, U> actualMap){
         
-        isEqual("Verify maps size", expectedMap.size(), actualMap.size());
+        isEqual(expectedMap.size(), actualMap.size(), "Verify maps size");
         
         List<Runnable> assertionsList = expectedMap.keySet().stream()
                 

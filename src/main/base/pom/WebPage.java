@@ -131,10 +131,10 @@ public class WebPage {
 		List<WebElement> elements = driver.findElements(by);
 
 		// assert that only one element was found
-		Assert.isEqual("Element located by " + by +
-				" is unique (found " + elements.size() + ")", 
-				true,
-				elements.size() == 1);
+		Assert.isEqual(true, 
+				elements.size() == 1,
+				"Element located by " + by +
+						" is unique (found " + elements.size() + ")");
 
 		return element; 
 	}
@@ -257,7 +257,7 @@ public class WebPage {
 			ThreadUtils.sleep(2000);
 		}
 
-		Assert.isEqual(failure, true, failure.isEmpty());
+		Assert.isEqual(true, failure.isEmpty(), failure);
 	}
 
 
@@ -288,7 +288,7 @@ public class WebPage {
 			ThreadUtils.sleep(2000);
 		}
 
-		Assert.isEqual(failure, true, failure.isEmpty());
+		Assert.isEqual(true, failure.isEmpty(), failure);
 	}
 
 
@@ -670,6 +670,8 @@ public class WebPage {
 
 	}
 
+	
+	
 
 
 	public void setValueJs(WebElement we, 
@@ -1214,30 +1216,31 @@ public class WebPage {
 	public void checkUrlAndTitle(String url, String title, long timeoutInMiliSeconds) {
 
 		if (url != null){
-			Assert.isEqual("Check URL: "
-					+ "expected: \"" + url 
-					+ "\"; found: \"" + getCurrentUrl() + "\"",
+			Assert.isEqual(true,
 
-					true,
-
-					DynamicCheck.waitUntilFunctionReturnsExpectedValue(timeoutInMiliSeconds,
+					DynamicCheck.waitUntilFunctionReturnsExpectedValue(
+							timeoutInMiliSeconds,
 							500, 
 							(WebPage x) -> x.getCurrentUrl(), 
 							this, 
-							url));
+							url),
+
+					"Check URL: "
+							+ "expected: \"" + url 
+							+ "\"; found: \"" + getCurrentUrl() + "\"");
 		}
 		if (title != null){
-			Assert.isEqual("Check title: "
-					+ "expected: \"" + title
-					+ "\"; found: \"" + getCurrentTitle() + "\"",
-
-					true,
+			Assert.isEqual(true,
 
 					DynamicCheck.waitUntilFunctionReturnsExpectedValue(timeoutInMiliSeconds,
 							500, 
 							(WebPage x) -> x.getCurrentTitle(), 
 							this, 
-							title) );
+							title),
+
+					"Check title: "
+							+ "expected: \"" + title
+							+ "\"; found: \"" + getCurrentTitle() + "\"" );
 		}
 	}
 

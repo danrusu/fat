@@ -3,7 +3,7 @@
 <suite name="danrusu_apiTestDataDriven" user="aitTester" project="danrusu.ro">
  
 
-   	<test name="Validate_CalculateApi" dataProvider="dataProviders\danrusu\calculate.txt">
+   	<test name="Validate_CalculateApi" dataProvider="dataProviderszdanrusu\calculate.txt">
   	  	
 
 		<testcase name="main.projects.danrusu.testCases.CalculateApi"

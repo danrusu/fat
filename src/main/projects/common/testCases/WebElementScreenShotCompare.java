@@ -27,14 +27,8 @@ public class WebElementScreenShotCompare extends WebPageTestCase{
 
 
         isEqual(
-                String.join(" | ",                        
-                        "Screenshots are different",
-                        "file1=" + file1,
-                        "file2=" + file2,
-                        "diffFile="+ diffFile),        
+                true,        
 
-                true,
-                
                 areScreenshotsDifferentWrapped(
 
                         evalFloatAttribute("scaling", 1),     
@@ -48,7 +42,13 @@ public class WebElementScreenShotCompare extends WebPageTestCase{
 
                         file2,
 
-                        diffFile));
+                        diffFile),
+                
+                String.join(" | ",                        
+                        "Screenshots are different",
+                        "file1=" + file1,
+                        "file2=" + file2,
+                        "diffFile="+ diffFile));
     }
 
 

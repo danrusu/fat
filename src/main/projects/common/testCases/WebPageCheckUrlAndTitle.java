@@ -1,8 +1,7 @@
 package main.projects.common.testCases;
 
-import main.base.selenium.Driver;
 import main.base.pom.WebPage;
-import main.base.testCase.TestCase;
+import main.base.testCase.WebPageTestCase;
 
 /**
  * Test case for verifying web page URL and title.
@@ -10,7 +9,7 @@ import main.base.testCase.TestCase;
  * @author Dan.Rusu
  *
  */
-public class WebPageCheckUrlAndTitle extends TestCase{
+public class WebPageCheckUrlAndTitle extends WebPageTestCase{
 
 
 	@Override
@@ -21,12 +20,11 @@ public class WebPageCheckUrlAndTitle extends TestCase{
         int timeout = evalIntAttribute("timeout");
 		
        
-        new WebPage(Driver.getDriver()).checkUrlAndTitle(
+        new WebPage(driver).checkUrlAndTitle(
                 url, 
                 title, 
                 Long.parseLong(timeout + ""));
 	}
-	
 	
 	
 	@Override
@@ -38,4 +36,3 @@ public class WebPageCheckUrlAndTitle extends TestCase{
 	}
 
 }
-

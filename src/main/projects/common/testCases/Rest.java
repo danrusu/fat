@@ -57,11 +57,11 @@ public class Rest extends WebPageTestCase{
 
 			Assert.isEqual(
 			        
-					"Check headers keys/values lists",
-							
 					headersKeys.size(),
+							
+					headersValues.size(),
 					
-					headersValues.size());
+					"Check headers keys/values lists");
 			
 			
 			headers = IntStream.range(0, headersKeys.size())
@@ -101,9 +101,9 @@ public class Rest extends WebPageTestCase{
 				throw new Failure(e, "Couldn't write to file " + destination);
 			}
 			
-			Assert.isEqual("Check statusCode: ",
-					200,
-					response.statusCode());
+			Assert.isEqual(200,
+					response.statusCode(),
+					"Check statusCode: ");
 
 		} catch (Exception e) {
 			logSplitByLines(e.toString());

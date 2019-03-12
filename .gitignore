@@ -1,5 +1,5 @@
 # Compiled class file
-bin
+bin/
 fat.jar
 
 
@@ -12,6 +12,12 @@ logs/*/log.txt
 webDrivers
 
 
-# Credentials
+# Consignor
 XML/Consignor/*Credentials*.xml
 launchConfigs/*Credentials*.launch
+
+
+#VSPartners
+bred/
+*/bred*
+

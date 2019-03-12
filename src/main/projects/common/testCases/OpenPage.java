@@ -6,12 +6,11 @@ import main.base.testCase.WebPageTestCase;
 
 /**
  * Open Web page in browser by URL.
+ * 
  * @author Dan.Rusu
- *
  */
 public class OpenPage extends WebPageTestCase{
 
-	
 	
 	@Override
 	public void run(){
@@ -22,9 +21,9 @@ public class OpenPage extends WebPageTestCase{
 		String expectedTitle = evalAttribute("expectedTitle");
 		
 		Assert.isEqual(
-				"Check that url is not empty.",
-				true,
-				! url.isEmpty());
+				false,
+				url.isEmpty(),
+				"Check that url is not empty.");
 		
 		openUrl(url);
 		
@@ -38,12 +37,10 @@ public class OpenPage extends WebPageTestCase{
 	}
 
 
-	
 	@Override
 	public String getTestCaseScenario(){
-		return new StringBuilder()
-				.append("\n Open Web page in browser by URL.")
-				.append("\nData: url [expectedUrl] [expectedTitle]")
-				.toString();
+		return newScenario(
+				"Open Web page in browser by URL.",
+				"Test data: url [expectedUrl] [expectedTitle]");
 	}
 }

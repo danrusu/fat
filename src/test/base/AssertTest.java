@@ -139,14 +139,14 @@ class AssertTest{
                     () -> verifyAllAsserts(
 
                             () -> isEqual(
-                                    "Test two strings 1", 
                                     "expected", 
-                                    "actual"),
+                                    "actual", 
+                                    "Test two strings 1"),
 
                             () -> isEqual(
-                                    "Test two strings match case 3", 
                                     "expected", 
-                                    "Expected"),
+                                    "Expected", 
+                                    "Test two strings match case 3"),
 
                             () -> isEqualIgnoreCase(
                                     "Test two strings ignore case 2", 

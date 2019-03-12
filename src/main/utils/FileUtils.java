@@ -174,9 +174,9 @@ public interface FileUtils {
                     // compare data-buffer objects //
                     // 1. assert sizes           
                     Assert.isEqual(
-                            "Images have the same size", 
                             expectedImageDataBuffer.getSize(), 
-                            actualImageDataBuffer.getSize());
+                            actualImageDataBuffer.getSize(), 
+                            "Images have the same size");
 
 
                     // 2. assert content

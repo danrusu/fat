@@ -20,9 +20,9 @@ public class FileExists extends TestCase{
 	public void run(){
 
 		Assert.isEqual(    
-		        "File does not exist!",
 		        true,
-		        Files.exists(Paths.get(evalAttribute("source"))));
+		        Files.exists(Paths.get(evalAttribute("source"))),
+		        "File does not exist!");
 	}
 
 	

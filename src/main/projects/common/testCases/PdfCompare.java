@@ -63,9 +63,9 @@ public class PdfCompare extends WebPageTestCase{
 
                 		
                 Assert.isEqual(
-                        "Compare PDF by text contents - comparison: " + comparison,
                         true,
-                        PdfUtils.comparePDFbyText(expectedPdfFiles, actualPdfFiles, comparison));
+                        PdfUtils.comparePDFbyText(expectedPdfFiles, actualPdfFiles, comparison),
+                        "Compare PDF by text contents - comparison: " + comparison);
               
                 break;
                 
@@ -79,9 +79,9 @@ public class PdfCompare extends WebPageTestCase{
                 }
 
                 Assert.isEqual(
-                        "Check if PDF files' text contents are identical. (Report: " + compareItReport + ")",
                         true,
-                        PdfUtils.compareIt(expectedPdfFiles[0], actualPdfFiles[0], compareItReport));
+                        PdfUtils.compareIt(expectedPdfFiles[0], actualPdfFiles[0], compareItReport),
+                        "Check if PDF files' text contents are identical. (Report: " + compareItReport + ")");
                 
                 break;
         }

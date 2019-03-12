@@ -19,30 +19,30 @@ public class ByFieldsReplacerUnitTest extends TestCase{
 		
 		
 		Assert.isEqual(
-				"test public member (css selector)", 
 				true, 
-				byToString(o1.cssSelector).equals("#id_section"));
+				byToString(o1.cssSelector).equals("#id_section"), 
+				"test public member (css selector)");
 		
 		Assert.isEqual(
-				"test private member (xpath selector)",
 				true,
-				byToString(o1.getXpathSelector()).equals("//*[@id=id_section]"));
+				byToString(o1.getXpathSelector()).equals("//*[@id=id_section]"),
+				"test private member (xpath selector)");
 		
 		Assert.isEqual(
-				"test public member (id selector)",
 				true,
-				byToString(o1.idSelector).equals("id_section"));
+				byToString(o1.idSelector).equals("id_section"),
+				"test public member (id selector)");
 		
 		Assert.isEqual(
-				"test public member (className selector)",
 				true,
-				byToString(o1.classNameSelector).equals("class_section"));
+				byToString(o1.classNameSelector).equals("class_section"),
+				"test public member (className selector)");
 		
 		
 		Assert.isEqual(
-				"test field with no replacement (css selector)",
 				true,
-				byToString(o1.field).equals("#counter@tex"));
+				byToString(o1.field).equals("#counter@tex"),
+				"test field with no replacement (css selector)");
 		
 	}
 

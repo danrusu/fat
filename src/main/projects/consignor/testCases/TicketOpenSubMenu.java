@@ -33,9 +33,9 @@ public class TicketOpenSubMenu extends TestCase{
 	    
 	    	    
 	    isEqual(
-	            "Verify active sub menu.",
 	            subMenu,
-	            ticketPage.getActiveSubMenu());	    
+	            ticketPage.getActiveSubMenu(),
+	            "Verify active sub menu.");	    
 	}	
 	
 

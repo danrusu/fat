@@ -45,9 +45,9 @@ public class DataProviderTest {
         
                 
                 () -> isEqual(
-                        "Check data list size",
-                        3, 
-                        dataFromProvider.size()));
+                        3,
+                        dataFromProvider.size(), 
+                        "Check data list size"));
     }
     
 }
