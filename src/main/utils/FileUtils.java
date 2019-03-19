@@ -1,6 +1,8 @@
 package main.utils;
 
+import static java.util.Collections.emptyList;
 import static main.base.failures.ThrowablesWrapper.supplyAndMapThrowableToFailure;
+import static main.base.failures.ThrowablesWrapper.supplyUnchecked;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
@@ -231,7 +233,11 @@ public interface FileUtils {
     }
 
 
+	public static List<String> readAllLines(Path filePath) {
+		
+		return supplyUnchecked(
+				() -> Files.readAllLines(filePath),
+				emptyList());		
+	}
 
-    
 }
-

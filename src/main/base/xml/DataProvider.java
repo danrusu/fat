@@ -1,6 +1,8 @@
 package main.base.xml;
 
 import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.toList;
 import static main.base.Logger.log;
 import static main.base.failures.ThrowablesWrapper.supplyUnchecked;
 import static main.utils.FileUtils.getRelativePath;
@@ -12,42 +14,37 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
+
+import main.utils.FileUtils;
 
 
 public class DataProvider {
 
     
-    
-    public static Predicate<String> lineIsNotEmpty = line -> line.isEmpty() == false;
-    
+    public static Predicate<String> lineIsNotEmpty = line -> false == line.trim().isEmpty();
     
     
-    public static Predicate<String> lineIsNotCommented = line -> line.startsWith("//") == false; 
+    public static Predicate<String> lineIsNotCommented = line -> 
+    	false == line.trim().startsWith("//"); 
 
-    
-    
+        
     public static List<List<String>> getDataFromProvider(
             Path filePath, 
             String separatorRegex, 
             int dataLength){
 
-        
-        return supplyUnchecked(
-                
-                () -> Files.readAllLines(filePath).stream()
+        List<String> lines = FileUtils.readAllLines(filePath);
+    	
+        return lines.stream()
                 
                     .filter(lineIsNotEmpty.and(lineIsNotCommented))
                     
                     .map(line -> splitBy(line, separatorRegex, dataLength))
                     
-                    .collect(Collectors.toList()),
-                    
-                emptyList());           
+                    .collect(toList());
     }
 
     
-
     public static int getDataLength(String localFilePath) {
 
         if(localFilePath != null) { 
@@ -65,16 +62,15 @@ public class DataProvider {
     }
 
 
-
     private static Callable<Integer> countFileLines(String localFilePath) {
+    	
+    	List<String> lines = FileUtils.readAllLines(getRelativePath(localFilePath));
 
-        return () -> Files.readAllLines(getRelativePath(localFilePath))
-
-                .stream()
+        return () -> lines.stream()
                 
                 .filter(lineIsNotEmpty.and(lineIsNotCommented))
                 
-                .collect(Collectors.counting())
+                .collect(counting())
                 
                 .intValue();
     }
@@ -88,4 +84,3 @@ public class DataProvider {
     }
     
 }
-

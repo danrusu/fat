@@ -12,12 +12,10 @@ import main.base.testCase.WebPageTestCase;
 public class Info extends WebPageTestCase{
 
 	
-
 	@Override
 	public void run(){
 		// empty by design
 	}
-	
 	
 	
 	@Override
@@ -25,7 +23,5 @@ public class Info extends WebPageTestCase{
 	    
 		return newScenario("Simple info module for adding metadata in a test report", 
 		        "Used especially in data-driven tests");
-	}
-	
+	}	
 }
-

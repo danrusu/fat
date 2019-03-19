@@ -1,5 +1,6 @@
 package main.base.xml;
 
+import static java.util.stream.Collectors.toMap;
 import static main.base.Logger.log;
 import static main.base.failures.ThrowablesWrapper.supplyUnchecked;
 import static main.base.xml.XmlConfigTags.isXmlConfigTag;
@@ -16,7 +17,6 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.w3c.dom.Element;
@@ -144,19 +144,20 @@ public class XmlTestConfig {
         NamedNodeMap attributes = testElement.getAttributes();
 
         String browserProperty = getPropertyOrEmptyString(JvmArgs.browser); 
-        String browserAttribute = TestAttribute.browser.name();
-
-        
+        String browserAttribute = TestAttribute.browser.name();        
                 
-        Function<Integer, String> getAttributeNameAtIndex = index -> attributes.item(index).getNodeName();        
-        Function<Integer, String> getAttributeValueAtIndex = index -> attributes.item(index).getNodeValue().toString();
+        Function<Integer, String> getAttributeNameAtIndex = index -> 
+        	attributes.item(index).getNodeName();        
+        
+        Function<Integer, String> getAttributeValueAtIndex = index -> 
+        	attributes.item(index).getNodeValue().toString();
         
 
         Map<String, String> testAttributesMap = IntStream.range(0, attributes.getLength())
                 
                 .mapToObj(i -> i)
                 
-                .collect(Collectors.toMap(        
+                .collect(toMap(        
                         getAttributeNameAtIndex,
                         getAttributeValueAtIndex));
         
@@ -168,10 +169,13 @@ public class XmlTestConfig {
             testAttributesMap.put(browserAttribute, browserProperty);                
         }
 
-        int dataProviderLength = DataProvider.getDataLength(
-                testAttributesMap.get(TestAttribute.dataProvider.name()));
+        String dataProvider = testAttributesMap.get(TestAttribute.dataProvider.name());
+        int dataProviderLength = DataProvider.getDataLength(dataProvider);
 
-        dataProviderTestLoop(testElement, testAttributesMap, dataProviderLength);
+        dataProviderTestLoop(
+        		testElement, 
+        		testAttributesMap, 
+        		dataProviderLength);
     }
 
 
@@ -190,19 +194,14 @@ public class XmlTestConfig {
 
                 dataProviderIndex++) {
 
-
-
             // get test cases info
             List<Element> testCasesList = XmlDoc.getChildren(testElement);
             
             Map<Integer, Map<String, String>> testCasesMap = new TreeMap<>();
             Map<String, String> testCaseAttributes = new TreeMap<>();
-
-
             
             int k=0;
             for(Element tc : testCasesList){
-
 
                 testCaseAttributes = getAttributes(tc.getAttributes());
 
@@ -235,7 +234,6 @@ public class XmlTestConfig {
     }
 
 
-
     /**
      * Get tests map from XML.
      * 	
@@ -266,18 +264,16 @@ public class XmlTestConfig {
     }
 
 
-
     public Map<String, String> getAttributes(NamedNodeMap attributesMap){
 
         return IntStream.range(0, attributesMap.getLength())
 
                 .mapToObj(attributesMap::item)
 
-                .collect(Collectors.toMap(
+                .collect(toMap(
                         Node::getNodeName,
                         Node::getNodeValue));
     }
-
 
 
     private void logTestConfig(Map<Integer, TestConfig> tests) {
@@ -295,7 +291,6 @@ public class XmlTestConfig {
     }
 
     
-    
     // *** Setters
     public static void setSuiteName(String suiteName) {
 
@@ -311,26 +306,23 @@ public class XmlTestConfig {
     }
 
 
-
     private static void setProject(String project) {
 
         XmlTestConfig.project = project;
     }
     
-  
-    
+      
     private static void setEmail(String email) {
 
         XmlTestConfig.emails = email;
     }
     
-    
-    
+      
     private void setGrid(String attribute) {
         XmlTestConfig.grid = toBoolean(attribute);
     }
 
-
+    
     public static void setSuiteResultFileType(String resultFileType) {
 
         XmlTestConfig.resultFileType = supplyUnchecked(
@@ -348,13 +340,11 @@ public class XmlTestConfig {
     }
     
     
-    
     public static String getUser() {
 
         return XmlTestConfig.user;
     }
 
-    
     
     public static String getProject() {
         
@@ -362,19 +352,16 @@ public class XmlTestConfig {
     }
 
     
-
     public static boolean getGrid() {
 
         return XmlTestConfig.grid;
     }
 
-
-
+    
     public static List<String> getEmails() {
 
         return StringUtils.splitBy(emails, ";");
     }
-    
     
     
     public static ResultFileType getSuiteResultFileType() {
@@ -383,4 +370,3 @@ public class XmlTestConfig {
     }
 
 }
-

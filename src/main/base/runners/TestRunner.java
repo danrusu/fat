@@ -155,9 +155,7 @@ public interface TestRunner {
             boolean useGrid) {
 
         // Reuse previous driver
-        // DO NOT USE closeBrowserAtEnd="false" if the next test is in another browser !!!
         String browser = browserName.toUpperCase();
-
 
         if (Driver.getDriver() == null && (browser.isEmpty() == false)){
 
