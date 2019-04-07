@@ -5,7 +5,7 @@ import static io.restassured.http.Method.GET;
 import static main.base.Logger.log;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
@@ -43,7 +43,7 @@ public class CalculateApi extends TestCase {
 		// Validation (each throws if failure)
 		validatableResponse.statusCode(200);
 
-		validatableResponse.header("Content-type", is("application/json"));
+		validatableResponse.header("Content-type", is("application/json;charset=utf-8"));
 
 		validatableResponse.body(
 
