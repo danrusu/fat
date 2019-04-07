@@ -5,6 +5,7 @@ import static main.base.selenium.Driver.getDriver;
 
 import main.base.testCase.WebPageTestCase;
 import main.projects.danrusu.pages.UiTestPage;
+import main.utils.ThreadUtils;
 
 public class Calculate extends WebPageTestCase {
 
@@ -30,6 +31,7 @@ public class Calculate extends WebPageTestCase {
 		uiTestPage.calculate(firstNumber, secondNumber, operation);
 		
 		uiTestPage.waitForAjaxFinish();
+		ThreadUtils.sleep(1000);
 		
 		
 		String result = uiTestPage.getResult();

@@ -16,7 +16,9 @@
 		
 			url="http://danrusu.ro/uiTest/uiTest.html" 
 			
-			title="UI tests"/>
+			title="UI tests"
+			
+			timeout="2000"/>
 						
 			
 		<testcase name="main.projects.danrusu.testCases.Calculate"
@@ -32,8 +34,5 @@
 			
 	</test> 
 	
-		
-  
-	
-	
+
 </suite> 
