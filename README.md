@@ -1,9 +1,9 @@
-#Framework for automation in testing
+# Framework for automation in testing
 
 
 #### 0. Clone 'fat'
 ```
-git clone
+git clone https://github.com/danrusu/fat.git
 ```
 
 
@@ -54,7 +54,7 @@ java -jar fat.jar XML\Demo\simpleTest.xml
  [Report](logs/log_Demo_browsers)
  
  
- - [Multiple browsers data driven](XML/Demo/browsers_DD.xml),
+ - [Multiple browsers data driven](XML/Demo/browsersDD.xml),
  [Data provider](resources/dataProviders/Demo/browsers),
  [Report](logs/log_Demo_browsers_DD)
  
@@ -71,15 +71,15 @@ java -jar fat.jar XML\Demo\simpleTest.xml
  [Report](logs/log_Demo_screenshotsCompare)
  
  
- - [UI Test Calculate](XML/danrusu/uiTest_Calculate.xml),
+ - [UI Test Calculate](XML/danrusu/uiTestCalculate.xml),
  [Report](logs/log_danrusu_uiTest_Calculate)
  
  
-  - [API Test Calculate](XML/danrusu/apiTest_Calculate.xml),
+  - [API Test Calculate](XML/danrusu/apiTestCalculate.xml),
  [Report](logs/log_danrusu_apiTest_Calculate)
 
 
-  - [API Test Calculate Data Driven](XML/danrusu/apiTest_Calculate_DD.xml),
+  - [API Test Calculate Data Driven](XML/danrusu/apiTestCalculateDD.xml),
  [Data Provider](resources/dataProviders/danrusu/calculate.txt), 
  [Report](logs/log_danrusu_apiTest_Calculate_DD)
 
