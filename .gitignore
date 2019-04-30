@@ -7,3 +7,5 @@ fat.jar
 logs/log__*
 logs/*/log.txt
 
+*bred/
+
