@@ -1,4 +1,4 @@
-# Framework for automation in testing
+# <font color="blue"> Framework for Automation in Testing </font>
 
 
 #### 0. Clone 'fat'
