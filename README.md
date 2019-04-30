@@ -84,7 +84,7 @@ java -jar fat.jar XML\Demo\simpleTest.xml
  [Report](logs/log_danrusu_apiTest_Calculate_DD)
 
  
-  - [API Test JSON](XML/danrusu/apiTest_Lotto.xml),
+  - [API Test JSON](XML/danrusu/apiTestLotto.xml),
  [Report](logs/log_danrusu_apiTest_Lotto)
  
 
