@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Demo_junitXmlReport" user="jenkins" project="Demo">
+
+
+ 	<test name="SuccessfullTest" >
+ 		 	
+		<testcase name="main.java.projects.mock.testCases.MockSuccess" />
+		
+	</test>
+
+
+ 	<test name="SeleniumExceptionTest" browser="chrome">
+ 	
+		<testcase name="main.java.projects.mock.testCases.MockException" />
+		
+		<testcase name="main.java.projects.mock.testCases.MockSuccess" />
+		
+	</test>
+	
+
+ 	<test name="SeleniumJsErrorTest" browser="chrome">
+ 	
+		<testcase name="main.java.projects.mock.testCases.MockJSError" />
+		
+		<testcase name="main.java.projects.mock.testCases.MockSuccess" />
+		
+	</test>
+ 	
+		
+</suite> 

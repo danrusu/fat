@@ -1,0 +1,24 @@
+body{
+ background-color: #cfe0e8; 
+ font-size: 1.2em;
+}
+
+a{
+  margin: 5px;
+}
+
+a:link, a:visited {
+  background-color: #f18973;
+  color: #fff;
+
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 600px;
+}
+
+a:hover, a:active {
+  background-color: #fff;
+  color: #f18973;
+}

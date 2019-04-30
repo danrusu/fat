@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="jar" name="fat" basedir=".">
+<project default="jar-update" name="fat" basedir=".">
 
 	<description>
 		Framework for Automation in Testing 
 	</description>
 	
 	
-    <property name="dir.src" value="src/main"/>
+    <property name="dir.src" value="src/main/java"/>
 	<property name="dir.bin" value="bin" />
-	<property name="dir.bin.driverResources" value="${dir.bin}/main/base/driverResources" />
+	<property name="dir.bin.driverResources" value="${dir.bin}/main/java/base/driverResources" />
 	
 	<property name="dir.lib" value="ext"/>
 	
@@ -52,7 +52,7 @@
     	
 		<delete dir="${dir.bin}" />
     	
-    	<delete dir="${dir.webDrivers}" />
+    	<!--<delete dir="${dir.webDrivers}" />-->
     	
         <delete file="${dir.jar}/fat.jar" />
     	
@@ -78,22 +78,24 @@
 		
 		
 		<!-- Include any resource file that doesn't end with .java -->
+<!--		
 		<copy todir="${dir.bin.driverResources}">
 		     
 			<fileset dir="${dir.driverResources}" includes="**/*.exe" />
 			
 		</copy>
+-->
 		
 	</target>
 	
 	
-    <target name="jar" depends="git-pull, compile">
+    <target name="jar" depends="clean, compile">
     	
         <jar destfile="${dir.jar}/fat.jar">
         	
             <manifest>
                 <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" />
-                <attribute name="Rsrc-Main-Class" value="main.base.Main" />
+                <attribute name="Rsrc-Main-Class" value="main.java.base.Main" />
                 <attribute name="Class-Path" value="." />
             	<attribute name="Rsrc-Class-Path" value="./ selenium-server-standalone-3.11.0.jar jsch-0.1.53.jar mssql-jdbc-6.4.0.jre8.jar mysql-connector-java-5.1.39-bin.jar javax.mail.jar json-path-3.1.0.jar json-schema-validator-3.1.0.jar rest-assured-3.0.7.jar xml-path-3.1.0.jar pdfbox-app-2.0.5.jar ashot-1.5.4.jar commons-codec-1.9.jar commons-lang3-3.4.jar commons-logging-1.2.jar groovy-2.4.12.jar groovy-json-2.4.12.jar groovy-xml-2.4.12.jar hamcrest-core-1.3.jar hamcrest-library-1.3.jar httpclient-4.5.3.jar httpcore-4.4.6.jar httpmime-4.5.1.jar jaxb-api-2.2.12.jar tagsoup-1.2.1.jar"/>
             </manifest>
@@ -109,5 +111,8 @@
         </jar>
         	
     </target>
+	
+	<target name="jar-update" depends="clean, git-pull, compile, jar">
+	</target>
 	
 </project>

@@ -1,34 +1,34 @@
-// firstNumber[0], secondNumber[1], operation[2], result[3]
+// testId[0], firstNumber[1], secondNumber[2], operation[3], result[4]
 
 // SUM
-10, 5, sum, 15
+SUM1, 10, 5, sum, 14
 
-10,  , sum, 10
+SUM2, 10,  , sum, 10
 
-  , 5, sum, 5
+SUM3,  , 5, sum, 5
 
-  ,  , sum, 0
+SUM4,  ,  , sum, 0
 
 
 // MULTIPLICATION  
 
-10, 5, multiplication, 50 
+MULT1, 10, 5, multiplication, 50 
 
-10,  , multiplication, 0
+MULT2, 10,  , multiplication, 0
 
- ,  5, multiplication, 0
+MULT3,  ,  5, multiplication, 0
 
- ,  , multiplication, 0
+MULT4,  ,  , multiplication, 0
 
 			  
 // DIVISION
 
-10, 21, division, 0.47619047619048
+DIV1, 10, 21, division, 0.47619047619048
 
-10,  0, division, Division by 0 is not allowed!
+DIV2, 10,  0, division, Division by 0 is not allowed!
 
-10,   , division, Division by 0 is not allowed!
+DIV3, 10,   , division, Division by 0 is not allowed!
 
-  , 21, division, 0
+DIV4,  , 21, division, 0
 
-  ,   , division, Division by 0 is not allowed!
+DIV5,  ,  , division, Division by 0 is not allowed!
