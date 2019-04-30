@@ -7,17 +7,3 @@ fat.jar
 logs/log__*
 logs/*/log.txt
 
-
-# Local drivers
-webDrivers
-
-
-# Consignor
-XML/Consignor/*Credentials*.xml
-launchConfigs/*Credentials*.launch
-
-
-#VSPartners
-bred/
-*/bred*
-
