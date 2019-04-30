@@ -1,7 +1,0 @@
-// BrowserName
-
-chrome
-
-firefox
-
-ie

@@ -1,6 +1,0 @@
-// UserName, password, age
-dorina, abc0904, 36
-maria, pass1212, 7
-tania, pass0702, 5
-adela, pass0909, 2
-dan, xyz3011, 38
