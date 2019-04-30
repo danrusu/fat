@@ -1,10 +1,9 @@
-# bred-automation-test
-### Test automation tool for BrED project
+#Framework for automation in testing
 
 
-#### 0. Clone 'bred-automation-test'
+#### 0. Clone 'fat'
 ```
-git clone https://danrusu1111@bitbucket.org/brivoinc/bred-automation-test.git
+git clone
 ```
 
 
@@ -13,7 +12,6 @@ git clone https://danrusu1111@bitbucket.org/brivoinc/bred-automation-test.git
  - [JDK 11](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
  - [Eclipse IDE 2018-12](https://www.eclipse.org/eclipseide/2018-12/)
  - [Apache Ant](https://ant.apache.org/bindownload.cgi)
- - [Gradle](https://gradle.org)
  
 
 #### 2. Updates and build fat.jar
@@ -25,13 +23,6 @@ cd bred-automation-test
 ant
 ```
 
-- Gradle build:
-
-```
-cd bred-automation-test
-gradle clean jar
-```
-
 
 #### 3. Run test scenarios
 
@@ -39,28 +30,6 @@ gradle clean jar
 cd bred-automation-test
 java -jar fat.jar XML\Demo\simpleTest.xml
 ```
-
-- Gradle run:
-
-```
-cd bred-automation-test
-gradlew testDemoSimpleTest
-gradlew testDemoProperties --args="-Dnumber1=100 -DpropertiesFile=resources/properties/demo/dynamic.properties"
-```
-
-- List all available Gradle tasks:
-
-```
-gradlew tasks --all
-```
-
-
-
-#### 4. Demo-videos
- - [Project startup](https://drive.google.com/file/d/1R6qX43AGYGor5f37308oMum7RiiHtH6J/view?usp=sharing)
- 
- 
- - [Create simple test](https://drive.google.com/file/d/1u1A3iHu0YeqSXPNKZdbVzZRlNv2Yy2yT/view?usp=sharing)
 
 
 #### 5. Framework functionalities demos ([scenarios](XML/Demo) and [reports](logs))
