@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="danrusu_uiTest_homePage" user="fatTester" project="danrusu.ro">
+
+  
+   	<test name="ait_homePage1" browser="chrome">
+  	
+		<testcase name="main.java.projects.danrusu.testCases.OpenHomePage"/>
+		
+		<testcase name="main.java.projects.danrusu.testCases.OpenMenu"
+		
+			menu="UI test"/>
+			
+			
+		<testcase name="main.java.projects.common.testCases.WebPageCheckUrlAndTitle"
+		
+			url="http://danrusu.ro/uiTest/uiTest.html" 
+			
+			title="UI tests"
+			
+			timeout="2000"/>
+						
+			
+		<testcase name="main.java.projects.danrusu.testCases.Calculate"
+		
+			firstNumber="10"
+			
+			secondNumber="5"
+			
+			operation="sum"
+			
+			expectedResult="15"/>
+		
+			
+	</test> 
+	
+
+</suite> 

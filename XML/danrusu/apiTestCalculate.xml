@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="danrusu_apiTest_Calculate" user="fatTester" project="danrusu.ro">
+
+
+   	<test name="Validate_CalculateApi_SUM">
+  	
+  	
+  		#sum
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"
+		
+			firstNumber="10"
+			
+			secondNumber="5"
+			
+			operation="sum"
+			
+			expectedResult="15" />
+			
+		#empty inputs sum
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"
+		
+			firstNumber=""
+			
+			secondNumber=""
+			
+			operation="sum"
+			
+			expectedResult="0" />
+		
+			
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"
+		
+			firstNumber="10"			
+			
+			operation="sum"
+			
+			expectedResult="10" />
+			
+			
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"
+		
+			secondNumber="5"
+			
+			operation="sum"
+			
+			expectedResult="5" />
+			
+	</test>	
+		
+		
+	<test name="Validate_CalculateApi_MULTIPLICATION">			
+			
+			
+		#multiplication 
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"
+		
+			firstNumber="10"
+			
+			secondNumber="5"
+			
+			operation="multiplication"
+			
+			expectedResult="50" />
+						
+			
+		#empty inputs multiplication					
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"
+		
+			firstNumber="10"
+			
+			operation="multiplication"
+			
+			expectedResult="0" />
+		
+			
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"
+		
+			secondNumber="5"
+			
+			operation="multiplication"
+			
+			expectedResult="0" />
+			
+			
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"
+				
+			firstNumber=""
+			
+			secondNumber=""
+			
+			operation="multiplication"
+			
+			expectedResult="0" />
+			
+	</test>			
+	
+	
+	<test name="Validate_CalculateApi_DIVISION">
+	
+			
+		#division
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"
+		
+			firstNumber="10"
+			
+			secondNumber="21"
+			
+			operation="division"
+			
+			expectedResult="0.47619047619048" />
+			
+			
+		#division by 0
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"
+		
+			firstNumber="10"
+			
+			secondNumber="0"
+			
+			operation="division"
+			
+			expectedResult="Division by 0 is not allowed!" />
+			
+			
+		#empty inputs division
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"				
+			
+			secondNumber="21"
+			
+			operation="division"
+			
+			expectedResult="0" />
+			
+		
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"				
+			
+			firstNumber="10"
+			
+			operation="division"
+			
+			expectedResult="Division by 0 is not allowed!" />
+		
+		 
+		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"				
+			
+			operation="division"
+			
+			expectedResult="Division by 0 is not allowed!" />			
+			
+			
+	</test> 
+	
+	
+</suite> 

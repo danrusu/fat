@@ -1,0 +1,34 @@
+// firstNumber[0], secondNumber[1], operation[2], result[3]
+
+// SUM
+10, 5, sum, 15
+
+10,  , sum, 10
+
+  , 5, sum, 5
+
+  ,  , sum, 0
+
+
+// MULTIPLICATION  
+
+10, 5, multiplication, 50 
+
+10,  , multiplication, 0
+
+ ,  5, multiplication, 0
+
+ ,  , multiplication, 0
+
+			  
+// DIVISION
+
+10, 21, division, 0.47619047619048
+
+10,  0, division, Division by 0 is not allowed!
+
+10,   , division, Division by 0 is not allowed!
+
+  , 21, division, 0
+
+  ,   , division, Division by 0 is not allowed!
