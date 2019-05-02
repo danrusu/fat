@@ -80,12 +80,8 @@ java -jar fat.jar XML\demo\simpleTest.xml
  [Report](logs/log_danrusu_apiTestCalculateDD)
 
  
-  - [API Test JSON](XML/danrusu/apiTestLotto.xml),
- [Report](logs/log_danrusu_apiTestLotto)
- 
-  
- - [Screenshots Compare](XML/demo/screenshotsCompare.xml), 
- [Report](logs/log_demo_screenshotsCompare)
+  - [API Test JSON](XML/danrusu/apiTestJson.xml),
+ [Report](logs/log_danrusu_apiTestJson)
  
 
 #### 6. [Logs/log_timeStamp](logs)
