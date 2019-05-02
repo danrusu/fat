@@ -41,7 +41,7 @@ java -jar fat.jar XML\demo\simpleTest.xml
  - [Data driven simple test](XML/demo/simpleDataProvider.xml),
  [Data provider 1](resources/dataProviders/demo/mockUsers.txt), 
  [Data provider 2](resources/dataProviders/demo/mockFamilyUsers.txt), 
- [Report](logs/log_demo_simpleDataProvider/result.html)
+ [Report](http://danrusu.ro/logs/log_demo_simpleDataProvider/result.html)
 
 
  - [Properties](XML/demo/properties.xml),
