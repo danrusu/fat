@@ -35,7 +35,7 @@ java -jar fat.jar XML\demo\simpleTest.xml
 #### 5. Framework functionalities demos ([scenarios](XML/demo) and [reports](logs))
  
  - [Simple test](XML/demo/simpleTest.xml), 
- [Report](logs/log_demo_simpleTest)
+ [Report](http://danrusu.ro/logs/log_demo_simpleTest/result.html)
  
  
  - [Data driven simple test](XML/demo/simpleDataProvider.xml),
