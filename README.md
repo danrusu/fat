@@ -19,7 +19,7 @@ git clone https://github.com/danrusu/fat.git
 - Ant build:
 
 ```
-cd bred-automation-test
+cd fat
 ant
 ```
 
@@ -27,7 +27,7 @@ ant
 #### 3. Run test scenarios
 
 ```
-cd bred-automation-test
+cd fat
 java -jar fat.jar XML\Demo\simpleTest.xml
 ```
 
