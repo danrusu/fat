@@ -50,15 +50,6 @@ java -jar fat.jar XML\Demo\simpleTest.xml
  [Report](logs/log_Demo_properties) 
  
  
- - [Multiple browsers](XML/Demo/browsers.xml), 
- [Report](logs/log_Demo_browsers)
- 
- 
- - [Multiple browsers data driven](XML/Demo/browsersDD.xml),
- [Data provider](resources/dataProviders/Demo/browsers),
- [Report](logs/log_Demo_browsers_DD)
- 
- 
  - [Exceptions](XML/Demo/exceptions.xml), 
  [Report](logs/log_Demo_exceptions)
  
@@ -67,8 +58,13 @@ java -jar fat.jar XML\Demo\simpleTest.xml
  [Report](logs/log_Demo_XmlDynamicData)
  
  
- - [Screenshots Compare](XML/Demo/screenshotsCompare.xml), 
- [Report](logs/log_Demo_screenshotsCompare)
+  - [Multiple browsers](XML/Demo/browsers.xml), 
+ [Report](logs/log_Demo_browsers)
+ 
+ 
+ - [Multiple browsers data driven](XML/Demo/browsersDD.xml),
+ [Data provider](resources/dataProviders/Demo/browsers),
+ [Report](logs/log_Demo_browsers_DD)
  
  
  - [UI Test Calculate](XML/danrusu/uiTestCalculate.xml),
@@ -86,6 +82,10 @@ java -jar fat.jar XML\Demo\simpleTest.xml
  
   - [API Test JSON](XML/danrusu/apiTestLotto.xml),
  [Report](logs/log_danrusu_apiTest_Lotto)
+ 
+  
+ - [Screenshots Compare](XML/Demo/screenshotsCompare.xml), 
+ [Report](logs/log_Demo_screenshotsCompare)
  
 
 #### 6. [Logs/log_timeStamp](logs)
