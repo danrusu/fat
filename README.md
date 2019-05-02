@@ -64,24 +64,24 @@ java -jar fat.jar XML\Demo\simpleTest.xml
  
  - [Multiple browsers data driven](XML/Demo/browsersDD.xml),
  [Data provider](resources/dataProviders/Demo/browsers),
- [Report](logs/log_Demo_browsers_DD)
+ [Report](logs/log_Demo_browsersDD)
  
  
  - [UI Test Calculate](XML/danrusu/uiTestCalculate.xml),
- [Report](logs/log_danrusu_uiTest_Calculate)
+ [Report](logs/log_danrusu_uiTestCalculate)
  
  
   - [API Test Calculate](XML/danrusu/apiTestCalculate.xml),
- [Report](logs/log_danrusu_apiTest_Calculate)
+ [Report](logs/log_danrusu_apiTestCalculate)
 
 
   - [API Test Calculate Data Driven](XML/danrusu/apiTestCalculateDD.xml),
  [Data Provider](resources/dataProviders/danrusu/calculate.txt), 
- [Report](logs/log_danrusu_apiTest_Calculate_DD)
+ [Report](logs/log_danrusu_apiTestCalculateDD)
 
  
   - [API Test JSON](XML/danrusu/apiTestLotto.xml),
- [Report](logs/log_danrusu_apiTest_Lotto)
+ [Report](logs/log_danrusu_apiTestLotto)
  
   
  - [Screenshots Compare](XML/Demo/screenshotsCompare.xml), 
