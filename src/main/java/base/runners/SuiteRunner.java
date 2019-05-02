@@ -113,7 +113,7 @@ public class SuiteRunner {
 
         boolean sendResultsToWeb = SystemUtils.getBooleanPropertyOrDefault(JvmArgs.DANRUSU_REPORTING, false);
         if (sendResultsToWeb) {
-        	log("Send report to web: http://danrusu.ro/bred/all.php?auth=token");
+        	log("Send report to web: http://danrusu.ro/fat/all.php?auth=token");
         	sendResultsToWeb();
         }
     }

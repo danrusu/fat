@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites failures="1" id="2019_05_02_14_46_31_demo_junitXmlReport" tests="3" time="0h:0m:7s:939ms" name="demo_junitXmlReport">
+   <testsuite failures="0" id="1" tests="1" time="0h:0m:0s:40ms" name="SuccessfullTest">
+      <testcase time="0h:0m:0s:29ms" name="main.java.projects.mock.testCases.MockSuccess" id="1">
+
+      </testcase>
+   </testsuite>
+   <testsuite failures="1" id="2" tests="2" time="0h:0m:4s:520ms" name="SeleniumExceptionTest">
+      <testcase time="0h:0m:0s:555ms" name="main.java.projects.mock.testCases.MockException" id="1">
+         <failure message="FAILURE" type="ERROR">
+main.java.base.failures.Failure: Test case exception!
+         </failure>
+      </testcase>
+      <testcase time="0h:0m:0s:0ms" name="main.java.projects.mock.testCases.MockSuccess" id="2">
+
+      </testcase>
+   </testsuite>
+   <testsuite failures="0" id="3" tests="2" time="0h:0m:3s:366ms" name="SeleniumJsErrorTest">
+      <testcase time="0h:0m:0s:607ms" name="main.java.projects.mock.testCases.MockJSError" id="1">
+
+      </testcase>
+      <testcase time="0h:0m:0s:21ms" name="main.java.projects.mock.testCases.MockSuccess" id="2">
+
+      </testcase>
+   </testsuite>
+</testsuites>

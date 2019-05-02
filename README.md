@@ -28,43 +28,43 @@ ant
 
 ```
 cd fat
-java -jar fat.jar XML\Demo\simpleTest.xml
+java -jar fat.jar XML\demo\simpleTest.xml
 ```
 
 
-#### 5. Framework functionalities demos ([scenarios](XML/Demo) and [reports](logs))
+#### 5. Framework functionalities demos ([scenarios](XML/demo) and [reports](logs))
  
- - [Simple test](XML/Demo/simpleTest.xml), 
- [Report](logs/log_Demo_simpleTest)
+ - [Simple test](XML/demo/simpleTest.xml), 
+ [Report](logs/log_demo_simpleTest)
  
  
- - [Data driven simple test](XML/Demo/simpleDataProvider.xml),
- [Data provider 1](resources/dataProviders/Demo/mockUsers.txt), 
- [Data provider 2](resources/dataProviders/Demo/mockFamilyUsers.txt), 
- [Report](logs/log_Demo_simpleDataProvider)
+ - [Data driven simple test](XML/demo/simpleDataProvider.xml),
+ [Data provider 1](resources/dataProviders/demo/mockUsers.txt), 
+ [Data provider 2](resources/dataProviders/demo/mockFamilyUsers.txt), 
+ [Report](logs/log_demo_simpleDataProvider)
 
 
- - [Properties](XML/Demo/properties.xml),
- [Properties file 1](resources/properties/Demo/test.properties), 
- [Properties file 2](resources/properties/Demo/dynamic.properties), 
- [Report](logs/log_Demo_properties) 
+ - [Properties](XML/demo/properties.xml),
+ [Properties file 1](resources/properties/demo/test.properties), 
+ [Properties file 2](resources/properties/demo/dynamic.properties), 
+ [Report](logs/log_demo_properties) 
  
  
- - [Exceptions](XML/Demo/exceptions.xml), 
- [Report](logs/log_Demo_exceptions)
+ - [Exceptions](XML/demo/exceptions.xml), 
+ [Report](logs/log_demo_exceptions)
  
  
- - [XML dynamic data capabilities](XML/Demo/XmlDynamicData.xml), 
- [Report](logs/log_Demo_XmlDynamicData)
+ - [XML dynamic data capabilities](XML/demo/XmlDynamicData.xml), 
+ [Report](logs/log_demo_XmlDynamicData)
  
  
-  - [Multiple browsers](XML/Demo/browsers.xml), 
- [Report](logs/log_Demo_browsers)
+  - [Multiple browsers](XML/demo/browsers.xml), 
+ [Report](logs/log_demo_browsers)
  
  
- - [Multiple browsers data driven](XML/Demo/browsersDD.xml),
- [Data provider](resources/dataProviders/Demo/browsers),
- [Report](logs/log_Demo_browsersDD)
+ - [Multiple browsers data driven](XML/demo/browsersDD.xml),
+ [Data provider](resources/dataProviders/demo/browsers),
+ [Report](logs/log_demo_browsersDD)
  
  
  - [UI Test Calculate](XML/danrusu/uiTestCalculate.xml),
@@ -84,8 +84,8 @@ java -jar fat.jar XML\Demo\simpleTest.xml
  [Report](logs/log_danrusu_apiTestLotto)
  
   
- - [Screenshots Compare](XML/Demo/screenshotsCompare.xml), 
- [Report](logs/log_Demo_screenshotsCompare)
+ - [Screenshots Compare](XML/demo/screenshotsCompare.xml), 
+ [Report](logs/log_demo_screenshotsCompare)
  
 
 #### 6. [Logs/log_timeStamp](logs)

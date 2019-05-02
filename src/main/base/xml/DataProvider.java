@@ -1,6 +1,5 @@
 package main.base.xml;
 
-import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.toList;
 import static main.base.Logger.log;
@@ -8,7 +7,6 @@ import static main.base.failures.ThrowablesWrapper.supplyUnchecked;
 import static main.utils.FileUtils.getRelativePath;
 import static main.utils.StringUtils.splitBy;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="demo_dataProvidersTest"
+ 
+	user="danrusu"
+	 
+	project="demo">
+
+
+	<test name="dataProviderTest1" dataProvider="{$property(data1)}">
+	
+	
+		<testcase name="main.java.projects.mock.testCases.MockSuccess" />
+	
+	
+		<testcase name="main.java.projects.mock.testCases.MockSuccess" 
+		
+			username="{$dataProvider(0)}" 
+			
+			password="{$dataProvider(1)}" />
+			
+			
+		<testcase name="main.java.projects.mock.testCases.MockSuccess" />
+	
+						
+	</test>
+	
+	
+	<test name="dataProviderTest2" dataProvider="resources/dataProviders/demo/mockFamilyUsers.txt">
+	
+	
+		<testcase name="main.java.projects.mock.testCases.MockSuccess" 
+		
+			username="{$dataProvider(0)}" 
+			
+			password="{$dataProvider(1)}" 
+			
+			age="{$dataProvider(2)}"/>
+			
+			
+	</test>
+	
+</suite>

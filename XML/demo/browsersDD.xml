@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="demo_browsers_data_driven" user="jenkins" project="demo">
+
+
+  	<test name="BrowserTest" dataProvider="resources/dataProviders/demo/browsers.txt">
+	
+		<testcase name="main.java.projects.common.testCases.OpenPage" 
+		
+			url="https://docs.oracle.com/en/java/" 
+		
+			browser="{$dataProvider(0)}" />
+	
+	</test>
+	
+
+</suite> 

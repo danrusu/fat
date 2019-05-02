@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="simpleTest" failures="0" id="2019_05_02_14_38_48_simpleTest" tests="1" time="0h:0m:0s:40ms">
+   <testsuite name="assert two strings" failures="0" id="1" tests="1" time="0h:0m:0s:28ms">
+      <testcase name="main.java.projects.demo.testCases.SimpleTest" id="1" time="0h:0m:0s:16ms">
+
+      </testcase>
+   </testsuite>
+</testsuites>

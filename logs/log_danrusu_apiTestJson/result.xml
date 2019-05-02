@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites time="0h:0m:2s:678ms" tests="1" id="2019_05_02_14_53_52_danrusu_apiTest_Lotto" failures="0" name="danrusu_apiTest_Lotto">
+   <testsuite time="0h:0m:2s:666ms" tests="1" id="1" failures="0" name="Validate_Lotto_Api">
+      <testcase name="main.java.projects.danrusu.testCases.LottoApi" time="0h:0m:2s:655ms" id="1">
+
+      </testcase>
+   </testsuite>
+</testsuites>

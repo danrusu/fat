@@ -1,0 +1,382 @@
+<html>
+
+<head>
+
+<title>
+Details
+</title>
+
+<link rel="stylesheet" type="text/css" href="../../reportsResources/reports.css"/>
+<link rel="stylesheet" type="text/css" href="../../reportsResources/responsive.css"/>
+<script src="../../reportsResources/jQuery_v2.2.4.js"></script>
+<script src="../../reportsResources/reports.js"></script><link rel="icon" type="image/png" href="images/favicon.ico">
+</head>
+<body onload="resultsPageSetup();">
+<div id="suiteResultsContainer"><table class="suiteResults">
+
+<tr>
+
+<th>
+Suite
+</th>
+
+<th>
+Elapsed
+</th>
+
+<th>
+Result
+</th>
+
+<th>
+Tests total / failed / skipped
+</th>
+
+<th>
+TestCases total / failed / skipped
+</th>
+
+<th>
+Asserts
+</th>
+
+</tr>
+
+<tr>
+
+<td>
+properties
+</td>
+
+<td>
+0h:0m:0s:101ms
+</td>
+
+<td>
+<font color="green">Succeeded</font>
+</td>
+
+<td>
+4 / 0 / 0
+</td>
+
+<td>
+6 / 0 / 0
+</td>
+
+<td>
+3
+</td>
+
+</tr>
+</table>
+</div>
+<br/><br/>
+<table class="results">
+
+<tr>
+
+<th>
+<span title="Expand/collapse test cases"><svg class="svg24" id="expandTestcases" xmlns="http://www.w3.org/2000/svg" width="24" height="24" ><path fill="#00FF00" fill-rule="evenodd" d="M16 11h-3V8c0-.6-.4-1-1-1s-1 .4-1 1v3H8c-.6 0-1 .4-1 1s.4 1 1 1h3v3c0 .6.4 1 1 1s1-.4 1-1v-3h3c.6 0 1-.4 1-1s-.4-1-1-1zM12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z" clip-rule="evenodd"/></svg></span>&nbsp;Test/Testcase
+</th>
+
+<th>
+Name
+</th>
+
+<th>
+Elapsed
+</th>
+
+<th>
+Result
+</th>
+
+<th>
+<span title="Show test cases info"><svg class="svg24" id="showDetails" xmlns="http://www.w3.org/2000/svg" width="115" height="24"><path fill="#00FF00" fill-rule="evenodd" d="M99 0c-6.6 0-12 5.4-12 12s5.4 12 12 12 12-5.4 12-12-5.4-12-12-12zm.4 6c.8 0 1.5.7 1.5 1.5S100.2 9 99.4 9s-1.5-.7-1.5-1.5.6-1.5 1.5-1.5zm1.6 10.3c-.7 1.1-1.5 1.6-2.7 1.6-1 0-1.9-1-1.7-1.6L98 12c0-.1 0-.3-.1-.3-.9.1-1.8.6-1.8.6 0-.2 0-.1 0-.3.7-1.1 2.2-2.1 3.4-2 .7.1.8.9.7 1.6L99 16c0 .3.2.5.5.5.5 0 1.5-1.1 1.5-1.1 0 .3 0 .8 0 .9z" clip-rule="evenodd"/></svg></span>Details
+</th>
+
+</tr>
+
+<tr>
+
+<td>
+1
+</td>
+
+<td>
+Command line property
+</td>
+
+<td>
+0h:0m:0s:37ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+1/1
+</td>
+
+<td>
+main.java.projects.common.testCases.AreEqual
+</td>
+
+<td>
+0h:0m:0s:25ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+actual="100"<br/>expected="100"<br/>
+<div class="note">
+Note:<br/> DSL: actual="{ $property(number1) }"<br/>JVM arg: -Dnumber1=100<br/>
+</div>
+<div class="testCaseDocs" title="Test case info">Assert strings equality.<br>Test data: expected, actual.</div>
+</td>
+</tr>
+
+<tr>
+
+<td>
+2
+</td>
+
+<td>
+Missing property falure
+</td>
+
+<td>
+0h:0m:0s:9ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+2/1
+</td>
+
+<td>
+main.java.projects.common.testCases.AreEqual
+</td>
+
+<td>
+0h:0m:0s:5ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+actual="{$property(notDefinedProperty)}"<br/>expected="100"<br/>expectedFailureRegExp=".*Missing property:.*notDefinedProperty.*"<br/>
+<div class="failure">
+failure: main.java.base.failures.Failure: Missing property: "notDefinedProperty"
+</div>
+<div class="testCaseDocs" title="Test case info">Assert strings equality.<br>Test data: expected, actual.</div>
+</td>
+</tr>
+
+<tr>
+
+<td>
+3
+</td>
+
+<td>
+Property from file
+</td>
+
+<td>
+0h:0m:0s:17ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+3/1
+</td>
+
+<td>
+main.java.projects.common.testCases.LoadProperties
+</td>
+
+<td>
+0h:0m:0s:4ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+filePath="resources/properties/demo/test.properties"<br/><div class="testCaseDocs" title="Test case info">Set globall system properties from file.<br>Test data: filePath.</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+3/2
+</td>
+
+<td>
+main.java.projects.common.testCases.AreEqual
+</td>
+
+<td>
+0h:0m:0s:8ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+actual="smokeTest"<br/>expected="smokeTest"<br/><div class="testCaseDocs" title="Test case info">Assert strings equality.<br>Test data: expected, actual.</div>
+</td>
+</tr>
+
+<tr>
+
+<td>
+4
+</td>
+
+<td>
+Dynamic properties file - from cmd property
+</td>
+
+<td>
+0h:0m:0s:24ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+4/1
+</td>
+
+<td>
+main.java.projects.common.testCases.LoadProperties
+</td>
+
+<td>
+0h:0m:0s:9ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+filePath="resources/properties/demo/dynamic.properties"<br/>
+<div class="note">
+Note:<br/> JVM arg: -DpropertiesFile=resources/properties/demo/dynamic.properties
+</div>
+<div class="testCaseDocs" title="Test case info">Set globall system properties from file.<br>Test data: filePath.</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+4/2
+</td>
+
+<td>
+main.java.projects.common.testCases.AreEqual
+</td>
+
+<td>
+0h:0m:0s:10ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+actual="sanityTest"<br/>expected="sanityTest"<br/><div class="testCaseDocs" title="Test case info">Assert strings equality.<br>Test data: expected, actual.</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

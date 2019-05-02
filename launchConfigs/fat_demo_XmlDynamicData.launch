@@ -2,7 +2,7 @@
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
     <stringAttribute key="bad_container_name" value="\fa\launchConfigs"/>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/bred/src/main/java/base/Main.java"/>
+        <listEntry value="/fat/src/main/java/base/Main.java"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="1"/>
@@ -14,7 +14,7 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="main.java.base.Main"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="XML/Demo/XMLDynamicData.xml"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="bred"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="XML/demo/XMLDynamicData.xml"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="fat"/>
     <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dnumber1=100"/>
 </launchConfiguration>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites failures="0" id="2019_05_02_14_48_42_demo_browsers_data_driven" tests="3" time="0h:0m:11s:442ms" name="demo_browsers_data_driven">
+   <testsuite failures="0" id="1" tests="1" time="0h:0m:4s:963ms" name="BrowserTest">
+      <testcase name="main.java.projects.common.testCases.OpenPage" id="1" time="0h:0m:4s:294ms">
+
+      </testcase>
+   </testsuite>
+   <testsuite failures="0" id="2" tests="1" time="0h:0m:4s:729ms" name="BrowserTest">
+      <testcase name="main.java.projects.common.testCases.OpenPage" id="1" time="0h:0m:3s:972ms">
+
+      </testcase>
+   </testsuite>
+   <testsuite failures="0" id="3" tests="1" time="0h:0m:1s:738ms" name="BrowserTest">
+      <testcase name="main.java.projects.common.testCases.OpenPage" id="1" time="0h:0m:1s:190ms">
+
+      </testcase>
+   </testsuite>
+</testsuites>

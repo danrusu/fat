@@ -1,7 +1,7 @@
 // testId[0], firstNumber[1], secondNumber[2], operation[3], result[4]
 
 // SUM
-SUM1, 10, 5, sum, 14
+SUM1, 10, 5, sum, 15
 
 SUM2, 10,  , sum, 10
 

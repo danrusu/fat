@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="demo_browsers" user="jenkins" project="demo">
+
+
+  	<test name="ChromeTest" browser="chrome">
+	
+		<testcase name="main.java.projects.common.testCases.OpenPage" url="https://app.pluralsight.com" />
+	
+	</test>
+	
+	
+ 	<test name="FirefoxTest" browser="firefox">
+	
+		<testcase name="main.java.projects.common.testCases.OpenPage" url="https://app.pluralsight.com" />
+	
+	</test>  
+
+
+ 	<test name="IETest" browser="ie">
+
+		<testcase name="main.java.projects.common.testCases.OpenPage" url="https://app.pluralsight.com" />
+
+	</test> 
+	
+
+</suite> 
