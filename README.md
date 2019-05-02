@@ -41,47 +41,47 @@ java -jar fat.jar XML\demo\simpleTest.xml
  - [Data driven simple test](XML/demo/simpleDataProvider.xml),
  [Data provider 1](resources/dataProviders/demo/mockUsers.txt), 
  [Data provider 2](resources/dataProviders/demo/mockFamilyUsers.txt), 
- [Report](logs/log_demo_simpleDataProvider)
+ [Report](logs/log_demo_simpleDataProvider/result.html)
 
 
  - [Properties](XML/demo/properties.xml),
  [Properties file 1](resources/properties/demo/test.properties), 
  [Properties file 2](resources/properties/demo/dynamic.properties), 
- [Report](logs/log_demo_properties) 
+ [Report](http://danrusu.ro/logs/log_demo_properties/result.html) 
  
  
  - [Exceptions](XML/demo/exceptions.xml), 
- [Report](logs/log_demo_exceptions)
+ [Report](http://danrusu.ro/logs/log_demo_exceptions/result.html)
  
  
  - [XML dynamic data capabilities](XML/demo/XmlDynamicData.xml), 
- [Report](logs/log_demo_XmlDynamicData)
+ [Report](http://danrusu.ro/logs/log_demo_XmlDynamicData/result.html)
  
  
   - [Multiple browsers](XML/demo/browsers.xml), 
- [Report](logs/log_demo_browsers)
+ [Report](http://danrusu.ro/logs/log_demo_browsers/result.html)
  
  
  - [Multiple browsers data driven](XML/demo/browsersDD.xml),
  [Data provider](resources/dataProviders/demo/browsers),
- [Report](logs/log_demo_browsersDD)
+ [Report](http://danrusu.ro/logs/log_demo_browsersDD/result.html)
  
  
  - [UI Test Calculate](XML/danrusu/uiTestCalculate.xml),
- [Report](logs/log_danrusu_uiTestCalculate)
+ [Report](http://danrusu.ro/logs/log_danrusu_uiTestCalculate/result.html)
  
  
   - [API Test Calculate](XML/danrusu/apiTestCalculate.xml),
- [Report](logs/log_danrusu_apiTestCalculate)
+ [Report](http://danrusu.ro/logs/log_danrusu_apiTestCalculate/result.html)
 
 
   - [API Test Calculate Data Driven](XML/danrusu/apiTestCalculateDD.xml),
  [Data Provider](resources/dataProviders/danrusu/calculate.txt), 
- [Report](logs/log_danrusu_apiTestCalculateDD)
+ [Report](http://danrusu.ro/logs/log_danrusu_apiTestCalculateDD/result.html)
 
  
   - [API Test JSON](XML/danrusu/apiTestJson.xml),
- [Report](logs/log_danrusu_apiTestJson)
+ [Report](http://danrusu.ro/logs/log_danrusu_apiTestJson/result.html)
  
 
 #### 6. [Logs/log_timeStamp](logs)
