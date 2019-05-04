@@ -15,6 +15,11 @@
 
 - gradle build
 
+- dockerized solution
+
+      - database for storing test-case, results
+
+      - frontend for test manager - reports, trigger, statistics
 
 ### New features
 
