@@ -4,6 +4,7 @@
 #### 0. Clone 'fat'
 ```
 git clone https://github.com/danrusu/fat.git
+cd fat
 ```
 
 
@@ -16,13 +17,6 @@ git clone https://github.com/danrusu/fat.git
 
 #### 2. Updates and build fat.jar
 
-- Ant build:
-
-```
-cd fat
-ant
-```
-
 - Gradle build:
 
 
@@ -30,11 +24,16 @@ ant
 gradle clean jar
 ```
 
-
-#### 3. Run test scenarios
+- Ant build:
 
 ```
-cd fat
+ant
+```
+
+
+#### 3. Run a test scenario
+
+```
 java -jar fat.jar XML\demo\simpleTest.xml
 ```
 
@@ -93,7 +92,7 @@ java -jar fat.jar XML\demo\simpleTest.xml
 
 #### 6. [Logs/log_timeStamp](logs)
 
- - detailed Java log: log.txt
+ - detailed log: log.txt
  
  - test scenario execution report: result.html
  
