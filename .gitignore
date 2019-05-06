@@ -9,3 +9,10 @@ logs/*/log.txt
 
 *fat/
 
+
+
+#Gradle
+.gradle/
+build.gradle
+build/
+

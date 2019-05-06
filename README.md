@@ -12,6 +12,7 @@ git clone https://github.com/danrusu/fat.git
  - [JDK 11](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
  - [Eclipse IDE 2018-12](https://www.eclipse.org/eclipseide/2018-12/)
  - [Apache Ant](https://ant.apache.org/bindownload.cgi)
+ - [Gradle](https://gradle.org/)
  
 
 #### 2. Updates and build fat.jar
@@ -21,6 +22,13 @@ git clone https://github.com/danrusu/fat.git
 ```
 cd fat
 ant
+```
+
+- Gradle build:
+
+
+```
+gradle clean jar
 ```
 
 
