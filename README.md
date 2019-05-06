@@ -2,6 +2,7 @@
 
 
 #### 0. Clone 'fat'
+
 ```
 git clone https://github.com/danrusu/fat.git
 cd fat
@@ -17,14 +18,14 @@ cd fat
 
 #### 2. Updates and build fat.jar
 
-- Gradle build:
+Gradle build:
 
 
 ```
 gradle clean jar
 ```
 
-- Ant build:
+Ant build:
 
 ```
 ant
