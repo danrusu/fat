@@ -11,8 +11,12 @@ logs/*/log.txt
 
 
 
-#Gradle
+# Gradle
 .gradle/
-build.gradle
 build/
+
+
+# IntelliJ
+.idea/
+fat.iml
 
