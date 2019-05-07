@@ -15,6 +15,8 @@ cd fat
  - [Eclipse IDE 2018-12](https://www.eclipse.org/eclipseide/2018-12/)
  - [Gradle](https://gradle.org/) / [Ant](https://ant.apache.org/bindownload.cgi)
  
+ All binaries locations for Git, Java, Ant and Gradle must be added to the system path.
+ 
 
 #### 2. Updates and build fat.jar
 
