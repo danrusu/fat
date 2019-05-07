@@ -14,4 +14,5 @@
 |  | backlog |  | 2 | Email reports |
 |  | backlog |  | 2 | Email testing |
 |  | backlog |  | 1 | Add .config files for environment settings (vs. using properties as it is currently supported) |
-|  | backlog |  | 1 | Gradle build |
+|  | done | danrusu | 4 | Gradle build |
+|  | backlog |  | 2 | Gradle test tasks for XML scenarios |

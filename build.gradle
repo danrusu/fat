@@ -33,8 +33,8 @@ compileJava.dependsOn gitPull
 
 
 jar {
-
-	archiveName '../../fat.jar'
+    // jar location defaults to ./build/libs/fat.jar
+    archiveFileName = '../../fat.jar'
 
     def resourceClassPath = (["./"] + configurations.runtimeClasspath.findAll {
         it.name.endsWith('jar')
@@ -54,4 +54,5 @@ jar {
     from {
         zipTree "jar-in-jar-loader.zip"
     }
+
 }
