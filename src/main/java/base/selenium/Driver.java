@@ -109,7 +109,9 @@ public class Driver {
 
         log("Closing all browser windows but start window.");
 
-        driver.getWindowHandles().stream()
+        Set<String> openWindows = driver.getWindowHandles();
+        		
+        openWindows.stream()
 
             .filter(isNotStartWindow)
 
@@ -178,10 +180,11 @@ public class Driver {
         System.setProperty("webdriver.ie.driver", getDriverPath(browser));
 
 
-        InternetExplorerOptions capabilities = new InternetExplorerOptions();
-        capabilities.setCapability("ignoreZoomSetting", true);
-        capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-        capabilities.setCapability("nativeEvents", false);  // element clicks are not working without this setting
+        InternetExplorerOptions options = new InternetExplorerOptions();
+        options.setCapability("ignoreZoomSetting", true);
+        options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+        options.setCapability("nativeEvents", false);  // element clicks are not working without this setting
+        options.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 
         // turn off IE pop up blocker
         // TODO - move this to capabilities if possible
@@ -192,7 +195,7 @@ public class Driver {
             log("Error ocured!");
         }
 
-        WebDriver ieDriver = new InternetExplorerDriver(capabilities);
+        WebDriver ieDriver = new InternetExplorerDriver(options);
 
         ieDriver.manage().window().maximize();
 
