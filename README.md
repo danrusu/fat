@@ -3,7 +3,7 @@
 
 #### Tested on Windows and Ubuntu.
 
-#### The project contains [web drivers](https://github.com/danrusu/fat/tree/master/webDrivers) for Windows(Chrome, Firefox, IE), Ubuntu(Chrome, Firefox), and MacOS(Chrome, Firefox).
+#### The project contains [web drivers](https://github.com/danrusu/fat/tree/master/webDrivers) for Windows (Chrome, Firefox, IE), Ubuntu (Chrome, Firefox), and MacOS (Chrome, Firefox).
 
 
 #### 0. Clone 'fat'
