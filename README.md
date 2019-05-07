@@ -1,6 +1,11 @@
 # [Framework for Automation in Testing](https://github.com/danrusu/fat)
 
 
+#### Tested on Windows and Ubuntu.
+
+#### The project contains [web drivers](https://github.com/danrusu/fat/tree/master/webDrivers) for Windows(Chrome, Firefox, IE), Ubuntu(Chrome, Firefox), and MacOS(Chrome, Firefox).
+
+
 #### 0. Clone 'fat'
 
 ```
@@ -93,7 +98,7 @@ java -jar fat.jar XML\demo\simpleTest.xml
  [Report](http://danrusu.ro/logs/log_danrusu_apiTestJson/result.html)
  
 
-#### 6. [Logs/log_timeStamp](logs)
+#### 6. [Logging/Reporting](logs)
 
  - detailed log: log.txt
  
