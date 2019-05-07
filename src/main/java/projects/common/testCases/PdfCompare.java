@@ -12,20 +12,16 @@ import main.java.utils.PdfUtils.PdfCompareMethods;
 
 /**
  * Compare PDF files by text. 
- * @author Dan.Rusu
- *
+ * @author dan.rusu
  */
 public class PdfCompare extends WebPageTestCase{
 
     private PdfCompareMethods method;
     private StringComparison comparison;
-
-
+    
 
     @Override
     public void run(){
-
-
 
         method = supplyUnchecked(
 
@@ -48,8 +44,8 @@ public class PdfCompare extends WebPageTestCase{
         logSplitByLines(
                 "Compare PDF files by text | method: " + method.name()
                         + " | comparison: " + comparison.name()
-                        + "\n Expected: " + expectedPdfs
-                        + "\n Actual: " + actualPdfs);
+                        + " Expected: " + expectedPdfs
+                        + " Actual: " + actualPdfs);
 
 
         String[] expectedPdfFiles = expectedPdfs.split(";");
@@ -61,14 +57,12 @@ public class PdfCompare extends WebPageTestCase{
             
             case pdfbox:
 
-                		
                 Assert.isEqual(
                         true,
                         PdfUtils.comparePDFbyText(expectedPdfFiles, actualPdfFiles, comparison),
                         "Compare PDF by text contents - comparison: " + comparison);
               
-                break;
-                
+                break;              
 
             case compareit:
                 
@@ -80,27 +74,30 @@ public class PdfCompare extends WebPageTestCase{
 
                 Assert.isEqual(
                         true,
-                        PdfUtils.compareIt(expectedPdfFiles[0], actualPdfFiles[0], compareItReport),
-                        "Check if PDF files' text contents are identical. (Report: " + compareItReport + ")");
+                        PdfUtils.compareIt(
+                        		expectedPdfFiles[0], 
+                        		actualPdfFiles[0], 
+                        		compareItReport),
+                        "Check if PDF files' text contents are identical. (Report: " 
+                        		+ compareItReport + ")");
                 
                 break;
         }
     }
 
-    
 
     @Override
     public String getTestCaseScenario(){
-        return "\nCompare PDF files."
-                + "\nTest data: expected, actual, [method, comparison, report]"
-                + "\nMethod: "
-                + "\n pdfbox (default) - compares pdfs by text content; it allows multi file compare."
-                + "\n compareit - single file compare; generates an html report if files are not identical."
-                + "\nComparison: "
-                + "\n equals(default), "
-                + "\n expectedContains, expectedStartsWith, expectedEndsWith"
-                + "\n actualContains, actualStartsWith, actualEndsWith";
+    	
+        return newScenario("Compare PDF files.",
+                "Test data: expected, actual, [method, comparison, report]",
+                "Method: ",
+                " pdfbox (default) - compares pdfs by text content; it allows multi file compare.",
+                " compareit - single file compare; generates an html report if files are not identical.",
+                "Comparison: ",
+                " equals(default), ",
+                " expectedContains, expectedStartsWith, expectedEndsWith",
+                " actualContains, actualStartsWith, actualEndsWith");
     }
 
 }
-

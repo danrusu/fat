@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<suite name="danrusu_uiTest_homePage" user="fatTester" project="danrusu.ro">
+<suite name="danrusu_uiTestCalculate" user="fatTester" project="danrusu.ro">
 
   
    	<test name="ait_homePage1" browser="chrome">

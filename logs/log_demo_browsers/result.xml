@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="demo_browsers" failures="0" id="2019_05_02_14_47_41_demo_browsers" tests="3" time="0h:0m:20s:557ms">
-   <testsuite name="ChromeTest" failures="0" id="1" tests="1" time="0h:0m:8s:666ms">
-      <testcase time="0h:0m:4s:890ms" name="main.java.projects.common.testCases.OpenPage" id="1">
+<testsuites name="demo_browsers" failures="0" id="2019_05_08_00_09_45_demo_browsers" tests="3" time="0h:0m:18s:222ms">
+   <testsuite name="ChromeTest" failures="0" id="1" tests="1" time="0h:0m:6s:642ms">
+      <testcase id="1" time="0h:0m:2s:768ms" name="main.java.projects.common.testCases.OpenPage">
 
       </testcase>
    </testsuite>
-   <testsuite name="FirefoxTest" failures="0" id="2" tests="1" time="0h:0m:6s:931ms">
-      <testcase time="0h:0m:2s:750ms" name="main.java.projects.common.testCases.OpenPage" id="1">
+   <testsuite name="FirefoxTest" failures="0" id="2" tests="1" time="0h:0m:7s:408ms">
+      <testcase id="1" time="0h:0m:3s:813ms" name="main.java.projects.common.testCases.OpenPage">
 
       </testcase>
    </testsuite>
-   <testsuite name="IETest" failures="0" id="3" tests="1" time="0h:0m:4s:947ms">
-      <testcase time="0h:0m:0s:97ms" name="main.java.projects.common.testCases.OpenPage" id="1">
+   <testsuite name="IETest" failures="0" id="3" tests="1" time="0h:0m:4s:152ms">
+      <testcase id="1" time="0h:0m:2s:33ms" name="main.java.projects.common.testCases.OpenPage">
 
       </testcase>
    </testsuite>

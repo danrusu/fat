@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="properties" failures="0" id="2019_05_02_14_44_36_properties" tests="4" time="0h:0m:0s:101ms">
-   <testsuite name="Command line property" failures="0" id="1" tests="1" time="0h:0m:0s:37ms">
-      <testcase name="main.java.projects.common.testCases.AreEqual" id="1" time="0h:0m:0s:25ms">
+<testsuites name="properties" failures="0" id="2019_05_08_00_13_54_properties" tests="4" time="0h:0m:0s:121ms">
+   <testsuite name="Command line property" failures="0" id="1" tests="1" time="0h:0m:0s:50ms">
+      <testcase time="0h:0m:0s:37ms" name="main.java.projects.common.testCases.AreEqual" id="1">
 
       </testcase>
    </testsuite>
-   <testsuite name="Missing property falure" failures="0" id="2" tests="1" time="0h:0m:0s:9ms">
-      <testcase name="main.java.projects.common.testCases.AreEqual" id="1" time="0h:0m:0s:5ms">
+   <testsuite name="Missing property falure" failures="0" id="2" tests="1" time="0h:0m:0s:10ms">
+      <testcase time="0h:0m:0s:6ms" name="main.java.projects.common.testCases.AreEqual" id="1">
          <failure message="FAILURE" type="ERROR">
 main.java.base.failures.Failure: Missing property: "notDefinedProperty"
          </failure>
       </testcase>
    </testsuite>
-   <testsuite name="Property from file" failures="0" id="3" tests="2" time="0h:0m:0s:17ms">
-      <testcase name="main.java.projects.common.testCases.LoadProperties" id="1" time="0h:0m:0s:4ms">
+   <testsuite name="Property from file" failures="0" id="3" tests="2" time="0h:0m:0s:21ms">
+      <testcase time="0h:0m:0s:5ms" name="main.java.projects.common.testCases.LoadProperties" id="1">
 
       </testcase>
-      <testcase name="main.java.projects.common.testCases.AreEqual" id="2" time="0h:0m:0s:8ms">
+      <testcase time="0h:0m:0s:11ms" name="main.java.projects.common.testCases.AreEqual" id="2">
 
       </testcase>
    </testsuite>
-   <testsuite name="Dynamic properties file - from cmd property" failures="0" id="4" tests="2" time="0h:0m:0s:24ms">
-      <testcase name="main.java.projects.common.testCases.LoadProperties" id="1" time="0h:0m:0s:9ms">
+   <testsuite name="Dynamic properties file - from cmd property" failures="0" id="4" tests="2" time="0h:0m:0s:23ms">
+      <testcase time="0h:0m:0s:8ms" name="main.java.projects.common.testCases.LoadProperties" id="1">
 
       </testcase>
-      <testcase name="main.java.projects.common.testCases.AreEqual" id="2" time="0h:0m:0s:10ms">
+      <testcase time="0h:0m:0s:9ms" name="main.java.projects.common.testCases.AreEqual" id="2">
 
       </testcase>
    </testsuite>

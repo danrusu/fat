@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<suite name="dataProvidersTest"
- 
-	user="danrusu"
-	 
-	project="demo">
+<suite name="dataProvidersTest" user="fatTester" project="demo">
 
 
 	<test name="dataProviderTest1" dataProvider="dataProviders\mockUsers.txt">

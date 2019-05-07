@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites time="0h:0m:2s:678ms" tests="1" id="2019_05_02_14_53_52_danrusu_apiTest_Lotto" failures="0" name="danrusu_apiTest_Lotto">
-   <testsuite time="0h:0m:2s:666ms" tests="1" id="1" failures="0" name="Validate_Lotto_Api">
-      <testcase name="main.java.projects.danrusu.testCases.LottoApi" time="0h:0m:2s:655ms" id="1">
+<testsuites id="2019_05_08_00_07_00_danrusu_apiTestJson" failures="0" name="danrusu_apiTestJson" time="0h:0m:2s:712ms" tests="1">
+   <testsuite id="1" failures="0" name="validate_json_api" time="0h:0m:2s:700ms" tests="1">
+      <testcase id="1" name="main.java.projects.danrusu.testCases.LottoApi" time="0h:0m:2s:688ms">
 
       </testcase>
    </testsuite>

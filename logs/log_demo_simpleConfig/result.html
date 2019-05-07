@@ -3,7 +3,7 @@
 <head>
 
 <title>
-Report: demo_Exceptions
+Report: demo_simpleConfig
 </title>
 
 <link rel="stylesheet" type="text/css" href="../../reportsResources/reports.css"/>
@@ -44,23 +44,23 @@ Asserts
 <tr>
 
 <td>
-demo_Exceptions
+demo_simpleConfig
 </td>
 
 <td>
-0h:0m:8s:95ms
+0h:0m:0s:294ms
 </td>
 
 <td>
-<font color="red">Failed</font>
+<font color="green">Succeeded</font>
 </td>
 
 <td>
-8 / 2 / 1
+10 / 0 / 0
 </td>
 
 <td>
-13 / 2 / 6
+19 / 0 / 0
 </td>
 
 <td>
@@ -104,11 +104,11 @@ Result
 </td>
 
 <td>
-SuccessfullTest
+Test1
 </td>
 
 <td>
-0h:0m:0s:33ms
+0h:0m:0s:65ms
 </td>
 
 <td>
@@ -120,10 +120,6 @@ PASSED
 </td>
 
 <td>
-
-<div class="note">
-Note:<br/> Expected suite results: Tests(8/2/1) TestCases(13/2/6)<br/>Tests: Failed - 4, 8; Skipped - 7<br/>Testcases: Failed - 4/1, 8/1; Skipped - 7/1, 7/2, 7/3, 8/2, 8/3
-</div>
 
 </td>
 
@@ -139,7 +135,7 @@ main.java.projects.mock.testCases.MockSuccess
 </td>
 
 <td>
-0h:0m:0s:27ms
+0h:0m:0s:39ms
 </td>
 
 <td>
@@ -162,11 +158,11 @@ PASSED
 </td>
 
 <td>
-SeleniumExceptionTest
+Test2
 </td>
 
 <td>
-0h:0m:4s:236ms
+0h:0m:0s:10ms
 </td>
 
 <td>
@@ -178,7 +174,7 @@ PASSED
 </td>
 
 <td>
-browser="chrome"<br/>
+
 </td>
 
 </tr>
@@ -189,11 +185,11 @@ browser="chrome"<br/>
 </td>
 
 <td>
-main.java.projects.mock.testCases.MockException
+main.java.projects.mock.testCases.MockSuccess
 </td>
 
 <td>
-0h:0m:0s:180ms
+0h:0m:0s:7ms
 </td>
 
 <td>
@@ -205,11 +201,7 @@ PASSED
 </td>
 
 <td>
-browser="chrome"<br/>expectedFailureRegExp=".*Test case exception!.*"<br/>
-<div class="failure">
-failure: main.java.base.failures.Failure: Test case exception!
-</div>
-<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an exception test failure!</div>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
 </td>
 </tr>
 
@@ -220,11 +212,11 @@ failure: main.java.base.failures.Failure: Test case exception!
 </td>
 
 <td>
-ErrorTest
+Test3
 </td>
 
 <td>
-0h:0m:0s:79ms
+0h:0m:0s:12ms
 </td>
 
 <td>
@@ -247,11 +239,11 @@ PASSED
 </td>
 
 <td>
-main.java.projects.mock.testCases.MockError
+main.java.projects.mock.testCases.MockSuccess
 </td>
 
 <td>
-0h:0m:0s:73ms
+0h:0m:0s:9ms
 </td>
 
 <td>
@@ -263,11 +255,7 @@ PASSED
 </td>
 
 <td>
-expectedFailureRegExp=".*Test case error!.*"<br/>
-<div class="failure">
-failure: main.java.base.failures.Failure: Test case error!
-</div>
-<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an Exception test case failure!</div>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
 </td>
 </tr>
 
@@ -278,17 +266,17 @@ failure: main.java.base.failures.Failure: Test case error!
 </td>
 
 <td>
-RuntimeExceptionTest
+Test4
 </td>
 
 <td>
-0h:0m:0s:171ms
+0h:0m:0s:14ms
 </td>
 
 <td>
 
-<font color="red">
-FAILED
+<font color="green">
+PASSED
 </font>
 
 </td>
@@ -305,41 +293,11 @@ FAILED
 </td>
 
 <td>
-main.java.projects.mock.testCases.MockRuntimeException
+main.java.projects.mock.testCases.MockSuccess
 </td>
 
 <td>
-0h:0m:0s:82ms
-</td>
-
-<td>
-
-<font color="red">
-FAILED
-</font>
-
-</td>
-
-<td>
-expectedFailureRegExp=".*Test_case_runtime_exception!.*"<br/>stopOnFailure="false"<br/>
-<div class="failure">
-failure: main.java.base.failures.Failure: Test case runtime exception!
-</div>
-<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an RuntimeException test case failure!</div>
-</td>
-</tr>
-
-<tr style="display:none;">
-<td>
-4/2
-</td>
-
-<td>
-main.java.projects.mock.testCases.MockRuntimeException
-</td>
-
-<td>
-0h:0m:0s:79ms
+0h:0m:0s:7ms
 </td>
 
 <td>
@@ -351,11 +309,7 @@ PASSED
 </td>
 
 <td>
-expectedFailureRegExp=".*Test case runtime exception!.*"<br/>
-<div class="failure">
-failure: main.java.base.failures.Failure: Test case runtime exception!
-</div>
-<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an RuntimeException test case failure!</div>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
 </td>
 </tr>
 
@@ -366,11 +320,11 @@ failure: main.java.base.failures.Failure: Test case runtime exception!
 </td>
 
 <td>
-JavascriptErrorTest
+Test5
 </td>
 
 <td>
-0h:0m:3s:466ms
+0h:0m:0s:9ms
 </td>
 
 <td>
@@ -382,7 +336,7 @@ PASSED
 </td>
 
 <td>
-browser="chrome"<br/>
+
 </td>
 
 </tr>
@@ -393,11 +347,11 @@ browser="chrome"<br/>
 </td>
 
 <td>
-main.java.projects.mock.testCases.MockJSError
+main.java.projects.mock.testCases.MockSuccess
 </td>
 
 <td>
-0h:0m:0s:581ms
+0h:0m:0s:6ms
 </td>
 
 <td>
@@ -409,11 +363,7 @@ PASSED
 </td>
 
 <td>
-browser="chrome"<br/>
-<div class="js_errors">
-JS_ERRORS: <br/> http://danrusu.ro/jsError.html 26:10 Uncaught ReferenceError: Unknown is not defined | SEVERE
-</div>
-<div class="testCaseDocs" title="Test case info">Test for catching javascript errors<br>This test opens http://danrusu.ro/jsError.html page.</div>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
 </td>
 </tr>
 
@@ -424,11 +374,11 @@ JS_ERRORS: <br/> http://danrusu.ro/jsError.html 26:10 Uncaught ReferenceError: U
 </td>
 
 <td>
-SkipedTestCase
+Test6
 </td>
 
 <td>
-0h:0m:0s:13ms
+0h:0m:0s:18ms
 </td>
 
 <td>
@@ -451,23 +401,23 @@ PASSED
 </td>
 
 <td>
-main.java.projects.mock.testCases.MockRuntimeException
+main.java.projects.mock.testCases.MockSuccess
 </td>
 
 <td>
-0h:0m:0s:6ms
+0h:0m:0s:13ms
 </td>
 
 <td>
 
-<font color="blue">
-SKIPPED
+<font color="green">
+PASSED
 </font>
 
 </td>
 
 <td>
-skip="true"<br/><div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an RuntimeException test case failure!</div>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
 </td>
 </tr>
 
@@ -478,23 +428,23 @@ skip="true"<br/><div class="testCaseDocs" title="Test case info"><br>Empy test c
 </td>
 
 <td>
-SkipedTest
+Test7
 </td>
 
 <td>
-0h:0m:0s:5ms
+0h:0m:0s:16ms
 </td>
 
 <td>
 
-<font color="blue">
-SKIPPED
+<font color="green">
+PASSED
 </font>
 
 </td>
 
 <td>
-skip="true"<br/>
+
 </td>
 
 </tr>
@@ -509,79 +459,19 @@ main.java.projects.mock.testCases.MockSuccess
 </td>
 
 <td>
-0h:0m:0s:0ms
+0h:0m:0s:12ms
 </td>
 
 <td>
 
-<font color="blue">
-SKIPPED
+<font color="green">
+PASSED
 </font>
 
 </td>
 
 <td>
-attribute1="value1"<br/>attribute2="value2"<br/>
-<div class="note">
-Note:<br/> First skipped testcase
-</div>
 <div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
-</td>
-</tr>
-
-<tr style="display:none;">
-<td>
-7/2
-</td>
-
-<td>
-main.java.projects.mock.testCases.MockRuntimeException
-</td>
-
-<td>
-0h:0m:0s:0ms
-</td>
-
-<td>
-
-<font color="blue">
-SKIPPED
-</font>
-
-</td>
-
-<td>
-<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an RuntimeException test case failure!</div>
-</td>
-</tr>
-
-<tr style="display:none;">
-<td>
-7/3
-</td>
-
-<td>
-main.java.projects.mock.testCases.MockError
-</td>
-
-<td>
-0h:0m:0s:0ms
-</td>
-
-<td>
-
-<font color="blue">
-SKIPPED
-</font>
-
-</td>
-
-<td>
-
-<div class="note">
-Note:<br/> Last skipped testcase
-</div>
-<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an Exception test case failure!</div>
 </td>
 </tr>
 
@@ -592,17 +482,17 @@ Note:<br/> Last skipped testcase
 </td>
 
 <td>
-SkipTestcasesAfterFailureTest
+Test8
 </td>
 
 <td>
-0h:0m:0s:72ms
+0h:0m:0s:19ms
 </td>
 
 <td>
 
-<font color="red">
-FAILED
+<font color="green">
+PASSED
 </font>
 
 </td>
@@ -619,33 +509,57 @@ FAILED
 </td>
 
 <td>
-main.java.projects.mock.testCases.MockError
+main.java.projects.mock.testCases.MockSuccess
 </td>
 
 <td>
-0h:0m:0s:59ms
+0h:0m:0s:14ms
 </td>
 
 <td>
 
-<font color="red">
-FAILED
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
+</td>
+</tr>
+
+<tr>
+
+<td>
+9
+</td>
+
+<td>
+Test9
+</td>
+
+<td>
+0h:0m:0s:15ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
 </font>
 
 </td>
 
 <td>
 
-<div class="failure">
-failure: main.java.base.failures.Failure: Test case error!
-</div>
-<div class="testCaseDocs" title="Test case info"><br>Empy test case used just for unit testing an Exception test case failure!</div>
 </td>
+
 </tr>
 
 <tr style="display:none;">
 <td>
-8/2
+9/1
 </td>
 
 <td>
@@ -653,29 +567,79 @@ main.java.projects.mock.testCases.MockSuccess
 </td>
 
 <td>
-0h:0m:0s:0ms
+0h:0m:0s:10ms
 </td>
 
 <td>
 
-<font color="blue">
-SKIPPED
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
+</td>
+</tr>
+
+<tr>
+
+<td>
+10
+</td>
+
+<td>
+Test10
+</td>
+
+<td>
+0h:0m:0s:100ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
 </font>
 
 </td>
 
 <td>
 
-<div class="note">
-Note:<br/> Skipped because first test case failed.
-</div>
+</td>
+
+</tr>
+
+<tr style="display:none;">
+<td>
+10/1
+</td>
+
+<td>
+main.java.projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:12ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
 <div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
 </td>
 </tr>
 
 <tr style="display:none;">
 <td>
-8/3
+10/2
 </td>
 
 <td>
@@ -683,22 +647,226 @@ main.java.projects.mock.testCases.MockSuccess
 </td>
 
 <td>
-0h:0m:0s:0ms
+0h:0m:0s:13ms
 </td>
 
 <td>
 
-<font color="blue">
-SKIPPED
+<font color="green">
+PASSED
 </font>
 
 </td>
 
 <td>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
+</td>
+</tr>
 
-<div class="note">
-Note:<br/> Skipped because first test case failed.
-</div>
+<tr style="display:none;">
+<td>
+10/3
+</td>
+
+<td>
+main.java.projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:9ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+10/4
+</td>
+
+<td>
+main.java.projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:8ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+10/5
+</td>
+
+<td>
+main.java.projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:8ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+10/6
+</td>
+
+<td>
+main.java.projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:9ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+10/7
+</td>
+
+<td>
+main.java.projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:9ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+10/8
+</td>
+
+<td>
+main.java.projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:8ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+10/9
+</td>
+
+<td>
+main.java.projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:7ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
+<div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
+</td>
+</tr>
+
+<tr style="display:none;">
+<td>
+10/10
+</td>
+
+<td>
+main.java.projects.mock.testCases.MockSuccess
+</td>
+
+<td>
+0h:0m:0s:6ms
+</td>
+
+<td>
+
+<font color="green">
+PASSED
+</font>
+
+</td>
+
+<td>
 <div class="testCaseDocs" title="Test case info">Empy test case used just for unit testing!</div>
 </td>
 </tr>
