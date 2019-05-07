@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<suite name="demo_browsers_data_driven" user="jenkins" project="demo">
+<suite name="demo_browsersDD" user="fatTester" project="demo">
 
 
   	<test name="BrowserTest" dataProvider="resources/dataProviders/demo/browsers.txt">

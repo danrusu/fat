@@ -1,45 +1,45 @@
 package main.java.base.testCase;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public enum TestCasesPackages {
-
-
-    unitTest_testCases,
-
+		
+    COMMON,
     
-    // common modules
-    projects_common_testCases, 
-
-
-    // Tested Applications 
-    projects_azetsWork_testCases,
-    projects_pmt_testCases,
-    projects_azetsInvoice_testCases,
-
-
-    // performance tests
-    projects_performance_testCases,
-
+    DANRUSU,
     
-    // test (helper)
-    projects_test_testCases;
+    DEMO,
+    
+    MOCK;
     
     
-    
-    public String value() {
-        return this.name().replaceAll("_", ".");
+    public String getJavaPath() {
+        
+		return String.join(".",
+				PROJECTS_JAVA_PATH,
+        		this.name().toLowerCase(),
+        		TEST_CASES_FOLDER);
     }
+    
+    
+    public static final String PROJECTS_JAVA_PATH = "main.java.projects";
+    public static final String TEST_CASES_FOLDER = "testCases";
     
     
     public static List<String> getAll(){
-        return Arrays.asList(TestCasesPackages.values())
+        return Arrays.asList(values())
                 .stream().unordered().parallel()
-                .map(TestCasesPackages::value)
-                .collect(Collectors.toList());
+                .map(TestCasesPackages::getJavaPath)
+                .collect(toList());
+    }
+    
+    
+    public static void main(String... args) {
+    	System.out.println(getAll());
     }
 
 }
-

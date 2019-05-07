@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites time="0h:0m:8s:711ms" name="danrusu_uiTest_homePage" failures="0" id="2019_05_02_14_49_29_danrusu_uiTest_homePage" tests="1">
-   <testsuite time="0h:0m:8s:702ms" name="ait_homePage1" failures="0" id="1" tests="4">
-      <testcase name="main.java.projects.danrusu.testCases.OpenHomePage" id="1" time="0h:0m:0s:934ms">
+<testsuites tests="1" time="0h:0m:7s:764ms" name="danrusu_uiTestCalculate" failures="0" id="2019_05_08_00_08_32_danrusu_uiTestCalculate">
+   <testsuite tests="4" time="0h:0m:7s:745ms" name="ait_homePage1" failures="0" id="1">
+      <testcase time="0h:0m:0s:926ms" name="main.java.projects.danrusu.testCases.OpenHomePage" id="1">
 
       </testcase>
-      <testcase name="main.java.projects.danrusu.testCases.OpenMenu" id="2" time="0h:0m:1s:967ms">
+      <testcase time="0h:0m:0s:874ms" name="main.java.projects.danrusu.testCases.OpenMenu" id="2">
 
       </testcase>
-      <testcase name="main.java.projects.common.testCases.WebPageCheckUrlAndTitle" id="3" time="0h:0m:0s:52ms">
+      <testcase time="0h:0m:0s:70ms" name="main.java.projects.common.testCases.WebPageCheckUrlAndTitle" id="3">
 
       </testcase>
-      <testcase name="main.java.projects.danrusu.testCases.Calculate" id="4" time="0h:0m:2s:5ms">
+      <testcase time="0h:0m:2s:180ms" name="main.java.projects.danrusu.testCases.Calculate" id="4">
 
       </testcase>
    </testsuite>

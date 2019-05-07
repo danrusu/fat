@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="demo_junitXmlReport" user="jenkins" project="demo">
+
+<suite name="demo_junitXmlReport" user="fatTester" project="demo">
 
 
  	<test name="SuccessfullTest" >

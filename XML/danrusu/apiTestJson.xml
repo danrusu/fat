@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<suite name="danrusu_apiTest_Lotto" user="fatTester" project="danrusu.ro">
+<suite name="danrusu_apiTestJson" user="fatTester" project="danrusu.ro">
 
 
-   	<test name="Validate_Lotto_Api">
-  		<!-- custom response validation within LottoApi -->
+   	<test name="validate_json_api">
+  		<!-- custom response validation within LottoApi.java -->
 		<testcase name="main.java.projects.danrusu.testCases.LottoApi"/>
 			
 	</test> 

@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="demo_Exceptions" failures="2" id="2019_05_02_14_45_19_demo_Exceptions" tests="8" time="0h:0m:8s:256ms">
-   <testsuite name="SuccessfullTest" failures="0" id="1" tests="1" time="0h:0m:0s:33ms">
-      <testcase name="main.java.projects.mock.testCases.MockSuccess" id="1" time="0h:0m:0s:25ms">
+<testsuites failures="2" name="demo_Exceptions" time="0h:0m:8s:95ms" tests="8" id="2019_05_08_00_11_26_demo_Exceptions">
+   <testsuite failures="0" name="SuccessfullTest" time="0h:0m:0s:33ms" tests="1" id="1">
+      <testcase name="main.java.projects.mock.testCases.MockSuccess" time="0h:0m:0s:27ms" id="1">
 
       </testcase>
    </testsuite>
-   <testsuite name="SeleniumExceptionTest" failures="0" id="2" tests="1" time="0h:0m:3s:856ms">
-      <testcase name="main.java.projects.mock.testCases.MockException" id="1" time="0h:0m:0s:101ms">
-         <failure message="FAILURE" type="ERROR">
+   <testsuite failures="0" name="SeleniumExceptionTest" time="0h:0m:4s:236ms" tests="1" id="2">
+      <testcase name="main.java.projects.mock.testCases.MockException" time="0h:0m:0s:180ms" id="1">
+         <failure type="ERROR" message="FAILURE">
 main.java.base.failures.Failure: Test case exception!
          </failure>
       </testcase>
    </testsuite>
-   <testsuite name="ErrorTest" failures="0" id="3" tests="1" time="0h:0m:0s:39ms">
-      <testcase name="main.java.projects.mock.testCases.MockError" id="1" time="0h:0m:0s:35ms">
-         <failure message="FAILURE" type="ERROR">
+   <testsuite failures="0" name="ErrorTest" time="0h:0m:0s:79ms" tests="1" id="3">
+      <testcase name="main.java.projects.mock.testCases.MockError" time="0h:0m:0s:73ms" id="1">
+         <failure type="ERROR" message="FAILURE">
 main.java.base.failures.Failure: Test case error!
          </failure>
       </testcase>
    </testsuite>
-   <testsuite name="RuntimeExceptionTest" failures="1" id="4" tests="2" time="0h:0m:0s:84ms">
-      <testcase name="main.java.projects.mock.testCases.MockRuntimeException" id="1" time="0h:0m:0s:39ms">
-         <failure message="FAILURE" type="ERROR">
+   <testsuite failures="1" name="RuntimeExceptionTest" time="0h:0m:0s:171ms" tests="2" id="4">
+      <testcase name="main.java.projects.mock.testCases.MockRuntimeException" time="0h:0m:0s:82ms" id="1">
+         <failure type="ERROR" message="FAILURE">
 main.java.base.failures.Failure: Test case runtime exception!
          </failure>
       </testcase>
-      <testcase name="main.java.projects.mock.testCases.MockRuntimeException" id="2" time="0h:0m:0s:41ms">
-         <failure message="FAILURE" type="ERROR">
+      <testcase name="main.java.projects.mock.testCases.MockRuntimeException" time="0h:0m:0s:79ms" id="2">
+         <failure type="ERROR" message="FAILURE">
 main.java.base.failures.Failure: Test case runtime exception!
          </failure>
       </testcase>
    </testsuite>
-   <testsuite name="JavascriptErrorTest" failures="0" id="5" tests="1" time="0h:0m:4s:186ms">
-      <testcase name="main.java.projects.mock.testCases.MockJSError" id="1" time="0h:0m:1s:528ms">
+   <testsuite failures="0" name="JavascriptErrorTest" time="0h:0m:3s:466ms" tests="1" id="5">
+      <testcase name="main.java.projects.mock.testCases.MockJSError" time="0h:0m:0s:581ms" id="1">
 
       </testcase>
    </testsuite>
-   <testsuite name="SkipedTestCase" failures="0" id="6" tests="1" time="0h:0m:0s:5ms">
-      <testcase name="main.java.projects.mock.testCases.MockRuntimeException" id="1" time="0h:0m:0s:2ms">
+   <testsuite failures="0" name="SkipedTestCase" time="0h:0m:0s:13ms" tests="1" id="6">
+      <testcase name="main.java.projects.mock.testCases.MockRuntimeException" time="0h:0m:0s:6ms" id="1">
 
       </testcase>
    </testsuite>
-   <testsuite name="SkipedTest" failures="0" id="7" tests="3" time="0h:0m:0s:3ms">
-      <testcase name="main.java.projects.mock.testCases.MockSuccess" id="1" time="0h:0m:0s:0ms">
+   <testsuite failures="0" name="SkipedTest" time="0h:0m:0s:5ms" tests="3" id="7">
+      <testcase name="main.java.projects.mock.testCases.MockSuccess" time="0h:0m:0s:0ms" id="1">
 
       </testcase>
-      <testcase name="main.java.projects.mock.testCases.MockRuntimeException" id="2" time="0h:0m:0s:0ms">
+      <testcase name="main.java.projects.mock.testCases.MockRuntimeException" time="0h:0m:0s:0ms" id="2">
 
       </testcase>
-      <testcase name="main.java.projects.mock.testCases.MockError" id="3" time="0h:0m:0s:0ms">
+      <testcase name="main.java.projects.mock.testCases.MockError" time="0h:0m:0s:0ms" id="3">
 
       </testcase>
    </testsuite>
-   <testsuite name="SkipTestcasesAfterFailureTest" failures="1" id="8" tests="3" time="0h:0m:0s:36ms">
-      <testcase name="main.java.projects.mock.testCases.MockError" id="1" time="0h:0m:0s:33ms">
-         <failure message="FAILURE" type="ERROR">
+   <testsuite failures="1" name="SkipTestcasesAfterFailureTest" time="0h:0m:0s:72ms" tests="3" id="8">
+      <testcase name="main.java.projects.mock.testCases.MockError" time="0h:0m:0s:59ms" id="1">
+         <failure type="ERROR" message="FAILURE">
 main.java.base.failures.Failure: Test case error!
          </failure>
       </testcase>
-      <testcase name="main.java.projects.mock.testCases.MockSuccess" id="2" time="0h:0m:0s:0ms">
+      <testcase name="main.java.projects.mock.testCases.MockSuccess" time="0h:0m:0s:0ms" id="2">
 
       </testcase>
-      <testcase name="main.java.projects.mock.testCases.MockSuccess" id="3" time="0h:0m:0s:0ms">
+      <testcase name="main.java.projects.mock.testCases.MockSuccess" time="0h:0m:0s:0ms" id="3">
 
       </testcase>
    </testsuite>

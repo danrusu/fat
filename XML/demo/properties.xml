@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<suite name="properties" user="jenkins" project="demo">
+<suite name="properties" user="fatTester" project="demo">
  	
 	
 	<test name="Command line property">

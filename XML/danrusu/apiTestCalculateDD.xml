@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<suite name="danrusu_apiTestDataDriven" user="fatTester" project="danrusu.ro">
+<suite name="danrusu_apiTestCalculateDD" user="fatTester" project="danrusu.ro">
  
 
    	<test name="CalculateApiTest" dataProvider="resources/dataProviders/danrusu/calculate.txt">

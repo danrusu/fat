@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<suite name="demo_dataProvidersTest"
- 
-	user="danrusu"
-	 
-	project="demo">
+<suite name="demo_simpleDataProvider" user="fatTester" project="demo">
 
 
 	<test name="dataProviderTest1" dataProvider="{$property(data1)}">
