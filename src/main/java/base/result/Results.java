@@ -74,7 +74,7 @@ public abstract class Results {
 
         // HTML start + head
         resultsString.append("<html>\n")
-            .append(Html.detailsHead())
+            .append(Html.detailsHead(XmlTestConfig.getSuiteName()))
             .append("<body onload=\"resultsPageSetup();\">\n");
 
 
