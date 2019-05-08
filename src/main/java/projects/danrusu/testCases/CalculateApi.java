@@ -48,7 +48,9 @@ public class CalculateApi extends TestCase {
 
 		validatableResponse.body(
 
-				"numbers", hasSize(2), "numbers", hasItems(firstNumber, secondNumber),
+				"numbers", hasSize(2), 
+				
+				"numbers", hasItems(firstNumber, secondNumber),
 
 				"operation", is(operation));
 

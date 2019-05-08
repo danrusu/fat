@@ -30,13 +30,13 @@ import main.java.utils.http.HttpRestAssured;
  */
 public class Rest extends WebPageTestCase{
 
-	private String url;	
-	private String bodyFilePath;
-	private String destination;
 	private String httpMethod;
+	private String url;	
 	private Map<String, String> headers;
-
+	private String bodyFilePath;
 	
+	private String destination;
+
 
 	@Override
 	public void run(){	
@@ -112,9 +112,6 @@ public class Rest extends WebPageTestCase{
 	}
 
 
-
-
-
 	@Override
 	public String getTestCaseScenario(){
 	    
@@ -123,4 +120,3 @@ public class Rest extends WebPageTestCase{
 	}
 
 }
-
