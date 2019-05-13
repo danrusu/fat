@@ -1,6 +1,6 @@
 # [Framework for Automation in Testing](https://github.com/danrusu/fat)
 
-### [Slack workspace](fat-rr74038.slack.com)
+### [Slack workspace](https://ait-ro-fat.slack.com)
 
 #### Tested on Windows and Ubuntu.
 

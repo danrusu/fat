@@ -5,7 +5,7 @@
 
   	<test name="Slack message" 
   	
-  		note="Send message to: fat-rr74038.slack.com workspace">
+  		note="Send message to Slack workspace: ait-ro-fat.slack.com">
 	
 		<testcase name="main.java.projects.common.testCases.SlackReport"		
 		
