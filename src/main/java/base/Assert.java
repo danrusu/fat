@@ -2,6 +2,7 @@ package main.java.base;
 
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.joining;
 import static main.java.base.Assert.AssertCount.assertCount;
 import static main.java.base.Logger.log;
 import static main.java.base.Logger.logSplitByLines;
@@ -127,7 +128,7 @@ public interface Assert{
         return assertionsList.stream()
                 .map(runnableToAssertionErrorOrNull)
                 .filter(assertionError -> assertionError != null)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     
@@ -139,14 +140,14 @@ public interface Assert{
                     
                     .map(AssertionError::getMessage)
                     
-                    .collect(Collectors.joining("\n"));
+                    .collect(joining("\n"));
             
             throw new AssertionError(allAssertionErrors);
         }
     }
        
     
-    public static void verifyAllAsserts(Runnable ...assertions) {
+    public static void softlyAssertAll(Runnable ...assertions) {
         
         verifyAll(getAssertionErrors(assertions));
     }

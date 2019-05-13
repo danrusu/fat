@@ -5,7 +5,7 @@ import static main.java.base.Assert.assertMap;
 import static main.java.base.Assert.isEqual;
 import static main.java.base.Assert.isEqualAsFloat;
 import static main.java.base.Assert.isEqualIgnoreCase;
-import static main.java.base.Assert.verifyAllAsserts;
+import static main.java.base.Assert.softlyAssertAll;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
@@ -136,7 +136,7 @@ class AssertTest{
 
                     AssertionError.class,
 
-                    () -> verifyAllAsserts(
+                    () -> softlyAssertAll(
 
                             () -> isEqual(
                                     "expected", 
@@ -163,7 +163,7 @@ class AssertTest{
         @Test
         public void not_throwing_test() {
 
-           verifyAllAsserts(
+           softlyAssertAll(
 
                     () -> isEqual( 
                             "expected", 

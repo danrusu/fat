@@ -2,7 +2,7 @@ package test.java.base.xml;
 
 import static main.java.base.Assert.assertList;
 import static main.java.base.Assert.isEqual;
-import static main.java.base.Assert.verifyAllAsserts;
+import static main.java.base.Assert.softlyAssertAll;
 import static main.java.base.xmlSuite.DataProvider.getDataFromProvider;
 import static main.java.base.xmlSuite.DataProvider.getDataProviderPath;
 
@@ -27,7 +27,7 @@ public class DataProviderTest {
                 dataColumnsCount);
         
         
-        verifyAllAsserts(
+        softlyAssertAll(
                 
                 () -> assertList(
                         List.of("user1", "password1"), 
