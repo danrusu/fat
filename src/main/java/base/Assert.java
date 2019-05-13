@@ -1,17 +1,23 @@
 package main.java.base;
 
+
+import static java.util.stream.Collectors.toList;
 import static main.java.base.Assert.AssertCount.assertCount;
 import static main.java.base.Logger.log;
 import static main.java.base.Logger.logSplitByLines;
+import static main.java.base.failures.ThrowablesWrapper.executeUnchecked;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.junit.jupiter.api.Assertions;
 
 
 public interface Assert{
@@ -22,7 +28,7 @@ public interface Assert{
     }
 
 
-    private static void passAssertion(
+    private static void pass(
             String assertionDescription,
             String expected) {
 
@@ -35,7 +41,7 @@ public interface Assert{
 
 
 
-    private static void failAssertion(
+    private static void fail(
             String assertionDescription,
             String expected, 
             String actual){
@@ -69,15 +75,14 @@ public interface Assert{
                 Optional.ofNullable(actual)
                     .orElseThrow(() -> new AssertionError("Actual value is null!")))){
             
-            passAssertion(assertionDescription, expected.toString());
+            pass(assertionDescription, expected.toString());
         }
         else {
-            failAssertion(assertionDescription, expected.toString(), actual.toString());
+            fail(assertionDescription, expected.toString(), actual.toString());
         }
     }
 
     
-
     public static <T> void isConditionQuiet(
             String assertionDescription,
             T expected,
@@ -92,12 +97,11 @@ public interface Assert{
                 Optional.ofNullable(actual)
                     .orElseThrow(() -> new AssertionError("Actual value is null!")))){
             
-            failAssertion(assertionDescription, expected.toString(), actual.toString());
+            fail(assertionDescription, expected.toString(), actual.toString());
         }
     }
     
     
-
     public static Function<Runnable, AssertionError> runnableToAssertionErrorOrNull = runnable -> {
         
         try {
@@ -110,14 +114,12 @@ public interface Assert{
         return null;
     };
     
-    
-    
+     
     public static List<AssertionError> getAssertionErrors(Runnable ...assertions) {
 
         return getAssertionErrors(List.of(assertions));
             
     }
-
 
     
     public static List<AssertionError> getAssertionErrors(List<Runnable> assertionsList) {
@@ -128,7 +130,6 @@ public interface Assert{
                 .collect(Collectors.toList());
     }
 
-    
     
     public static void verifyAll(List<AssertionError> assertionErrors) {
                 
@@ -143,14 +144,12 @@ public interface Assert{
             throw new AssertionError(allAssertionErrors);
         }
     }
-    
-    
+       
     
     public static void verifyAllAsserts(Runnable ...assertions) {
         
         verifyAll(getAssertionErrors(assertions));
     }
-
 
     
     public static <T> void isEqual(
@@ -159,7 +158,7 @@ public interface Assert{
 
         isEqual(expected, actual, "");
     }
-    
+       
     
     public static <T> void isEqual(
             T expected,
@@ -185,7 +184,6 @@ public interface Assert{
     }
     
     
-
     public static void isEqualIgnoreCase(
             String assertionDescription,
             String expected,
@@ -208,7 +206,6 @@ public interface Assert{
     }
     
     
-    
     public static void matchesRegex(
             String assertionDescription,
             String expectedRegex,
@@ -219,7 +216,6 @@ public interface Assert{
                 actual, 
                 (exp, act) -> act.matches(expectedRegex));
     }
-
 
 
     public static void isEqualAsFloat(
@@ -234,7 +230,6 @@ public interface Assert{
     }
 
 
-
     public static void actualContainsExpected(
             String assertionDescription,
             String expected,
@@ -245,7 +240,6 @@ public interface Assert{
                 actual, 
                 (exp, act) -> act.contains(exp));
     }
-
 
 
     public static void expectedContainsActual(
@@ -260,14 +254,12 @@ public interface Assert{
     }
 
 
-
     public static void fail(String failureMessage){
         
         logSplitByLines("Assertion failed!" + failureMessage);
         throw new AssertionError(failureMessage);
     }
 
-    
     
     public static <T> void assertList(List<T> expectedList, List<T> actualList){
         
@@ -285,8 +277,23 @@ public interface Assert{
                 
         verifyAll(getAssertionErrors(assertionsList));
      }
-
     
+    
+    public static <T> void assertListAnyOrder(List<T> expectedList, List<T> actualList){
+        
+        isEqual(expectedList.size(), actualList.size(), "Verify list size");
+        
+        List<Runnable> assertionsList = IntStream.range(0, expectedList.size()-1)
+                
+            .mapToObj(i -> (Runnable)() -> Assertions.assertTrue(
+                    
+                    expectedList.contains(actualList.get(i))))
+            
+            .collect(toList());
+                
+        verifyAll(getAssertionErrors(assertionsList));
+     }
+   
     
     public static <T, U> void assertMap(Map<T, U> expectedMap, Map<T, U> actualMap){
         
@@ -308,7 +315,6 @@ public interface Assert{
      }
 
 
-
     static void customAssertString(
             String assertionDescription, 
             String expected, 
@@ -322,7 +328,7 @@ public interface Assert{
         
     }
     
-   /* public static <T> void conditionalAssert(       
+    public static <T> void conditionalAssert(       
             
             Predicate<T> condition,
             
@@ -330,17 +336,19 @@ public interface Assert{
             T expected,
             T actual,
             
-            BiFunction<String, T, T> assertionIfCondition,
-            BiFunction<String, T, T> assertionIfNotCondition) {
+            BiConsumer<T, T> assertionIfCondition,
+            BiConsumer<T, T> assertionIfNotCondition) {
             
-        if (condition.test(actual)){
-            
-            assertionIfCondition.apply(message, expected, actual);
-        }
-        else {
-            
-            assertionIfNotCondition.apply(message, expected, actual);            
-        }        
-    }*/
+    	executeUnchecked(
+    			() -> {
+    				if (condition.test(actual)){           
+    					assertionIfCondition.accept(expected, actual);
+    				}
+    				else {            
+    					assertionIfNotCondition.accept(expected, actual);            
+    				}
+    			},
+    			
+    			message);
+    }
 }
-

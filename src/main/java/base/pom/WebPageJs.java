@@ -25,7 +25,7 @@ public interface WebPageJs {
 			"webSnippets",
 			"color.js");
 
-    
+	
     public static JavascriptExecutor getJsExecutor(WebDriver driver) {
         
         if (driver instanceof JavascriptExecutor) {
@@ -37,8 +37,7 @@ public interface WebPageJs {
             throw new Failure("This driver cannot run JavaScript.");
         }
     }
-    
-    
+        
     
     public static Object executeScript(
             WebDriver driver, 
@@ -56,7 +55,6 @@ public interface WebPageJs {
         
         return getJsExecutor(driver).executeScript(script);
     }
-    
     
     
     public static void jsClick(WebDriver driver, By by){
@@ -84,7 +82,6 @@ public interface WebPageJs {
     }
     
     
-    
     public static void jsClick(WebDriver driver, WebElement webElement){
 
 
@@ -108,8 +105,7 @@ public interface WebPageJs {
     }
     
     
-    
-    // this are usefull when the check box is not clickable
+    // this are useful when the check box is not clickable
     public static boolean jsCheck(WebDriver driver, By checkboxBy){
         
         log("Check the checkbox via js" + checkboxBy);
@@ -125,7 +121,6 @@ public interface WebPageJs {
         
         return checkbox.isSelected();
     }
-
 
 
     public static boolean jsUncheck(WebDriver driver, By checkboxBy){
@@ -144,7 +139,6 @@ public interface WebPageJs {
     }
 
     
-    
     public static boolean jsSetCheckbox(
             WebDriver driver, 
             By checkboxBy, 
@@ -156,7 +150,6 @@ public interface WebPageJs {
                 
             jsUncheck(driver, checkboxBy);
     }
-    
     
     
     /**
@@ -208,8 +201,7 @@ public interface WebPageJs {
                 .toString();
     }
 
-
-
+    
     public static String jsAjaxGet(
             WebDriver driver,
             String url, 
@@ -221,7 +213,6 @@ public interface WebPageJs {
                 ajaxProperties, 
                 "");
     }
-
 
 
     public static String jsAjaxPost(
@@ -237,6 +228,7 @@ public interface WebPageJs {
                 formDataJs);
     }
 
+    
     public static String getAjaxPostScript(
             WebDriver driver,
             String url, 
@@ -260,7 +252,6 @@ public interface WebPageJs {
     }
     
     
-    
     /**
      * Add javas cript to Web Page's DOM
      * 
@@ -280,7 +271,6 @@ public interface WebPageJs {
     }
 
 
-
     /**
      * Evaluate xPath selector via java script.
      * This is only for usage within Developer Tools.
@@ -292,7 +282,6 @@ public interface WebPageJs {
         log("Add eval(xpath) to DOM"); 
         jsAddScriptToDOM(driver, getEvalXpathJavascript());
     }
-    
     
     
     private static String getEvalXpathJavascript(){
@@ -310,7 +299,6 @@ public interface WebPageJs {
                 "if ( elements.snapshotLength > 0 ) { return elements.snapshotItem(0);}",
                 "else {return null;}}");
     }
-    
     
     
     public static void jsTriggerEvents(
@@ -340,7 +328,6 @@ public interface WebPageJs {
     }
 
 
-
     public static void jsTriggerChange(WebDriver driver, WebElement element){
         
         jsTriggerEvents(driver, element, "change");
@@ -356,10 +343,6 @@ public interface WebPageJs {
                 element);
     }
 
-
-
-
-
     
     public static String getBgColor(WebDriver driver, WebElement element) {
     	injectSnippet(driver, COLOR_SNIPPET_PATH);
@@ -372,12 +355,27 @@ public interface WebPageJs {
     }
 
 
-
 	public static void injectSnippet(WebDriver driver, Path snippetFilePath) {
 		String script = FileUtils.fileToString(snippetFilePath);
-		getJsExecutor(driver).executeScript(script);	
+		executeScript(driver, script);	
 	}
 
+	
+	/* Usage: 
+	 * 
+	 * String width = WebPageJs.getOffsetWidth(driver, driver.findElement(selector));
+	 */
+	public static String getOffsetWidth(WebDriver driver, WebElement element) {
+		return ((JavascriptExecutor)driver).executeScript(		
+				"return arguments[0].offsetWidth", 
+				element).toString();
+	}
+	
+	
+	public static String getOffsetHeight(WebDriver driver, WebElement element) {
+		return ((JavascriptExecutor)driver).executeScript(	
+				"return arguments[0].offsetHeight", 
+				element).toString();
+	}
 
 }
-

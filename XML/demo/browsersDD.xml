@@ -3,7 +3,9 @@
 <suite name="demo_browsersDD" user="fatTester" project="demo">
 
 
-  	<test name="BrowserTest" dataProvider="resources/dataProviders/demo/browsers.txt">
+  	<test name="BrowserTest" 
+  	
+  		dataProvider="resources/dataProviders/demo/browsers.txt">
 	
 		<testcase name="main.java.projects.common.testCases.OpenPage" 
 		

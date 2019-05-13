@@ -7,7 +7,7 @@
 	
 		<testcase name="main.java.projects.demo.testCases.SimpleTest" 
 			text="this is a simple demo test"
-			expected="this is a simple demo test" />
+			expected="this is a simple demo tes" />
 	
 	</test>
 	

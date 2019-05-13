@@ -34,8 +34,7 @@ public class UiTestPage extends WebPage {
 	
 	private By result = By.cssSelector("#calculationResult"); 
 	
-	
-	
+		
 	public void calculate(String firstNumber, String secondNumber, Operation operation) {
 		
 		setValueJs(this.firstNumber, firstNumber);
@@ -51,7 +50,7 @@ public class UiTestPage extends WebPage {
 		
 		click(calculate);
 		
-	}
+	}		
 	
 	
 	public String getResult() {

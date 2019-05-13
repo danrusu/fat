@@ -1,8 +1,8 @@
 package main.java.projects.danrusu.testCases;
 
-import static main.java.base.Assert.isEqual;
 import static main.java.base.selenium.Driver.getDriver;
 
+import main.java.base.Assert;
 import main.java.base.testCase.WebPageTestCase;
 import main.java.projects.danrusu.pages.UiTestPage;
 
@@ -24,8 +24,7 @@ public class Calculate extends WebPageTestCase {
 		// actions
 		UiTestPage uiTestPage = new UiTestPage(getDriver());  
 		
-		//uiTestPage.waitForPageLoaded(3);
-		
+		//uiTestPage.waitForPageLoaded(3);		
 		
 		uiTestPage.calculate(firstNumber, secondNumber, operation);
 		
@@ -33,9 +32,8 @@ public class Calculate extends WebPageTestCase {
 		
 		
 		String result = uiTestPage.getResult();
-		
-		
-		isEqual(expectedResult, result);
+				
+		Assert.isEqual(expectedResult, result);
 	}
 	
 

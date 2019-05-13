@@ -5,7 +5,8 @@
 
   	<test name="ChromeTest" browser="chrome">
 	
-		<testcase name="main.java.projects.common.testCases.OpenPage" url="https://app.pluralsight.com" />
+		<testcase name="main.java.projects.common.testCases.OpenPage" 
+			url="https://app.pluralsight.com" />
 	
 	</test>
 	

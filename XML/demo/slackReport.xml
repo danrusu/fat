@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="demo_slackReport" user="fatTester" project="demo">
+
+
+  	<test name="Slack message" 
+  	
+  		note="Send message to: fat-rr74038.slack.com workspace">
+	
+		<testcase name="main.java.projects.common.testCases.SlackReport"		
+		
+			webHookUrl="https://hooks.slack.com/services/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" 
+		
+			linkUrl="http://danrusu.ro/logs/log_demo_browsers/result.html"
+			linkText="QA report"
+			
+			text="fat framework demo" 
+		
+			username="fatTester"
+		
+			channel="#test-automation" />
+	
+	</test>
+	
+
+</suite> 

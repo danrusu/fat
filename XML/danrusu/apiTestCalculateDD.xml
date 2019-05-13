@@ -3,7 +3,9 @@
 <suite name="danrusu_apiTestCalculateDD" user="fatTester" project="danrusu.ro">
  
 
-   	<test name="CalculateApiTest" dataProvider="resources/dataProviders/danrusu/calculate.txt">
+   	<test name="CalculateApiTest" 
+   	
+   		dataProvider="resources/dataProviders/danrusu/calculate.txt">
   	  	
 
 		<testcase name="main.java.projects.danrusu.testCases.CalculateApi"
