@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import main.java.utils.SlackWebHook;
 import main.java.utils.SlackWebHook.SlackWebHookBuilder;
 
-public class SlackReportTest {
+public class SlackWebHookTest {
 	
 	final String expectedSlackWebHoojJson = String.join("\n",
 			"{",

@@ -117,7 +117,8 @@ public class SlackWebHook {
 
 	public void post() {
 
-		RestAssured.baseURI = url; Response response = RestAssured.given()
+		RestAssured.baseURI = url; 
+		Response response = RestAssured.given()
 				.headers(HEADERS) 
 				.body(toJson()) 
 				.request(Method.POST);

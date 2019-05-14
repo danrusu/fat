@@ -125,9 +125,11 @@ public interface Assert{
     
     public static List<AssertionError> getAssertionErrors(List<Runnable> assertionsList) {
 
-        return assertionsList.stream()
+        Predicate<AssertionError> assertionIsNotNul = assertionError -> assertionError != null;
+        
+		return assertionsList.stream()
                 .map(runnableToAssertionErrorOrNull)
-                .filter(assertionError -> assertionError != null)
+                .filter(assertionIsNotNul)
                 .collect(toList());
     }
 
@@ -136,7 +138,7 @@ public interface Assert{
                 
         if (! assertionErrors.isEmpty()) {      
             
-            String allAssertionErrors = assertionErrors.stream()
+            String allAssertionErrors = assertionErrors.stream().unordered()
                     
                     .map(AssertionError::getMessage)
                     
