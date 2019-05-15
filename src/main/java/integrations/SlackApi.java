@@ -1,4 +1,4 @@
-package main.java.utils;
+package main.java.integrations;
 
 import static java.util.stream.Collectors.joining;
 import static main.java.base.Assert.softlyAssertAll;
@@ -21,11 +21,10 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 
 import io.restassured.RestAssured;
-import io.restassured.http.Method;
 import io.restassured.response.Response;
 import main.java.base.Assert;
 
-public class SlackWebHook {
+public class SlackApi {
 
 	private final Map<String, String> HEADERS = Map.of(
 			"Content-Type", 
@@ -36,54 +35,54 @@ public class SlackWebHook {
 	private String username;
 	private String channel;
 
-	private SlackWebHook(SlackWebHookBuilder slackWebHookBuilder) {
-		this.url = slackWebHookBuilder.url;
-		this.text = slackWebHookBuilder.text;
-		this.username = slackWebHookBuilder.username;
-		this.channel = slackWebHookBuilder.channel;
+	private SlackApi(SlackApiBuilder slackApiBuilder) {
+		this.url = slackApiBuilder.url;
+		this.text = slackApiBuilder.text;
+		this.username = slackApiBuilder.username;
+		this.channel = slackApiBuilder.channel;
 	}
 
-	public static class SlackWebHookBuilder {
+	public static class SlackApiBuilder {
 
 		private String url;
 		private String text;
 		private String username;
 		private String channel;
 
-		public SlackWebHookBuilder(String url) {
+		public SlackApiBuilder(String url) {
 			this.url = url;
 			this.text = "";
 			this.username = "";
 			this.channel = "";
 		}
 
-		public SlackWebHookBuilder text(String text) {
+		public SlackApiBuilder text(String text) {
 			this.text += text;
 			return this;
 		}
 
-		public SlackWebHookBuilder link(String url, String text) {
+		public SlackApiBuilder link(String url, String text) {
 			this.text += "<" + url + " | " + text + ">";
 			return this;
 		}
 
-		public SlackWebHookBuilder textLine(String text) {
+		public SlackApiBuilder textLine(String text) {
 			this.text += "\n" + text;
 			return this;
 		}
 
-		public SlackWebHookBuilder username(String username) {
+		public SlackApiBuilder username(String username) {
 			this.username = username;
 			return this;
 		}
 
-		public SlackWebHookBuilder channel(String channel) {
+		public SlackApiBuilder channel(String channel) {
 			this.channel = channel;
 			return this;
 		}
 
-		public SlackWebHook build() {
-			return new SlackWebHook(this);
+		public SlackApi build() {
+			return new SlackApi(this);
 		}
 
 	}
@@ -115,24 +114,25 @@ public class SlackWebHook {
 		return String.format("\"%s\"", text);
 	}
 
+	//  RestAssured dependency
 	public void post() {
 
 		RestAssured.baseURI = url; 
 		Response response = RestAssured.given()
 				.headers(HEADERS) 
 				.body(toJson()) 
-				.request(Method.POST);
-
+				.post();
 
 		softlyAssertAll(
-				() -> Assert.isEqual(200, response.statusCode(), "SLACK_WEB_HOOK_RESPONSE_CODE"),
-				() -> Assert.isEqual("ok", response.body().asString(), "SLACK_WEB_HOOK_RESPONSE_BODY"));		 		 
+				() -> Assert.isEqual(200, response.statusCode(), "SLACK_API_RESPONSE_CODE"),
+				() -> Assert.isEqual("ok", response.body().asString(), "SLACK_API_RESPONSE_BODY"));		 		 
 	}
 
+	// lightweight, no dependency
 	public void postSimple() {
-		// lightweight, no dependency
+		
 		List<Header> headerList = List.of( 
-				new BasicHeader("Content-Type","application/json"));
+				new BasicHeader("Content-Type","application/json;charset=utf-8"));
 
 		CloseableHttpClient httpClient = HttpClientBuilder.create()
 				.setDefaultHeaders(headerList) 
@@ -151,7 +151,7 @@ public class SlackWebHook {
 					
 					() -> Assert.isEqual(200, 
 							response.getStatusLine().getStatusCode(), 
-							"SLACK_WEB_HOOK_RESPONSE_CODE"),
+							"SLACK_API_RESPONSE_CODE"),
 					
 					() -> Assert.isEqual("ok", 
 							body, 
@@ -159,7 +159,7 @@ public class SlackWebHook {
 
 		} catch (IOException e) {
 
-			throw new Error("Send Slack failed", e);
+			throw new Error("SlackApi post failed", e);
 		}		
 	}
 

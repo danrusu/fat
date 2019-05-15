@@ -7,10 +7,10 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-import main.java.utils.SlackWebHook;
-import main.java.utils.SlackWebHook.SlackWebHookBuilder;
+import main.java.integrations.SlackApi;
+import main.java.integrations.SlackApi.SlackApiBuilder;
 
-public class SlackWebHookTest {
+public class SlackApiTest {
 	
 	final String expectedSlackWebHoojJson = String.join("\n",
 			"{",
@@ -23,7 +23,7 @@ public class SlackWebHookTest {
 	@Test
 	public void test() {
 		
-			SlackWebHook slackWebHook = new SlackWebHookBuilder(
+			SlackApi slackApi = new SlackApiBuilder(
 					"https://hooks.slack.com/services/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")
 				.link("http://danrusu.ro/logs/log_demo_browsers/result.html", "QA report")			
 				.textLine("fat framework")
@@ -32,14 +32,14 @@ public class SlackWebHookTest {
 				.channel("#test-automation")
 				.build();
 				
-			System.out.println(slackWebHook.toJson());
+			System.out.println(slackApi.toJson());
 			
 			// remove "," because the order of lines in JSON string can be different
 			Assert.assertThat(
 					Arrays.asList(expectedSlackWebHoojJson.replaceAll(",", "").split("\n")),
-					containsInAnyOrder(slackWebHook.toJson().replaceAll(",", "").split("\n")));
+					containsInAnyOrder(slackApi.toJson().replaceAll(",", "").split("\n")));
 			
-			slackWebHook.post();		
+			slackApi.post();		
 			//slackWebHook.postSimple();
 		}	
 
