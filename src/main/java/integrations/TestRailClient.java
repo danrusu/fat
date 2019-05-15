@@ -24,7 +24,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import main.java.base.Assert;
 
-public class SlackApi {
+public class TestRailClient {
 
 	private final Map<String, String> HEADERS = Map.of(
 			"Content-Type", 
@@ -35,7 +35,7 @@ public class SlackApi {
 	private String username;
 	private String channel;
 
-	private SlackApi(SlackApiBuilder slackApiBuilder) {
+	private TestRailClient(SlackApiBuilder slackApiBuilder) {
 		this.url = slackApiBuilder.url;
 		this.text = slackApiBuilder.text;
 		this.username = slackApiBuilder.username;
@@ -81,8 +81,8 @@ public class SlackApi {
 			return this;
 		}
 
-		public SlackApi build() {
-			return new SlackApi(this);
+		public TestRailClient build() {
+			return new TestRailClient(this);
 		}
 
 	}

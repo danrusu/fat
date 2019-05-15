@@ -1,8 +1,8 @@
 package main.java.projects.common.testCases;
 
 import main.java.base.testCase.WebPageTestCase;
-import main.java.integrations.SlackApi;
-import main.java.integrations.SlackApi.SlackApiBuilder;
+import main.java.integrations.SlackClient;
+import main.java.integrations.SlackClient.SlackClientBuilder;
 
 /**
  * author dan.rusu
@@ -20,14 +20,14 @@ public class SlackReport extends WebPageTestCase{
 		String channel = evalAttribute("channel");
 		String username = evalAttribute("username");
 		
-		SlackApi slackWebHook = new SlackApiBuilder(webHookUrl)
+		SlackClient slackClient = new SlackClientBuilder(webHookUrl)
 			.text(text)
 			.link(linkUrl, linkText)
 			.username(username)
 			.channel(channel)
 			.build();
 		
-		slackWebHook.post();			
+		slackClient.post();			
 	}
 	
 
