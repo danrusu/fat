@@ -1,5 +1,9 @@
 # [Framework for Automation in Testing](https://github.com/danrusu/fat)
 
+### Contact
+- Email: danginkgo@yahoo.com
+- [LinkedIn](https://www.linkedin.com/in/rusu-dan)
+
 ### [Slack workspace](https://ait-ro-fat.slack.com)
 
 #### Tested on Windows and Ubuntu.
